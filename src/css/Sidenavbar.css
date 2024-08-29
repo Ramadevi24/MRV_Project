@@ -2,12 +2,12 @@
     top: 0;
     position: sticky;
     z-index: 1000;
-    /* height: 100vh;
-    min-height: 100vh;
+     height: 100vh;
+    /*min-height: 100vh;
     max-height: 100vh; */
     background-color:rgb(12 74 110);
     width: 240px;
-    line-height: 43px;
+    line-height: 30px;
  
 }
 .menu-text{
@@ -47,4 +47,6 @@
   .menu-text {
     font-size: 16px; /* Adjust font size as needed */
   }
-  
+  .menu-arrow{
+    margin-left: 33px;
+  }
