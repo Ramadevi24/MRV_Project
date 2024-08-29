@@ -1,7 +1,8 @@
 import React from 'react';
-import SideBar2 from '../components/SideBar2';
+// import SideBar2 from '../components/SideBar2';
 
 import Topbar from '../components/Topbar';
+import Sidebar from '../components/Sidebar';
 
 const Dashboard = () => {
 
@@ -10,9 +11,11 @@ const Dashboard = () => {
       
 
       
-      <SideBar2 />
+      {/* <SideBar2 /> */}
+      <Topbar />
 
-          <Topbar />
+      <Sidebar />
+
        
       </div>
   );
