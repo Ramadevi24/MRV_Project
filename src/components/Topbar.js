@@ -89,7 +89,7 @@ const Topbar = () => {
       <div className="topbar">
         <div className="topbar-menu d-flex align-items-center gap-lg-2 gap-1">
           {/* Brand Logo */}
-          {/* <div className="logo-box">
+          <div className="logo-box">
             <a href="index.html" className="logo-light">
               <img src={logoLight} alt="logo" className="logo-lg" height="22" />
               <img src={logoSm} alt="small logo" className="logo-sm" height="22" />
@@ -99,7 +99,7 @@ const Topbar = () => {
               <img src={logoDark} alt="dark logo" className="logo-lg" height="22" />
               <img src={logoSm} alt="small logo" className="logo-sm" height="22" />
             </a>
-          </div> */}
+          </div>
 
           {/* Sidebar Menu Toggle Button */}
           <button className="button-toggle-menu" onClick={toggleMenu}>
@@ -231,12 +231,12 @@ const Topbar = () => {
                     <i className="fe-settings"></i>
                     <span>Settings</span>
                 </a>
-                <a href="pages-lock-screen.html" className="dropdown-item notify-item">
+                <a href="/" className="dropdown-item notify-item">
                     <i className="fe-lock"></i>
                     <span>Lock Screen</span>
                 </a>
                 <div className="dropdown-divider"></div>
-                <a href="pages-login.html" className="dropdown-item notify-item">
+                <a href="/" className="dropdown-item notify-item">
                     <i className="fe-log-out"></i>
                     <span>Logout</span>
                 </a>
