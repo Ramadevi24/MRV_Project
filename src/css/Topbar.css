@@ -15,8 +15,8 @@
   
   .noti-icon-badge {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: -5px;
+    right: -5px;
     display: flex;
     align-items: center;
     justify-content: center;
