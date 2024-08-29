@@ -1,4 +1,5 @@
 import React from 'react';
+import SideBar2 from '../components/SideBar2';
 // import Morris from 'morris.js';
 // import 'morris.js/morris.css';
 // import jQuery from 'jquery';
@@ -43,7 +44,9 @@ const Dashboard = () => {
       </head> */}
 
       <body>
-        {/* <Menu /> */}
+      
+      <SideBar2 />
+
         <div className="page-content">
           {/* <Topbar /> */}
           <div className="px-3">
