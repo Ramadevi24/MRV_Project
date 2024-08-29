@@ -1,28 +1,16 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "../css/Sidenavbar.css";
-import { FaCalendarAlt } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
-import { FaFile } from "react-icons/fa";
-import { GiCookie } from "react-icons/gi";
-import { AiOutlineAppstore } from "react-icons/ai";
-import { BsLayoutTextSidebarReverse } from "react-icons/bs";
-import { AiOutlinePicture } from "react-icons/ai";
-import { BsFillEraserFill } from "react-icons/bs";
-import { RiPieChartLine } from "react-icons/ri";
-import { GiTable } from "react-icons/gi";
-import { IoMapOutline } from "react-icons/io5";
-import { MdShare } from "react-icons/md";
 import logoLight from "../images/logo-light.png";
 import logoSm from "../images/logo-sm.png";
-import logoDark from "../images/logo-dark.png";
-import { FaUserShield } from 'react-icons/fa';
-import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
+import { FaUserShield } from "react-icons/fa";
+import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 const Sidebar = () => {
-     const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-     const toggleMenu = () => {
-         setIsOpen(!isOpen);
-     };
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <React.Fragment>
       <div className="main-menu">
@@ -71,38 +59,9 @@ const Sidebar = () => {
               </a>
             </li>
 
-            <li className="menu-title">Custom</li>
+            <li className="menu-title">Admin</li>
 
-            <li className="menu-item">
-              <a
-                href="apps-calendar.html"
-                className="menu-link waves-effect waves-light"
-              >
-                <span className="menu-icon">
-                  <FaCalendarAlt color="#cedce4" />
-                </span>
-                <span className="menu-text">Calendar</span>
-              </a>
-            </li>
-
-                    <div data-simplebar>
-                        <ul className="app-menu">
-
-                            <li className="menu-title">Menu</li>
-
-                            <li className="menu-item">
-                                <a href="dashboard" className="menu-link waves-effect waves-light">
-                                    <span className="menu-icon">
-                                        <FaHome color="#cedce4" /> {/* Apply color as needed */}
-                                    </span>
-                                    <span className="menu-text">Dashboards</span>
-                                    <span className="badge bg-primary rounded ms-auto">01</span>
-                                </a>
-                            </li>
-                             
-                            <li className="menu-title">Admin</li>
-
-                            {/* <li className="menu-item">
+            {/* <li className="menu-item">
                                 <a href="apps-calendar.html" className="menu-link waves-effect waves-light">
                                     <span className="menu-icon">
                                         <FaCalendarAlt color="#cedce4" />
@@ -111,45 +70,49 @@ const Sidebar = () => {
                                 </a>
                             </li> */}
 
-                            <li className="menu-item">
-                                <a
-                                    href="#menuExpages"
-                                    data-bs-toggle="collapse"
-                                    className="menu-link waves-effect waves-light"
-                                    onClick={toggleMenu}
-                                >
-                                    <span className="menu-icon">
-                                        <FaUserShield color="#cedce4" />
-                                    </span>
-                                    <span className="menu-text">Administration</span>
-                                    <span className="menu-arrow">
-                                        {isOpen ? <FaChevronDown color="#cedce4" /> : <FaChevronRight color="#cedce4"/>}
-                                    </span>
-                                </a>
-                              
-                                <div className="collapse" id="menuExpages">
-                                    <ul className="sub-menu">
-                                        <li className="menu-item">
-                                            <a href="pages-starter.html" className="menu-link">
-                                                <span className="menu-text">Tenents</span>
-                                            </a>
-                                        </li>
-                                        <li className="menu-item">
-                                            <a href="pages-invoice.html" className="menu-link">
-                                                <span className="menu-text">Organization</span>
-                                            </a>
-                                        </li>
-                                        <li className="menu-item">
-                                            <a href="pages-login.html" className="menu-link">
-                                                <span className="menu-text">Roles</span>
-                                            </a>
-                                        </li>
-                                        <li className="menu-item">
-                                            <a href="pages-register.html" className="menu-link">
-                                                <span className="menu-text">Register</span>
-                                            </a>
-                                        </li>
-                                        {/* <li className="menu-item">
+            <li className="menu-item">
+              <a
+                href="#menuExpages"
+                data-bs-toggle="collapse"
+                className="menu-link waves-effect waves-light"
+                onClick={toggleMenu}
+              >
+                <span className="menu-icon">
+                  <FaUserShield color="#cedce4" />
+                </span>
+                <span className="menu-text">Administration</span>
+                <span className="menu-arrow">
+                  {isOpen ? (
+                    <FaChevronDown color="#cedce4" />
+                  ) : (
+                    <FaChevronRight color="#cedce4" />
+                  )}
+                </span>
+              </a>
+
+              <div className="collapse" id="menuExpages">
+                <ul className="sub-menu">
+                  <li className="menu-item">
+                    <a href="pages-starter.html" className="menu-link">
+                      <span className="menu-text">Tenents</span>
+                    </a>
+                  </li>
+                  <li className="menu-item">
+                    <a href="pages-invoice.html" className="menu-link">
+                      <span className="menu-text">Organization</span>
+                    </a>
+                  </li>
+                  <li className="menu-item">
+                    <a href="pages-login.html" className="menu-link">
+                      <span className="menu-text">Roles</span>
+                    </a>
+                  </li>
+                  <li className="menu-item">
+                    <a href="pages-register.html" className="menu-link">
+                      <span className="menu-text">Register</span>
+                    </a>
+                  </li>
+                  {/* <li className="menu-item">
                                             <a href="pages-recoverpw.html" className="menu-link">
                                                 <span className="menu-text">Recover Password</span>
                                             </a>
@@ -169,12 +132,11 @@ const Sidebar = () => {
                                                 <span className="menu-text">Error 500</span>
                                             </a>
                                         </li> */}
-                                    </ul>
-                                </div>
-                            </li>
-                         
+                </ul>
+              </div>
+            </li>
 
-                            {/* <li class="menu-item">
+            {/* <li class="menu-item">
                                 <a href="#menuLayouts" data-bs-toggle="collapse" className="menu-link waves-effect waves-light">
                                     <span className="menu-icon">
                                     </span>
@@ -554,14 +516,11 @@ const Sidebar = () => {
                                     </ul>
                                 </div>
                             </li> */}
-                        </ul>
-                    </div>
-                    </ul>
-                </div>
-            </div>
-        </React.Fragment>
-
-    )
-}
+          </ul>
+        </div>
+      </div>
+    </React.Fragment>
+  );
+};
 
 export default Sidebar;
