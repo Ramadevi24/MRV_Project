@@ -1,0 +1,155 @@
+/* Topbar.css */
+.navbar-custom {
+    background-color: #ffffff; /* Adjust the background color as needed */
+    border-bottom: 1px solid #e0e0e0; /* Add a subtle border at the bottom */
+  }
+  
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem; /* Adjust padding as needed */
+  }
+  
+  .topbar-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-box {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-light img, .logo-dark img {
+    vertical-align: middle;
+  }
+  
+  .button-toggle-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem; /* Adjust icon size as needed */
+    margin-left: 1rem; /* Space between logo and menu button */
+  }
+  
+  .nav-link {
+    color: #333; /* Default link color */
+    text-decoration: none;
+    font-size: 1rem; /* Adjust font size as needed */
+  }
+  
+  .nav-link:hover {
+    color: #007bff; /* Hover color */
+  }
+  
+  .dropdown-menu {
+    min-width: 10rem; /* Adjust width as needed */
+  }
+  
+  .dropdown-item {
+    padding: 0.75rem 1rem; /* Adjust padding as needed */
+    color: #333; /* Default item color */
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f8f9fa; /* Hover background color */
+  }
+  
+  .dropdown-item img {
+    vertical-align: middle;
+    margin-right: 0.5rem; /* Space between image and text */
+  }
+  
+  .notification-list .badge {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    font-size: 0.75rem; /* Adjust badge size as needed */
+  }
+  
+  .notify-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #e0e0e0; /* Add a border between items */
+  }
+  
+  .notify-item .notify-icon {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 0.75rem; /* Space between icon and text */
+  }
+  
+  .notify-item .notify-icon.bg-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .notify-item .notify-icon.bg-info {
+    background-color: #17a2b8;
+    color: #fff;
+  }
+  
+  .notify-item .notify-icon img {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+  }
+  
+  .profile-dropdown {
+    min-width: 12rem; /* Adjust width as needed */
+  }
+  
+  .profile-dropdown .dropdown-item {
+    padding: 0.75rem 1rem;
+  }
+  
+  .profile-dropdown .dropdown-header {
+    padding: 0.75rem 1rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  #theme-mode {
+    cursor: pointer;
+    font-size: 1.5rem; /* Adjust icon size as needed */
+    margin-left: 1rem; /* Space between theme toggle and other items */
+  }
+  
+  .nav-user img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+  
+  .nav-user span {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-user i {
+    margin-left: 0.25rem;
+  }
+  
+  @media (max-width: 768px) {
+    .topbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .topbar-menu {
+      width: 100%;
+      justify-content: space-between;
+    }
+  
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+  

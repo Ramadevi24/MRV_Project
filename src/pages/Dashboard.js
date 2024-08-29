@@ -8,7 +8,7 @@ import React from 'react';
 
 // import HeadCSS from './partials/HeadCSS';
 // import Menu from './partials/Menu';
-// import Topbar from './partials/Topbar';
+import Topbar from '../components/Topbar';
 // import PageTitle from './partials/PageTitle';
 
 const Dashboard = () => {
@@ -45,7 +45,7 @@ const Dashboard = () => {
       <body>
         {/* <Menu /> */}
         <div className="page-content">
-          {/* <Topbar /> */}
+          <Topbar />
           <div className="px-3">
             <div className="container-fluid">
               {/* <PageTitle subtitle="Dashtrap" title="Dashboard" /> */}
