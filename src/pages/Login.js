@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logoDark from '../images/logo-dark.png'
+import logoDark from '../images/logo-dark.png';
+import { FaEnvelope } from 'react-icons/fa';
+import { FaMicrosoft } from 'react-icons/fa';
+// import myimage from '../images/use pass.png';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -72,6 +75,17 @@ const LoginPage = () => {
 
                   <div className="form-group mb-0 text-center">
                     <button className="btn btn-primary w-100" type="submit" onClick={handleLogin}>Log In</button>
+                  </div>
+                  <div className="icons d-flex align-items-center justify-content-center mt-3">
+                    <div>
+                  <FaEnvelope color="#D44638" size={24} title='Gmail' style={{ cursor: 'pointer' }}/>
+                  </div>
+                  <div>
+                    {/* <img src={myimage} alt='uaepass' style={{ width: '100px', height: '100px'}} /> */}
+                  </div>
+                  <div>
+                        <FaMicrosoft color="#00A4EF" size={24}  title='Microsoft' style={{ cursor: 'pointer' }} />
+                      </div>
                   </div>
                 </form>
               </div> {/* end card-body */}
