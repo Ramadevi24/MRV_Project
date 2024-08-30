@@ -93,23 +93,23 @@ const Sidebar = () => {
               <div className="collapse" id="menuExpages">
                 <ul className="sub-menu">
                   <li className="menu-item">
-                    <a href="pages-starter.html" className="menu-link">
-                      <span className="menu-text">Tenents</span>
+                    <a href="tenants" className="menu-link">
+                      <span className="menu-text">Tenants</span>
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a href="pages-invoice.html" className="menu-link">
+                    <a href="organizations" className="menu-link">
                       <span className="menu-text">Organization</span>
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a href="pages-login.html" className="menu-link">
+                    <a href="roles" className="menu-link">
                       <span className="menu-text">Roles</span>
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a href="pages-register.html" className="menu-link">
-                      <span className="menu-text">Register</span>
+                    <a href="users" className="menu-link">
+                      <span className="menu-text">Users</span>
                     </a>
                   </li>
                   {/* <li className="menu-item">

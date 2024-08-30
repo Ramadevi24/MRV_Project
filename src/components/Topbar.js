@@ -216,7 +216,7 @@ const Topbar = () => {
             >
                 <img src={avatar4} alt="user-profile" className="rounded-circle" />
                 <span className="ms-1 d-none d-md-inline-block">
-                    Jamie D. 
+                    Admin 
                 </span>
             </a>
             <div className="dropdown-menu dropdown-menu-end profile-dropdown">

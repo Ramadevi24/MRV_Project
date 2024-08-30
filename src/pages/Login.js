@@ -1,9 +1,21 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logoDark from '../images/logo-dark.png'
+import { GoogleLogin } from '@react-oauth/google';
+
+
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  const handleSuccess = (response) => {
+    console.log('Login Success:', response);
+    // Handle the response, e.g., send the token to your backend for verification
+  };
+
+  const handleFailure = (error) => {
+    console.error('Login Failed:', error);
+  };
 
   const handleLogin = (e) => {
       e.preventDefault();
@@ -73,6 +85,10 @@ const LoginPage = () => {
                   <div className="form-group mb-0 text-center">
                     <button className="btn btn-primary w-100" type="submit" onClick={handleLogin}>Log In</button>
                   </div>
+                  <GoogleLogin
+        onSuccess={handleSuccess}
+        onError={handleFailure}
+      />
                 </form>
               </div> {/* end card-body */}
             </div> {/* end card */}

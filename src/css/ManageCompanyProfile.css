@@ -1,0 +1,91 @@
+.compmain {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.emp-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+}
+
+.Compaddress tr {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.Compaddress input {
+    width: 345px;
+    height: 45px;
+    border: 1px solid #b1abab;
+}
+
+.Companyname input {
+    width: 345px;
+    height: 45px;
+    border: 1px solid #b1abab;
+}
+
+.OwnerName input {
+    width: 345px;
+    height: 45px;
+    border: 1px solid #b1abab;
+}
+
+.CompType select {
+    width: 345px;
+    height: 45px;
+    border: 1px solid #b1abab;
+}
+
+.compContactNum input {
+    width: 345px;
+    height: 45px;
+    border: 1px solid #b1abab;
+}
+
+.compemail input {
+    width: 345px;
+    height: 45px;
+    border: 1px solid #b1abab;
+}
+
+.compwebsite input {
+    width: 345px;
+    height: 45px;
+    border: 1px solid #b1abab;
+}
+
+.compdesc textarea {
+    width: 1225px;
+    height: 70px;
+    border: 1px solid #b1abab;
+}
+
+.compsubbutton {
+    margin-top: 40px;
+}
+
+input:focus-visible {
+    outline: #54f5a7;
+    border: 1px solid #54f5a7;
+}
+
+textarea:focus-visible {
+    outline: #54f5a7;
+    border: 1px solid #54f5a7;
+}
+.emp-flex label{
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 14px;
+}
