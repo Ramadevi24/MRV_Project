@@ -3,9 +3,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/Login.css';
 import logo from '../../images/Logoimage.png';
 import Uaeimage from '../../images/Uaepass.png';
-
+import { GoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
 
 const Loginpage = () => {
+  const navigate = useNavigate();
+  const handleSuccess = (response) => {
+    console.log('Login Success:', response);
+    // Handle the response, e.g., send the token to your backend for verification
+  };
+
+  const handleFailure = (error) => {
+    console.error('Login Failed:', error);
+  };
+
+  const handleLogin = (e) => {
+      e.preventDefault();
+      // Add your form submission logic here, such as validation or API calls
+      // For example, after successful registration, navigate to the login page:
+      navigate('/dashboard');
+  };
     return (
         <div className="login-container">
           <div className="login-left">
@@ -38,13 +55,13 @@ const Loginpage = () => {
                 className="input-field"
               />
               </div>
-              <button className="login-button">Login</button>
+              <button className="login-button" onClick={handleLogin}>Login</button>
               <div className="login-links">
                 <div>
                 <a href="/signup">Don't you have account? <span className='signuplink'>Signup</span></a>
                 </div>
                 <div className='forgot-password'>
-                <a href="/forgot-password"><span className='forgotpass-link'>Forgot Password?</span></a>
+                <a href="/"><span className='forgotpass-link'>Forgot Password?</span></a>
                 </div> 
               </div>
              
@@ -52,7 +69,12 @@ const Loginpage = () => {
               <button className="uae-pass-button">Login With UAE PASS 
                 <img src={Uaeimage} alt='uaepass' />
                 </button>
-               
+                <div style={{marginTop:'10px', width:'100%', borderRadius:'15px'}}>
+                <GoogleLogin
+        onSuccess={handleSuccess}
+        onError={handleFailure}
+      />
+      </div>
               
             </div>
           </div>
