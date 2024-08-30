@@ -2,22 +2,22 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Modal, Button, Form, FormGroup, FormLabel, FormCheck } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { RolesContext } from '../../contexts/RolesContext';
-// import { PermissionsContext } from '../../context/PermissionsContext';
+import { PermissionsContext } from '../../contexts/PermissionsContext';
 import { toast } from 'react-toastify';
 
 const CreateRoleForm = ({ show, handleClose, currentRole }) => {
   const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
   const { createRole, updateRole, fetchRoles } = useContext(RolesContext);
-  // const { permissions, fetchPermissions } = useContext(PermissionsContext);
+  const { permissions, fetchPermissions } = useContext(PermissionsContext);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedPermissions, setSelectedPermissions] = useState([]);
 
-  // useEffect(() => {
-  //   fetchPermissions().catch(error => {
-  //     console.error('Error fetching permissions:', error.message, error.stack);
-  //     toast.error('Error fetching permissions.');
-  //   });
-  // }, [fetchPermissions]);
+  useEffect(() => {
+    fetchPermissions().catch(error => {
+      console.error('Error fetching permissions:', error.message, error.stack);
+      toast.error('Error fetching permissions.');
+    });
+  }, [fetchPermissions]);
 
   useEffect(() => {
     if (show) {
@@ -112,7 +112,7 @@ const CreateRoleForm = ({ show, handleClose, currentRole }) => {
           </FormGroup>
           <FormGroup className="mb-3">
             <FormLabel>Permissions</FormLabel>
-            {/* {permissions.map(permission => (
+            {permissions.map(permission => (
               <FormCheck
                 key={permission.permissionID}
                 label={permission.permissionName}
@@ -121,7 +121,7 @@ const CreateRoleForm = ({ show, handleClose, currentRole }) => {
                 checked={selectedPermissions.some(p => p.permissionID === permission.permissionID)}
                 onChange={() => handlePermissionChange(permission.permissionID, permission.permissionName, permission.description)}
               />
-            ))} */}
+            ))}
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>

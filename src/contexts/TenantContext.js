@@ -19,6 +19,7 @@ export const TenantProvider = ({ children }) => {
   const fetchTenantById = useCallback(async (id) => {
     try {
       const role = await TenantService.getTenantById(id);
+      console.log(role, 'role')
       if (role) {
         setSelectedTenant(role);
       } else {

@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const API_BASE_URL = 'http://localhost:5259/api/Companies';
+const API_BASE_URL = 'http://localhost:5000/api/Organization';
 
 export const getCompanyProfiles = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}`);
-    const data = Array.isArray(response.data) ? response.data : [];
-    return data;
+    return response.data.$values;
   } catch (error) {
     console.error('Error fetching company profiles:', error.response ? error.response.data : error, error.stack);
     toast.error('Error fetching company profiles');

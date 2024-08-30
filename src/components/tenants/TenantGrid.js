@@ -13,8 +13,8 @@ const TenantGrid = ({ handleSelectTenantForEdit }) => {
     });
   }, [fetchTenants]);
 
-  const handleEdit = (role) => {
-    handleSelectTenantForEdit(role);
+  const handleEdit = (tenant) => {
+    handleSelectTenantForEdit(tenant);
   };
 
   const handleDelete = async (id) => {
@@ -31,6 +31,7 @@ const TenantGrid = ({ handleSelectTenantForEdit }) => {
     <Table striped bordered hover>
       <thead>
         <tr>
+        <th>Tenant ID</th>
           <th>Tenant Name</th>
           <th>Description</th>
           <th>Created Date</th>
@@ -38,14 +39,15 @@ const TenantGrid = ({ handleSelectTenantForEdit }) => {
         </tr>
       </thead>
       <tbody>
-        {tenants.map((role) => (
-          <tr key={role.roleID}>
-            <td>{role.roleName}</td>
-            <td>{role.description}</td>
-            <td>{formatDate(role.dateCreated)}</td>
+        {tenants.map((tenant) => (
+          <tr key={tenant.tenantID}>
+             <td>{tenant.tenantID}</td>
+            <td>{tenant.name}</td>
+            <td>{tenant.description}</td>
+            <td>{formatDate(tenant.createdDate)}</td>
             <td>
-              <Button variant="info" onClick={() => handleEdit(role)}>Edit</Button>{' '}
-              <Button variant="danger" onClick={() => handleDelete(role.roleID)}>Delete</Button>
+              <Button variant="info" onClick={() => handleEdit(tenant)}>Edit</Button>{' '}
+              <Button variant="danger" onClick={() => handleDelete(tenant.tenantID)}>Delete</Button>
             </td>
           </tr>
         ))}

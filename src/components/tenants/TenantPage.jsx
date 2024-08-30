@@ -10,6 +10,7 @@ import Sidebar from "../Sidebar";
 const TenantPage = () => {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const { fetchTenants, fetchTenantById, selectedTenant, setSelectedTenant, deleteTenant } = useTenants();
+  console.log(selectedTenant, 'selectedTenant')
 
   useEffect(() => {
     fetchTenants().catch(error => {
@@ -29,18 +30,18 @@ const TenantPage = () => {
     });
   };
 
-  const handleSelectTenantForEdit = (role) => {
-    fetchTenantById(role.roleID).then(() => {
+  const handleSelectTenantForEdit = (tenant) => {
+    fetchTenantById(tenant.tenantID).then(() => {
       setShowCreateForm(true); // Open the form for editing
     }).catch(error => {
       console.error(`Failed to fetch role details for editing: ${error.message}`, error.stack);
     });
   };
 
-  const handleDeleteTenant = async (roleId) => {
+  const handleDeleteTenant = async (tenantID) => {
     try {
-      await deleteTenant(roleId);
-      toast.success('Role deleted successfully');
+      await deleteTenant(tenantID);
+      toast.success('Tenant deleted successfully');
       fetchTenants();
     } catch (error) {
       console.error(`Failed to delete role: ${error.message}`, error.stack);

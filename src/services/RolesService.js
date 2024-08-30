@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5259/api/Roles'; // INPUT_REQUIRED {API_BASE_URL is the base URL for the roles API. Replace localhost:5259 with your actual API host and port if different.}
+const API_BASE_URL = 'http://localhost:5000/api/Role'; // INPUT_REQUIRED {API_BASE_URL is the base URL for the roles API. Replace localhost:5259 with your actual API host and port if different.}
 
 export const getRoles = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}`);
-    const data = Array.isArray(response.data) ? response.data : [];
-    return data;
+    return response.data.$values;
   } catch (error) {
     console.error('Error fetching roles:', error.response ? error.response.data : error, error.stack);
     throw error;

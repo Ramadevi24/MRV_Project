@@ -10,6 +10,7 @@ import { UsersProvider } from './contexts/UsersContext';
 import { CompanyProfileProvider } from './contexts/CompanyProfileContext';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { TenantProvider } from './contexts/TenantContext';
+import {PermissionsProvider} from './contexts/PermissionsContext';
 // Create a root element
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const clientId = '78767199084-jdnad8rafhou8616oce5kub1bss8pspn.apps.googleusercontent.com';
@@ -18,6 +19,7 @@ const clientId = '78767199084-jdnad8rafhou8616oce5kub1bss8pspn.apps.googleuserco
 // Render the app
 root.render(
   <Router>
+    <PermissionsProvider>
     <TenantProvider>
     <RolesProvider>
       <UsersProvider>
@@ -29,5 +31,6 @@ root.render(
     </UsersProvider>
     </RolesProvider>
     </TenantProvider>
+    </PermissionsProvider>
   </Router>
 );

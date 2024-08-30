@@ -17,6 +17,8 @@ const Users = () => {
   const { companyProfiles, fetchCompanyProfiles } = useCompanyProfile();
   const { roles, fetchRoles } = useRoles();
 
+  console.log(users, 'users')
+
   useEffect(() => {
     fetchUsers().catch(error => {
       console.error('Error fetching users:', error.message, error.stack);
@@ -103,31 +105,33 @@ const Users = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
+            <th>User ID</th>
             <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
             <th>Email</th>
-            <th>Company</th>
+            <th>Login Type</th>
+            <th>Tenant Name</th>
+            <th>Organization Name</th>
             <th>Role</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {users.map(user => (
-            <tr key={user.id}>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{companyProfiles.find(cp => cp.companyID === user.companyID)?.companyName || 'N/A'}</td>
-              <td>{roles.find(r => r.roleID === user.roleID)?.roleName || 'N/A'}</td>
+          {/* {users && users?.map(user => (
+            <tr key={user.userID}> */}
+              <td>{users.userID}</td>
+              <td>{users.firstName}</td>
+              <td>{users.email}</td>
+              <td>{users.loginType}</td>
+              <td>{users.tenantName}</td>
+              <td>{users.organizationName}</td>
+              <td>{users.roleName}</td>
               <td>
-                <Button variant="success" onClick={() => handleEdit(user)}>Edit</Button>{' '}
-                <Button variant="danger" onClick={() => handleDelete(user.userID)}>Delete</Button>{' '}
-                <Button variant="info" onClick={() => handleView(user.userID)}>View</Button>
+                <Button variant="success" onClick={() => handleEdit(users)}>Edit</Button>{' '}
+                <Button variant="danger" onClick={() => handleDelete(users.userID)}>Delete</Button>{' '}
+                <Button variant="info" onClick={() => handleView(users.userID)}>View</Button>
               </td>
-            </tr>
-          ))}
+            {/* </tr>
+          ))} */}
         </tbody>
       </Table>
 

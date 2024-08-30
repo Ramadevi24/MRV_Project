@@ -8,6 +8,7 @@ import Users from './components/users/Users.js';
 import CompanyProfile from './components/organization/CompanyProfile.js';
 import TenantPage from './components/tenants/TenantPage.jsx';
 import LoginPage from './pages/Auth/Loginpage';
+import PermissionsPage from './components/permissions/PermissionsPage.jsx'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <Route path="/users" element={<Users/>}/>
       <Route path="/organizations" element={<CompanyProfile/>}/>
       <Route path="/tenants" element={<TenantPage/>}/>
+      <Route path="/permissions" element={<PermissionsPage/>}/>
     </Routes>
   );
 };

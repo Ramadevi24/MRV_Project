@@ -1,67 +1,33 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Modal, Button, Form, FormGroup, FormLabel, FormCheck } from 'react-bootstrap';
+import React, { useState, useContext } from 'react';
+import { Modal, Button, Form, FormGroup, FormLabel } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { TenantContext } from '../../contexts/TenantContext';
-// import { PermissionsContext } from '../../context/PermissionsContext';
 import { toast } from 'react-toastify';
 
 const CreateTenantForm = ({ show, handleClose, currentTenant }) => {
-  const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const { createTenant, updateTenant, fetchTenants } = useContext(TenantContext);
-  // const { permissions, fetchPermissions } = useContext(PermissionsContext);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedPermissions, setSelectedPermissions] = useState([]);
 
-  // useEffect(() => {
-  //   fetchPermissions().catch(error => {
-  //     console.error('Error fetching permissions:', error.message, error.stack);
-  //     toast.error('Error fetching permissions.');
-  //   });
-  // }, [fetchPermissions]);
-
-  useEffect(() => {
-    if (show) {
-      setSelectedPermissions([]);
-      if (currentTenant) {
-        const rolePermissions = currentTenant.permissions.map(p => ({
-          permissionID: p.permissionID,
-          permissionName: p.permissionName,
-          description: p.description
-        }));
-        setSelectedPermissions(rolePermissions);
-        setValue('roleName', currentTenant.roleName);
-        setValue('description', currentTenant.description);
-      } else {
-        reset();
-      }
-    }
-  }, [show, currentTenant, setValue, reset]);
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
-    console.log(selectedPermissions.map(item=>item.permissionID), 'selectedPermissions')
     try {
       const createPayload = {
-        roleName: data.roleName,
+        name: data.name,
         description: data.description,
-        permissionIds: selectedPermissions.map(item=>item.permissionID),
       };
       const updatedPayload = {
-        roleID: currentTenant && currentTenant.roleID,
-        roleName: data.roleName,
+        tenantID: currentTenant && currentTenant.tenantID,
+        name: data.name,
         description: data.description,
-        permissions: selectedPermissions.map(p => ({
-          permissionID: p.permissionID,
-          permissionName: p.permissionName,
-          description: p.description
-        }))
       };
-      if (currentTenant && currentTenant.roleID) {
-        await updateTenant(currentTenant.roleID, updatedPayload);
-        toast.success('Role updated successfully');
+      if (currentTenant && currentTenant.tenantID) {
+        await updateTenant(currentTenant.tenantID, updatedPayload);
+        toast.success('Tenant updated successfully');
       } else {
         await createTenant(createPayload);
-        toast.success('Role created successfully');
+        toast.success('Tenant created successfully');
       }
       handleClose();
       await fetchTenants();
@@ -71,23 +37,13 @@ const CreateTenantForm = ({ show, handleClose, currentTenant }) => {
     } finally {
       reset();
       setIsSubmitting(false);
-      setSelectedPermissions([]);
-    }
-  };
-
-  const handlePermissionChange = (permissionID, permissionName, description) => {
-    const exists = selectedPermissions.find(p => p.permissionID === permissionID);
-    if (exists) {
-      setSelectedPermissions(selectedPermissions.filter(p => p.permissionID !== permissionID));
-    } else {
-      setSelectedPermissions([...selectedPermissions, { permissionID, permissionName, description }]);
     }
   };
 
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{currentTenant && currentTenant.roleID ? 'Edit Role' : 'Create Role'}</Modal.Title>
+        <Modal.Title>{currentTenant && currentTenant.tenantID ? 'Edit Tenant' : 'Create Tenant'}</Modal.Title>
       </Modal.Header>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
@@ -95,33 +51,20 @@ const CreateTenantForm = ({ show, handleClose, currentTenant }) => {
             <FormLabel>Tenant Name</FormLabel>
             <Form.Control
               type="text"
-              placeholder="Enter role name"
-              {...register('roleName', { required: true })}
+              placeholder="Enter tenant name"
+              {...register('name', { required: true })}
             />
-            {errors.roleName && <Form.Text className="text-muted">Role name is required.</Form.Text>}
+            {errors.name && <Form.Text className="text-muted">Tenant name is required.</Form.Text>}
           </FormGroup>
           <FormGroup className="mb-3">
             <FormLabel>Description</FormLabel>
             <Form.Control
               as="textarea"
               rows={3}
-              placeholder="Role description"
+              placeholder="description"
               {...register('description', { required: true })}
             />
             {errors.description && <Form.Text className="text-muted">Description is required.</Form.Text>}
-          </FormGroup>
-          <FormGroup className="mb-3">
-            <FormLabel>Permissions</FormLabel>
-            {/* {permissions.map(permission => (
-              <FormCheck
-                key={permission.permissionID}
-                label={permission.permissionName}
-                type="checkbox"
-                id={`permission-${permission.permissionID}`}
-                checked={selectedPermissions.some(p => p.permissionID === permission.permissionID)}
-                onChange={() => handlePermissionChange(permission.permissionID, permission.permissionName, permission.description)}
-              />
-            ))} */}
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>

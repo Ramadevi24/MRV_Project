@@ -42,7 +42,7 @@ const RolesGrid = ({ handleSelectRoleForEdit }) => {
           <tr key={role.roleID}>
             <td>{role.roleName}</td>
             <td>{role.description}</td>
-            <td>{formatDate(role.dateCreated)}</td>
+            <td>{formatDate(role.createdDate)}</td>
             <td>
               <Button variant="info" onClick={() => handleEdit(role)}>Edit</Button>{' '}
               <Button variant="danger" onClick={() => handleDelete(role.roleID)}>Delete</Button>
