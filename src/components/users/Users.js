@@ -150,12 +150,12 @@ const Users = () => {
               <Form.Control name="lastName" type="text" defaultValue={currentUser.lastName} required />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Username</Form.Label>
-              <Form.Control name="username" type="text" defaultValue={currentUser.username} required />
-            </Form.Group>
-            <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control name="email" type="email" defaultValue={currentUser.email} required />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Tenant Name</Form.Label>
+              <Form.Control name="tenantName" type="text" defaultValue={currentUser.tenantName} required />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Company</Form.Label>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logoDark from '../images/logo-dark.png'
+import Logoimage from '../images/Logoimage.png'
 import { GoogleLogin } from '@react-oauth/google';
 
 
@@ -34,7 +34,7 @@ const LoginPage = () => {
                 <div className="text-center w-75 mx-auto auth-logo mb-4">
                   <Link to="index.html" className="logo-dark">
                     <span>
-                      <img src={logoDark} alt="" height="22" />
+                      <img src={Logoimage} alt="" height="22" />
                     </span>
                   </Link>
                   {/* <Link to="index.html" className="logo-light">

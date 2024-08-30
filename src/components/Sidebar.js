@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/Sidenavbar.css";
 import { FaHome } from "react-icons/fa";
-import logoLight from "../images/logo-light.png";
+import logoImage from "../images/Logoimage.png";
 import logoSm from "../images/logo-sm.png";
 import { FaUserShield } from "react-icons/fa";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
@@ -16,17 +16,17 @@ const Sidebar = () => {
     <React.Fragment>
       <div className="main-menu">
         <div className="logo-box">
-          <a href="dashboard" className="logo-light">
-            <img src={logoLight} alt="logo" className="logo-lg" height="28" />
+          {/* <a href="dashboard" className="logo-light">
+            <img src={logoImage} alt="logo" className="logo-lg" height="28" />
             <img
               src={logoSm}
               alt="small logo"
               className="logo-sm"
               height="28"
             />
-          </a>
+          </a> */}
 
-          <a href="dashboard" className="logo-dark">
+          {/* <a href="dashboard" className="logo-dark">
             <img
               src={logoLight}
               alt="dark logo"
@@ -39,7 +39,10 @@ const Sidebar = () => {
               className="logo-sm"
               height="28"
             />
-          </a>
+          </a> */}
+           <img
+              src={logoImage}     
+            />
         </div>
 
         <div data-simplebar>
