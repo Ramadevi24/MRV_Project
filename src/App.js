@@ -7,11 +7,13 @@ import RolesPage from './components/roles/RolesPage'
 import Users from './components/users/Users.js';
 import CompanyProfile from './components/organization/CompanyProfile.js';
 import TenantPage from './components/tenants/TenantPage.jsx';
+import LoginPage from './pages/Auth/Loginpage';
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      {/* <Route path="/" element={<Login />} /> */}
+      <Route path="/" element={<LoginPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/register" element={<Register/>}/>
       <Route path="/roles" element={<RolesPage/>}/>
