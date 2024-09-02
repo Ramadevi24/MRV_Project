@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
@@ -10,6 +11,7 @@ import LoginPage from './pages/Auth/Loginpage';
 import PermissionsPage from './components/permissions/PermissionsPage.jsx';
 import Topbar from './components/Topbar.js';
 import Sidebar from './components/Sidebar.js';
+import Signup from './pages/Signup.js';
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -19,8 +21,8 @@ const App = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // Determine if the current route is the login page
-  const isLoginPage = location.pathname === '/';
+  // Determine if the current route is the login or signup page
+  const isLoginPage = location.pathname === '/' || location.pathname === '/signup';
 
   return (
     <div className="layout-wrapper">
@@ -41,6 +43,7 @@ const App = () => {
             <Route path="/organizations" element={<CompanyProfile />} />
             <Route path="/tenants" element={<TenantPage />} />
             <Route path="/permissions" element={<PermissionsPage />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </div>
       </div>
