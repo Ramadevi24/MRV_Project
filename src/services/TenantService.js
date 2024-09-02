@@ -5,7 +5,6 @@ const API_BASE_URL = 'http://localhost:5000/api/Tenant'; // INPUT_REQUIRED {API_
 export const getTenants = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}`);
-    console.log(response, 'response')
     return response.data.$values;
   } catch (error) {
     console.error('Error fetching tenants:', error.response ? error.response.data : error, error.stack);

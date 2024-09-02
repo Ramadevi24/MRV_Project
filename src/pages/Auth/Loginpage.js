@@ -1,13 +1,19 @@
-import React from 'react';
+import React,{useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/Login.css';
 import logo from '../../images/Logoimage.png';
 import Uaeimage from '../../images/Uaepass.png';
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
+import CryptoJS from 'crypto-js'; 
 
 const Loginpage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+
+
   const handleSuccess = (response) => {
     console.log('Login Success:', response);
     // Handle the response, e.g., send the token to your backend for verification
@@ -17,12 +23,35 @@ const Loginpage = () => {
     console.error('Login Failed:', error);
   };
 
-  const handleLogin = (e) => {
+    const handleLogin = async (e) => {
       e.preventDefault();
-      // Add your form submission logic here, such as validation or API calls
-      // For example, after successful registration, navigate to the login page:
-      navigate('/dashboard');
-  };
+      setError('');
+      if (!email || !password) {
+        setError('Please enter both email and password.');
+        return;
+      }
+      const encryptedPassword = CryptoJS.SHA256(password).toString();
+      try {
+        const response = await fetch('http://localhost:5000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password: encryptedPassword }),
+        });
+  
+        if (!response.ok) {
+          throw new Error('Invalid login credentials');
+        }
+  
+        const data = await response.json();
+        localStorage.setItem('authToken', data.token);
+        navigate('/dashboard');
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
     return (
         <div className="login-container">
           <div className="login-left">
@@ -46,15 +75,24 @@ const Loginpage = () => {
               /> */}
               <h2>Login</h2>
               <div className='input-feilds'>
-              User Name
-              <input type="text" placeholder="User Name" className="input-field" />
-              Password
+              <label>User Name</label>
               <input
-                type="password"
-                placeholder="Password"
-                className="input-field"
-              />
+              type="text"
+              placeholder="Email"
+              className="input-field"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+                <label>Password</label>
+              <input
+              type="password"
+              placeholder="Password"
+              className="input-field"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
               </div>
+              {error && <div className="error-message">{error}</div>}
               <button className="login-button" onClick={handleLogin}>Login</button>
               <div className="login-links">
                 <div>

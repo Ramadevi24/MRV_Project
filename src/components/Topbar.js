@@ -15,11 +15,13 @@ import {  FiMoon, FiSun } from 'react-icons/fi';
 import { MdFullscreen, } from 'react-icons/md';
 import { MdNotifications } from 'react-icons/md';
 import { MdMenu } from 'react-icons/md';  
+import { useNavigate } from 'react-router-dom';
 
 const Topbar = ({ toggleSidebar }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleFullscreenChange = () => {
@@ -74,6 +76,12 @@ const Topbar = ({ toggleSidebar }) => {
           }
         }
       };
+
+      const handleLogout = () => {
+        localStorage.removeItem('authToken'); 
+        navigate('/');  
+      };
+    
 
 
   const toggleTheme = () => {
@@ -236,10 +244,9 @@ const Topbar = ({ toggleSidebar }) => {
                     <span>Lock Screen</span>
                 </a>
                 <div className="dropdown-divider"></div>
-                <a href="/" className="dropdown-item notify-item">
-                    <i className="fe-log-out"></i>
-                    <span>Logout</span>
-                </a>
+                <button onClick={handleLogout} className="dropdown-item notify-item">
+                    Logout
+                </button>
             </div>
         </li>
         </ul>
