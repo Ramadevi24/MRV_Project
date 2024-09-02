@@ -24,6 +24,11 @@ const LoginPage = () => {
       navigate('/dashboard');
   };
   
+  const handlesignup=(e)=>
+  {
+    e.preventDefault();
+    navigate('/signup');
+  }
   return (
     <div className="bg-primary d-flex justify-content-center align-items-center min-vh-100 p-5">
       <div className="container">
@@ -99,7 +104,7 @@ const LoginPage = () => {
                   <Link to="/register" className="text-white-50 ms-1 " style={{textDecoration:'none'}}>Forgot your password?</Link>
                 </p>
                 <p className="text-white-50">
-                  Don't have an account? <Link to="/register" className="text-white font-weight-medium ms-1" style={{textDecoration:'none'}}>Sign Up</Link>
+                  Don't have an account? <Link to="/register" className="text-white font-weight-medium ms-1" style={{textDecoration:'none'}} onClick={handlesignup}>Sign Up</Link>
                 </p>
               </div> {/* end col */}
             </div> {/* end row */}

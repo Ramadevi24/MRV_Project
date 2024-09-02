@@ -9,7 +9,7 @@
   }
   .login-container {
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
     font-family: Arial, sans-serif;
   }
   .logo img{
