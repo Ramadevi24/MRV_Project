@@ -113,7 +113,7 @@ const Users = () => {
               Add User
             </Button>
 
-            <Table striped bordered hover>
+            <Table striped bordered hover style={{width:'95%', marginLeft:'35px'}}>
               <thead>
                 <tr>
                   <th>User ID</th>
@@ -134,8 +134,8 @@ const Users = () => {
                 <td>{users.email}</td>
                 <td>{users.loginType}</td>
                 <td>{users.tenantName}</td>
-                <td>{users.organizationName}</td>
-                <td>{users.TenantroleName}</td>
+                <td>{users.organizationName ?  users.organizationName: 'N/A'}</td>
+                <td>{users.roleName}</td>
                 <td>
                   <Button variant="success" onClick={() => handleEdit(users)}>
                     Edit

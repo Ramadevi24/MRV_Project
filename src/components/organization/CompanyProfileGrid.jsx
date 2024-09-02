@@ -36,7 +36,7 @@ const CompanyProfileGrid = ({onEdit}) => {
 
   return (
     <>
-      <Table striped bordered hover>
+      <Table striped bordered hover style={{width:'95%', marginLeft:'35px'}}>
         <thead>
           <tr>
             <th>Organization ID</th>

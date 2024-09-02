@@ -29,7 +29,7 @@ const RolesGrid = ({ handleSelectRoleForEdit }) => {
 
   return (
     <div className="roles-grid-container">
-      <Table striped bordered hover className="roles-table">
+      <Table striped bordered hover className="roles-table" style={{width:'95%', marginLeft:'35px'}}>
       <thead>
         <tr>
           <th>Role Name</th>

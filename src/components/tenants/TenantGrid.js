@@ -28,7 +28,7 @@ const TenantGrid = ({ handleSelectTenantForEdit }) => {
   };
 
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover style={{width:'95%', marginLeft:'35px'}}>
       <thead>
         <tr>
         <th>Tenant ID</th>
