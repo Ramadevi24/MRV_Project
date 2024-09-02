@@ -16,7 +16,7 @@ import { TenantRolesProvider } from './contexts/TenantRolesContext';
 import { ToastContainer } from 'react-toastify';
 // Create a root element
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const clientId = '78767199084-jdnad8rafhou8616oce5kub1bss8pspn.apps.googleusercontent.com';
+const clientId = '401509485101-rheep9epjkoe9i6m8frv25ppjv9c4b45.apps.googleusercontent.com';
 
 
 // Render the app

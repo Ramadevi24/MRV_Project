@@ -16,7 +16,7 @@ import { MdFullscreen, } from 'react-icons/md';
 import { MdNotifications } from 'react-icons/md';
 import { MdMenu } from 'react-icons/md';  
 
-const Topbar = () => {
+const Topbar = ({ toggleSidebar }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
@@ -90,19 +90,19 @@ const Topbar = () => {
         <div className="topbar-menu d-flex align-items-center gap-lg-2 gap-1">
           {/* Brand Logo */}
           <div className="logo-box">
-            <a href="index.html" className="logo-light">
+            <a href="/dashboard" className="logo-light">
               <img src={logoLight} alt="logo" className="logo-lg" height="22" />
               <img src={logoSm} alt="small logo" className="logo-sm" height="22" />
             </a>
 
-            <a href="index.html" className="logo-dark">
+            <a href="/dashboard" className="logo-dark">
               <img src={logoDark} alt="dark logo" className="logo-lg" height="22" />
               <img src={logoSm} alt="small logo" className="logo-sm" height="22" />
             </a>
           </div>
 
           {/* Sidebar Menu Toggle Button */}
-          <button className="button-toggle-menu" onClick={toggleMenu}>
+          <button className="button-toggle-menu" onClick={toggleSidebar}>
       <MdMenu size={24} />  {/* Replacing <i> tag with MdMenu component */}
     </button>
         </div>

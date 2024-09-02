@@ -5,8 +5,6 @@ import "../../css/ManageCompanyProfile.css";
 import CompanyProfileGrid from "./CompanyProfileGrid";
 import { Modal, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
-import Topbar from "../Topbar";
-import Sidebar from "../Sidebar";
 
 const CompanyProfile = () => {
   const {
@@ -130,12 +128,6 @@ const CompanyProfile = () => {
 
   return (
     <>
-      <div className="layout-wrapper">
-        <div className="main-menu active">
-          <Sidebar />
-        </div>
-        <div className="page-content">
-          <Topbar />
           <div>
             <Button
               variant="primary"
@@ -207,8 +199,6 @@ const CompanyProfile = () => {
               onDelete={handleDeleteClick}
             />
           </div>
-        </div>
-      </div>
     </>
   );
 };

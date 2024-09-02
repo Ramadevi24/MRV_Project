@@ -4,8 +4,6 @@ import CreateRoleForm from './CreateRoleForm';
 import { Button } from 'react-bootstrap';
 import { useRoles } from '../../contexts/RolesContext';
 import { toast } from 'react-toastify';
-import Topbar from "../Topbar";
-import Sidebar from "../Sidebar";
 
 const RolesPage = () => {
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -50,20 +48,12 @@ const RolesPage = () => {
 
   return (
     <>
-    <div className="layout-wrapper">
-      <div className="main-menu active">
-        <Sidebar />
-      </div>
-      <div className="page-content">
-        <Topbar />
         <div>
       <Button variant="primary" style={{margin: "20px",float:"inline-end"}} onClick={handleShowCreateForm}>
         Create New Role
       </Button>
       <RolesGrid handleSelectRoleForEdit={handleSelectRoleForEdit} handleDeleteRole={handleDeleteRole} />
       <CreateRoleForm show={showCreateForm} handleClose={handleCloseCreateForm} currentRole={selectedRole} />
-    </div>
-      </div>
     </div>
       </>
    

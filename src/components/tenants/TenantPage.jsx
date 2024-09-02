@@ -51,20 +51,12 @@ const TenantPage = () => {
 
   return (
     <>
-    <div className="layout-wrapper">
-      <div className="main-menu active">
-        <Sidebar />
-      </div>
-      <div className="page-content">
-        <Topbar />
     <div>
       <Button variant="primary" style={{margin: "20px",float:"inline-end"}} onClick={handleShowCreateForm}>
         Create New Tenant
       </Button>
       <TenantGrid handleSelectTenantForEdit={handleSelectTenantForEdit} handleDeleteTenant={handleDeleteTenant} />
       <CreateTenantForm show={showCreateForm} handleClose={handleCloseCreateForm} currentTenant={selectedTenant} />
-    </div>
-    </div>
     </div>
       </>
   );

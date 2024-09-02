@@ -5,8 +5,6 @@ import { useCompanyProfile } from "../../contexts/CompanyProfileContext";
 import { useTenantRoles } from "../../contexts/TenantRolesContext";
 import { useTenants } from "../../contexts/TenantContext";
 import { toast } from "react-toastify";
-import Topbar from "../Topbar";
-import Sidebar from "../Sidebar";
 import CryptoJS from 'crypto-js';
 
 const Users = () => {
@@ -103,12 +101,6 @@ const Users = () => {
 
   return (
     <>
-      <div className="layout-wrapper">
-        <div className="main-menu active">
-          <Sidebar />
-        </div>
-        <div className="page-content">
-          <Topbar />
           <div>
             <Button
               variant="primary"
@@ -331,8 +323,6 @@ const Users = () => {
               </Modal.Footer>
             </Modal>
           </div>
-        </div>
-      </div>
     </>
   );
 };
