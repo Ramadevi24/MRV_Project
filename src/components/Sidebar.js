@@ -1,48 +1,23 @@
 import React, { useState } from "react";
 import "../css/Sidenavbar.css";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUserShield, FaChevronDown, FaChevronRight } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
 import logoImage from "../images/Logoimage.png";
 import logoSm from "../images/logo-sm.png";
-import { FaUserShield } from "react-icons/fa";
-import { FaChevronDown, FaChevronRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true); // Set to true to keep the dropdown open by default
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   return (
     <React.Fragment>
       <div className="main-menu">
         <div className="logo-box">
-          {/* <a href="dashboard" className="logo-light">
-            <img src={logoImage} alt="logo" className="logo-lg" height="28" />
-            <img
-              src={logoSm}
-              alt="small logo"
-              className="logo-sm"
-              height="28"
-            />
-          </a> */}
-
-          {/* <a href="dashboard" className="logo-dark">
-            <img
-              src={logoLight}
-              alt="dark logo"
-              className="logo-lg"
-              height="28"
-            />
-            <img
-              src={logoSm}
-              alt="small logo"
-              className="logo-sm"
-              height="28"
-            />
-          </a> */}
-           <img
-              src={logoImage}     
-            />
+          <img src={logoImage} alt="logo" />
         </div>
 
         <div data-simplebar>
@@ -50,33 +25,20 @@ const Sidebar = () => {
             <li className="menu-title">Menu</li>
 
             <li className="menu-item">
-              <a
-                href="dashboard"
-                className="menu-link waves-effect waves-light"
-              >
+              <Link to="/dashboard" className="menu-link waves-effect waves-light">
                 <span className="menu-icon">
-                  <FaHome color="#cedce4" /> {/* Apply color as needed */}
+                  <FaHome color="#cedce4" />
                 </span>
                 <span className="menu-text">Dashboards</span>
                 <span className="badge bg-primary rounded ms-auto">01</span>
-              </a>
+              </Link>
             </li>
 
             <li className="menu-title">Admin</li>
 
-            {/* <li className="menu-item">
-                                <a href="apps-calendar.html" className="menu-link waves-effect waves-light">
-                                    <span className="menu-icon">
-                                        <FaCalendarAlt color="#cedce4" />
-                                    </span>
-                                    <span className="menu-text">Calendar</span>
-                                </a>
-                            </li> */}
-
-            <li className="menu-item">
-              <a
+            <li className={`menu-item ${isOpen ? "open" : ""}`}>
+              <div
                 href="#menuExpages"
-                data-bs-toggle="collapse"
                 className="menu-link waves-effect waves-light"
                 onClick={toggleMenu}
               >
@@ -91,36 +53,35 @@ const Sidebar = () => {
                     <FaChevronRight color="#cedce4" />
                   )}
                 </span>
-              </a>
+              </div>
 
-              <div className="collapse" id="menuExpages">
+              <div className={`collapse ${isOpen ? "show" : ""}`} id="menuExpages">
                 <ul className="sub-menu">
-                  <li className="menu-item">
-                    <a href="tenants" className="menu-link">
+                  <li className={`menu-item ${location.pathname === "/tenants" ? "active" : ""}`}>
+                    <Link to="/tenants" className="menu-link">
                       <span className="menu-text">Tenants</span>
-                    </a>
+                    </Link>
                   </li>
-                  <li className="menu-item">
-                    <a href="organizations" className="menu-link">
+                  <li className={`menu-item ${location.pathname === "/organizations" ? "active" : ""}`}>
+                    <Link to="/organizations" className="menu-link">
                       <span className="menu-text">Organization</span>
-                    </a>
+                    </Link>
                   </li>
-                  <li className="menu-item">
-                    <a href="roles" className="menu-link">
+                  <li className={`menu-item ${location.pathname === "/roles" ? "active" : ""}`}>
+                    <Link to="/roles" className="menu-link">
                       <span className="menu-text">Roles</span>
-                    </a>
+                    </Link>
                   </li>
-                  <li className="menu-item">
-                    <a href="users" className="menu-link">
+                  <li className={`menu-item ${location.pathname === "/users" ? "active" : ""}`}>
+                    <Link to="/users" className="menu-link">
                       <span className="menu-text">Users</span>
-                    </a>
+                    </Link>
                   </li>
-                  <li className="menu-item">
+                  <li className={`menu-item ${location.pathname === "/permissions" ? "active" : ""}`}>
                     <Link to="/permissions" className="menu-link">
                       <span className="menu-text">Permissions</span>
                     </Link>
                   </li>
-                 
                 </ul>
               </div>
             </li>

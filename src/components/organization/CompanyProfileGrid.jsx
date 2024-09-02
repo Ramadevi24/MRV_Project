@@ -14,7 +14,7 @@ const CompanyProfileGrid = ({onEdit}) => {
     try {
       await deleteCompanyProfile(id);
       await fetchCompanyProfiles();
-      toast.success(`Company profile deleted successfully.`);
+      toast.success(`Organization deleted successfully.`);
     } catch (error) {
       toast.error(`Error deleting company profile with ID ${id}: ${error.message}`, error.stack);
     }

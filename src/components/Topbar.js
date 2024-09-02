@@ -11,8 +11,8 @@ import flagItaly from '../images/flags/italy.jpg'
 import flagSpain from '../images/flags/spain.jpg'
 import flagRussia from '../images/flags/russia.jpg'
 import { MdSearch } from 'react-icons/md';
-import { FiUser, FiSettings, FiLock, FiLogOut, FiMoon, FiSun } from 'react-icons/fi';
-import { MdFullscreen, MdFullscreenExit } from 'react-icons/md';
+import {  FiMoon, FiSun } from 'react-icons/fi';
+import { MdFullscreen, } from 'react-icons/md';
 import { MdNotifications } from 'react-icons/md';
 import { MdMenu } from 'react-icons/md';  
 

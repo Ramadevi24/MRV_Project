@@ -149,3 +149,17 @@ html[data-bs-theme="dark"] {
     }
 }
   
+.sub-menu .menu-item.active .menu-link {
+    background-color: rgb(4, 67, 103);
+    color: white;
+  }
+  
+  .sub-menu .menu-item.active .menu-link:hover {
+    background-color: rgb(4, 67, 103);
+    color: white;
+  }
+  
+  .menu-item.open > .collapse {
+    display: block !important;
+  }
+  
