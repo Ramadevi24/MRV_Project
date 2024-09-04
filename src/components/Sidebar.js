@@ -82,6 +82,11 @@ const Sidebar = () => {
                       <span className="menu-text">Permissions</span>
                     </Link>
                   </li>
+                  <li className={`menu-item ${location.pathname === "/users" ? "active" : ""}`}>
+                    <Link to="/sample" className="menu-link">
+                      <span className="menu-text">Sample</span>
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </li>

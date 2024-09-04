@@ -84,8 +84,31 @@ textarea:focus-visible {
     outline: #54f5a7;
     border: 1px solid #54f5a7;
 }
-.emp-flex label{
-    font-weight: bold;
-    font-family: sans-serif;
-    font-size: 14px;
+
+/* CustomDropdownTreeSelect.css */
+
+.dropdown-tree-select .dropdown-content {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #fff;
 }
+
+.dropdown-tree-select .node {
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 14px;
+  color: #495057;
+}
+
+.dropdown-tree-select .node:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-tree-select .node-label {
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+

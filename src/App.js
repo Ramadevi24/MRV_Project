@@ -12,6 +12,7 @@ import PermissionsPage from './components/permissions/PermissionsPage.jsx';
 import Topbar from './components/Topbar.js';
 import Sidebar from './components/Sidebar.js';
 import Signup from './pages/Signup.js';
+import Sample from './components/Sample.js';
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -44,6 +45,7 @@ const App = () => {
             <Route path="/tenants" element={<TenantPage />} />
             <Route path="/permissions" element={<PermissionsPage />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/sample" element={<Sample />} />
           </Routes>
         </div>
       </div>

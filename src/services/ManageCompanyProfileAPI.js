@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const API_BASE_URL = 'http://localhost:5000/api/Organization';
+const CATEGORIES_URL = 'http://localhost:5000/level1and2';
 
 export const getCompanyProfiles = async () => {
   try {
@@ -54,6 +55,18 @@ export const deleteCompanyProfile = async (id) => {
   } catch (error) {
     console.error(`Error deleting company profile with ID ${id}:`, error.response ? error.response.data : error, error.stack);
     toast.error(`Error deleting company profile with ID ${id}`);
+    throw error;
+  }
+};
+
+export const fetchCategories = async () => {
+  try {
+  const response = await  axios.get(CATEGORIES_URL);
+  console.log(response.data.$values, 'response');
+  return response.data.$values;
+  } catch (error) {
+    console.error('Error fetching company profiles:', error.response ? error.response.data : error, error.stack);
+    toast.error('Error fetching company profiles');
     throw error;
   }
 };
