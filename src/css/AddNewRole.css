@@ -1,0 +1,389 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+.right-container{
+   background-color: 
+   rgba(255, 255, 255, 1);
+}
+.logo{
+    margin-left: 20px;
+}
+.left-container{
+    border-radius: 40px;
+    background-color: rgba(238, 246, 244, 1);
+    padding:0px !important;
+    /* background-color: white; */
+}
+.container-body{
+    height: 100%;
+ 
+}
+.right-body{
+    padding: 20px;
+}
+.menu{
+    margin-top: 20px;
+    /* line-height:70px; */
+    
+   
+}
+.menu li{
+    /* line-height:70px; */
+}
+.menu-heading{
+    font-family:"Roboto", system-ui; 
+    font-weight: 600;
+    margin-left: 20px;
+}
+.menu li{
+    list-style-type: none;
+}
+.menu li a {
+    text-decoration: none;
+    color:black;
+    font-family:"Roboto", system-ui; 
+    font-weight: 600;
+
+}
+.menu img{
+    margin-right: 50px;
+}
+
+.footer{
+    margin-top: 50px;
+    text-align: center;
+}
+.footer-heading{
+    color: rgba(18, 18, 18, 1);
+    font-family:"Roboto", system-ui;  
+    font-weight: 500;
+    font-size: 18px;
+}
+.rights{
+    color:
+    rgba(67, 67, 67, 1);
+    font-weight: 400;
+    font-family:"Roboto", system-ui;  
+    font-size: 13px;
+
+}
+.top-navbar{
+    background-color: rgba(0, 102, 164, 0.14);
+    /* border-radius: 40px; */
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.icons{
+    display: flex;
+    align-items: center;
+    margin: 40px;
+}
+.right-icons{
+   margin: 30px;
+}
+.nav-icons {
+    height: 40px;
+    width: 40px;
+    background-color: 
+    rgba(0, 138, 95, 1);
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-right: 25px;  
+    
+}
+.userimg{
+     margin-right: 10px;
+}
+.user-name{
+    font-family: "Roboto", system-ui;
+    font-weight: 500;
+    font-size: 24px;
+    color: rgba(18, 18, 18, 1);
+}
+.admin{
+    color: rgba(67, 67, 67, 1);
+    font-size: 17px;
+    font-weight: 400;
+}
+/* .letter-icon{
+   
+    margin-left: 5px;
+} */
+.addnewrole{
+    color:
+    rgba(0, 102, 164, 1);
+    font-family: "Roboto", system-ui;
+    font-weight: 700;
+    font-size: 26px;
+}
+.role{
+  color:  rgba(138, 138, 138, 1);
+  font-size: 16px;
+  font-weight: 500;
+}
+.back{
+    background-color: 
+    rgba(0, 102, 164, 1);
+    height: 44px;
+    width: 180px;
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-family: "Roboto", system-ui;
+}
+.right-body-ctnt{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.addroleinput{
+  width:100%;
+  border-radius: 14px;
+  height: 44px;
+  color: rgba(207, 205, 205, 1);
+  margin-top: 10px;
+}
+
+
+.rightbody-content{
+    background-color:
+    rgba(255, 255, 255, 1);
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    /* height:610px; */
+}
+
+/* dropdown */
+.drop-down {
+    position: relative !important;
+    /* display: inline-block; */
+    /* display: block; */
+
+  }
+  
+  .drop-down-header {
+    background-color:  rgba(255, 255, 255, 1);;
+    color:black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border:2px solid 
+    rgba(207, 205, 205, 1);
+   border-top-left-radius: 14px;
+   border-top-right-radius: 14px;
+   width: 100%;
+  }
+
+  .container-body {
+    overflow: visible; /* Ensure the dropdown doesn't get cut off */
+}
+  
+  .dropdown-content {
+    display: flex !important;
+    flex-direction: column ;
+    position :relative !important;
+    /* top: 100%; */
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    border-radius: 0 0 14px 14px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px !important;
+    margin-top: 5px; 
+  }
+.menuitem{
+  margin-top: 20px;
+}
+.drop-down-header{
+    border-radius: none;
+    font-family: "Roboto", system-ui;
+    font-weight: 500;
+  
+}  
+
+.dropdown-content{
+    width: 100%; /* Ensure content matches the dropdown width */
+    border-bottom-right-radius:14px;
+    border-bottom-left-radius: 14px;
+    overflow: visible;
+}
+.administration{
+    /* width: 200px; */
+    width:100%;
+    height:55px;
+    background-color: 
+    rgba(0, 138, 95, 1);
+    color: white;
+
+    border: none;
+   /* padding:15px; */
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.Administration-cnt{
+    /* height: 108px; */
+    border: 2px solid rgba(210, 210, 210, 1);
+    line-height: 40px;
+    border-bottom-right-radius:30px;
+    border-bottom-left-radius: 30px;
+
+}
+.administration-menu li:hover{
+    background-color:   rgba(0, 138, 95, 1); ;
+}
+
+
+
+/* switches */
+.form-check {
+    position: relative;
+    display: inline-block;
+  }
+
+  .form-check-input:before {
+    content: "No";
+    position: absolute;
+    top: 50%;
+    left:15px;
+    transform: translateY(-50%);
+    color: black;
+    font-weight: 400;
+    font-size: 8.64px;
+    transition: content 0.4s, left 0.4s;
+    color: rgba(38, 99, 172, 1);
+  }
+
+ 
+
+  .form-check-input:checked:before {
+    content: "Yes";
+    position: absolute;
+    top: 50%;
+    left:5px;
+    transform: translateY(-50%);
+    color: black;
+    font-weight: 400;
+    font-size: 8.64px;
+    transition: content 0.4s, left 0.4s;
+    color: white;
+    /* left: 35px; */
+  }
+.buttons{
+    display: flex;
+    margin-top: 50px;
+
+}
+.cancel-btn{
+  height: 44px;
+  width:180px;
+  border-radius: 14px;
+  border:1px solid rgba(0, 102, 164, 1);
+  color: rgba(0, 102, 164, 1);
+  background-color: rgba(255, 255, 255, 1); 
+  font-family: "Roboto", system-ui;
+  font-weight: 600;
+}
+.add-btn{
+    height: 44px;
+    width:180px;
+    border-radius: 14px;
+  border:1px solid rgba(0, 102, 164, 1);
+  background-color: rgba(0, 102, 164, 1);
+  color: rgba(255, 255, 255, 1);
+  font-family: "Roboto", system-ui;
+  font-weight: 600;
+  margin-left: 40px;
+}
+
+/* roles css */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+   
+  .header-title {
+    font-size: 26px;
+    font-weight: 700;
+    color:
+    rgba(0, 102, 164, 1); 
+    font-family: "Roboto", system-ui;
+
+
+
+  }
+   
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+   
+  .search-box {
+    position: relative;
+  }
+   
+  .search-input {
+    padding: 8px 35px 8px 10px;
+    border: 1px solid rgba(204, 232, 223, 1);
+    border-radius: 14px;
+    font-size: 14px;
+    outline: none;
+    width:258px;
+    height:44px;
+  }
+  .search-input::placeholder {
+    font-family: "Roboto", system-ui;
+    padding-left: 30px;
+}
+ 
+   
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #5f6368;
+  }
+   
+  .sort-dropdown {
+    padding: 8px 10px;
+    border-radius: 14px;
+    font-weight: 400px;
+    font-size: 15px;
+    width: 128px;
+    height: 44px;
+    font-family: "Roboto", system-ui;
+    border: 1px solid rgba(204, 232, 223, 1);
+   
+  }
+   
+  .add-role-btn {
+    width:180px;
+    height:44px;
+    border-radius: 14px;
+    border: none;
+    background-color: rgba(0, 102, 164, 1);
+    cursor: pointer;
+    color:
+    rgba(255, 255, 255, 1);
+    font-family: "Roboto", system-ui;
+    font-weight: 600;
+  }
+   
+  .add-role-btn:hover {
+    background-color: #0056b3;
+  }

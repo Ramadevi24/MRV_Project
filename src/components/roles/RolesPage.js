@@ -4,8 +4,13 @@ import CreateRoleForm from './CreateRoleForm';
 import { Button } from 'react-bootstrap';
 import { useRoles } from '../../contexts/RolesContext';
 import { toast } from 'react-toastify';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import '../../css/AddNewRole.css';
+import searchicon from '../../images/searchbaricon.png';
 
 const RolesPage = () => {
+  const navigate = useNavigate()
   const [showCreateForm, setShowCreateForm] = useState(false);
   const { fetchRoles, fetchRoleById, selectedRole, setSelectedRole, deleteRole } = useRoles();
 
@@ -19,6 +24,10 @@ const RolesPage = () => {
     setShowCreateForm(true);
     setSelectedRole(null); // Ensure form is reset for creating a new role
   };
+
+  const handleAddRole = () =>{
+    navigate('/addnewrole')
+  }
 
   const handleCloseCreateForm = () => {
     setShowCreateForm(false);
@@ -46,12 +55,36 @@ const RolesPage = () => {
     }
   };
 
+
   return (
     <>
-        <div>
-      <Button variant="primary" style={{margin: "20px",float:"inline-end"}} onClick={handleShowCreateForm}>
+        <div className='p-4'>
+<div className="header-container">
+<h2 className="header-title">Roles</h2>
+<div className="header-actions">
+<div className="search-box">
+
+<input
+            type="text"
+            placeholder="Search User"
+            className="search-input"
+          />
+          <img className="search-icon" src={searchicon} />
+
+</div>
+<select className="sort-dropdown">
+<option>Sort By</option>
+<option value="created-date">Created Date</option>
+<option value="role-name">Role Name</option>
+</select>
+<button onClick={handleAddRole} className="add-role-btn">ADD NEW ROLE +</button>
+</div>
+</div>
+
+
+      {/* <Button variant="primary" style={{margin: "20px",float:"inline-end"}} onClick={handleShowCreateForm}>
         Create New Role
-      </Button>
+      </Button> */}
       <RolesGrid handleSelectRoleForEdit={handleSelectRoleForEdit} handleDeleteRole={handleDeleteRole} />
       <CreateRoleForm show={showCreateForm} handleClose={handleCloseCreateForm} currentRole={selectedRole} />
     </div>

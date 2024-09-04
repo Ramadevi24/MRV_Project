@@ -1,0 +1,51 @@
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Roboto", system-ui;
+    /* padding: 50px; */
+    border-radius: 10px;
+  }
+   
+  .custom-table thead {
+    background-color: 
+    rgba(238, 246, 244, 1);
+  }
+ 
+   
+  .custom-table th, .custom-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+   
+  .custom-table th {
+    font-family: "Roboto", system-ui;
+    color: 
+    rgba(0, 102, 164, 1);
+    font-weight: 500;
+    font-size: 16px;
+  }
+   
+  .custom-table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+   
+  .custom-table .action-icons {
+    display: flex;
+    gap: 10px;
+  }
+   
+  .custom-table .view-btn, 
+  .custom-table .edit-btn, 
+  .custom-table .delete-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .check-box{
+    width: 20px;
+    height: 20px;
+  }
+   
+ 

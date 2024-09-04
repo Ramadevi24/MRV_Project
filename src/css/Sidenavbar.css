@@ -1,58 +1,3 @@
-.main-menu {
-    top: 0;
-    position: sticky;
-    z-index: 1000;
-     height: 100vh;
-    /*min-height: 100vh;
-    max-height: 100vh; */
-    background-color:rgb(12 74 110);
-    width: 240px;
-    line-height: 30px;
- 
-}
-.app-menu{
-    padding-left: 1rem;
-}
-.menu-text{
-    color:#cedce4;
-   
-}
-.menu-link{
-    text-decoration: none;
-}
-.menu-item{
-    list-style-type: none;
-}
-.menu-title{
-    color:#6c757d;
-    list-style-type: none;
-}
-.menu-item {
-    list-style: none; /* Remove default list styles */
-    margin: 0;
-    padding: 0;
-  }
-  
-  .menu-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: inherit; /* Inherit color from parent */
-    padding: 10px; /* Adjust padding as needed */
-  }
-  
-  .menu-icon {
-    display: flex;
-    align-items: center;
-    margin-right: 10px; /* Space between icon and text */
-  }
-  
-  .menu-text {
-    font-size: 16px; /* Adjust font size as needed */
-  }
-  .menu-arrow{
-    margin-left: 33px;
-  }
 
 
 .layout-wrapper {
@@ -65,101 +10,108 @@
 .page-content {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* width: 100%; */
     position: relative;
-    min-block-size: 100vh;
+    /* min-block-size: 100vh; */
     /* transition: $transition-base; */
 }
-
-
-.logo-box {
-    top: 0;
-    position: sticky;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    height: 70px;
-    transition: all .25s ease-in-out;
-    padding: 0 10px;
+.logo{
+    margin-left: 20px;
 }
-    .logo-sm {
-        display: none;
-    }
-
-    .logo-light {
-        display: none;
-    }
-
-    .logo-dark {
-        display: block;
-    }
-
-
-html[data-menu-color="brand"],
-html[data-menu-color="dark"],
-html[data-bs-theme="dark"] {
-    .main-menu {
-        .logo-box {
-            .logo-light {
-                display: block;
-            }
-
-            .logo-dark {
-                display: none;
-            }
-        }
-    }
+.left-container{
+    border-radius: 40px;
+    background-color: rgba(238, 246, 244, 1);
+    padding:0px !important;
+    /* background-color: white; */
 }
-
-html[data-bs-theme="dark"] {
-    #theme-mode {
-        .bx-moon:before {
-            content: "\ec34";
-        }
-    }
-
-    .main-menu {
-        border-right-style: dashed;
-    }
-
-    .navbar-custom {
-        border-bottom-style: dashed;
-    }
-
-    .auth-logo {
-        .logo-light {
-            display: block;
-        }
-
-        .logo-dark {
-            display: none;
-        }
-    }
+.container-body{
+    height: 100%;
+ 
 }
-
-.auth-logo {
-    .logo-light {
-        display: none;
-    }
-
-    .logo-dark {
-        display: block;
-    }
+.menu{
+    margin-top: 20px;
+    /* line-height:70px; */
+    
+   
 }
-  
-.sub-menu .menu-item.active .menu-link {
-    background-color: rgb(4, 67, 103);
+.menu li{
+    /* line-height:70px; */
+}
+.menu-heading{
+    font-family:"Roboto", system-ui; 
+    font-weight: 600;
+    margin-left: 20px;
+}
+.menu li{
+    list-style-type: none;
+}
+.menu li a {
+    text-decoration: none;
+    color:black;
+    font-family:"Roboto", system-ui; 
+    font-weight: 600;
+
+}
+.menu img{
+    margin-right: 50px;
+}
+.footer{
+    margin-top: 50px;
+    text-align: center;
+}
+.footer-heading{
+    color: rgba(18, 18, 18, 1);
+    font-family:"Roboto", system-ui;  
+    font-weight: 500;
+    font-size: 18px;
+}
+.rights{
+    color:
+    rgba(67, 67, 67, 1);
+    font-weight: 400;
+    font-family:"Roboto", system-ui;  
+    font-size: 13px;
+
+}
+.menuitem{
+    margin-top: 20px !important;
+  }
+  .administration{
+    /* width: 200px; */
+    width:100%;
+    height:55px;
+    background-color: 
+    rgba(0, 138, 95, 1);
     color: white;
-  }
-  
-  .sub-menu .menu-item.active .menu-link:hover {
-    background-color: rgb(4, 67, 103);
-    color: white;
-  }
-  
-  .menu-item.open > .collapse {
-    display: block !important;
-  }
+
+    border: none;
+   /* padding:15px; */
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.Administration-cnt{
+    /* height: 108px; */
+    border: 2px solid rgba(210, 210, 210, 1);
+    line-height: 40px;
+    border-bottom-right-radius:30px;
+    border-bottom-left-radius: 30px;
+
+}
+.administration-menu li:hover{
+    background-color:   rgba(0, 138, 95, 1); 
+    color:white;
+}
+
+.dropdown-content{
+    width: 100%; /* Ensure content matches the dropdown width */
+    border-bottom-right-radius:14px;
+    border-bottom-left-radius: 14px;
+    overflow: visible;
+}
+
+   
+
+
+
+
   
