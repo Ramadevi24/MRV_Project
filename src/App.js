@@ -13,6 +13,7 @@ import Topbar from './components/Topbar.js';
 import Sidebar from './components/Sidebar.js';
 import Signup from './pages/Signup.js';
 import AddNewRole from './components/roles/AddNewRole.js';
+import Sample from './components/Sample.js';
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -46,6 +47,7 @@ const App = () => {
             <Route path="/permissions" element={<PermissionsPage />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/addnewrole" element={<AddNewRole />} />
+            <Route path="/sample" element={<Sample />} />
           </Routes>
         </div>
       </div>

@@ -155,7 +155,10 @@ const toggleDropdown = (dropdown) => {
                                                    <Link to="/users"><li> <img src={Usersicon} />  Users</li></Link>
                                                    <Link to="/permissions"> <li> <img src={Usersicon} /> Permissions</li></Link>
                                                    <Link to="/tenants"><li><img src={settingsicon} /> Settings</li></Link>
-                                               
+                                                  
+                    <Link to="/sample" >
+                      <li >Sample</li>
+                    </Link>
                                                 </ul>
                                             </div>
 
