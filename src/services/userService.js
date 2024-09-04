@@ -5,7 +5,7 @@ const API_BASE_URL = 'http://localhost:5000/api/User'; // INPUT_REQUIRED {API_BA
 export const getUsers = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}`);
-    return response.data;
+    return response.data.$values;
   } catch (error) {
     console.error('Error fetching users:', error.response ? error.response.data : error, error.stack);
     throw error;

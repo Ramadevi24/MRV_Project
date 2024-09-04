@@ -76,6 +76,8 @@
 //       };
 
 
+
+
 //   const toggleTheme = () => {
 //     setIsDarkMode(!isDarkMode);
 //     document.body.className = isDarkMode ? 'light-theme' : 'dark-theme';
@@ -258,8 +260,15 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import adminimage from '../images/Ellipse 5.png';
+import { useNavigate } from 'react-router-dom';
 
 const Topbar=()=> {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem('authToken'); 
+    navigate('/');  
+  };
+
   return (
     <div><div className="top-navbar">
     <div className='icons'>
@@ -284,6 +293,58 @@ const Topbar=()=> {
                 <div className='admin'>Admin</div>
             </div>
         </div>
+
+        {/* View All Link */}
+        <a href="#" className="dropdown-item text-center text-primary notify-item border-top border-light py-2">
+          View All
+        </a>
+      </div>
+    </li>
+
+          {/* Theme Mode Toggle */}
+          <li className="nav-link" id="theme-mode" onClick={toggleTheme}>
+            {isDarkMode ? <FiSun className="font-size-24" /> : <FiMoon className="font-size-24" />}
+          </li>
+
+          {/* User Profile Dropdown */}
+          <li className="dropdown nav-user">
+            <a
+                className="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light"
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-haspopup="false"
+                aria-expanded="false"
+            >
+                <img src={avatar4} alt="user-profile" className="rounded-circle" />
+                <span className="ms-1 d-none d-md-inline-block">
+                    Admin 
+                </span>
+            </a>
+            <div className="dropdown-menu dropdown-menu-end profile-dropdown">
+                <div className="dropdown-header noti-title">
+                    <h6 className="text-overflow m-0">Welcome!</h6>
+                </div>
+                <a href="#" className="dropdown-item notify-item">
+                    <i className="fe-user"></i>
+                    <span>My Account</span>
+                </a>
+                <a href="#" className="dropdown-item notify-item">
+                    <i className="fe-settings"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="/" className="dropdown-item notify-item">
+                    <i className="fe-lock"></i>
+                    <span>Lock Screen</span>
+                </a>
+                <div className="dropdown-divider"></div>
+                <button onClick={handleLogout} className="dropdown-item notify-item">
+                    Logout
+                </button>
+            </div>
+        </li>
+        </ul>
+      </div>
     </div>
 
 </div></div>

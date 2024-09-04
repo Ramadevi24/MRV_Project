@@ -127,22 +127,22 @@ const Users = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* {users && users?.map(user => (
-            <tr key={user.userID}> */}
-                <td>{users.userID}</td>
-                <td>{users.firstName}</td>
-                <td>{users.email}</td>
-                <td>{users.loginType}</td>
-                <td>{users.tenantName}</td>
-                <td>{users.organizationName ?  users.organizationName: 'N/A'}</td>
-                <td>{users.roleName}</td>
+                {users && users?.map(user => (
+            <tr key={user.userID}>
+                <td>{user.userID}</td>
+                <td>{user.firstName}</td>
+                <td>{user.email}</td>
+                <td>{user.loginType}</td>
+                <td>{user.tenantName}</td>
+                <td>{user.organizationName} </td>
+                <td>{user.roleName}</td>
                 <td>
-                  <Button variant="success" onClick={() => handleEdit(users)}>
+                  <Button variant="success" onClick={() => handleEdit(user)}>
                     Edit
                   </Button>{" "}
                   <Button
                     variant="danger"
-                    onClick={() => handleDelete(users.userID)}
+                    onClick={() => handleDelete(user.userID)}
                   >
                     Delete
                   </Button>{" "}
@@ -153,8 +153,8 @@ const Users = () => {
                     View
                   </Button>
                 </td>
-                {/* </tr>
-          ))} */}
+                </tr>
+          ))}
               </tbody>
             </Table>
 
