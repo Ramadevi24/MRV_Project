@@ -75,14 +75,8 @@ const CompanyProfileGrid = ({onEdit}) => {
 <thead className='tabel-head'>
 <tr>
 <th><input className='check-box' type="checkbox" /></th>
-<th>Organization ID</th>
-            <th>Tenant ID</th>
+            <th>Tenant Name</th>
             <th>Organization Name</th>
-            <th>Description</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Created Date</th>
             <th>Actions</th>
 </tr>
 </thead>
@@ -90,14 +84,9 @@ const CompanyProfileGrid = ({onEdit}) => {
 {companyProfiles.map((profile) => (
  <tr key={profile.organizationID}>
   <td><input className='check-box' type="checkbox" /></td>
-<td>{profile.organizationID}</td>
-              <td>{profile.tenantID}</td>
+<td>{profile.tenantName}</td>
               <td>{profile.organizationName}</td>
-              <td>{profile.description}</td>
-              <td>{profile.address}</td>
-              <td>{profile.contactPhone}</td>
-              <td>{profile.contactEmail}</td>
-              <td>{formatDate(profile.createdDate)}</td>
+              
               <td>
 <span className="action-icons">
 <button className="view-btn"  onClick={() => handleView(profile)}><img src={eyeicon} /></button>
