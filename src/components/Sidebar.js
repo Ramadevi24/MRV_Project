@@ -107,7 +107,13 @@ import Datamanagementicon from '../images/DataManagementicon.png';
 import Administrationicon from '../images/Administrationicon.png';
 import Usersicon from '../images/Usericon.png';
 import settingsicon from '../images/Gearicon.png';
-import { Link } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faUser} from  '@fortawesome/free-solid-svg-icons';
+import {faSitemap} from  '@fortawesome/free-solid-svg-icons';
+import {faUserPlus} from '@fortawesome/free-solid-svg-icons';
+import {faGear} from '@fortawesome/free-solid-svg-icons';
+import {faUserPen} from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
   const [dropdownState, setDropdownState] = useState({
@@ -117,13 +123,17 @@ const Sidebar = () => {
     // more: false
 });
 
+const location = useLocation(); 
+
 // Toggle function
 const toggleDropdown = (dropdown) => {
     setDropdownState((prevState) => ({
         ...prevState,
         [dropdown]: !prevState[dropdown]
+     
     }));
 };
+const isActive = (path) => location.pathname === path;
   return (
     <div>
          <div className="col-12 right-container">
@@ -133,28 +143,31 @@ const toggleDropdown = (dropdown) => {
                         </div>
                         <p className='menu-heading'>Main Menu</p>
                         <nav className="menu">
-                            <ul>
-                                <li className='menuitem'><a href="#"><img src={Dashboardicon} />Dashboard</a></li>
-                                <li className='menuitem'><a href="#"><img src={Datamanagementicon} />Data Management</a></li>
-                                <li className='menuitem'><a href="#"><img src={Reportsicon} />Reports</a></li>
-                                {/* <li className="active"><a href="#"><img src={Administrationicon} />Administration</a></li> */}
-                                <li className='menuitem'>
-                                    <div className="dropdown mt-3">
+                            <ul className='sidemenu-items'>
+                                <li className={`sidenav-menuitem ${isActive("/dashboard") ? "active-menu" : ""}`}><Link to="/dashboard" className="menu-link"><img src={Dashboardicon} />Dashboard</Link></li>
+                                <li className={`sidenav-menuitem ${isActive("/datamanagement") ? "active-menu" : ""}`}><Link to="/datamanagement" className="menu-link"><img src={Datamanagementicon} />Data Management</Link></li>
+                                <li className={`sidenav-menuitem ${isActive("/reports") ? "active-menu" : ""}`}><Link to="/reports" className="menu-link"><img src={Reportsicon} />Reports</Link></li>
+                                {/* <li className="active"><Link to="/dashboard"><img src={Administrationicon} />Administration</a></li> */}
+                                <li className='sidenavmenu-item'>
+                                    <div className="dropdown administraton-dropdown mt-3">
 
-                                        <button onClick={() => toggleDropdown('administration')} className="dropdown-toggle administration d-flex align-items-center">
+                                        <button onClick={() => toggleDropdown('administration')}      className={`dropdown-toggle administration d-flex align-items-center ${dropdownState.administration ? 'active-dropdown' : ''}`}>
+                                            
                                             <img src={Administrationicon} /> Administration
                                         </button>
+                                   
+                                        
 
                                         {dropdownState.administration && (
 
-                                            <div class=" dropdown-menu-right Administration-cnt">
+                                            <div class="dropdown-menu-right Administration-cnt">
                                                 <ul className='administration-menu'>
-                                                   <Link to="/tenants"> <li> <img src={Usersicon} /> Tenents</li></Link>
-                                                   <Link to="/organizations"><li> <img src={Usersicon} /> Organization</li></Link>
-                                                   <Link to="/roles"><li><img src={Usersicon} />    Roles</li></Link>
-                                                   <Link to="/users"><li> <img src={Usersicon} />  Users</li></Link>
-                                                   <Link to="/permissions"> <li> <img src={Usersicon} /> Permissions</li></Link>
-                                                   <Link to="/tenants"><li><img src={settingsicon} /> Settings</li></Link>
+                                                   <Link to="/tenants"> <li className={isActive("/tenants") ? "active-submenu " : ""}> <FontAwesomeIcon icon={faUser} className='font-icon' /> Tenants</li></Link>
+                                                   <Link to="/organizations"><li className={isActive("/organizations") ? "active-submenu " : ""}><FontAwesomeIcon icon={faSitemap} className='font-icon'  />Organization</li></Link>
+                                                   <Link to="/roles"><li  className={isActive("/roles") ? "active-submenu " : ""}><FontAwesomeIcon icon={faUserPlus} className='font-icon'  />   Roles</li></Link>
+                                                   <Link to="/users"><li  className={isActive("/users") ? "active-submenu" : ""}>  <FontAwesomeIcon icon={faUser} className='font-icon' />  Users</li></Link>
+                                                   <Link to="/permissions"> <li  className={isActive("/permissions") ? "active-submenu" : ""}> <FontAwesomeIcon icon={faUserPen} className='font-icon' /> Permissions</li></Link>
+                                                   <Link to="/settings"><li  className={isActive("/settings") ? "active-submenu" : ""}><FontAwesomeIcon icon={faGear} className='font-icon' /> Settings</li></Link>
                                                   
                     <Link to="/sample" >
                       <li >Sample</li>

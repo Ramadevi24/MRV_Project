@@ -6,6 +6,12 @@ import { useTenantRoles } from "../../contexts/TenantRolesContext";
 import { useTenants } from "../../contexts/TenantContext";
 import { toast } from "react-toastify";
 import CryptoJS from 'crypto-js';
+import '../../css/TableGrid.css';
+import eyeicon from '../../images/eyeicon.png';
+import editicon from '../../images/editicon.png';
+import deleteicon from '../../images/deleteicon.png';
+import '../../css/AddNewRole.css';
+import searchicon from '../../images/searchbaricon.png';
 
 const Users = () => {
   const [show, setShow] = useState(false);
@@ -101,8 +107,8 @@ const Users = () => {
 
   return (
     <>
-          <div>
-            <Button
+          <div style={{padding:'20px'}}>
+            {/* <Button
               variant="primary"
               style={{ margin: "20px", float: "inline-end" }}
               onClick={() => {
@@ -111,9 +117,33 @@ const Users = () => {
               }}
             >
               Add User
-            </Button>
+            </Button> */}
+            <div className="header-container mt-3">
+<h2 className="header-title">Users</h2>
+<div className="header-actions">
+<div className="search-box">
 
-            <Table striped bordered hover style={{width:'95%', marginLeft:'35px'}}>
+<input
+            type="text"
+            placeholder="Search User"
+            className="search-input"
+          />
+          <img className="search-icon" src={searchicon} />
+
+</div>
+<select className="sort-dropdown">
+<option>Sort By</option>
+<option value="created-date">Created Date</option>
+<option value="role-name">Role Name</option>
+</select>
+<button onClick={() => {
+                setEditMode(false);
+                handleShow();
+              }} className="add-role-btn">Add User</button>
+</div>
+</div>
+
+            {/* <Table striped bordered hover style={{width:'95%', marginLeft:'35px'}}>
               <thead>
                 <tr>
                   <th>User ID</th>
@@ -156,7 +186,43 @@ const Users = () => {
                 </tr>
           ))}
               </tbody>
-            </Table>
+            </Table> */}
+            <table className="custom-table">
+<thead className='tabel-head'>
+<tr>
+<th><input className='check-box' type="checkbox" /></th>
+<th>User ID</th>
+                  <th>First Name</th>
+                  <th>Email</th>
+                  <th>Login Type</th>
+                  <th>Tenant Name</th>
+                  <th>Organization Name</th>
+                  <th>Tenant Role</th>
+                  <th>Actions</th>
+</tr>
+</thead>
+<tbody>
+{users && users?.map(user => (
+  <tr key={user.userID}>
+<td><input className='check-box' type="checkbox" /></td>
+<td>{user.userID}</td>
+                <td>{user.firstName}</td>
+                <td>{user.email}</td>
+                <td>{user.loginType}</td>
+                <td>{user.tenantName}</td>
+                <td>{user.organizationName} </td>
+                <td>{user.roleName}</td>
+<td>
+<span className="action-icons">
+<button className="view-btn" onClick={() => handleView(users.userID)}><img src={eyeicon} /></button>
+<button onClick={() => handleEdit(user)} className="edit-btn"><img src={editicon} /></button>
+<button onClick={() => handleDelete(user.userID)} className="delete-btn"><img src={deleteicon} /></button>
+</span>
+</td>
+</tr>
+        ))}
+</tbody>
+</table>
 
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
