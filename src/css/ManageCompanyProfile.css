@@ -87,28 +87,63 @@ textarea:focus-visible {
 
 /* CustomDropdownTreeSelect.css */
 
-.dropdown-tree-select .dropdown-content {
-  max-height: 200px;
-  overflow-y: auto;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  background-color: #fff;
-}
-
-.dropdown-tree-select .node {
-  padding: 0.5rem;
-  cursor: pointer;
-  font-size: 14px;
-  color: #495057;
-}
-
-.dropdown-tree-select .node:hover {
-  background-color: #f8f9fa;
-}
-
-.dropdown-tree-select .node-label {
-  font-weight: bold;
-  font-family: sans-serif;
-}
-
+.dropdown-container {
+    position: relative;
+  }
+  
+  .dropdown-header {
+    border: 1px solid #cfcdcd;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .dropdown-arrow {
+    margin-left: 10px;
+  }
+  
+  .dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #b1abab;
+    border-radius: 10px;
+    max-height: 250px;
+    z-index: 10;
+    overflow: scroll;
+  }
+  
+  .node {
+    padding: 5px 10px;
+  }
+  
+  .node-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .node-label input {
+    margin-right: 10px;
+    transform: scale(1.5); /* Increase the size of the checkbox */
+    -webkit-transform: scale(1.5); /* For Safari */
+    transform-origin: 0 0; /* Align the scaling properly */
+  }
+  
+  .expand-icon {
+    font-weight: bold;
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 25px;
+  }
+  
+  .selected-categories {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
 

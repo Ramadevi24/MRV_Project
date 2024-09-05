@@ -15,6 +15,12 @@
     /* min-block-size: 100vh; */
     /* transition: $transition-base; */
 }
+
+.page-content.login-page {
+    width: 100%; /* Example style for login page */
+    /* Add other styles specific to the login page */
+  }
+  
 .logo{
     margin-left: 20px;
 }

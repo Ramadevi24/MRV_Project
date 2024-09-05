@@ -4,6 +4,7 @@ import { useCompanyProfile } from '../../contexts/CompanyProfileContext';
 import { toast } from 'react-toastify';
 import ViewCompanyProfileModal from './ViewCompanyProfileModal'
 import formatDate from '../../utils/formateDate';
+import axios from 'axios';
 
 const CompanyProfileGrid = ({onEdit}) => {
   const { companyProfiles, deleteCompanyProfile, fetchCompanyProfiles } = useCompanyProfile();
@@ -30,40 +31,35 @@ const CompanyProfileGrid = ({onEdit}) => {
     setSelectedProfile(null);
   };
 
-  const handleEdit = (profile) => {
-    onEdit(profile);
+  const handleEdit = async (profile) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/Organization/${profile.organizationID}`);
+      const organizationData = response.data;
+      onEdit(organizationData); // Pass the fetched data to the parent component
+    } catch (error) {
+      console.error('Error fetching organization data:', error);
+    }
   };
-
   return (
     <>
       <Table striped bordered hover style={{width:'95%', marginLeft:'35px'}}>
         <thead>
           <tr>
-            <th>Organization ID</th>
-            <th>Tenant ID</th>
+            <th>Tenant Name</th>
             <th>Organization Name</th>
-            <th>Description</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Created Date</th>
+            <th>Categories</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {companyProfiles.map((profile) => (
             <tr key={profile.organizationID}>
-              <td>{profile.organizationID}</td>
-              <td>{profile.tenantID}</td>
+              <td>{profile.tenantName}</td>
               <td>{profile.organizationName}</td>
-              <td>{profile.description}</td>
-              <td>{profile.address}</td>
-              <td>{profile.contactPhone}</td>
-              <td>{profile.contactEmail}</td>
-              <td>{formatDate(profile.createdDate)}</td>
+              <td>{profile.categories.$values.join(',')}</td>
               <td>
                 <Button variant="success" onClick={() => handleEdit(profile)}>Edit</Button>{' '}
-                <Button variant="danger" onClick={() => handleDelete(profile.companyID)}>Delete</Button>{' '}
+                <Button variant="danger" onClick={() => handleDelete(profile.organizationID)}>Delete</Button>{' '}
                 <Button variant="info" onClick={() => handleView(profile)}>View</Button>
               </td>
             </tr>

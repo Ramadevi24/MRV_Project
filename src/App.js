@@ -33,7 +33,7 @@ const App = () => {
           <Sidebar />
         </div>
       )}
-      <div className={`page-content col-10 ${isLoginPage ? '' : 'with-sidebar'}`}>
+         <div className={`page-content col-10 ${isLoginPage ? 'login-page' : 'with-sidebar'}`}>
         {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} />}
         <div>
           <Routes>
