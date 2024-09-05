@@ -14,6 +14,7 @@ import Sidebar from './components/Sidebar.js';
 import Signup from './pages/Signup.js';
 import AddNewRole from './components/roles/AddNewRole.js';
 import Sample from './components/Sample.js';
+import './App.css'
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -48,6 +49,9 @@ const App = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/addnewrole" element={<AddNewRole />} />
             <Route path="/sample" element={<Sample />} />
+            <Route path="/settings" element={<Dashboard />} />
+            <Route path="/datamanagement" element={<Dashboard />} />
+            <Route path="/reports" element={<Dashboard />} />
           </Routes>
         </div>
       </div>
