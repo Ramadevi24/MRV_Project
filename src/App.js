@@ -12,6 +12,8 @@ import PermissionsPage from './components/permissions/PermissionsPage.jsx';
 import Topbar from './components/Topbar.js';
 import Sidebar from './components/Sidebar.js';
 import Signup from './pages/Signup.js';
+import AddNewRole from './components/roles/AddNewRole.js';
+import Sample from './components/Sample.js';
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -25,13 +27,13 @@ const App = () => {
   const isLoginPage = location.pathname === '/' || location.pathname === '/signup';
 
   return (
-    <div className="layout-wrapper">
+    <div className="col-12 layout-wrapper">
       {!isLoginPage && isSidebarOpen && (
-        <div className="main-menu active">
+        <div className="col-2 main-menu active">
           <Sidebar />
         </div>
       )}
-      <div className={`page-content ${isLoginPage ? '' : 'with-sidebar'}`}>
+      <div className={`page-content col-10 ${isLoginPage ? '' : 'with-sidebar'}`}>
         {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} />}
         <div>
           <Routes>
@@ -44,6 +46,8 @@ const App = () => {
             <Route path="/tenants" element={<TenantPage />} />
             <Route path="/permissions" element={<PermissionsPage />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/addnewrole" element={<AddNewRole />} />
+            <Route path="/sample" element={<Sample />} />
           </Routes>
         </div>
       </div>

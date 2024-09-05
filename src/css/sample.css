@@ -1,0 +1,67 @@
+.fuel-manager {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .conversion-factor {
+    margin-bottom: 10px;
+  }
+  
+  .conversion-factor label {
+    margin-right: 20px;
+  }
+  
+  .fuel-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+
+  .fuel-table td:nth-child(2) , td:nth-child(3) {
+    background-color: #f0f0f0; 
+  }
+  td.no-border-bottom {
+    border-bottom: none !important;
+  }
+  
+  
+  
+  .fuel-table th, .fuel-table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+
+.fuel-table thead {
+    background-color: rgb(24, 119, 162);
+    color: white;
+  }
+  
+  .fuel-table td:first-child, .fuel-table th:first-child {
+    background-color: rgb(24, 119, 162);
+  }
+  
+ 
+  .fuel-table input[type="number"] {
+    width: 100px;
+  }
+  
+  .buttons {
+    margin: 10px;
+    float: right;
+  }
+  
+  .buttons button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: 1px solid rgb(185, 180, 180);
+  }
+  
+  .footer-note {
+    margin-top: 20px;
+    font-size: 12px;
+    color: red;
+    line-height: 1.5;
+  }
+  
