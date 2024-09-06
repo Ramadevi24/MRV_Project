@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import { useTenants } from '../../contexts/TenantContext';
 import { toast } from 'react-toastify';
 import TenantGrid from './TenantGrid';
 import CreateTenantForm from './CreateTenantForm';
-import Topbar from "../Topbar";
-import Sidebar from "../Sidebar";
+import searchicon from '../../images/searchbaricon.png';
 
 const TenantPage = () => {
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -51,10 +49,32 @@ const TenantPage = () => {
 
   return (
     <>
-    <div>
-      <Button variant="primary" style={{margin: "20px",float:"inline-end"}} onClick={handleShowCreateForm}>
+    
+      {/* <Button variant="primary" style={{margin: "20px",float:"inline-end"}} onClick={handleShowCreateForm}>
         Create New Tenant
-      </Button>
+      </Button> */}
+      <div className='p-4'>
+<div className="header-container">
+<h2 className="header-title">Tenant</h2>
+<div className="header-actions">
+<div className="search-box">
+
+<input
+            type="text"
+            placeholder="Search Tenant"
+            className="search-input"
+          />
+          <img className="search-icon" src={searchicon} />
+
+</div>
+<select className="sort-dropdown">
+<option>Sort By</option>
+<option value="created-date">Created Date</option>
+<option value="role-name">Role Name</option>
+</select>
+<button onClick={handleShowCreateForm} className="add-role-btn">  Create New Tenant</button>
+</div>
+</div>
       <TenantGrid handleSelectTenantForEdit={handleSelectTenantForEdit} handleDeleteTenant={handleDeleteTenant} />
       <CreateTenantForm show={showCreateForm} handleClose={handleCloseCreateForm} currentTenant={selectedTenant} />
     </div>

@@ -5,9 +5,22 @@ import "../../css/ManageCompanyProfile.css";
 import CompanyProfileGrid from "./CompanyProfileGrid";
 import { Modal, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { fetchCategories } from '../../services/ManageCompanyProfileAPI';
-import DropdownTreeSelect from 'react-dropdown-tree-select';
-import 'react-dropdown-tree-select/dist/styles.css';
+import { fetchCategories } from "../../services/ManageCompanyProfileAPI";
+import "react-dropdown-tree-select/dist/styles.css";
+import searchicon from "../../images/searchbaricon.png";
+
+const transformNodes = (categories) => {
+  return categories.map((category) => {
+    return {
+      label: category.categoryName,
+      value: category.categoryCode,
+      categoryID: category.categoryID,
+      children: category.subCategories?.$values
+        ? transformNodes(category.subCategories.$values)
+        : [],
+    };
+  });
+};
 
 const CompanyProfile = () => {
   const {
@@ -31,12 +44,120 @@ const CompanyProfile = () => {
     contactPhone: "",
     address: "",
     categoryID: [],
-    locations: [{
-      latitude: "",
-      longitude: ""
-    }],
+    locations: [
+      {
+        latitude: "",
+        longitude: "",
+        address: "",
+      },
+    ],
   });
   const { tenants, fetchTenants } = useTenants();
+  const nodes = transformNodes(categories);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [expandedNodes, setExpandedNodes] = useState({});
+  const [selectedCategoryIDs, setSelectedCategoryIDs] = useState([]);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const toggleNode = (node) => {
+    setExpandedNodes((prev) => ({
+      ...prev,
+      [node.value]: !prev[node.value],
+    }));
+  };
+
+  const isCategorySelected = (categoryID) =>
+    selectedCategoryIDs.includes(categoryID);
+
+  const selectCategoryAndChildren = (category) => {
+    let categoryIDsToSelect = [category.categoryID];
+
+    const collectChildrenCategoryIDs = (node) => {
+      if (node.children) {
+        node.children.forEach((child) => {
+          categoryIDsToSelect.push(child.categoryID);
+          collectChildrenCategoryIDs(child);
+        });
+      }
+    };
+    collectChildrenCategoryIDs(category);
+
+    setSelectedCategoryIDs((prevSelected) => {
+      const newSelected = [
+        ...prevSelected,
+        ...categoryIDsToSelect.filter((id) => !prevSelected.includes(id)),
+      ];
+      return newSelected;
+    });
+  };
+
+  const deselectCategoryAndChildren = (category) => {
+    let categoryIDsToDeselect = [category.categoryID];
+
+    const collectChildrenCategoryIDs = (node) => {
+      if (node.children) {
+        node.children.forEach((child) => {
+          categoryIDsToDeselect.push(child.categoryID);
+          collectChildrenCategoryIDs(child);
+        });
+      }
+    };
+    collectChildrenCategoryIDs(category);
+
+    setSelectedCategoryIDs((prevSelected) =>
+      prevSelected.filter((id) => !categoryIDsToDeselect.includes(id))
+    );
+  };
+
+  const toggleSelectCategory = (category) => {
+    const isSelected = isCategorySelected(category.categoryID);
+    if (isSelected) {
+      deselectCategoryAndChildren(category);
+    } else {
+      selectCategoryAndChildren(category);
+    }
+  };
+
+  const handleCheckboxChange = (e, category) => {
+    toggleSelectCategory(category);
+  };
+
+  const renderNode = (node) => {
+    const hasChildren = node.children && node.children.length > 0;
+    const isSelected = isCategorySelected(node.categoryID);
+
+    return (
+      <div key={node.value} className="node" style={{ paddingLeft: 20 }}>
+        <div className="node-label">
+          <input
+            type="checkbox"
+            checked={isSelected}
+            onChange={(e) => handleCheckboxChange(e, node)}
+          />
+          {hasChildren && (
+            <span
+              className="expand-icon"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleNode(node);
+              }}
+            >
+              {expandedNodes[node.value] ? "-" : "+"}
+            </span>
+          )}{" "}
+          {node.label}
+        </div>
+        {hasChildren && expandedNodes[node.value] && (
+          <div className="children">
+            {node.children.map((child) => renderNode(child))}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   useEffect(() => {
     fetchCompanyProfiles().catch(console.error);
@@ -46,25 +167,57 @@ const CompanyProfile = () => {
 
   useEffect(() => {
     if (selectedProfile) {
+      const tenant = tenants.find(
+        (tenant) => tenant.name === selectedProfile.tenantName
+      );
+      const tenantID = tenant ? tenant.tenantID : null;
+      const findCategoryByName = (categories, categoryName) => {
+        for (const category of categories) {
+          if (category.categoryName === categoryName) {
+            return category.categoryID;
+          }
+          if (category.subCategories?.$values) {
+            const subCategoryID = findCategoryByName(
+              category.subCategories.$values,
+              categoryName
+            );
+            if (subCategoryID) {
+              return subCategoryID;
+            }
+          }
+        }
+        return null;
+      };
+
+      const categoryIDs = selectedProfile.categories.$values
+        .map((categoryName) => {
+          return findCategoryByName(categories, categoryName);
+        })
+        .filter((id) => id !== null);
+
       setFormState({
-        tenantID: selectedProfile.tenantID,
+        tenantID: tenantID,
         organizationName: selectedProfile.organizationName,
         description: selectedProfile.description,
-        establishedDate: selectedProfile.establishedDate,
+        establishedDate: selectedProfile.establishedDate.split("T")[0],
         contactEmail: selectedProfile.contactEmail,
         contactPhone: selectedProfile.contactPhone,
         address: selectedProfile.address,
-        categoryID: selectedProfile.categoryIDs[0] || "",
-        latitude: selectedProfile.locations[0]?.latitude || "",
-        longitude: selectedProfile.locations[0]?.longitude || "",
+        categoryID: categoryIDs,
+        locations: selectedProfile.locations.$values || [
+          { latitude: "", longitude: "" },
+        ],
       });
+      setSelectedCategoryIDs(categoryIDs);
       setIsEditing(true);
       setShowForm(true);
     }
   }, [selectedProfile]);
 
   const handleEditClick = (profile) => {
-    selectProfileForEdit(profile.organizationID);
+    selectProfileForEdit(profile);
+    setShowForm(true);
+    setIsEditing(true);
   };
 
   const handleDeleteClick = async (id) => {
@@ -89,19 +242,16 @@ const CompanyProfile = () => {
         contactEmail: formState.contactEmail,
         contactPhone: formState.contactPhone,
         address: formState.address,
-        categoryIDs: [formState.categoryID],
-        locations: [
-          {
-            latitude: formState.latitude,
-            longitude: formState.longitude,
-            address: formState.address,
-            organizationID: 0,
-          },
-        ],
+        categoryIDs: selectedCategoryIDs,
+        locations: formState.locations,
       };
-
       if (isEditing) {
-        await updateCompanyProfile(selectedProfile.organizationID, updatedFormStateData);
+        console.log("Submitting form with data:", updatedFormStateData);
+        updatedFormStateData.organizationID = selectedProfile.organizationID;
+        await updateCompanyProfile(
+          selectedProfile.organizationID,
+          updatedFormStateData
+        );
         toast.success("Organization updated successfully.");
       } else {
         await createCompanyProfile(updatedFormStateData);
@@ -124,9 +274,8 @@ const CompanyProfile = () => {
       contactEmail: "",
       contactPhone: "",
       address: "",
-      categoryID: "",
-      latitude: "",
-      longitude: "",
+      categoryID: [],
+      locations: [{ latitude: "", longitude: "" }],
     });
     setIsEditing(false);
     setShowForm(false);
@@ -147,33 +296,39 @@ const CompanyProfile = () => {
     setSelectedProfile(null);
   };
 
-  const handleCategoryChange = (currentNode, selectedNodes) => {
+  const handleLocationChange = (e) => {
+    const { name, value } = e.target;
     setFormState((prevState) => ({
       ...prevState,
-      categoryID: currentNode.value,
-    }));
-  };
-
-  console.log(formState, 'formState');
-
-  const buildCategoryTree = (categories) => {
-    return categories.map((category) => ({
-      label: category.categoryName,
-      value: category.categoryID,
-      children: category.subCategories ? buildCategoryTree(category.subCategories.$values) : [],
+      locations: [{ ...prevState.locations[0], [name]: value }],
     }));
   };
 
   return (
     <>
-      <div>
-        <Button
-          variant="primary"
-          onClick={handleCreateClick}
-          style={{ margin: "20px", float: "inline-end" }}
-        >
-          Create Organization
-        </Button>
+      <div style={{ padding: "20px" }}>
+        <div className="header-container mt-3">
+          <h2 className="header-title"> Organization</h2>
+          <div className="header-actions">
+            <div className="search-box">
+              <input
+                type="text"
+                placeholder="Search Organization"
+                className="search-input"
+              />
+              <img className="search-icon" src={searchicon} />
+            </div>
+            <select className="sort-dropdown">
+              <option>Sort By</option>
+              <option value="created-date">Created Date</option>
+              <option value="role-name">Role Name</option>
+            </select>
+            <button onClick={handleCreateClick} className="add-role-btn">
+              {" "}
+              Create Organization
+            </button>
+          </div>
+        </div>
         <Modal show={showForm} onHide={() => setShowForm(false)}>
           <Modal.Header closeButton>
             <Modal.Title>
@@ -183,7 +338,7 @@ const CompanyProfile = () => {
           <Modal.Body>
             <form onSubmit={handleSubmit}>
               {Object.keys(formState).map((key) => {
-                if (key !== "companyID") {
+                if (key !== "organizationID" && key !== "locations") {
                   return (
                     <div key={key} className="form-group">
                       <label>
@@ -203,19 +358,31 @@ const CompanyProfile = () => {
                         >
                           <option value="">Select Tenants</option>
                           {tenants?.map((tenant) => (
-                            <option key={tenant.tenantID} value={tenant.tenantID}>
+                            <option
+                              key={tenant.tenantID}
+                              value={tenant.tenantID}
+                            >
                               {tenant.name}
                             </option>
                           ))}
                         </select>
                       ) : key === "categoryID" ? (
-                        <DropdownTreeSelect
-                          className="dropdown-tree-select" // Apply custom class
-                          name={key}
-                          data={buildCategoryTree(categories)}
-                          onChange={handleCategoryChange}
-                          required
-                        />
+                        <div className="dropdown-container">
+                          <div
+                            className="dropdown-header"
+                            onClick={toggleDropdown}
+                          >
+                            Select Categories
+                            <span className="dropdown-arrow">
+                              {dropdownOpen ? "▲" : "▼"}
+                            </span>
+                          </div>
+                          {dropdownOpen && (
+                            <div className="dropdown-list">
+                              {nodes.map((node) => renderNode(node))}
+                            </div>
+                          )}
+                        </div>
                       ) : (
                         <input
                           type={key === "establishedDate" ? "date" : "text"}
@@ -232,6 +399,27 @@ const CompanyProfile = () => {
                 }
                 return null;
               })}
+              <div className="form-group">
+                <label>Location</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="latitude"
+                  value={formState.locations[0].latitude}
+                  onChange={handleLocationChange}
+                  placeholder="Enter Latitude"
+                  required
+                />
+                <input
+                  type="text"
+                  className="form-control"
+                  name="longitude"
+                  value={formState.locations[0].longitude}
+                  onChange={handleLocationChange}
+                  placeholder="Enter Longitude"
+                  required
+                />
+              </div>
               <div className="form-group">
                 <button className="btn btn-success" type="submit">
                   Save

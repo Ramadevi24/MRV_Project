@@ -17,9 +17,9 @@
     margin-bottom: 10px;
   }
 
-  .fuel-table td:nth-child(2) , td:nth-child(3) {
+  /* .fuel-table td:nth-child(2) , td:nth-child(3) {
     background-color: #f0f0f0; 
-  }
+  } */
   td.no-border-bottom {
     border-bottom: none !important;
   }

@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.fuelmanager-body{
+  background-color:rgba(238, 246, 244, 1);
+  height: 85vh;
+  
+}
+.fuel-manager {
+    padding: 20px;
+  }
+
+  
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .side-button-box {
+    background-color: white;
+    padding: 10px;
+    border: 2px solid rgb(220, 220, 220);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family:"Roboto", system-ui; 
+    font-weight: 400;
+    font-size: 16px;
+   
+  }
+  .button-box{
+    background-color: white;
+    padding: 10px;
+    border: 2px solid rgba(220, 220, 220);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family:"Roboto", system-ui;
+    font-weight: 400;
+    font-size: 16px; 
+
+  }
+  .fuelmanager{
+    font-family:"Roboto", system-ui;
+    font-size: 30px;
+    font-weight: 400;
+  }
+  .userdefined-label{
+    margin-right: 10px;
+  }
+  .conversionfactor{
+    margin-right: 15px;
+  }
+  .ncv{
+    margin-right: 7px;
+  }
+  .fuel-management-table th,tr,td{
+    border:none;
+   
+    
+  }
+  /* .fuel-management-table{
+  border-radius: 14px;
+  width: 100%;
+ background-color: white;
+} */
+.table-check-box{
+  margin-right: 5px;
+}
+.fuel-management-table th{
+  color: rgba(100, 116, 139, 1);
+  font-family:"Roboto", system-ui;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.fuel-management-editicon{
+  border: none;
+  background: none !important;
+}
+.fuel-management-binicon{
+  border: none;
+  background: none !important;
+  color: red;
+}
+.add-fuel-btn{
+  background-color: rgba(0, 137, 95, 1);
+  border: none;
+}
+.add-fuel-btn:hover{
+  background-color: rgb(12, 154, 111);
+
+}
+
+
+
+
+
+  /* .userdefined-label{
+    margin-right: 10px;
+    background-color: white;
+    padding: 10px;
+    border: 2px solid rgba(252, 255, 254, 1);
+    border-radius: 14px;
+  } */
+ 
+  
+  /* .button-box label {
+    display: block;
+    margin-bottom: 5px;
+  } */
+  
+  /* .button-box button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+  } */
+  
+  /* .button-box button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  } */
+  .custom-switch .form-switch{
+    width:32px;
+    height:20px;
+
+  }
+  .side-button-box input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .radio-group input[type="radio"] {
+    display: none;
+  }
+  
+  .radio-group label {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+  }
+  
+  .radio-group input[type="radio"]:checked + label {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+ 

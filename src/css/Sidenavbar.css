@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .layout-wrapper {
     display: flex;
@@ -12,9 +12,25 @@
     flex-direction: column;
     /* width: 100%; */
     position: relative;
-    /* min-block-size: 100vh; */
-    /* transition: $transition-base; */
+  
 }
+hr{
+    color: rgba(208, 213, 221, 1);
+    border:1px solid rgba(208, 213, 221, 1)
+}
+.sidebar{
+    /* box-shadow: 0px 5px 5px  rgb(230, 228, 228); */
+    /* height: 120vh; */
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
+
+.page-content.login-page {
+    width: 100%; /* Example style for login page */
+    /* Add other styles specific to the login page */
+  }
+  
 .logo{
     margin-left: 20px;
 }
@@ -22,7 +38,7 @@
     border-radius: 40px;
     background-color: rgba(238, 246, 244, 1);
     padding:0px !important;
-    /* background-color: white; */
+
 }
 .container-body{
     height: 100%;
@@ -34,9 +50,7 @@
     
    
 }
-.menu li{
-    /* line-height:70px; */
-}
+
 .menu-heading{
     font-family:"Roboto", system-ui; 
     font-weight: 600;
@@ -53,7 +67,7 @@
 
 }
 .menu img{
-    margin-right: 50px;
+    margin-right: 25px;
 }
 .footer{
     margin-top: 50px;
@@ -73,41 +87,142 @@
     font-size: 13px;
 
 }
-.menuitem{
+.sidenav-menuitem a{
     margin-top: 20px !important;
   }
+  .administraton-dropdown{
+      margin-left: -9px;
+  }
   .administration{
-    /* width: 200px; */
+ border: none;
+ background-color: transparent;
+ font-family:"Roboto", system-ui; 
+ font-weight: 600;
+
+ 
+}
+.active-dropdown{
+    background-color:rgba(0, 138, 95, 1) ;
+    border-top-right-radius:30px;
+    border-top-left-radius: 30px;
+    color: white;
     width:100%;
     height:55px;
-    background-color: 
-    rgba(0, 138, 95, 1);
-    color: white;
+    
 
-    border: none;
-   /* padding:15px; */
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
 }
+
+
 .Administration-cnt{
-    /* height: 108px; */
+    background-color: white;
     border: 2px solid rgba(210, 210, 210, 1);
-    line-height: 40px;
     border-bottom-right-radius:30px;
     border-bottom-left-radius: 30px;
-
+    line-height: 40px;
+    display: flex;
+    justify-content: center; /* Centers the content of the dropdown */
+    align-items: center; /* Ensures vertical alignment of items */
+    flex-direction: column;
+    padding: 10px;
 }
-.administration-menu li:hover{
+
+.administration-menu li {
+   
+    cursor: pointer; /* Makes it clear that the items are clickable */
+    /* transition: background-color 0.2s ease;  */
+    
+  }
+
+
+.sidenav-menuitem{
+   
+  
+        cursor: pointer; 
+        margin-top: 20px;
+        /* transition: background-color 0.2s ease;  */
+}
+.sidenav-menuitem:hover{
     background-color:   rgba(0, 138, 95, 1); 
-    color:white;
+    color:white ;
+    border-radius: 6px;
+    height: 50px;
+    padding: 10px;
 }
 
-.dropdown-content{
-    width: 100%; /* Ensure content matches the dropdown width */
-    border-bottom-right-radius:14px;
-    border-bottom-left-radius: 14px;
-    overflow: visible;
+
+
+.sidenav-menuitem:hover .menu-link {
+    color: white; 
+
+  
+  
 }
+/* new */
+
+.administration:hover {
+    background-color: rgba(0, 138, 95, 1); /* Background color for the button on hover */
+    color: white ;
+    border-radius: 6px;
+    height: 50px;
+    padding: 10px;
+    width:100%;
+   
+}
+
+
+
+/* Dropdown menu items hover effect */
+.administration-menu li:hover {
+    background-color: rgba(0, 138, 95, 1);
+    color:white;
+    border-radius: 6px;
+    padding: 5px;
+    width:200px;
+    
+}
+.administration-menu{
+    margin-left: -40px;
+}
+.sidemenu-items{
+    margin-left: -12px;
+}
+
+.active-menu {
+    background-color: rgba(0, 138, 95, 1);
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+    height: 50px;
+   
+  }
+  .sidemenu-items .sidenav-menuitem.active-menu .menu-link {
+    color: white !important;
+}
+
+  .active-submenu{
+    background-color: rgba(0, 138, 95, 1);
+    background-color: rgba(0, 138, 95, 1);
+    color:white;
+    border-radius: 6px;
+    padding: 5px;
+    width:200px;
+  }
+  .font-icon{
+    margin-right: 60px;
+  }
+  .administration.active-dropdown:hover {
+    background-color: rgba(0, 138, 95, 1);/* or specify a different background */
+    border-top-right-radius:30px;
+    border-top-left-radius: 30px;
+    color: white;
+    width:100%;
+    height:55px;
+    border-bottom-right-radius:0px;
+    border-bottom-left-radius: 0px;
+    padding: 6px;
+   
+}
+
 
    
 

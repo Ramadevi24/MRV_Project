@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { Button, Table } from 'react-bootstrap';
-import { useCompanyProfile } from '../../contexts/CompanyProfileContext';
-import { toast } from 'react-toastify';
-import ViewCompanyProfileModal from './ViewCompanyProfileModal'
-import formatDate from '../../utils/formateDate';
+import React, { useState } from "react";
+import { useCompanyProfile } from "../../contexts/CompanyProfileContext";
+import { toast } from "react-toastify";
+import ViewCompanyProfileModal from "./ViewCompanyProfileModal";
+import axios from "axios";
+import "../../css/TableGrid.css";
+import eyeicon from "../../images/eyeicon.png";
+import editicon from "../../images/editicon.png";
+import deleteicon from "../../images/deleteicon.png";
 
-const CompanyProfileGrid = ({onEdit}) => {
+const CompanyProfileGrid = ({ onEdit }) => {
   const { companyProfiles, deleteCompanyProfile, fetchCompanyProfiles } = useCompanyProfile();
   const [showViewModal, setShowViewModal] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
@@ -16,13 +19,24 @@ const CompanyProfileGrid = ({onEdit}) => {
       await fetchCompanyProfiles();
       toast.success(`Organization deleted successfully.`);
     } catch (error) {
-      toast.error(`Error deleting company profile with ID ${id}: ${error.message}`, error.stack);
+      toast.error(
+        `Error deleting company profile with ID ${id}: ${error.message}`,
+        error.stack
+      );
     }
   };
 
-  const handleView = (profile) => {
-    setSelectedProfile(profile);
+  const handleView = async (profile) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/Organization/${profile.organizationID}`
+      );
+      const organizationData = response.data;
+      setSelectedProfile(organizationData); 
     setShowViewModal(true);
+    } catch (error) {
+      console.error("Error fetching organization data:", error);
+    }
   };
 
   const handleCloseViewModal = () => {
@@ -30,47 +44,96 @@ const CompanyProfileGrid = ({onEdit}) => {
     setSelectedProfile(null);
   };
 
-  const handleEdit = (profile) => {
-    onEdit(profile);
+  const handleEdit = async (profile) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/Organization/${profile.organizationID}`
+      );
+      const organizationData = response.data;
+      onEdit(organizationData); // Pass the fetched data to the parent component
+    } catch (error) {
+      console.error("Error fetching organization data:", error);
+    }
   };
-
   return (
     <>
-      <Table striped bordered hover style={{width:'95%', marginLeft:'35px'}}>
+      {/* <Table striped bordered hover style={{width:'95%', marginLeft:'35px'}}>
         <thead>
           <tr>
-            <th>Organization ID</th>
-            <th>Tenant ID</th>
+            <th>Tenant Name</th>
             <th>Organization Name</th>
-            <th>Description</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Created Date</th>
+            <th>Categories</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {companyProfiles.map((profile) => (
             <tr key={profile.organizationID}>
-              <td>{profile.organizationID}</td>
-              <td>{profile.tenantID}</td>
+              <td>{profile.tenantName}</td>
               <td>{profile.organizationName}</td>
-              <td>{profile.description}</td>
-              <td>{profile.address}</td>
-              <td>{profile.contactPhone}</td>
-              <td>{profile.contactEmail}</td>
-              <td>{formatDate(profile.createdDate)}</td>
+              <td>{profile.categories.$values.join(',')}</td>
               <td>
                 <Button variant="success" onClick={() => handleEdit(profile)}>Edit</Button>{' '}
-                <Button variant="danger" onClick={() => handleDelete(profile.companyID)}>Delete</Button>{' '}
+                <Button variant="danger" onClick={() => handleDelete(profile.organizationID)}>Delete</Button>{' '}
                 <Button variant="info" onClick={() => handleView(profile)}>View</Button>
               </td>
             </tr>
           ))}
         </tbody>
-      </Table>
-      <ViewCompanyProfileModal show={showViewModal} handleClose={handleCloseViewModal} companyProfile={selectedProfile} />
+      </Table> */}
+      <table className="custom-table">
+        <thead className="tabel-head">
+          <tr>
+            <th>
+              <input className="check-box" type="checkbox" />
+            </th>
+            <th>Tenant Name</th>
+            <th>Organization Name</th>
+            <th>Categories</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {companyProfiles.map((profile) => (
+            <tr key={profile.organizationID}>
+              <td>
+                <input className="check-box" type="checkbox" />
+              </td>
+              <td>{profile.tenantName}</td>
+              <td>{profile.organizationName}</td>
+              <td>{profile.categories.$values.join(',')}</td>
+
+              <td>
+                <span className="action-icons">
+                  <button
+                    className="view-btn"
+                    onClick={() => handleView(profile)}
+                  >
+                    <img src={eyeicon} />
+                  </button>
+                  <button
+                    onClick={() => handleEdit(profile)}
+                    className="edit-btn"
+                  >
+                    <img src={editicon} />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(profile.organizationID)}
+                    className="delete-btn"
+                  >
+                    <img src={deleteicon} />
+                  </button>
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <ViewCompanyProfileModal
+        show={showViewModal}
+        handleClose={handleCloseViewModal}
+        companyProfile={selectedProfile}
+      />
     </>
   );
 };

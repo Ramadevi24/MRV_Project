@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import formateDate from '../../utils/formateDate';
 
 const ViewCompanyProfileModal = ({ show, handleClose, companyProfile }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Company Profile</Modal.Title>
+        <Modal.Title>Organization Profile</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {companyProfile && (
           <>
-            <p><strong>Company Name:</strong> {companyProfile.companyName}</p>
-            <p><strong>Owner:</strong> {companyProfile.companyOwner}</p>
-            <p><strong>Type:</strong> {companyProfile.companyType}</p>
-            <p><strong>Address:</strong> {companyProfile.companyAddress}</p>
-            <p><strong>City:</strong> {companyProfile.city}</p>
-            <p><strong>State:</strong> {companyProfile.state}</p>
-            <p><strong>Zipcode:</strong> {companyProfile.zipcode}</p>
-            <p><strong>Country:</strong> {companyProfile.country}</p>
-            <p><strong>Phone:</strong> {companyProfile.companyPhone}</p>
-            <p><strong>Email:</strong> {companyProfile.companyEmail}</p>
-            <p><strong>Website:</strong> {companyProfile.companyWebsite}</p>
-            <p><strong>Description:</strong> {companyProfile.companyDescription}</p>
+            <p><strong>Organization Name:</strong> {companyProfile.organizationName}</p>
+            <p><strong>Tenant Name:</strong> {companyProfile.tenantName}</p>
+            <p><strong>Description:</strong> {companyProfile.description}</p>
+            <p><strong>Established Date:</strong> {formateDate(companyProfile.establishedDate)}</p>
+            <p><strong>Address:</strong> {companyProfile.address}</p>
+            <p><strong>Email:</strong> {companyProfile.contactEmail}</p>
+            <p><strong>Phone:</strong> {companyProfile.contactPhone}</p>
+            <p><strong>categories:</strong> {companyProfile.categories.$values.join(',')}</p>
+            <p><strong>Location:</strong> {companyProfile.country}</p>
           </>
         )}
       </Modal.Body>

@@ -62,7 +62,6 @@ export const deleteCompanyProfile = async (id) => {
 export const fetchCategories = async () => {
   try {
   const response = await  axios.get(CATEGORIES_URL);
-  console.log(response.data.$values, 'response');
   return response.data.$values;
   } catch (error) {
     console.error('Error fetching company profiles:', error.response ? error.response.data : error, error.stack);

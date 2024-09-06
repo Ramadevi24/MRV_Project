@@ -48,12 +48,14 @@ export const CompanyProfileProvider = ({ children }) => {
     }
   }, [fetchCompanyProfiles]);
 
-  const selectProfileForEdit = useCallback((id) => {
-    const profile = companyProfiles.find(profile => profile.companyID === id);
+  const selectProfileForEdit = useCallback((profile) => {
+    // console.log('selectProfileForEdit', id);
+    // const profile = companyProfiles.find(profile => profile.organizationID === id);
+    console.log('profile', profile);
     if (profile) {
       setSelectedProfile(profile);
     } else {
-      setError(new Error(`Failed to find company profile with ID ${id} for editing.`));
+      setError(new Error(`Failed to find company profile with ID ${profile.organizationID} for editing.`));
     }
   }, [companyProfiles]);
 

@@ -66,7 +66,7 @@ const RolesPage = () => {
 
 <input
             type="text"
-            placeholder="Search User"
+            placeholder="Search roles"
             className="search-input"
           />
           <img className="search-icon" src={searchicon} />
