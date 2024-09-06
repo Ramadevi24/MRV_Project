@@ -80,8 +80,23 @@
   font-size: 15px;
   font-weight: 500;
 }
-.fuel-management-table tbody tr{
- 
+
+.fuel-management-editicon{
+  border: none;
+  background: none !important;
+}
+.fuel-management-binicon{
+  border: none;
+  background: none !important;
+  color: red;
+}
+.add-fuel-btn{
+  background-color: rgba(0, 137, 95, 1);
+  border: none;
+}
+.add-fuel-btn:hover{
+  background-color: rgb(12, 154, 111);
+
 }
 
 

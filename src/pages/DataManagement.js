@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  Table,
-  Dropdown,
-  DropdownButton,
-  Modal,
-  Button,
-  Form,
-} from "react-bootstrap";
-import "../css/DataManagement.css";
+import { Table, Dropdown, DropdownButton, Modal, Button, Form } from "react-bootstrap";
+import '../css/DataManagement.css';
+import {faPencil} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import{faTrash} from '@fortawesome/free-solid-svg-icons';
 import DataManagementAPI from "../services/DataManagementAPI";
-
 const DataManagement = () => {
   const [selectedFuelType, setSelectedFuelType] = useState("All Fuels");
   const [showAddModal, setShowAddModal] = useState(false);
@@ -175,16 +170,16 @@ const DataManagement = () => {
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <DropdownButton
+        <DropdownButton 
           id="dropdown-basic-button"
           title={selectedFuelType}
           onSelect={handleFuelTypeChange}
-        >
+         >
           <Dropdown.Item eventKey="All Fuels">All Fuels</Dropdown.Item>
           <Dropdown.Item eventKey="Liquid">Liquid Fuels</Dropdown.Item>
           <Dropdown.Item eventKey="Solid">Solid Fuels</Dropdown.Item>
         </DropdownButton>
-        <Button onClick={() => setShowAddModal(true)}>Add New Fuel</Button>
+        <Button onClick={() => setShowAddModal(true)} className="add-fuel-btn">Add New Fuel</Button>
       </div>
       <Table striped bordered hover className="mt-3 fuel-management-table">
         <thead>
@@ -214,10 +209,8 @@ const DataManagement = () => {
               </td>
               <td>{fuel.fuelType}</td>
               <td>
-                <button onClick={() => handleEditClick(fuel)}>Edit</button>
-                <button onClick={() => handleDeleteClick(fuel.fuelID)}>
-                  Delete
-                </button>
+                <button onClick={() => handleEditClick(fuel)}  className="fuel-management-editicon"><FontAwesomeIcon icon={faPencil} /></button>
+                <button onClick={() => handleDeleteClick(fuel.fuelID)} className="fuel-management-binicon"><FontAwesomeIcon icon={faTrash} /></button>
               </td>
             </tr>
           ))}
