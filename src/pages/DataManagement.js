@@ -133,9 +133,9 @@ const DataManagement = () => {
       : fuelData.filter((fuel) => fuel.fuelType === selectedFuelType);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="fuelmanager-body" style={{ padding: "20px" }}>
       <div className="table-header">
-        <h2>Fuel Manager</h2>
+        <h2 className="fuelmanager">Fuel Manager</h2>
         <div className="filters">
           <div className="button-box">
             <input
@@ -144,11 +144,11 @@ const DataManagement = () => {
               checked={showUserDefined}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="userDefined">Show user-defined fuels only</label>
+            <label htmlFor="userDefined" className="userdefined-label">Show user-defined fuels only</label>
           </div>
-          <div className="button-box toggle-button">
-            <label>Conversion Factor Type:</label>
-            <button
+          <div className="side-button-box toggle-button">
+            <label className="conversionfactor">Conversion Factor Type:</label>
+            {/* <button
               className={conversionFactorType === "NCV" ? "active" : ""}
               onClick={() => handleToggleClick("NCV")}
             >
@@ -159,7 +159,12 @@ const DataManagement = () => {
               onClick={() => handleToggleClick("GCV")}
             >
               GCV
-            </button>
+            </button> */}
+            <div className="ncv">NCV</div>
+        <div className="form-check form-switch custom-switch">
+        <input className="form-check-input form-switch" type="checkbox" role="switch" id="flexSwitchCheckChecked"  />
+        </div>
+        <div>DCV</div>
           </div>
         </div>
       </div>
@@ -175,7 +180,7 @@ const DataManagement = () => {
         </DropdownButton>
         <Button onClick={() => setShowAddModal(true)}>Add New Fuel</Button>
       </div>
-      <Table striped bordered hover className="mt-3">
+      <Table striped bordered hover className="mt-3 fuel-management-table">
         <thead>
           <tr>
             <th>Fuel Name</th>
