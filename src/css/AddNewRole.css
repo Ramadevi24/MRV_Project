@@ -211,12 +211,12 @@
 
 
 /* switches */
-.form-check {
+.from-switch {
     position: relative;
     display: inline-block;
   }
 
-  .form-check-input:before {
+  .from-switch-input:before {
     content: "No";
     position: absolute;
     top: 50%;
@@ -231,7 +231,7 @@
 
  
 
-  .form-check-input:checked:before {
+  .from-switch-input:checked:before {
     content: "Yes";
     position: absolute;
     top: 50%;

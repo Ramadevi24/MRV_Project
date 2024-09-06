@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.fuelmanager-body{
+  background-color:rgba(238, 246, 244, 1);
+  
+}
 .fuel-manager {
     padding: 20px;
   }
+
   
   .table-header {
     display: flex;
@@ -14,35 +20,108 @@
     gap: 20px;
   }
   
-  .button-box {
+  .side-button-box {
     background-color: white;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid rgb(220, 220, 220);
+    border-radius: 14px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family:"Roboto", system-ui; 
+    font-weight: 400;
+    font-size: 16px;
+   
   }
+  .button-box{
+    background-color: white;
+    padding: 10px;
+    border: 2px solid rgba(220, 220, 220);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family:"Roboto", system-ui;
+    font-weight: 400;
+    font-size: 16px; 
+
+  }
+  .fuelmanager{
+    font-family:"Roboto", system-ui;
+    font-size: 30px;
+    font-weight: 400;
+  }
+  .userdefined-label{
+    margin-right: 10px;
+  }
+  .conversionfactor{
+    margin-right: 15px;
+  }
+  .ncv{
+    margin-right: 7px;
+  }
+  .fuel-management-table th,tr,td{
+    border:none;
+   
+    
+  }
+  /* .fuel-management-table{
+  border-radius: 14px;
+  width: 100%;
+ background-color: white;
+} */
+.table-check-box{
+  margin-right: 5px;
+}
+.fuel-management-table th{
+  color: rgba(100, 116, 139, 1);
+  font-family:"Roboto", system-ui;
+  font-size: 15px;
+  font-weight: 500;
+}
+.fuel-management-table tbody tr{
+ 
+}
+
+
+
+
+
+  /* .userdefined-label{
+    margin-right: 10px;
+    background-color: white;
+    padding: 10px;
+    border: 2px solid rgba(252, 255, 254, 1);
+    border-radius: 14px;
+  } */
+ 
   
-  .button-box label {
+  /* .button-box label {
     display: block;
     margin-bottom: 5px;
-  }
+  } */
   
-  .button-box button {
+  /* .button-box button {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 5px 10px;
     margin-right: 5px;
     cursor: pointer;
-  }
+  } */
   
-  .button-box button.active {
+  /* .button-box button.active {
     background-color: #007bff;
     color: white;
     border-color: #007bff;
+  } */
+  .custom-switch .form-switch{
+    width:32px;
+    height:20px;
+
   }
-  
-  .button-box input[type="checkbox"] {
+  .side-button-box input[type="checkbox"] {
     margin-right: 5px;
   }
+
   
  

@@ -74,22 +74,23 @@ const DataManagement = () => {
       : fuelData.filter((fuel) => fuel.fuelType === selectedFuelType);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="fuelmanager-body" style={{ padding: "20px" }}>
         <div className="table-header">
-        <h2>Fuel Manager</h2>
+        <h2 className="fuelmanager">Fuel Manager</h2>
         <div className="filters">
       <div className="button-box">
+      
+        <label htmlFor="userDefined" className="userdefined-label">Show user-defined fuels only</label>
         <input
           type="checkbox"
           id="userDefined"
           checked={showUserDefined}
           onChange={handleCheckboxChange}
         />
-        <label htmlFor="userDefined">Show user-defined fuels only</label>
       </div>
-      <div className="button-box toggle-button">
-        <label>Conversion Factor Type:</label>
-        <button
+      <div className="side-button-box toggle-button">
+        <label className="conversionfactor">Conversion Factor Type</label>
+        {/* <button
           className={conversionFactorType === "NCV" ? "active" : ""}
           onClick={() => handleToggleClick("NCV")}
         >
@@ -100,7 +101,13 @@ const DataManagement = () => {
           onClick={() => handleToggleClick("GCV")}
         >
           GCV
-        </button>
+        </button> */}
+        <div className="ncv">NCV</div>
+        <div className="form-check form-switch custom-switch">
+        <input className="form-check-input form-switch" type="checkbox" role="switch" id="flexSwitchCheckChecked"  />
+        </div>
+        <div>DCV</div>
+        
       </div>
     </div>
       </div>
@@ -113,12 +120,12 @@ const DataManagement = () => {
         <Dropdown.Item eventKey="Liquid Fuels">Liquid Fuels</Dropdown.Item>
         <Dropdown.Item eventKey="Solid Fuels">Solid Fuels</Dropdown.Item>
       </DropdownButton>
-      <Table striped bordered hover className="mt-3">
+      <Table className="mt-3 fuel-management-table">
         <thead>
           <tr>
             <th>Fuel Name</th>
             <th>Primary Fuels</th>
-            <th>Net Calorific Value</th>
+            <th>Net Calorific Value (Tj/Gg)</th>
             <th>Fuel Type</th>
             <th>Action</th>
           </tr>
@@ -126,7 +133,7 @@ const DataManagement = () => {
         <tbody>
           {filteredFuelData.map((fuel, index) => (
             <tr key={index}>
-              <td>{fuel.fuelName}</td>
+              <td><input type="checkbox" className="table-check-box" />{fuel.fuelName}</td>
               <td>{fuel.primaryFuels}</td>
               <td>{fuel.netCalorificValue}</td>
               <td>{fuel.fuelType}</td>

@@ -77,9 +77,9 @@ const AddNewRole = () => {
                                     {dropdownState.toggleDropdown && (
                                         <div className="dropdown-menu dropdown-content">
                                             {dropdownItems.map((item) => (
-                                                <div className="form-check form-switch" key={item.id}>
+                                                <div className="form-check from-switch form-switch" key={item.id}>
                                                     <input
-                                                        className="form-check-input"
+                                                        className="form-check-input from-switch-input"
                                                         type="checkbox"
                                                         role="switch"
                                                         id={item.id}
