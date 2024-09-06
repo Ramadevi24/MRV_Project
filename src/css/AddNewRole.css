@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 
-.right-container{
+/* .right-container{
    background-color: 
    rgba(255, 255, 255, 1);
 }
@@ -13,7 +13,6 @@
     border-radius: 40px;
     background-color: rgba(238, 246, 244, 1);
     padding:0px !important;
-    /* background-color: white; */
 }
 .container-body{
     height: 100%;
@@ -24,12 +23,10 @@
 }
 .menu{
     margin-top: 20px;
-    /* line-height:70px; */
     
    
 }
 .menu li{
-    /* line-height:70px; */
 }
 .menu-heading{
     font-family:"Roboto", system-ui; 
@@ -67,12 +64,10 @@
     font-family:"Roboto", system-ui;  
     font-size: 13px;
 
-}
-.top-navbar{
+} */
+/* .top-navbar{
     background-color: rgba(0, 102, 164, 0.14);
-    /* border-radius: 40px; */
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+  
     height: 110px;
     display: flex;
     align-items: center;
@@ -112,7 +107,7 @@
     color: rgba(67, 67, 67, 1);
     font-size: 17px;
     font-weight: 400;
-}
+} */
 /* .letter-icon{
    
     margin-left: 5px;
@@ -211,34 +206,7 @@
     font-weight: 500;
   
 }  
-/*
-.dropdown-content{
-    width: 100%; 
-    border-bottom-right-radius:14px;
-    border-bottom-left-radius: 14px;
-    overflow: visible;
-}
-.administration{
-    width:100%;
-    height:55px;
-    background-color: 
-    rgba(0, 138, 95, 1);
-    color: white;
 
-    border: none;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-}
-.Administration-cnt{
-    border: 2px solid rgba(210, 210, 210, 1);
-    line-height: 40px;
-    border-bottom-right-radius:30px;
-    border-bottom-left-radius: 30px;
-
-}
-.administration-menu li:hover{
-    background-color:   rgba(0, 138, 95, 1); ;
-} */
 
 
 

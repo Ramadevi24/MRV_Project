@@ -182,6 +182,7 @@ const isActive = (path) => location.pathname === path;
                             </ul>
                         </nav>
                         <div className="footer">
+                            <hr />
                             <div className='footer-heading'>Environment Agency Admin<br />
                                 <span className='rights'>2024 All rights reserved</span>
                             </div>

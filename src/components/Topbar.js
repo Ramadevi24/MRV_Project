@@ -255,7 +255,8 @@
 
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/AddNewRole.css';
+// import '../css/AddNewRole.css';
+import '../css/Topbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -278,11 +279,12 @@ const Topbar=()=> {
         <div className='letter-icon'>
             <span className='nav-icons'><FontAwesomeIcon icon={faEnvelope} /></span>
         </div>
-    </div>
-    <div className='right-icons d-flex'>
         <div>
             <span className='nav-icons'><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
         </div>
+    </div>
+    <div className='right-icons d-flex'>
+      
         <div className='userimg'>
             <img src={adminimage} style={{ width: '50px', height: '50px' }} />
         </div>

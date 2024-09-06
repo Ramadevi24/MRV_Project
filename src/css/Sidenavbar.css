@@ -14,6 +14,17 @@
     position: relative;
   
 }
+hr{
+    color: rgba(208, 213, 221, 1);
+    border:1px solid rgba(208, 213, 221, 1)
+}
+.sidebar{
+    /* box-shadow: 0px 5px 5px  rgb(230, 228, 228); */
+    /* height: 120vh; */
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
 
 .page-content.login-page {
     width: 100%; /* Example style for login page */
@@ -27,6 +38,7 @@
     border-radius: 40px;
     background-color: rgba(238, 246, 244, 1);
     padding:0px !important;
+
 }
 .container-body{
     height: 100%;
