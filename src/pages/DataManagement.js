@@ -171,16 +171,16 @@ const DataManagement = () => {
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <DropdownButton
+        <DropdownButton 
           id="dropdown-basic-button"
           title={selectedFuelType}
           onSelect={handleFuelTypeChange}
-        >
+         >
           <Dropdown.Item eventKey="All Fuels">All Fuels</Dropdown.Item>
           <Dropdown.Item eventKey="Liquid">Liquid Fuels</Dropdown.Item>
           <Dropdown.Item eventKey="Solid">Solid Fuels</Dropdown.Item>
         </DropdownButton>
-        <Button onClick={() => setShowAddModal(true)}>Add New Fuel</Button>
+        <Button onClick={() => setShowAddModal(true)} className="add-fuel-btn">Add New Fuel</Button>
       </div>
       <Table striped bordered hover className="mt-3 fuel-management-table">
         <thead>

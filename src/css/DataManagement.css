@@ -89,6 +89,15 @@
   background: none !important;
   color: red;
 }
+.add-fuel-btn{
+  background-color: rgba(0, 137, 95, 1);
+  border: none;
+}
+.add-fuel-btn:hover{
+  background-color: rgb(12, 154, 111);
+
+}
+
 
 
 
