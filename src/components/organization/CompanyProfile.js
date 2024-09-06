@@ -7,7 +7,7 @@ import { Modal, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { fetchCategories } from "../../services/ManageCompanyProfileAPI";
 import "react-dropdown-tree-select/dist/styles.css";
-import searchicon from '../../images/searchbaricon.png';
+import searchicon from "../../images/searchbaricon.png";
 
 const transformNodes = (categories) => {
   return categories.map((category) => {
@@ -177,7 +177,10 @@ const CompanyProfile = () => {
             return category.categoryID;
           }
           if (category.subCategories?.$values) {
-            const subCategoryID = findCategoryByName(category.subCategories.$values, categoryName);
+            const subCategoryID = findCategoryByName(
+              category.subCategories.$values,
+              categoryName
+            );
             if (subCategoryID) {
               return subCategoryID;
             }
@@ -186,9 +189,11 @@ const CompanyProfile = () => {
         return null;
       };
 
-      const categoryIDs = selectedProfile.categories.$values.map((categoryName) => {
-        return findCategoryByName(categories, categoryName);
-      }).filter(id => id !== null);
+      const categoryIDs = selectedProfile.categories.$values
+        .map((categoryName) => {
+          return findCategoryByName(categories, categoryName);
+        })
+        .filter((id) => id !== null);
 
       setFormState({
         tenantID: tenantID,
@@ -203,13 +208,11 @@ const CompanyProfile = () => {
           { latitude: "", longitude: "" },
         ],
       });
-      setSelectedCategoryIDs(categoryIDs); 
+      setSelectedCategoryIDs(categoryIDs);
       setIsEditing(true);
       setShowForm(true);
     }
   }, [selectedProfile]);
-
-  console.log(formState, 'formState');
 
   const handleEditClick = (profile) => {
     selectProfileForEdit(profile);
@@ -242,8 +245,8 @@ const CompanyProfile = () => {
         categoryIDs: selectedCategoryIDs,
         locations: formState.locations,
       };
-
       if (isEditing) {
+        console.log("Submitting form with data:", updatedFormStateData);
         updatedFormStateData.organizationID = selectedProfile.organizationID;
         await updateCompanyProfile(
           selectedProfile.organizationID,
@@ -303,35 +306,29 @@ const CompanyProfile = () => {
 
   return (
     <>
-      <div style={{padding:'20px'}}>
-        {/* <Button
-          variant="primary"
-          onClick={handleCreateClick}
-          style={{ margin: "20px", float: "inline-end" }}
-        >
-          Create Organization
-        </Button> */}
+      <div style={{ padding: "20px" }}>
         <div className="header-container mt-3">
-<h2 className="header-title"> Organization</h2>
-<div className="header-actions">
-<div className="search-box">
-
-<input
-            type="text"
-            placeholder="Search Organization"
-            className="search-input"
-          />
-          <img className="search-icon" src={searchicon} />
-
-</div>
-<select className="sort-dropdown">
-<option>Sort By</option>
-<option value="created-date">Created Date</option>
-<option value="role-name">Role Name</option>
-</select>
-<button   onClick={handleCreateClick} className="add-role-btn">   Create Organization</button>
-</div>
-</div>
+          <h2 className="header-title"> Organization</h2>
+          <div className="header-actions">
+            <div className="search-box">
+              <input
+                type="text"
+                placeholder="Search Organization"
+                className="search-input"
+              />
+              <img className="search-icon" src={searchicon} />
+            </div>
+            <select className="sort-dropdown">
+              <option>Sort By</option>
+              <option value="created-date">Created Date</option>
+              <option value="role-name">Role Name</option>
+            </select>
+            <button onClick={handleCreateClick} className="add-role-btn">
+              {" "}
+              Create Organization
+            </button>
+          </div>
+        </div>
         <Modal show={showForm} onHide={() => setShowForm(false)}>
           <Modal.Header closeButton>
             <Modal.Title>
