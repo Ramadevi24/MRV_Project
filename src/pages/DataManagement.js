@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Table, Dropdown, DropdownButton, Modal, Button, Form } from "react-bootstrap";
 import '../css/DataManagement.css';
-
+import {faPencil} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import{faTrash} from '@fortawesome/free-solid-svg-icons';
 const DataManagement = () => {
   const [selectedFuelType, setSelectedFuelType] = useState("All Fuels");
   const [fuelData, setFuelData] = useState([
@@ -138,8 +140,8 @@ const DataManagement = () => {
               <td>{fuel.netCalorificValue}</td>
               <td>{fuel.fuelType}</td>
               <td>
-                <button onClick={() => handleEditClick(fuel)}>Edit</button>
-                <button onClick={() => handleDeleteClick(fuel.fuelName)}>Delete</button>
+                <button onClick={() => handleEditClick(fuel)}  className="fuel-management-editicon"><FontAwesomeIcon icon={faPencil} /></button>
+                <button onClick={() => handleDeleteClick(fuel.fuelName)} className="fuel-management-binicon"><FontAwesomeIcon icon={faTrash} /></button>
               </td>
             </tr>
           ))}

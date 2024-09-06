@@ -79,10 +79,16 @@
   font-size: 15px;
   font-weight: 500;
 }
-.fuel-management-table tbody tr{
- 
-}
 
+.fuel-management-editicon{
+  border: none;
+  background: none !important;
+}
+.fuel-management-binicon{
+  border: none;
+  background: none !important;
+  color: red;
+}
 
 
 
