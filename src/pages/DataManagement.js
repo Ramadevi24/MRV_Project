@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Table, Dropdown, DropdownButton, Modal, Button, Form } from "react-bootstrap";
+import {
+  Table,
+  Dropdown,
+  DropdownButton,
+  Modal,
+  Button,
+  Form,
+} from "react-bootstrap";
 import "../css/DataManagement.css";
 import DataManagementAPI from "../services/DataManagementAPI";
 
@@ -33,13 +40,12 @@ const DataManagement = () => {
     };
     fetchData();
   }, []);
-
   const handleCheckboxChange = () => {
     setShowUserDefined(!showUserDefined);
   };
 
-  const handleToggleClick = (type) => {
-    setConversionFactorType(type);
+  const handleToggleClick = () => {
+    setConversionFactorType((prevType) => (prevType === "NCV" ? "GCV" : "NCV"));
   };
 
   const handleFuelTypeChange = (fuelType) => {
@@ -72,13 +78,15 @@ const DataManagement = () => {
     try {
       if (isEditMode) {
         const editUpdatedFormData = {
-            ...updatedFormData,
-            fuelID: currentFuelId,
-        }
+          ...updatedFormData,
+          fuelID: currentFuelId,
+        };
         await DataManagementAPI.update(currentFuelId, editUpdatedFormData);
         setFuelData((prevFuelData) =>
           prevFuelData.map((fuel) =>
-            fuel.fuelID === currentFuelId ? { ...fuel, ...editUpdatedFormData } : fuel
+            fuel.fuelID === currentFuelId
+              ? { ...fuel, ...editUpdatedFormData }
+              : fuel
           )
         );
       } else {
@@ -143,28 +151,26 @@ const DataManagement = () => {
               id="userDefined"
               checked={showUserDefined}
               onChange={handleCheckboxChange}
+              style={{ transform: "scale(1.5)", marginRight:'10px' }}
             />
-            <label htmlFor="userDefined" className="userdefined-label">Show user-defined fuels only</label>
+            <label htmlFor="userDefined" className="userdefined-label">
+              Show user-defined fuels only
+            </label>
           </div>
           <div className="side-button-box toggle-button">
             <label className="conversionfactor">Conversion Factor Type:</label>
-            {/* <button
-              className={conversionFactorType === "NCV" ? "active" : ""}
-              onClick={() => handleToggleClick("NCV")}
-            >
-              NCV
-            </button>
-            <button
-              className={conversionFactorType === "GCV" ? "active" : ""}
-              onClick={() => handleToggleClick("GCV")}
-            >
-              GCV
-            </button> */}
             <div className="ncv">NCV</div>
-        <div className="form-check form-switch custom-switch">
-        <input className="form-check-input form-switch" type="checkbox" role="switch" id="flexSwitchCheckChecked"  />
-        </div>
-        <div>DCV</div>
+            <div className="form-check form-switch custom-switch">
+              <input
+                className="form-check-input form-switch"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckChecked"
+                checked={conversionFactorType === "GCV"}
+                onChange={handleToggleClick}
+              />
+            </div>
+            <div>GCV</div>
           </div>
         </div>
       </div>
@@ -186,7 +192,11 @@ const DataManagement = () => {
             <th>Fuel Name</th>
             <th>Primary Fuel</th>
             <th>Net Calorific Value (TJ/Gg)</th>
-            <th>Carbon Content (NCV) (Kg C/GJ)</th>
+            <th>
+              {conversionFactorType == "NCV"
+                ? "Carbon Content NCV"
+                : "Carbon Content GCV"}
+            </th>
             <th>Fuel Type</th>
             <th>Actions</th>
           </tr>
@@ -198,7 +208,9 @@ const DataManagement = () => {
               <td>{fuel.isPrimaryFuel ? "Yes" : "No"}</td>
               <td>{fuel.netCalorificValue}</td>
               <td>
-                {fuel.carbonContentNCV} || {fuel.carbonContentGCV}
+                {conversionFactorType == "NCV"
+                  ? fuel.carbonContentNCV
+                  : fuel.carbonContentGCV}
               </td>
               <td>{fuel.fuelType}</td>
               <td>
