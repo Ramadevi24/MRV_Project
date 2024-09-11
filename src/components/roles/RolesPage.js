@@ -15,36 +15,51 @@ const RolesPage = () => {
   const {t}=useTranslation();
   const navigate = useNavigate()
   const [showCreateForm, setShowCreateForm] = useState(false);
-  const { fetchRoles, fetchRoleById, selectedRole, setSelectedRole, deleteRole } = useRoles();
+  const {
+    fetchRoles,
+    fetchRoleById,
+    selectedRole,
+    setSelectedRole,
+    deleteRole,
+  } = useRoles();
 
   useEffect(() => {
-    fetchRoles().catch(error => {
-      console.error('Failed to fetch roles:', error.message, error.stack);
+    fetchRoles().catch((error) => {
+      console.error("Failed to fetch roles:", error.message, error.stack);
     });
   }, [fetchRoles]);
 
-  const handleShowCreateForm = () => {
-    setShowCreateForm(true);
-    setSelectedRole(null); // Ensure form is reset for creating a new role
+  // const handleShowCreateForm = () => {
+  //   setShowCreateForm(true);
+  //   setSelectedRole(null); // Ensure form is reset for creating a new role
+  // };
+
+  const handleAddRole = () => {
+    navigate("/addnewrole");
   };
 
-  const handleAddRole = () =>{
-    navigate('/addnewrole')
-  }
-
-  const handleCloseCreateForm = () => {
-    setShowCreateForm(false);
-    fetchRoles().catch(error => {
-      console.error('Failed to fetch roles after closing create form:', error.message, error.stack);
-    });
-  };
+  // const handleCloseCreateForm = () => {
+  //   setShowCreateForm(false);
+  //   fetchRoles().catch((error) => {
+  //     console.error(
+  //       "Failed to fetch roles after closing create form:",
+  //       error.message,
+  //       error.stack
+  //     );
+  //   });
+  // };
 
   const handleSelectRoleForEdit = (role) => {
-    fetchRoleById(role.roleID).then(() => {
-      setShowCreateForm(true); // Open the form for editing
-    }).catch(error => {
-      console.error(`Failed to fetch role details for editing: ${error.message}`, error.stack);
-    });
+    fetchRoleById(role.roleID)
+      .then(() => {
+        navigate("/addnewrole"); // Open the form for editing
+      })
+      .catch((error) => {
+        console.error(
+          `Failed to fetch role details for editing: ${error.message}`,
+          error.stack
+        );
+      });
   };
 
   const handleDeleteRole = async (roleId) => {
@@ -57,7 +72,6 @@ const RolesPage = () => {
       toast.error(t('Failed to delete role'));
     }
   };
-
 
   return (
     <>
@@ -88,11 +102,14 @@ const RolesPage = () => {
       {/* <Button variant="primary" style={{margin: "20px",float:"inline-end"}} onClick={handleShowCreateForm}>
         Create New Role
       </Button> */}
-      <RolesGrid handleSelectRoleForEdit={handleSelectRoleForEdit} handleDeleteRole={handleDeleteRole} />
-      <CreateRoleForm show={showCreateForm} handleClose={handleCloseCreateForm} currentRole={selectedRole} />
-    </div>
-      </>
-   
+        <RolesGrid
+          handleSelectRoleForEdit={handleSelectRoleForEdit}
+          handleDeleteRole={handleDeleteRole}
+        />
+        {/* <CreateRoleForm show={showCreateForm} handleClose={handleCloseCreateForm} currentRole={selectedRole} /> */}
+        {/* <AddNewRole  handleClose={handleCloseCreateForm} currentRole={selectedRole} /> */}
+      </div>
+    </>
   );
 };
 

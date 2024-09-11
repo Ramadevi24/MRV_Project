@@ -65,15 +65,13 @@ import '../../css/TableGrid.css';
 import eyeicon from '../../images/eyeicon.png';
 import editicon from '../../images/editicon.png';
 import deleteicon from '../../images/deleteicon.png';
-import { useTranslation } from "react-i18next";
  
 const RolesGrid = ({handleSelectRoleForEdit}) => {
-  const {t}=useTranslation();
   const { roles, fetchRoles, deleteRole } = useRoles();
 
   useEffect(() => {
-    fetchRoles().catch(error => {
-      console.error('Failed to fetch roles:', error.message, error.stack);
+    fetchRoles().catch((error) => {
+      console.error("Failed to fetch roles:", error.message, error.stack);
     });
   }, [fetchRoles]);
 
@@ -84,44 +82,54 @@ const RolesGrid = ({handleSelectRoleForEdit}) => {
   const handleDelete = async (id) => {
     try {
       await deleteRole(id);
-      toast.success(t('Role deleted successfully.'));
+      toast.success('Role deleted successfully.');
     } catch (error) {
-      console.error(t(`Error deleting role with ID ${id}:`), error.message, error.stack);
-      toast.error(t(`Error deleting role with ID ${id}.`));
+      console.error(`Error deleting role with ID ${id}:`, error.message, error.stack);
+      toast.error(`Error deleting role with ID ${id}.`);
     }
   };
-  
- 
+
   return (
 <table className="custom-table">
 <thead className='tabel-head'>
 <tr>
 <th><input className='check-box' type="checkbox" /></th>
-<th>{t('Role Name')}</th>
-<th>{t('Description')}</th>
-<th>{t('Created Date')}</th>
-<th>{t('Actions')}</th>
+<th>Role Name</th>
+<th>Description</th>
+<th>Created Date</th>
+<th>Actions</th>
 </tr>
 </thead>
 <tbody>
         {roles.map((role) => (
-<tr key={role.roleID}>
-<td><input className='check-box' type="checkbox" /></td>
-<td>{role.roleName}</td>
-<td>{role.description}</td>
-<td>{formatDate(role.createdDate)}</td>
-<td>
-<span className="action-icons">
-<button className="view-btn"><img src={eyeicon} /></button>
-<button onClick={() => handleEdit(role)} className="edit-btn"><img src={editicon} /></button>
-<button  onClick={() => handleDelete(role.roleID)} className="delete-btn"><img src={deleteicon} /></button>
-</span>
-</td>
-</tr>
+          <tr key={role.roleID}>
+            <td>
+              <input className="check-box" type="checkbox" />
+            </td>
+            <td>{role.roleName}</td>
+            <td>{role.description}</td>
+            <td>{formatDate(role.createdDate)}</td>
+            <td>
+              <span className="action-icons">
+                <button className="view-btn">
+                  <img src={eyeicon} />
+                </button>
+                <button onClick={() => handleEdit(role)} className="edit-btn">
+                  <img src={editicon} />
+                </button>
+                <button
+                  onClick={() => handleDelete(role.roleID)}
+                  className="delete-btn"
+                >
+                  <img src={deleteicon} />
+                </button>
+              </span>
+            </td>
+          </tr>
         ))}
-</tbody>
-</table>
+      </tbody>
+    </table>
   );
 };
- 
+
 export default RolesGrid;

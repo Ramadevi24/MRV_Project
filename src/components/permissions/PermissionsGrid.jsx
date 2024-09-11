@@ -68,7 +68,7 @@ const PermissionsGrid = ({ handleSelectPermissionForEdit }) => {
 {permissions.map((permission) => (
   <tr key={permission.permissionID}>
 <td><input className='check-box' type="checkbox" /></td>
-<td>{permission.permissionName}</td>
+<td>{permission.permissionDisplayName}</td>
   <td>{permission.description}</td>
 <td>
 <span className="action-icons">

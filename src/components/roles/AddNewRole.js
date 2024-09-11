@@ -1,40 +1,41 @@
-import React, { useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect, useContext } from 'react';
 import '../../css/AddNewRole.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import adminimage from '../../images/Ellipse 5.png';
-import logoimage from '../../images/Logoimage.png';
-import Dashboardicon from '../../images/Dashboardicon.png';
-import Reportsicon from '../../images/ReportIcon.png';
-import Datamanagementicon from '../../images/DataManagementicon.png';
-import Administrationicon from '../../images/Administrationicon.png';
-import Rolesicon from '../../images/Rolesicon.png';
-import Usersicon from '../../images/Usericon.png';
-import settingsicon from '../../images/Gearicon.png';
+import { PermissionsContext } from '../../contexts/PermissionsContext';
+import { RolesContext } from '../../contexts/RolesContext';
+import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 
 const AddNewRole = () => {
     const {t}=useTranslation();
-    const [dropdownState, setDropdownState] = useState({
-        toggleDropdown: false,
-        toggleDropdowntwo: false,
-        toggleDropdownthree: false,
-        toggleDropdownfour: false,
-        toggleDropdownfive: false,
-        toggleDropdownsix: false,
-        administration: false
-        // help: false,
-        // more: false
-    });
+    const { permissions, fetchPermissions } = useContext(PermissionsContext);
+    const { createRole, updateRole, fetchRoles, selectedRole } = useContext(RolesContext);
+    const [roleName, setRoleName] = useState('');
+    const [description, setDescription] = useState('');
+    const [selectedPermissions, setSelectedPermissions] = useState([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Toggle function
-    const toggleDropdown = (dropdown) => {
+    // State to manage dropdown visibility
+    const [dropdownState, setDropdownState] = useState({});
+
+    // Fetch permissions when the component mounts
+    useEffect(() => {
+        fetchPermissions().catch(error => {
+            console.error('Failed to fetch permissions:', error.message);
+        });
+
+        // If selectedRole exists, pre-populate the form for editing
+        if (selectedRole) {
+            setRoleName(selectedRole.roleName);
+            setDescription(selectedRole.description);
+            setSelectedPermissions(selectedRole.permissions.map(p => p.permissionID));
+        }
+    }, [fetchPermissions, selectedRole]);
+
+    // Function to handle toggling of dropdowns
+    const toggleDropdown = (groupName) => {
         setDropdownState((prevState) => ({
             ...prevState,
-            [dropdown]: !prevState[dropdown]
+            [groupName]: !prevState[groupName]
         }));
     };
     const dropdownItems = [
@@ -47,286 +48,138 @@ const AddNewRole = () => {
         // Add more items as needed
     ];
 
+    const handlePermissionChange = (permissionID) => {
+        setSelectedPermissions((prevPermissions) =>
+            prevPermissions.includes(permissionID)
+                ? prevPermissions.filter(id => id !== permissionID)
+                : [...prevPermissions, permissionID]
+        );
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (isSubmitting) return;
+
+        setIsSubmitting(true);
+        try {
+            const roleData = {
+                roleName,
+                description,
+                permissionIds: selectedPermissions,
+            };
+
+            if (selectedRole && selectedRole.roleID) {
+                // Update Role
+                await updateRole(selectedRole.roleID, roleData);
+                toast.success('Role updated successfully');
+            } else {
+                // Create Role
+                await createRole(roleData);
+                toast.success('Role created successfully');
+            }
+
+            await fetchRoles();  // Refresh the roles list after creation/update
+        } catch (error) {
+            console.error('Error saving role:', error.message);
+            toast.error('Failed to save role');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const groupedPermissions = permissions.reduce((grouped, permission) => {
+        const group = permission.permissionGroup;
+        if (!grouped[group]) {
+            grouped[group] = [];
+        }
+        grouped[group].push(permission);
+        return grouped;
+    }, {});
 
     return (
-            
-
-                   
-                    <div className='right-body'>
-                        <div className='right-body-ctnt'>
-                            <div>
-                                <div className='addnewrole'>{t('Add New Role')}</div>
-                                <div className='role'>{t('Roles / Add New Role')}</div>
-                            </div>
-                            <div>
-                                <button className='back'>{t('Back')}</button>
-                            </div>
-                        </div>
-                        <div className='rightbody-content'>
-                            <div className='rolename'>
-                                <div>{t('Role Name')}</div>
-                                <div> 
-                                    <input type='text'className='addroleinput' placeholder={t('dataprovider' )}/>
-                                </div>
-                            </div>
-                            <div className='row col-12'>
-                                <div className="dropdown drop-down mt-3 col-6">
-
-                                    <button onClick={() => toggleDropdown('toggleDropdown')} className="dropdown-toggle toggledropwn drop-down-header d-flex align-items-center justify-content-between">
-                                       {t('Users')}
-                                    </button>
-
-                                    {dropdownState.toggleDropdown && (
-                                        <div className="dropdown-menu dropdown-content">
-                                            {dropdownItems.map((item) => (
-                                                <div className="form-check from-switch form-switch" key={item.id}>
-                                                    <input
-                                                        className="form-check-input from-switch-input"
-                                                        type="checkbox"
-                                                        role="switch"
-                                                        id={item.id}
-                                                    />
-                                                    <label className="form-check-label" htmlFor={item.id}>
-                                                        {item.label}
-                                                    </label>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-
-                                <div className="dropdown drop-down mt-3 col-6">
-
-                                    <button onClick={() => toggleDropdown('toggleDropdowntwo')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between" style={{ marginLeft: '10px' }}>
-                                        {t('Alerts')}
-                                    </button>
-
-                                    {dropdownState.toggleDropdowntwo && (
-                                        <div className="dropdown-menu dropdown-content" style={{ marginLeft: '10px' }}>
-                                            {dropdownItems.map((item) => (
-                                                <div className="form-check form-switch" key={item.id}>
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        role="switch"
-                                                        id={item.id}
-                                                    />
-                                                    <label className="form-check-label" htmlFor={item.id}>
-                                                        {item.label}
-                                                    </label>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="dropdown drop-down mt-3 col-6">
-
-                                    <button onClick={() => toggleDropdown('toggleDropdownthree')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between">
-                                      {t('Alerts')}
-                                    </button>
-
-                                    {dropdownState.toggleDropdownthree && (
-                                        <div className="dropdown-menu dropdown-content">
-                                            {dropdownItems.map((item) => (
-                                                <div className="form-check form-switch" key={item.id}>
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        role="switch"
-                                                        id={item.id}
-                                                    />
-                                                    <label className="form-check-label" htmlFor={item.id}>
-                                                        {item.label}
-                                                    </label>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="dropdown drop-down mt-3 col-6">
-
-                                    <button onClick={() => toggleDropdown('toggleDropdownfour')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between" style={{ marginLeft: '10px' }}>
-                                        {t('Alerts')}
-                                    </button>
-
-                                    {dropdownState.toggleDropdownfour && (
-                                        <div className="dropdown-menu dropdown-content" style={{ marginLeft: '10px' }}>
-                                            {dropdownItems.map((item) => (
-                                                <div className="form-check form-switch" key={item.id}>
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        role="switch"
-                                                        id={item.id}
-                                                    />
-                                                    <label className="form-check-label" htmlFor={item.id}>
-                                                        {item.label}
-                                                    </label>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-
-                                <div className="dropdown drop-down mt-3 col-6">
-
-                                    <button onClick={() => toggleDropdown('toggleDropdownfive')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between">
-                                       {t('Alerts')}
-                                    </button>
-
-                                    {dropdownState.toggleDropdownfive && (
-                                        <div className="dropdown-menu dropdown-content">
-                                            {dropdownItems.map((item) => (
-                                                <div className="form-check form-switch" key={item.id}>
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        role="switch"
-                                                        id={item.id}
-                                                    />
-                                                    <label className="form-check-label" htmlFor={item.id}>
-                                                        {item.label}
-                                                    </label>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="dropdown drop-down mt-3 col-6">
-
-                                    <button onClick={() => toggleDropdown('toggleDropdownsix')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between" style={{ marginLeft: '10px' }}>
-                                      {t('Alerts')}
-                                    </button>
-
-                                    {dropdownState.toggleDropdownsix && (
-                                        <div className="dropdown-menu dropdown-content " style={{ marginLeft: '10px' }}>
-                                            {dropdownItems.map((item) => (
-                                                <div className="form-check form-switch" key={item.id}>
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        role="switch"
-                                                        id={item.id}
-                                                    />
-                                                    <label className="form-check-label" htmlFor={item.id}>
-                                                        {item.label}
-                                                    </label>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                            {/* <div className="dropdown mt-3 col-6">
-
-                                <button onClick={() => toggleDropdown('toggleDropdownthree')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between">
-                                    Alerts
-                                </button>
-
-                                {dropdownState.toggleDropdownthree && (
-                                    <div className="dropdown-menu dropdown-content">
-                                        {dropdownItems.map((item) => (
-                                            <div className="form-check form-switch" key={item.id}>
-                                                <input
-                                                    className="form-check-input"
-                                                    type="checkbox"
-                                                    role="switch"
-                                                    id={item.id}
-                                                />
-                                                <label className="form-check-label" htmlFor={item.id}>
-                                                    {item.label}
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                            <div className="dropdown mt-3 col-6">
-
-                                <button onClick={() => toggleDropdown('toggleDropdownfour')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between" style={{ marginLeft: '10px' }}>
-                                    Alerts
-                                </button>
-
-                                {dropdownState.toggleDropdownfour && (
-                                    <div className="dropdown-menu dropdown-content" style={{ marginLeft: '10px' }}>
-                                        {dropdownItems.map((item) => (
-                                            <div className="form-check form-switch" key={item.id}>
-                                                <input
-                                                    className="form-check-input"
-                                                    type="checkbox"
-                                                    role="switch"
-                                                    id={item.id}
-                                                />
-                                                <label className="form-check-label" htmlFor={item.id}>
-                                                    {item.label}
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="dropdown mt-3 col-6">
-
-                                <button onClick={() => toggleDropdown('toggleDropdownfive')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between">
-                                    Alerts
-                                </button>
-
-                                {dropdownState.toggleDropdownfive && (
-                                    <div className="dropdown-menu dropdown-content">
-                                        {dropdownItems.map((item) => (
-                                            <div className="form-check form-switch" key={item.id}>
-                                                <input
-                                                    className="form-check-input"
-                                                    type="checkbox"
-                                                    role="switch"
-                                                    id={item.id}
-                                                />
-                                                <label className="form-check-label" htmlFor={item.id}>
-                                                    {item.label}
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                            <div className="dropdown mt-3 col-6">
-
-                                <button onClick={() => toggleDropdown('toggleDropdownsix')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between" style={{ marginLeft: '10px' }}>
-                                    Alerts
-                                </button>
-
-                                {dropdownState.toggleDropdownsix && (
-                                    <div className="dropdown-menu dropdown-content " style={{ marginLeft: '10px' }}>
-                                        {dropdownItems.map((item) => (
-                                            <div className="form-check form-switch" key={item.id}>
-                                                <input
-                                                    className="form-check-input"
-                                                    type="checkbox"
-                                                    role="switch"
-                                                    id={item.id}
-                                                />
-                                                <label className="form-check-label" htmlFor={item.id}>
-                                                    {item.label}
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div> */}
-                            <div className='buttons col-6'>
-                                <div>
-                                    <button className='cancel-btn'>{t('CANCEL')}</button>
-                                </div>
-                                <div>
-                                    <button className='add-btn'>{t('ADD')}</button>
-                                </div>
-                            </div>
-
+        <div className='right-body'>
+            <div className='right-body-ctnt'>
+                <div>
+                    <div className='addnewrole'>{selectedRole ? 'Edit Role' : 'Add New Role'}</div>
+                    <div className='role'>Roles / {selectedRole ? 'Edit Role' : 'Add New Role'}</div>
+                </div>
+                <div>
+                    <button className='back'>Back</button>
+                </div>
+            </div>
+            <div className='rightbody-content'>
+                <form onSubmit={handleSubmit}>
+                    <div className='rolename'>
+                        <div>Role Name</div>
+                        <div>
+                            <input
+                                type='text'
+                                className='addroleinput'
+                                placeholder='Role Name'
+                                value={roleName}
+                                onChange={(e) => setRoleName(e.target.value)}
+                                required
+                            />
                         </div>
                     </div>
-
-
-    )
+                    <div className='rolename'>
+                        <div>Role Description</div>
+                        <div>
+                            <input
+                                type='textarea'
+                                className='addroleinput'
+                                placeholder='Description'
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className='row col-12'>
+                        {Object.entries(groupedPermissions).map(([groupName, groupPermissions]) => (
+                            <div className="dropdown drop-down mt-3 col-6" key={groupName}>
+                                <button
+                                    onClick={() => toggleDropdown(groupName)}
+                                    className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between"
+                                >
+                                    {groupName}
+                                </button>
+                                {dropdownState[groupName] && (
+                                    <div className="dropdown-menu dropdown-content">
+                                        {groupPermissions.map((permission) => (
+                                            <div className="form-check form-switch" key={permission.permissionID}>
+                                                <input
+                                                    className="form-check-input"
+                                                    type="checkbox"
+                                                    id={`permission-${permission.permissionID}`}
+                                                    checked={selectedPermissions.includes(permission.permissionID)}
+                                                    onChange={() => handlePermissionChange(permission.permissionID)}
+                                                />
+                                                <label className="form-check-label" htmlFor={`permission-${permission.permissionID}`}>
+                                                    {permission.permissionDisplayName}
+                                                </label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    <div className='buttons col-6'>
+                        <div>
+                            <button className='cancel-btn' disabled={isSubmitting}>CANCEL</button>
+                        </div>
+                        <div>
+                            <button className='add-btn' type='submit' disabled={isSubmitting}>
+                                {isSubmitting ? 'Saving...' : 'Save'}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
 }
+
 export default AddNewRole;
