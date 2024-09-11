@@ -27,11 +27,7 @@
     "react-notifications-component": "^4.0.1",
     "react-notify-toast": "^0.5.1",
     "react-router-dom": "^6.26.1",
-<<<<<<< HEAD
-    "react-scripts": "5.0.1",
-=======
     "react-scripts": "^5.0.1",
->>>>>>> c77f480bf8402f06ac25ce788b75c22ea5054121
     "react-select": "^5.8.0",
     "react-select-tree": "^0.1.8",
     "react-toastify": "^10.0.5",
