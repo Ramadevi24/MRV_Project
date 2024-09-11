@@ -151,7 +151,7 @@ const isActive = (path) => location.pathname === path;
                                 <li className={`sidenav-menuitem ${isActive("/organizationtable") ? "active-menu" : ""}`}><Link to="/organizationtable" className="menu-link"><img src={Dashboardicon} />{t('Organization')}</Link></li>
                                 <li className={`sidenav-menuitem ${isActive("/usersdata") ? "active-menu" : ""}`}><Link to="/usersdata" className="menu-link"><img src={Datamanagementicon} />{t('Users')}</Link></li>
                                 <li className={`sidenav-menuitem ${isActive("/tenantsData") ? "active-menu" : ""}`}><Link to="/tenantsData" className="menu-link"><img src={Dashboardicon} />{t('Tenants')}</Link></li>
-                                <li className={`sidenav-menuitem ${isActive("/permissionsData") ? "active-menu" : ""}`}><Link to="/permissionsData" className="menu-link"><img src={Datamanagementicon} />{t(Permissions)}</Link></li>
+                                <li className={`sidenav-menuitem ${isActive("/permissionsData") ? "active-menu" : ""}`}><Link to="/permissionsData" className="menu-link"><img src={Datamanagementicon} />{t('Permissions')}</Link></li>
                                 <li className={`sidenav-menuitem ${isActive("/reports") ? "active-menu" : ""}`}><Link to="/reports" className="menu-link"><img src={Reportsicon} />{t('Reports')}</Link></li>
                                 {/* <li className="active"><Link to="/dashboard"><img src={Administrationicon} />Administration</a></li> */}
                                 <li className='sidenavmenu-item'>
