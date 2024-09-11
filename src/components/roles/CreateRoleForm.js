@@ -4,8 +4,10 @@ import { useForm } from 'react-hook-form';
 import { RolesContext } from '../../contexts/RolesContext';
 import { PermissionsContext } from '../../contexts/PermissionsContext';
 import { toast } from 'react-toastify';
+import { useTranslation } from "react-i18next";
 
 const CreateRoleForm = ({ show, handleClose, currentRole }) => {
+  const {t}=useTranslation();
   const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
   const { createRole, updateRole, fetchRoles } = useContext(RolesContext);
   const { permissions, fetchPermissions } = useContext(PermissionsContext);
@@ -15,7 +17,7 @@ const CreateRoleForm = ({ show, handleClose, currentRole }) => {
   useEffect(() => {
     fetchPermissions().catch(error => {
       console.error('Error fetching permissions:', error.message, error.stack);
-      toast.error('Error fetching permissions.');
+      toast.error(t('Error fetching permissions.'));
     });
   }, [fetchPermissions]);
 
@@ -58,16 +60,16 @@ const CreateRoleForm = ({ show, handleClose, currentRole }) => {
       };
       if (currentRole && currentRole.roleID) {
         await updateRole(currentRole.roleID, updatedPayload);
-        toast.success('Role updated successfully');
+        toast.success(t('Role updated successfully'));
       } else {
         await createRole(createPayload);
-        toast.success('Role created successfully');
+        toast.success(t('Role created successfully'));
       }
       handleClose();
       await fetchRoles();
     } catch (error) {
-      console.error('Error processing role form:', error.message, error.stack);
-      toast.error(`Error: ${error.response ? error.response.data.message : 'Could not process the role form.'}`);
+      console.error(t('Error processing role form:'), error.message, error.stack);
+      toast.error(`Error: ${error.response ? error.response.data.message : t('Could not process the role form.')}`);
     } finally {
       reset();
       setIsSubmitting(false);
@@ -87,31 +89,31 @@ const CreateRoleForm = ({ show, handleClose, currentRole }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{currentRole && currentRole.roleID ? 'Edit Role' : 'Create Role'}</Modal.Title>
+        <Modal.Title>{currentRole && currentRole.roleID ? t('Edit Role') :t( 'Create Role')}</Modal.Title>
       </Modal.Header>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <FormGroup className="mb-3">
-            <FormLabel>Role Name</FormLabel>
+            <FormLabel>{t('Role Name')}</FormLabel>
             <Form.Control
               type="text"
-              placeholder="Enter role name"
+              placeholder={t("Enter role name")}
               {...register('roleName', { required: true })}
             />
-            {errors.roleName && <Form.Text className="text-muted">Role name is required.</Form.Text>}
+            {errors.roleName && <Form.Text className="text-muted">{t('Role name is required')}.</Form.Text>}
           </FormGroup>
           <FormGroup className="mb-3">
-            <FormLabel>Description</FormLabel>
+            <FormLabel>{t('Description')}</FormLabel>
             <Form.Control
               as="textarea"
               rows={3}
-              placeholder="Role description"
+              placeholder={t("Role description")}
               {...register('description', { required: true })}
             />
-            {errors.description && <Form.Text className="text-muted">Description is required.</Form.Text>}
+            {errors.description && <Form.Text className="text-muted">{t('Description is required')}.</Form.Text>}
           </FormGroup>
           <FormGroup className="mb-3">
-            <FormLabel>Permissions</FormLabel>
+            <FormLabel>{t('Permissions')}</FormLabel>
             {permissions.map(permission => (
               <FormCheck
                 key={permission.permissionID}
@@ -126,10 +128,10 @@ const CreateRoleForm = ({ show, handleClose, currentRole }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+         {t('   Close')}
           </Button>
           <Button variant="primary" type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Saving...' : 'Save Changes'}
+            {isSubmitting ? t('Saving...' ): t('Save Changes')}
           </Button>
         </Modal.Footer>
       </Form>

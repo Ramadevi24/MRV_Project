@@ -7,8 +7,10 @@ import "../../css/TableGrid.css";
 import eyeicon from "../../images/eyeicon.png";
 import editicon from "../../images/editicon.png";
 import deleteicon from "../../images/deleteicon.png";
+import { useTranslation } from "react-i18next";
 
 const CompanyProfileGrid = ({ onEdit }) => {
+  const {t}=useTranslation();
   const { companyProfiles, deleteCompanyProfile, fetchCompanyProfiles } = useCompanyProfile();
   const [showViewModal, setShowViewModal] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
@@ -17,10 +19,10 @@ const CompanyProfileGrid = ({ onEdit }) => {
     try {
       await deleteCompanyProfile(id);
       await fetchCompanyProfiles();
-      toast.success(`Organization deleted successfully.`);
+      toast.success(t(`Organization deleted successfully.`));
     } catch (error) {
       toast.error(
-        `Error deleting company profile with ID ${id}: ${error.message}`,
+       t( `Error deleting company profile with ID ${id}: ${error.message}`),
         error.stack
       );
     }
@@ -87,10 +89,10 @@ const CompanyProfileGrid = ({ onEdit }) => {
             <th>
               <input className="check-box" type="checkbox" />
             </th>
-            <th>Tenant Name</th>
-            <th>Organization Name</th>
-            <th>Categories</th>
-            <th>Actions</th>
+            <th>{t('Tenant Name')}</th>
+            <th>{t('Organization Name')}</th>
+            <th>{t('Categories')}</th>
+            <th>{t('Actions')}</th>
           </tr>
         </thead>
         <tbody>

@@ -1,0 +1,285 @@
+{
+    "French":"Français",
+    "Arabic":"عربي",
+    "welcome":"مرحبا بكم في لوحة القيادة",
+    "Main menu":"القائمة الرئيسية",
+    "Dashboard":"لوحة القيادة",
+    "Data Management":"إدارة البيانات",
+    "Reports":"التقارير",
+    "Administration":"إدارة",
+    "Tenants":"المستأجرين",
+    "Organization":"منظمة",
+    "Roles":"الأدوار",
+    "Users":"المستخدمين",
+    "Permissions":"الأذونات",
+    "Settings":"إعدادات",
+    "Environment Agency Admin": "مشرف هيئة البيئة",
+    "All Rights Reserved":"2024 جميع الحقوق محفوظة",
+    "Admin Name":"جون دو",
+    "Admin":"مسؤل",
+    
+        "Fuel Manager": "مدير الوقود",
+        "Show user-defined fuels only": "عرض الوقود المُعرّف من قبل المستخدم فقط",
+        "Conversion Factor Type": "نوع عامل التحويل",
+        "Add New Fuel": "إضافة وقود جديد",
+        "Fuel Name": "اسم الوقود",
+        "Primary Fuel": "الوقود الأساسي",
+        "Net Calorific Value (TJ/Gg)": "القيمة الحرارية الصافية (TJ/Gg)",
+        "Carbon Content NCV": "محتوى الكربون بالقيمة الصافية",
+        "Carbon Content GCV": "محتوى الكربون بالقيمة الإجمالية",
+        "Fuel Type": "نوع الوقود",
+        "Actions": "الإجراءات",
+        "Edit Fuel": "تحرير الوقود",
+        "Submit": "إرسال",
+        "Update": "تحديث",
+        "Solid": "صلب",
+        "Liquid": "سائل",
+        "Yes": "نعم",
+        "No": "لا",
+        "NCV": "القيمة الحرارية الصافية",
+        "GCV": "القيمة الحرارية الإجمالية",
+        "All Fuels": "كل أنواع الوقود",
+        "Liquid Fuels": "الوقود السائل",
+        "Solid Fuels": "الوقود الصلب",
+
+        
+            "Create Tenant": "إنشاء مستأجر",
+            "Edit Tenant": "تحرير المستأجر",
+            "Tenant Name": "اسم المستأجر",
+            "Description": "الوصف",
+            "Enter tenant name": "أدخل اسم المستأجر",
+            "Tenant name is required": "اسم المستأجر مطلوب.",
+            "Description is required": "الوصف مطلوب.",
+            "Close": "إغلاق",
+            "Save Changes": "حفظ التغييرات",
+            "Saving...": "جارٍ الحفظ...",
+            "Tenant created successfully": "تم إنشاء المستأجر بنجاح.",
+            "Tenant updated successfully": "تم تحديث المستأجر بنجاح.",
+            "Error processing role form": "حدث خطأ أثناء معالجة نموذج الدور",
+            "Could not process the role form.": "تعذر معالجة نموذج الدور.",     
+          
+            
+                "Tenant ID": "معرف المستأجر",
+                "Tenant Name": "اسم المستأجر",
+                "Description": "الوصف",
+                "Created Date": "تاريخ الإنشاء",
+                "Actions": "الإجراءات",
+                "Edit": "تعديل",
+                "Delete": "حذف",
+                "View": "عرض",
+                "Role deleted successfully": "تم حذف الدور بنجاح.",
+                "Error deleting role with ID": "خطأ في حذف الدور برقم",
+                "Failed to fetch roles": "فشل في جلب الأدوار",
+
+                
+                    "Tenant": "مستأجر",
+                    "Search Tenant": "البحث عن مستأجر",
+                    "Sort By": "ترتيب حسب",
+                    "Created Date": "تاريخ الإنشاء",
+                    "Role Name": "اسم الدور",
+                    "Create New Tenant": "إنشاء مستأجر جديد",
+                    "Tenant deleted successfully": "تم حذف المستأجر بنجاح",
+                    "Failed to delete role": "فشل في حذف الدور",
+                    "Failed to fetch roles": "فشل في جلب الأدوار",
+                    "Failed to fetch role details for editing": "فشل في جلب تفاصيل الدور للتحرير",
+                    "Failed to fetch roles after closing create form": "فشل في جلب الأدوار بعد إغلاق نموذج الإنشاء",
+
+                    
+                        "Organization": "المنظمة",
+                        "Search Organization": "البحث عن منظمة",
+                        "Sort By": "ترتيب حسب",
+                        "Created Date": "تاريخ الإنشاء",
+                        "Role Name": "اسم الدور",
+                        "Create Organization": "إنشاء منظمة",
+                        "Edit Organization": "تحرير المنظمة",
+                        "Select Tenants": "اختر المستأجرين",
+                        "Select Categories": "اختر الفئات",
+                        "Enter Latitude": "أدخل خط العرض",
+                        "Enter Longitude": "أدخل خط الطول",
+                        "Enter organizationName": "أدخل اسم المنظمة",
+                        "Enter description": "أدخل الوصف",
+                        "Enter establishedDate": "أدخل تاريخ التأسيس",
+                        "Enter contactEmail": "أدخل البريد الإلكتروني",
+                        "Enter contactPhone": "أدخل رقم الهاتف",
+                        "Enter address": "أدخل العنوان",
+                        "Save": "حفظ",
+                        "Company profile deleted successfully": "تم حذف ملف المنظمة بنجاح.",
+                        "Error deleting company profile": "حدث خطأ أثناء حذف ملف المنظمة.",
+                        "Organization updated successfully": "تم تحديث المنظمة بنجاح.",
+                        "Organization created successfully": "تم إنشاء المنظمة بنجاح.",
+                        "Error processing company profile": "حدث خطأ أثناء معالجة ملف المنظمة.",
+
+                        
+                            "Tenant Name": "اسم المستأجر",
+                            "Organization Name": "اسم المنظمة",
+                            "Categories": "الفئات",
+                            "Actions": "الإجراءات",
+                            "View": "عرض",
+                            "Edit": "تعديل",
+                            "Delete": "حذف",
+                            "Organization deleted successfully.": "تم حذف المنظمة بنجاح.",
+                            "Error deleting company profile with ID": "حدث خطأ أثناء حذف ملف الشركة مع المعرف",
+                            "Error fetching organization data": "خطأ في جلب بيانات المنظمة",
+
+                            
+                                "Organization Profile": "ملف المنظمة",
+                                "Organization Name": "اسم المنظمة",
+                                "Tenant Name": "اسم المستأجر",
+                                "Description": "الوصف",
+                                "Established Date": "تاريخ التأسيس",
+                                "Address": "العنوان",
+                                "Email": "البريد الإلكتروني",
+                                "Phone": "رقم الهاتف",
+                                "Categories": "الفئات",
+                                "Location": "الموقع",
+                                "Close": "إغلاق",
+
+                                
+                                    "Add New Role": "إضافة دور جديد",
+                                    "Roles / Add New Role": "الأدوار / إضافة دور جديد",
+                                    "Back": "رجوع",
+                                    "Role Name": "اسم الدور",
+                                    "dataprovider": "مزود البيانات",
+                                    "Users": "المستخدمون",
+                                    "Select All": "تحديد الكل",
+                                    "Create User": "إنشاء مستخدم",
+                                    "Delete User": "حذف مستخدم",
+                                    "Edit User": "تعديل مستخدم",
+                                    "View Users": "عرض المستخدمين",
+                                    "Unlock": "فتح",
+                                    "Alerts": "التنبيهات",
+                                    "CANCEL": "إلغاء",
+                                    "ADD": "إضافة",
+
+                                    
+                                        "Create Role": "إنشاء دور",
+                                        "Edit Role": "تحرير الدور",
+                                        "Role Name": "اسم الدور",
+                                        "Enter role name": "أدخل اسم الدور",
+                                        "Role name is required": "اسم الدور مطلوب.",
+                                        "Description": "الوصف",
+                                        "Role description": "وصف الدور",
+                                        "Description is required": "الوصف مطلوب.",
+                                        "Permissions": "الأذونات",
+                                        "Save Changes": "حفظ التغييرات",
+                                        "Saving...": "جارٍ الحفظ...",
+                                        "Close": "إغلاق",
+                                        "Role created successfully": "تم إنشاء الدور بنجاح.",
+                                        "Role updated successfully": "تم تحديث الدور بنجاح.",
+                                        "Error processing role form": "حدث خطأ أثناء معالجة نموذج الدور.",
+                                        "Could not process the role form": "تعذر معالجة نموذج الدور.",
+                                            "Error fetching permissions": "خطأ في جلب الأذونات.",
+                                            
+                                                "Role Name": "اسم الدور",
+                                                "Description": "الوصف",
+                                                "Created Date": "تاريخ الإنشاء",
+                                                "Actions": "الإجراءات",
+                                                "Role deleted successfully.": "تم حذف الدور بنجاح.",
+                                                "Error deleting role with ID": "خطأ في حذف الدور بالمعرف",
+                                                "Delete": "حذف",
+                                                "Edit": "تحرير",
+                                                "View": "عرض",
+                                                
+                                                    "Roles": "الأدوار",
+                                                    "Search roles": "البحث عن الأدوار",
+                                                    "Sort By": "ترتيب حسب",
+                                                    "Created Date": "تاريخ الإنشاء",
+                                                    "Role Name": "اسم الدور",
+                                                    "ADD NEW ROLE +": "إضافة دور جديد +",
+                                                    "Role deleted successfully": "تم حذف الدور بنجاح",
+                                                    "Failed to delete role": "فشل في حذف الدور",
+                                                    
+                                                        "Users": "المستخدمون",
+                                                        "Search User": "بحث عن مستخدم",
+                                                        "Sort By": "ترتيب حسب",
+                                                        "Created Date": "تاريخ الإنشاء",
+                                                        "Role Name": "اسم الدور",
+                                                        "Add User": "إضافة مستخدم",
+                                                        "User ID": "معرّف المستخدم",
+                                                        "First Name": "الاسم الأول",
+                                                        "Email": "البريد الإلكتروني",
+                                                        "Login Type": "نوع تسجيل الدخول",
+                                                        "Tenant Name": "اسم المستأجر",
+                                                        "Organization Name": "اسم المنظمة",
+                                                        "Tenant Role": "دور المستأجر",
+                                                        "Actions": "الإجراءات",
+                                                        "User deleted successfully": "تم حذف المستخدم بنجاح",
+                                                        "Error deleting user": "خطأ في حذف المستخدم",
+                                                        "Edit User": "تحرير المستخدم",
+                                                        "Add User": "إضافة مستخدم",
+                                                        "User Details": "تفاصيل المستخدم",
+                                                        "Username": "اسم المستخدم",
+                                                        "Company": "الشركة",
+                                                        "Role": "الدور",
+                                                        "Close": "إغلاق",
+                                                        "Save Changes": "حفظ التغييرات",
+                                                        "Last Name": "اسم العائلة",
+                                                        "Select Company": "اختر الشركة",
+                                                        "Select Role": "اختر الدور",
+                                                        "Mobile Number": "رقم الجوال",
+                                                        "Password": "كلمة المرور",
+                                                        
+                                                            "Edit Permission": "تحرير الإذن",
+                                                            "Create Permission": "إنشاء إذن",
+                                                            "Permission Name": "اسم الإذن",
+                                                            "Enter permission name": "أدخل اسم الإذن",
+                                                            "Permission name is required": "اسم الإذن مطلوب.",
+                                                            "Description": "الوصف",
+                                                            "Permission description": "وصف الإذن",
+                                                            "Description is required": "الوصف مطلوب.",
+                                                            "Close": "إغلاق",
+                                                            "Save Changes": "حفظ التغييرات",
+                                                            "Saving...": "جارٍ الحفظ...",
+                                                            "Permission updated successfully": "تم تحديث الإذن بنجاح.",
+                                                            "Permission created successfully": "تم إنشاء الإذن بنجاح.",
+                                                            "Error processing permission form": "حدث خطأ أثناء معالجة نموذج الإذن.",
+                                                            "Could not process the permission form.": "تعذر معالجة نموذج الإذن.",
+                                                            
+                                                                "Permission Name": "اسم الإذن",
+                                                                "Description": "الوصف",
+                                                                "Actions": "الإجراءات",
+                                                                "Edit": "تحرير",
+                                                                "Delete": "حذف",
+                                                                "Permission deleted successfully": "تم حذف الإذن بنجاح.",
+                                                                "Error deleting permission with ID": "خطأ في حذف الإذن بالمعرف",
+                                                                "Error fetching permissions": "خطأ في جلب الأذونات",
+                                                                
+                                                                    "Permissions": "أذونات",
+                                                                    "Search permission": "بحث عن إذن",
+                                                                    "Sort By": "ترتيب حسب",
+                                                                    "Created Date": "تاريخ الإنشاء",
+                                                                    "Role Name": "اسم الدور",
+                                                                    "Create New Permission": "إنشاء إذن جديد",
+                                                                     "Sample": "عينة",
+                                                                     "Local Change": "التغيير المحلي"
+                                                                  
+                                                                  
+                                                              
+                                                              
+                                                          
+                                                          
+                                                      }
+                                                      
+                                                  
+                                                  
+                                              
+                                              
+                                          
+                                          
+                                      
+                                      
+                                  
+                                  
+                              
+                              
+                          
+                          
+                      
+                      
+                  
+                  
+              
+              
+          
+      
+      

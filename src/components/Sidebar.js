@@ -114,8 +114,10 @@ import {faSitemap} from  '@fortawesome/free-solid-svg-icons';
 import {faUserPlus} from '@fortawesome/free-solid-svg-icons';
 import {faGear} from '@fortawesome/free-solid-svg-icons';
 import {faUserPen} from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from "react-i18next";
 
 const Sidebar = () => {
+    const {t}=useTranslation();
   const [dropdownState, setDropdownState] = useState({
 
     administration: false
@@ -141,19 +143,19 @@ const isActive = (path) => location.pathname === path;
                         <div className="logo">
                             <img src={logoimage} alt="Environment Agency Admin" />
                         </div>
-                        <p className='menu-heading'>Main Menu</p>
+                        <p className='menu-heading'>{t('Main menu')}</p>
                         <nav className="menu">
                             <ul className='sidemenu-items'>
-                                <li className={`sidenav-menuitem ${isActive("/dashboard") ? "active-menu" : ""}`}><Link to="/dashboard" className="menu-link"><img src={Dashboardicon} />Dashboard</Link></li>
-                                <li className={`sidenav-menuitem ${isActive("/datamanagement") ? "active-menu" : ""}`}><Link to="/datamanagement" className="menu-link"><img src={Datamanagementicon} />Data Management</Link></li>
-                                <li className={`sidenav-menuitem ${isActive("/reports") ? "active-menu" : ""}`}><Link to="/reports" className="menu-link"><img src={Reportsicon} />Reports</Link></li>
+                                <li className={`sidenav-menuitem ${isActive("/dashboard") ? "active-menu" : ""}`}><Link to="/dashboard" className="menu-link"><img src={Dashboardicon} />{t('Dashboard')}</Link></li>
+                                <li className={`sidenav-menuitem ${isActive("/datamanagement") ? "active-menu" : ""}`}><Link to="/datamanagement" className="menu-link"><img src={Datamanagementicon} />{t('Data Management')}</Link></li>
+                                <li className={`sidenav-menuitem ${isActive("/reports") ? "active-menu" : ""}`}><Link to="/reports" className="menu-link"><img src={Reportsicon} />{t('Reports')}</Link></li>
                                 {/* <li className="active"><Link to="/dashboard"><img src={Administrationicon} />Administration</a></li> */}
                                 <li className='sidenavmenu-item'>
                                     <div className="dropdown administraton-dropdown mt-3">
 
                                         <button onClick={() => toggleDropdown('administration')}      className={`dropdown-toggle administration d-flex align-items-center ${dropdownState.administration ? 'active-dropdown' : ''}`}>
                                             
-                                            <img src={Administrationicon} /> Administration
+                                            <img src={Administrationicon} />{t('Administration')}
                                         </button>
                                    
                                         
@@ -162,15 +164,15 @@ const isActive = (path) => location.pathname === path;
 
                                             <div class="dropdown-menu-right Administration-cnt">
                                                 <ul className='administration-menu'>
-                                                   <Link to="/tenants"> <li className={isActive("/tenants") ? "active-submenu " : ""}> <FontAwesomeIcon icon={faUser} className='font-icon' /> Tenants</li></Link>
-                                                   <Link to="/organizations"><li className={isActive("/organizations") ? "active-submenu " : ""}><FontAwesomeIcon icon={faSitemap} className='font-icon'  />Organization</li></Link>
-                                                   <Link to="/roles"><li  className={isActive("/roles") ? "active-submenu " : ""}><FontAwesomeIcon icon={faUserPlus} className='font-icon'  />   Roles</li></Link>
-                                                   <Link to="/users"><li  className={isActive("/users") ? "active-submenu" : ""}>  <FontAwesomeIcon icon={faUser} className='font-icon' />  Users</li></Link>
-                                                   <Link to="/permissions"> <li  className={isActive("/permissions") ? "active-submenu" : ""}> <FontAwesomeIcon icon={faUserPen} className='font-icon' /> Permissions</li></Link>
-                                                   <Link to="/settings"><li  className={isActive("/settings") ? "active-submenu" : ""}><FontAwesomeIcon icon={faGear} className='font-icon' /> Settings</li></Link>
+                                                   <Link to="/tenants"> <li className={isActive("/tenants") ? "active-submenu " : ""}> <FontAwesomeIcon icon={faUser} className='font-icon' />{t('Tenants')} </li></Link>
+                                                   <Link to="/organizations"><li className={isActive("/organizations") ? "active-submenu " : ""}><FontAwesomeIcon icon={faSitemap} className='font-icon'  />{t('Organization')}</li></Link>
+                                                   <Link to="/roles"><li  className={isActive("/roles") ? "active-submenu " : ""}><FontAwesomeIcon icon={faUserPlus} className='font-icon'  />   {t("Roles")}</li></Link>
+                                                   <Link to="/users"><li  className={isActive("/users") ? "active-submenu" : ""}>  <FontAwesomeIcon icon={faUser} className='font-icon' /> {t('Users')}</li></Link>
+                                                   <Link to="/permissions"> <li  className={isActive("/permissions") ? "active-submenu" : ""}> <FontAwesomeIcon icon={faUserPen} className='font-icon' /> {t('Permissions')}</li></Link>
+                                                   <Link to="/settings"><li  className={isActive("/settings") ? "active-submenu" : ""}><FontAwesomeIcon icon={faGear} className='font-icon' /> {t('Settings')}</li></Link>
                                                   
                     <Link to="/sample" >
-                      <li >Sample</li>
+                      <li >{t('Sample')}</li>
                     </Link>
                                                 </ul>
                                             </div>
@@ -183,8 +185,8 @@ const isActive = (path) => location.pathname === path;
                         </nav>
                         <div className="footer">
                             <hr />
-                            <div className='footer-heading'>Environment Agency Admin<br />
-                                <span className='rights'>2024 All rights reserved</span>
+                            <div className='footer-heading'>{t('Environment Agency Admin')}<br />
+                                <span className='rights'>{t('All Rights Reserved')}</span>
                             </div>
                         </div>
                     </aside>

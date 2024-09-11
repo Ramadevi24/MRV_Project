@@ -8,8 +8,10 @@ import { toast } from "react-toastify";
 import { fetchCategories } from "../../services/ManageCompanyProfileAPI";
 import "react-dropdown-tree-select/dist/styles.css";
 import searchicon from "../../images/searchbaricon.png";
+import { useTranslation } from "react-i18next";
 
 const transformNodes = (categories) => {
+
   return categories.map((category) => {
     return {
       label: category.categoryName,
@@ -23,6 +25,7 @@ const transformNodes = (categories) => {
 };
 
 const CompanyProfile = () => {
+  const {t}= useTranslation();
   const {
     fetchCompanyProfiles,
     createCompanyProfile,
@@ -223,11 +226,11 @@ const CompanyProfile = () => {
   const handleDeleteClick = async (id) => {
     try {
       await deleteCompanyProfile(id);
-      toast.success("Company profile deleted successfully.");
+      toast.success(t("Company profile deleted successfully."));
       fetchCompanyProfiles();
     } catch (error) {
       console.error("Error deleting company profile:", error);
-      toast.error("Error deleting company profile.");
+      toast.error(t("Error deleting company profile."));
     }
   };
 
@@ -252,16 +255,16 @@ const CompanyProfile = () => {
           selectedProfile.organizationID,
           updatedFormStateData
         );
-        toast.success("Organization updated successfully.");
+        toast.success(t("Organization updated successfully."));
       } else {
         await createCompanyProfile(updatedFormStateData);
-        toast.success("Organization created successfully.");
+        toast.success(t("Organization created successfully."));
       }
       resetForm();
       fetchCompanyProfiles();
     } catch (error) {
       console.error("Error processing company profile:", error);
-      toast.error("Error processing company profile.");
+      toast.error(t("Error processing company profile."));
     }
   };
 
@@ -308,31 +311,31 @@ const CompanyProfile = () => {
     <>
       <div style={{ padding: "20px" }}>
         <div className="header-container mt-3">
-          <h2 className="header-title"> Organization</h2>
+          <h2 className="header-title"> {t('Organization')}</h2>
           <div className="header-actions">
             <div className="search-box">
               <input
                 type="text"
-                placeholder="Search Organization"
+                placeholder={t("Search Organization")}
                 className="search-input"
               />
               <img className="search-icon" src={searchicon} />
             </div>
             <select className="sort-dropdown">
-              <option>Sort By</option>
-              <option value="created-date">Created Date</option>
-              <option value="role-name">Role Name</option>
+              <option>{t('Sort By')}</option>
+              <option value="created-date">{t('Created Date')}</option>
+              <option value="role-name">{t('Role Name')}</option>
             </select>
             <button onClick={handleCreateClick} className="add-role-btn">
               {" "}
-              Create Organization
+            {t('Create Organization')}
             </button>
           </div>
         </div>
         <Modal show={showForm} onHide={() => setShowForm(false)}>
           <Modal.Header closeButton>
             <Modal.Title>
-              {isEditing ? "Edit Organization" : "Create Organization"}
+              {isEditing ? t("Edit Organization") : t( "Create Organization")}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -356,7 +359,7 @@ const CompanyProfile = () => {
                           onChange={handleChange}
                           required
                         >
-                          <option value="">Select Tenants</option>
+                          <option value="">{t('Select Tenants')}</option>
                           {tenants?.map((tenant) => (
                             <option
                               key={tenant.tenantID}
@@ -372,7 +375,7 @@ const CompanyProfile = () => {
                             className="dropdown-header"
                             onClick={toggleDropdown}
                           >
-                            Select Categories
+                            {t('Select Categories')}
                             <span className="dropdown-arrow">
                               {dropdownOpen ? "▲" : "▼"}
                             </span>
@@ -407,7 +410,7 @@ const CompanyProfile = () => {
                   name="latitude"
                   value={formState.locations[0].latitude}
                   onChange={handleLocationChange}
-                  placeholder="Enter Latitude"
+                  placeholder={t("Enter Latitude")}
                   required
                 />
                 <input
@@ -416,13 +419,13 @@ const CompanyProfile = () => {
                   name="longitude"
                   value={formState.locations[0].longitude}
                   onChange={handleLocationChange}
-                  placeholder="Enter Longitude"
+                  placeholder={t("Enter Longitude")}
                   required
                 />
               </div>
               <div className="form-group">
                 <button className="btn btn-success" type="submit">
-                  Save
+                 {t(' Save')}
                 </button>
               </div>
             </form>

@@ -8,8 +8,11 @@ import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import '../../css/AddNewRole.css';
 import searchicon from '../../images/searchbaricon.png';
+import { useTranslation } from "react-i18next";
 
 const RolesPage = () => {
+
+  const {t}=useTranslation();
   const navigate = useNavigate()
   const [showCreateForm, setShowCreateForm] = useState(false);
   const { fetchRoles, fetchRoleById, selectedRole, setSelectedRole, deleteRole } = useRoles();
@@ -47,11 +50,11 @@ const RolesPage = () => {
   const handleDeleteRole = async (roleId) => {
     try {
       await deleteRole(roleId);
-      toast.success('Role deleted successfully');
+      toast.success(t('Role deleted successfully'));
       fetchRoles();
     } catch (error) {
       console.error(`Failed to delete role: ${error.message}`, error.stack);
-      toast.error('Failed to delete role');
+      toast.error(t('Failed to delete role'));
     }
   };
 
@@ -60,24 +63,24 @@ const RolesPage = () => {
     <>
         <div className='p-4'>
 <div className="header-container">
-<h2 className="header-title">Roles</h2>
+<h2 className="header-title">{t('Roles')}</h2>
 <div className="header-actions">
 <div className="search-box">
 
 <input
             type="text"
-            placeholder="Search roles"
+            placeholder={t("Search roles")}
             className="search-input"
           />
           <img className="search-icon" src={searchicon} />
 
 </div>
 <select className="sort-dropdown">
-<option>Sort By</option>
-<option value="created-date">Created Date</option>
-<option value="role-name">Role Name</option>
+<option>{t('Sort By')}</option>
+<option value="created-date">{t('Created Date')}</option>
+<option value="role-name">{t('Role Name')}</option>
 </select>
-<button onClick={handleAddRole} className="add-role-btn">ADD NEW ROLE +</button>
+<button onClick={handleAddRole} className="add-role-btn">{t('ADD NEW ROLE +')}</button>
 </div>
 </div>
 

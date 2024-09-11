@@ -4,9 +4,11 @@ import CreateEditPermissionForm from './CreateEditPermissionForm';
 import { Button } from 'react-bootstrap';
 import { usePermissions } from '../../contexts/PermissionsContext';
 
-import searchicon from '../../images/searchbaricon.png'
+import searchicon from '../../images/searchbaricon.png';
+import { useTranslation } from "react-i18next";
 
 const PermissionsPage = () => {
+  const {t}=useTranslation();
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [selectedPermission, setSelectedPermission] = useState(null);
   const { fetchPermissions } = usePermissions();
@@ -35,24 +37,24 @@ const PermissionsPage = () => {
         Create New Permission
       </Button> */}
                   <div className="header-container mt-3">
-<h2 className="header-title">Permissions</h2>
+<h2 className="header-title">{t('Permissions')}</h2>
 <div className="header-actions">
 <div className="search-box">
 
 <input
             type="text"
-            placeholder="Search permission"
+            placeholder={t("Search permission")}
             className="search-input"
           />
           <img className="search-icon" src={searchicon} />
 
 </div>
 <select className="sort-dropdown">
-<option>Sort By</option>
-<option value="created-date">Created Date</option>
-<option value="role-name">Role Name</option>
+<option>{t('Sort By')}</option>
+<option value="created-date">{t('Created Date')}</option>
+<option value="role-name">{t('Role Name')}</option>
 </select>
-<button onClick={handleShowCreateForm} className="add-role-btn" style={{width:'195px'}}> Create New Permission</button>
+<button onClick={handleShowCreateForm} className="add-role-btn" style={{width:'195px'}}> {t('Create New Permission')}</button>
 </div>
 </div>
       <PermissionsGrid handleSelectPermissionForEdit={handleSelectPermissionForEdit} />

@@ -12,8 +12,10 @@ import editicon from '../../images/editicon.png';
 import deleteicon from '../../images/deleteicon.png';
 import '../../css/AddNewRole.css';
 import searchicon from '../../images/searchbaricon.png';
+import { useTranslation } from "react-i18next";
 
 const Users = () => {
+  const {t}=useTranslation();
   const [show, setShow] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -83,14 +85,14 @@ const Users = () => {
     try {
       if (editMode) {
         await updateUser(currentUser.userID, userData);
-        toast.success("User updated successfully");
+        toast.success(t("User updated successfully"));
       } else {
         await createUser(userData);
-        toast.success("User created successfully");
+        toast.success(t("User created successfully"));
       }
     } catch (error) {
       console.error("Error processing user form:", error.message, error.stack);
-      toast.error("Error processing user form");
+      toast.error(t("Error processing user form"));
     } finally {
       handleClose();
       fetchUsers();
@@ -119,27 +121,27 @@ const Users = () => {
               Add User
             </Button> */}
             <div className="header-container mt-3">
-<h2 className="header-title">Users</h2>
+<h2 className="header-title">{t('Users')}</h2>
 <div className="header-actions">
 <div className="search-box">
 
 <input
             type="text"
-            placeholder="Search User"
+            placeholder={t("Search User")}
             className="search-input"
           />
           <img className="search-icon" src={searchicon} />
 
 </div>
 <select className="sort-dropdown">
-<option>Sort By</option>
-<option value="created-date">Created Date</option>
-<option value="role-name">Role Name</option>
+<option>{t('Sort By')}</option>
+<option value="created-date">{t('Created Date')}</option>
+<option value="role-name">{t('Role Name')}</option>
 </select>
 <button onClick={() => {
                 setEditMode(false);
                 handleShow();
-              }} className="add-role-btn">Add User</button>
+              }} className="add-role-btn">{t('Add User')}</button>
 </div>
 </div>
 
@@ -191,14 +193,14 @@ const Users = () => {
 <thead className='tabel-head'>
 <tr>
 <th><input className='check-box' type="checkbox" /></th>
-<th>User ID</th>
-                  <th>First Name</th>
-                  <th>Email</th>
-                  <th>Login Type</th>
-                  <th>Tenant Name</th>
-                  <th>Organization Name</th>
-                  <th>Tenant Role</th>
-                  <th>Actions</th>
+<th>{t('User ID')}</th>
+                  <th>{t('First Name')}</th>
+                  <th>{t('Email')}</th>
+                  <th>{t('Login Type')}</th>
+                  <th>{t('Tenant Name')}</th>
+                  <th>{t('Organization Name')}</th>
+                  <th>{t('Tenant Role')}</th>
+                  <th>{t('Actions')}</th>
 </tr>
 </thead>
 <tbody>
@@ -226,12 +228,12 @@ const Users = () => {
 
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>{editMode ? "Edit User" : "Add User"}</Modal.Title>
+                <Modal.Title>{editMode ? t("Edit User") : t("Add User")}</Modal.Title>
               </Modal.Header>
               <Form onSubmit={handleSubmit}>
                 <Modal.Body>
                   <Form.Group className="mb-3">
-                    <Form.Label>First Name</Form.Label>
+                    <Form.Label>{t('First Name')}</Form.Label>
                     <Form.Control
                       name="firstName"
                       type="text"
@@ -240,7 +242,7 @@ const Users = () => {
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
-                    <Form.Label>Last Name</Form.Label>
+                    <Form.Label>{t('Last Name')}</Form.Label>
                     <Form.Control
                       name="lastName"
                       type="text"
@@ -249,7 +251,7 @@ const Users = () => {
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>{t('Email')}</Form.Label>
                     <Form.Control
                       name="email"
                       type="email"
@@ -258,7 +260,7 @@ const Users = () => {
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
-                    <Form.Label>Mobile Number</Form.Label>
+                    <Form.Label>{t('Mobile Number')}</Form.Label>
                     <Form.Control
                       name="phone"
                       type="number"
@@ -267,7 +269,7 @@ const Users = () => {
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>{t('Password')}</Form.Label>
                     <Form.Control
                       name="passwordHash"
                       type="password"
@@ -276,13 +278,13 @@ const Users = () => {
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
-                    <Form.Label>Tenant Name</Form.Label>
+                    <Form.Label>{t('Tenant Name')}</Form.Label>
                     <Form.Select
                       name="tenantID"
                       defaultValue={currentUser.tenantID || ""}
                       required
                     >
-                      <option value="">Select Tenants</option>
+                      <option value="">{t('Select Tenants')}</option>
                       {tenants.map((company) => (
                         <option key={company.tenantID} value={company.tenantID}>
                           {company.name}
@@ -291,13 +293,13 @@ const Users = () => {
                     </Form.Select>
                   </Form.Group>
                   <Form.Group className="mb-3">
-                    <Form.Label>Organization</Form.Label>
+                    <Form.Label>{t('Organization')}</Form.Label>
                     <Form.Select
                       name="organizationID"
                       defaultValue={currentUser.organizationID || ""}
                       required
                     >
-                      <option value="">Select Company</option>
+                      <option value="">{t('Select Company')}</option>
                       {companyProfiles.map((company) => (
                         <option
                           key={company.organizationID}
@@ -309,13 +311,13 @@ const Users = () => {
                     </Form.Select>
                   </Form.Group>
                   <Form.Group className="mb-3">
-                    <Form.Label>Tenant Role</Form.Label>
+                    <Form.Label>{t('Tenant Role')}</Form.Label>
                     <Form.Select
                       name="tenantRoleID"
                       defaultValue={currentUser.tenantRoleID || ""}
                       required
                     >
-                      <option value="">Select Role</option>
+                      <option value="">{t('Select Role')}</option>
                       {tenantroles.map((role) => (
                         <option
                           key={role.tenantRoleID}
@@ -329,10 +331,10 @@ const Users = () => {
                 </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose}>
-                    Close
+               {t('Close')}
                   </Button>
                   <Button variant="primary" type="submit">
-                    Save Changes
+                    {t('Save Changes')}
                   </Button>
                 </Modal.Footer>
               </Form>
@@ -340,30 +342,30 @@ const Users = () => {
 
             <Modal show={showViewModal} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>User Details</Modal.Title>
+                <Modal.Title>{t('User Details')}</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 {viewingUser && (
                   <Table striped bordered>
                     <tbody>
                       <tr>
-                        <td>First Name</td>
+                        <td>{t('First Name')}</td>
                         <td>{viewingUser.firstName}</td>
                       </tr>
                       <tr>
-                        <td>Last Name</td>
+                        <td>{t('Last Name')}</td>
                         <td>{viewingUser.lastName}</td>
                       </tr>
                       <tr>
-                        <td>Username</td>
+                        <td>{t('Username')}</td>
                         <td>{viewingUser.username}</td>
                       </tr>
                       <tr>
-                        <td>Email</td>
+                        <td>{t('Email')}</td>
                         <td>{viewingUser.email}</td>
                       </tr>
                       <tr>
-                        <td>Company</td>
+                        <td>{t('Company')}</td>
                         <td>
                           {companyProfiles.find(
                             (cp) => cp.companyID === viewingUser.companyID
@@ -371,7 +373,7 @@ const Users = () => {
                         </td>
                       </tr>
                       <tr>
-                        <td>Role</td>
+                        <td>{t('Role')}</td>
                         <td>
                           {tenantroles.find(
                             (r) => r.tenantRoleID === viewingUser.tenantRoleID
@@ -384,7 +386,7 @@ const Users = () => {
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
-                  Close
+                  {t('Close')}
                 </Button>
               </Modal.Footer>
             </Modal>

@@ -1,0 +1,297 @@
+{
+    "Arabic":"عربي",
+    "French":"Français",
+    "welcome":"bienvenue sur le tableau de bord",
+        "Main menu": "Menu principal",
+        "Dashboard": "Tableau de bord",
+        "Data Management": "Gestion des données",
+        "Reports": "Rapports",
+        "Administration": "Administration",
+        "Tenants": "Locataires",
+        "Organization": "Organisation",
+        "Roles": "Rôles",
+        "Users": "Utilisateurs",
+        "Permissions": "Autorisations",
+        "Settings": "Paramètres",
+        "Environment Agency Admin": "Administration de l'Agence de l'Environnement",
+        "All Rights Reserved": "Tous droits réservés",
+        "Admin Name":"John Doe",
+      "Admin":"Administrateur",
+      
+        "Fuel Manager": "Gestionnaire de carburant",
+        "Show user-defined fuels only": "Afficher uniquement les carburants définis par l'utilisateur",
+        "Conversion Factor Type": "Type de facteur de conversion",
+        "Add New Fuel": "Ajouter un nouveau carburant",
+        "Fuel Name": "Nom du carburant",
+        "Primary Fuel": "Carburant principal",
+        "Net Calorific Value (TJ/Gg)": "Valeur calorifique nette (TJ/Gg)",
+        "Carbon Content NCV": "Contenu en carbone NCV",
+        "Carbon Content GCV": "Contenu en carbone GCV",
+        "Fuel Type": "Type de carburant",
+        "Actions": "Actions",
+        "Edit Fuel": "Modifier le carburant",
+        "Submit": "Soumettre",
+        "Update": "Mettre à jour",
+        "Solid": "Solide",
+        "Liquid": "Liquide",
+        "Yes": "Oui",
+        "No": "Non",
+        "NCV": "Valeur calorifique nette",
+        "GCV": "Valeur calorifique brute",
+        "All Fuels": "Tous les carburants",
+        "Liquid Fuels": "Carburants liquides",
+        "Solid Fuels": "Carburants solides",
+
+        
+            "Create Tenant": "Créer un locataire",
+            "Edit Tenant": "Modifier le locataire",
+            "Tenant Name": "Nom du locataire",
+            "Description": "Description",
+            "Enter tenant name": "Entrez le nom du locataire",
+            "Tenant name is required": "Le nom du locataire est requis.",
+            "Description is required": "La description est requise.",
+            "Close": "Fermer",
+            "Save Changes": "Sauvegarder les modifications",
+            "Saving...": "Enregistrement en cours...",
+            "Tenant created successfully": "Locataire créé avec succès.",
+            "Tenant updated successfully": "Locataire mis à jour avec succès.",
+            "Error processing role form": "Erreur lors du traitement du formulaire de rôle",
+            "Could not process the role form.": "Impossible de traiter le formulaire de rôle.",
+
+            
+                "Tenant ID": "ID du locataire",
+                "Tenant Name": "Nom du locataire",
+                "Description": "Description",
+                "Created Date": "Date de création",
+                "Actions": "Actions",
+                "Edit": "Modifier",
+                "Delete": "Supprimer",
+                "View": "Voir",
+                "Role deleted successfully": "Rôle supprimé avec succès.",
+                "Error deleting role with ID": "Erreur lors de la suppression du rôle avec l'ID",
+                "Failed to fetch roles": "Échec de la récupération des rôles",
+
+            
+
+                    "Tenant": "Locataire",
+                    "Search Tenant": "Rechercher un locataire",
+                    "Sort By": "Trier par",
+                    "Created Date": "Date de création",
+                    "Role Name": "Nom du rôle",
+                    "Create New Tenant": "Créer un nouveau locataire",
+                    "Tenant deleted successfully": "Locataire supprimé avec succès",
+                    "Failed to delete role": "Échec de la suppression du rôle",
+                    "Failed to fetch roles": "Échec de la récupération des rôles",
+                    "Failed to fetch role details for editing": "Échec de la récupération des détails du rôle pour modification",
+                    "Failed to fetch roles after closing create form": "Échec de la récupération des rôles après la fermeture du formulaire de création",
+
+                    
+                        "Organization": "Organisation",
+                        "Search Organization": "Rechercher une organisation",
+                        "Sort By": "Trier par",
+                        "Created Date": "Date de création",
+                        "Role Name": "Nom du rôle",
+                        "Create Organization": "Créer une organisation",
+                        "Edit Organization": "Modifier l'organisation",
+                        "Select Tenants": "Sélectionner des locataires",
+                        "Select Categories": "Sélectionner des catégories",
+                        "Enter Latitude": "Entrez la latitude",
+                        "Enter Longitude": "Entrez la longitude",
+                        "Enter organizationName": "Entrez le nom de l'organisation",
+                        "Enter description": "Entrez la description",
+                        "Enter establishedDate": "Entrez la date de création",
+                        "Enter contactEmail": "Entrez l'e-mail de contact",
+                        "Enter contactPhone": "Entrez le numéro de téléphone",
+                        "Enter address": "Entrez l'adresse",
+                        "Save": "Sauvegarder",
+                        "Company profile deleted successfully": "Profil de l'organisation supprimé avec succès.",
+                        "Error deleting company profile": "Erreur lors de la suppression du profil de l'organisation.",
+                        "Organization updated successfully": "Organisation mise à jour avec succès.",
+                        "Organization created successfully": "Organisation créée avec succès.",
+                        "Error processing company profile": "Erreur lors du traitement du profil de l'organisation.",
+
+                        
+                            "Tenant Name": "Nom du locataire",
+                            "Organization Name": "Nom de l'organisation",
+                            "Categories": "Catégories",
+                            "Actions": "Actions",
+                            "View": "Voir",
+                            "Edit": "Modifier",
+                            "Delete": "Supprimer",
+                            "Organization deleted successfully.": "Organisation supprimée avec succès.",
+                            "Error deleting company profile with ID": "Erreur lors de la suppression du profil de l'organisation avec l'ID",
+                            "Error fetching organization data": "Erreur lors de la récupération des données de l'organisation",
+
+                            
+                                "Organization Profile": "Profil de l'organisation",
+                                "Organization Name": "Nom de l'organisation",
+                                "Tenant Name": "Nom du locataire",
+                                "Description": "Description",
+                                "Established Date": "Date de création",
+                                "Address": "Adresse",
+                                "Email": "E-mail",
+                                "Phone": "Téléphone",
+                                "Categories": "Catégories",
+                                "Location": "Emplacement",
+                                "Close": "Fermer",
+
+                                
+                                    "Add New Role": "Ajouter un nouveau rôle",
+                                    "Roles / Add New Role": "Rôles / Ajouter un nouveau rôle",
+                                    "Back": "Retour",
+                                    "Role Name": "Nom du rôle",
+                                    "dataprovider": "fournisseur de données",
+                                    "Users": "Utilisateurs",
+                                    "Select All": "Tout sélectionner",
+                                    "Create User": "Créer un utilisateur",
+                                    "Delete User": "Supprimer un utilisateur",
+                                    "Edit User": "Modifier un utilisateur",
+                                    "View Users": "Voir les utilisateurs",
+                                    "Unlock": "Déverrouiller",
+                                    "Alerts": "Alertes",
+                                    "CANCEL": "ANNULER",
+                                    "ADD": "AJOUTER",
+
+                                    
+                                        "Create Role": "Créer un rôle",
+                                        "Edit Role": "Modifier le rôle",
+                                        "Role Name": "Nom du rôle",
+                                        "Enter role name": "Entrez le nom du rôle",
+                                        "Role name is required": "Le nom du rôle est requis.",
+                                        "Description": "Description",
+                                        "Role description": "Description du rôle",
+                                        "Description is required": "La description est requise.",
+                                        "Permissions": "Autorisations",
+                                        "Save Changes": "Sauvegarder les modifications",
+                                        "Saving...": "Enregistrement...",
+                                        "Close": "Fermer",
+                                        "Role created successfully": "Rôle créé avec succès.",
+                                        "Role updated successfully": "Rôle mis à jour avec succès.",
+                                        "Error processing role form": "Erreur lors du traitement du formulaire de rôle.",
+                                        "Could not process the role form": "Impossible de traiter le formulaire de rôle.",
+                                            "Error fetching permissions": "Erreur lors de la récupération des autorisations.",
+                                
+                                                "Role Name": "Nom du rôle",
+                                                "Description": "Description",
+                                                "Created Date": "Date de création",
+                                                "Actions": "Actions",
+                                                "Role deleted successfully.": "Rôle supprimé avec succès.",
+                                                "Error deleting role with ID": "Erreur lors de la suppression du rôle avec ID",
+                                                "Delete": "Supprimer",
+                                                "Edit": "Éditer",
+                                                "View": "Voir",
+                                                
+                                                    "Roles": "Rôles",
+                                                    "Search roles": "Rechercher des rôles",
+                                                    "Sort By": "Trier par",
+                                                    "Created Date": "Date de création",
+                                                    "Role Name": "Nom du rôle",
+                                                    "ADD NEW ROLE +": "AJOUTER UN NOUVEAU RÔLE +",
+                                                    "Role deleted successfully": "Rôle supprimé avec succès",
+                                                    "Failed to delete role": "Échec de la suppression du rôle",
+                                                    
+
+
+
+                                                        "Users": "Utilisateurs",
+                                                        "Search User": "Rechercher un utilisateur",
+                                                        "Sort By": "Trier par",
+                                                        "Created Date": "Date de création",
+                                                        "Role Name": "Nom du rôle",
+                                                        "Add User": "Ajouter un utilisateur",
+                                                        "User ID": "ID utilisateur",
+                                                        "First Name": "Prénom",
+                                                        "Email": "Email",
+                                                        "Login Type": "Type de connexion",
+                                                        "Tenant Name": "Nom du locataire",
+                                                        "Organization Name": "Nom de l'organisation",
+                                                        "Tenant Role": "Rôle du locataire",
+                                                        "Actions": "Actions",
+                                                        "User deleted successfully": "Utilisateur supprimé avec succès",
+                                                        "Error deleting user": "Erreur lors de la suppression de l'utilisateur",
+                                                        "Edit User": "Modifier l'utilisateur",
+                                                        "Add User": "Ajouter un utilisateur",
+                                                        "User Details": "Détails de l'utilisateur",
+                                                        "Username": "Nom d'utilisateur",
+                                                        "Company": "Société",
+                                                        "Role": "Rôle",
+                                                        "Close": "Fermer",
+                                                        "Save Changes": "Sauvegarder les modifications",
+                                                        "Last Name": "Nom de famille",
+                                                        "Select Company": "Sélectionnez une entreprise",
+                                                        "Select Role": "Sélectionnez un rôle",
+                                                          "Mobile Number": "Numéro de portable",
+                                                          "Password": "Mot de passe",
+                                                          
+                                                            "Edit Permission": "Modifier l'autorisation",
+                                                            "Create Permission": "Créer une autorisation",
+                                                            "Permission Name": "Nom de l'autorisation",
+                                                            "Enter permission name": "Entrez le nom de l'autorisation",
+                                                            "Permission name is required": "Le nom de l'autorisation est requis.",
+                                                            "Description": "Description",
+                                                            "Permission description": "Description de l'autorisation",
+                                                            "Description is required": "La description est requise.",
+                                                            "Close": "Fermer",
+                                                            "Save Changes": "Enregistrer les modifications",
+                                                            "Saving...": "Enregistrement...",
+                                                            "Permission updated successfully": "Autorisation mise à jour avec succès.",
+                                                            "Permission created successfully": "Autorisation créée avec succès.",
+                                                            "Error processing permission form": "Erreur lors du traitement du formulaire d'autorisation.",
+                                                            "Could not process the permission form.": "Impossible de traiter le formulaire d'autorisation.",
+
+                                                            
+                                                                "Permission Name": "Nom de l'autorisation",
+                                                                "Description": "Description",
+                                                                "Actions": "Actions",
+                                                                "Edit": "Modifier",
+                                                                "Delete": "Supprimer",
+                                                                "Permission deleted successfully": "Autorisation supprimée avec succès.",
+                                                                "Error deleting permission with ID": "Erreur lors de la suppression de l'autorisation avec l'ID",
+                                                                "Error fetching permissions": "Erreur lors de la récupération des autorisations",
+
+                                                                    "Permissions": "Autorisations",
+                                                                    "Search permission": "Rechercher une autorisation",
+                                                                    "Sort By": "Trier par",
+                                                                    "Created Date": "Date de création",
+                                                                    "Role Name": "Nom du rôle",
+                                                                    "Create New Permission": "Créer une nouvelle autorisation",
+                                                                    "Sample": "Exemple",
+                                                                    
+                                                                        "Local Change": "Changement local"
+                                                                        
+                                                                      
+                                                                      
+                                                                  
+                                                                  
+                                                              
+                                                              
+                                                          
+                                                          
+                                                      
+                                                      
+                                                  
+                                                  
+                                              
+                                              
+                                          
+                                          
+                                      
+                                      
+                                  
+                                  
+                              
+                              
+                          
+                          
+                      
+                      
+                  
+                  
+              
+              
+          
+          
+      
+      
+      
+}

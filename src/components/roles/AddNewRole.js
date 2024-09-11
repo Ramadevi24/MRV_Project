@@ -14,8 +14,10 @@ import Administrationicon from '../../images/Administrationicon.png';
 import Rolesicon from '../../images/Rolesicon.png';
 import Usersicon from '../../images/Usericon.png';
 import settingsicon from '../../images/Gearicon.png';
+import { useTranslation } from "react-i18next";
 
 const AddNewRole = () => {
+    const {t}=useTranslation();
     const [dropdownState, setDropdownState] = useState({
         toggleDropdown: false,
         toggleDropdowntwo: false,
@@ -36,12 +38,12 @@ const AddNewRole = () => {
         }));
     };
     const dropdownItems = [
-        { id: 'selectAll', label: 'Select All' },
-        { id: 'createUser', label: 'Create User' },
-        { id: 'deleteUser', label: 'Delete User' },
-        { id: 'editUser', label: 'Edit User' },
-        { id: 'viewUsers', label: 'View Users' },
-        { id: 'unlock', label: 'Unlock' }
+        { id: 'selectAll', label: t('Select All') },
+        { id: 'createUser', label: t('Create User') },
+        { id: 'deleteUser', label: t('Delete User') },
+        { id: 'editUser', label: t('Edit User') },
+        { id: 'viewUsers', label: t('View Users') },
+        { id: 'unlock', label: t('Unlock') }
         // Add more items as needed
     ];
 
@@ -53,25 +55,25 @@ const AddNewRole = () => {
                     <div className='right-body'>
                         <div className='right-body-ctnt'>
                             <div>
-                                <div className='addnewrole'>Add New Role</div>
-                                <div className='role'>Roles / Add New Role</div>
+                                <div className='addnewrole'>{t('Add New Role')}</div>
+                                <div className='role'>{t('Roles / Add New Role')}</div>
                             </div>
                             <div>
-                                <button className='back'>back</button>
+                                <button className='back'>{t('Back')}</button>
                             </div>
                         </div>
                         <div className='rightbody-content'>
                             <div className='rolename'>
-                                <div>Role Name</div>
+                                <div>{t('Role Name')}</div>
                                 <div> 
-                                    <input type='text'className='addroleinput' placeholder='dataprovider' />
+                                    <input type='text'className='addroleinput' placeholder={t('dataprovider' )}/>
                                 </div>
                             </div>
                             <div className='row col-12'>
                                 <div className="dropdown drop-down mt-3 col-6">
 
                                     <button onClick={() => toggleDropdown('toggleDropdown')} className="dropdown-toggle toggledropwn drop-down-header d-flex align-items-center justify-content-between">
-                                        Users
+                                       {t('Users')}
                                     </button>
 
                                     {dropdownState.toggleDropdown && (
@@ -96,7 +98,7 @@ const AddNewRole = () => {
                                 <div className="dropdown drop-down mt-3 col-6">
 
                                     <button onClick={() => toggleDropdown('toggleDropdowntwo')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between" style={{ marginLeft: '10px' }}>
-                                        Alerts
+                                        {t('Alerts')}
                                     </button>
 
                                     {dropdownState.toggleDropdowntwo && (
@@ -120,7 +122,7 @@ const AddNewRole = () => {
                                 <div className="dropdown drop-down mt-3 col-6">
 
                                     <button onClick={() => toggleDropdown('toggleDropdownthree')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between">
-                                        Alerts
+                                      {t('Alerts')}
                                     </button>
 
                                     {dropdownState.toggleDropdownthree && (
@@ -144,7 +146,7 @@ const AddNewRole = () => {
                                 <div className="dropdown drop-down mt-3 col-6">
 
                                     <button onClick={() => toggleDropdown('toggleDropdownfour')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between" style={{ marginLeft: '10px' }}>
-                                        Alerts
+                                        {t('Alerts')}
                                     </button>
 
                                     {dropdownState.toggleDropdownfour && (
@@ -169,7 +171,7 @@ const AddNewRole = () => {
                                 <div className="dropdown drop-down mt-3 col-6">
 
                                     <button onClick={() => toggleDropdown('toggleDropdownfive')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between">
-                                        Alerts
+                                       {t('Alerts')}
                                     </button>
 
                                     {dropdownState.toggleDropdownfive && (
@@ -193,7 +195,7 @@ const AddNewRole = () => {
                                 <div className="dropdown drop-down mt-3 col-6">
 
                                     <button onClick={() => toggleDropdown('toggleDropdownsix')} className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between" style={{ marginLeft: '10px' }}>
-                                        Alerts
+                                      {t('Alerts')}
                                     </button>
 
                                     {dropdownState.toggleDropdownsix && (
@@ -314,10 +316,10 @@ const AddNewRole = () => {
                             </div> */}
                             <div className='buttons col-6'>
                                 <div>
-                                    <button className='cancel-btn'>CANCEL</button>
+                                    <button className='cancel-btn'>{t('CANCEL')}</button>
                                 </div>
                                 <div>
-                                    <button className='add-btn'>ADD</button>
+                                    <button className='add-btn'>{t('ADD')}</button>
                                 </div>
                             </div>
 

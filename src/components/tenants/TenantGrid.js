@@ -7,8 +7,10 @@ import '../../css/TableGrid.css';
 import eyeicon from '../../images/eyeicon.png';
 import deleteicon from '../../images/deleteicon.png';
 import editicon from '../../images/editicon.png';
+import { useTranslation } from "react-i18next";
 
 const TenantGrid = ({ handleSelectTenantForEdit }) => {
+  const{t}=useTranslation();
   const { tenants, fetchTenants, deleteTenant } = useTenants();
 
   useEffect(() => {
@@ -24,10 +26,10 @@ const TenantGrid = ({ handleSelectTenantForEdit }) => {
   const handleDelete = async (id) => {
     try {
       await deleteTenant(id);
-      toast.success('Role deleted successfully.');
+      toast.success(t('Role deleted successfully.'));
     } catch (error) {
       console.error(`Error deleting role with ID ${id}:`, error.message, error.stack);
-      toast.error(`Error deleting role with ID ${id}.`);
+      toast.error(t(`Error deleting role with ID ${id}.`));
     }
   };
 
@@ -63,11 +65,11 @@ const TenantGrid = ({ handleSelectTenantForEdit }) => {
 <thead className='tabel-head'>
 <tr>
 <th><input className='check-box' type="checkbox" /></th>
-<th>Tenant ID</th>
-<th>Tenant Name</th>
-<th>Description</th>
- <th>Created Date</th>
-<th>Actions</th>
+<th>{t('Tenant ID')}</th>
+<th>{t('Tenant Name')}</th>
+<th>{t('Description')}</th>
+ <th>{t('Created Date')}</th>
+<th>{t('Actions')}</th>
 </tr>
 </thead>
 <tbody>

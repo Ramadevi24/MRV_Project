@@ -5,8 +5,15 @@ import {faPencil} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import{faTrash} from '@fortawesome/free-solid-svg-icons';
 import DataManagementAPI from "../services/DataManagementAPI";
+import { useTranslation } from "react-i18next";
 const DataManagement = () => {
-  const [selectedFuelType, setSelectedFuelType] = useState("All Fuels");
+  const {t}=useTranslation();
+  const [selectedFuelType, setSelectedFuelType] = useState(""); // Initial empty state
+
+  useEffect(() => {
+    // Set the initial state after translations are ready
+    setSelectedFuelType(t('All Fuels'));
+  }, [t]); // Ensure this runs when `t` changes
   const [showAddModal, setShowAddModal] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [currentFuelId, setCurrentFuelId] = useState(null);
@@ -138,7 +145,7 @@ const DataManagement = () => {
   return (
     <div className="fuelmanager-body" style={{ padding: "20px" }}>
       <div className="table-header">
-        <h2 className="fuelmanager">Fuel Manager</h2>
+        <h2 className="fuelmanager">{t('Fuel Manager')}</h2>
         <div className="filters">
           <div className="button-box">
             <input
@@ -149,12 +156,12 @@ const DataManagement = () => {
               style={{ transform: "scale(1.5)", marginRight:'10px' }}
             />
             <label htmlFor="userDefined" className="userdefined-label">
-              Show user-defined fuels only
+              {t('Show user-defined fuels only')}
             </label>
           </div>
           <div className="side-button-box toggle-button">
-            <label className="conversionfactor">Conversion Factor Type:</label>
-            <div className="ncv">NCV</div>
+            <label className="conversionfactor">{t('Conversion Factor Type')} :</label>
+            <div className="ncv">{t('NCV')}</div>
             <div className="form-check form-switch custom-switch">
               <input
                 className="form-check-input form-switch"
@@ -165,7 +172,7 @@ const DataManagement = () => {
                 onChange={handleToggleClick}
               />
             </div>
-            <div>GCV</div>
+            <div>{t('GCV')}</div>
           </div>
         </div>
       </div>
@@ -175,25 +182,25 @@ const DataManagement = () => {
           title={selectedFuelType}
           onSelect={handleFuelTypeChange}
          >
-          <Dropdown.Item eventKey="All Fuels">All Fuels</Dropdown.Item>
-          <Dropdown.Item eventKey="Liquid">Liquid Fuels</Dropdown.Item>
-          <Dropdown.Item eventKey="Solid">Solid Fuels</Dropdown.Item>
+          <Dropdown.Item eventKey={t("All Fuels")}>{t('All Fuels')}</Dropdown.Item>
+          <Dropdown.Item eventKey={t("Liquid")}>{t('Liquid Fuels')}</Dropdown.Item>
+          <Dropdown.Item eventKey={t("Solid")}>{t('Solid Fuels')}</Dropdown.Item>
         </DropdownButton>
-        <Button onClick={() => setShowAddModal(true)} className="add-fuel-btn">Add New Fuel</Button>
+        <Button onClick={() => setShowAddModal(true)} className="add-fuel-btn">{t('Add New Fuel')}</Button>
       </div>
       <Table striped bordered hover className="mt-3 fuel-management-table">
         <thead>
           <tr>
-            <th>Fuel Name</th>
-            <th>Primary Fuel</th>
-            <th>Net Calorific Value (TJ/Gg)</th>
+            <th>{t('Fuel Name')}</th>
+            <th>{t('Primary Fuel')}</th>
+            <th>{t('Net Calorific Value (TJ/Gg)')}</th>
             <th>
               {conversionFactorType == "NCV"
                 ? "Carbon Content NCV"
                 : "Carbon Content GCV"}
             </th>
-            <th>Fuel Type</th>
-            <th>Actions</th>
+            <th>{t('Fuel Type')}</th>
+            <th>{t('Actions')}</th>
           </tr>
         </thead>
         <tbody>
@@ -246,7 +253,7 @@ const DataManagement = () => {
               </div>
             </Form.Group>
             <Form.Group controlId="formFuelName">
-              <Form.Label>Fuel Name</Form.Label>
+              <Form.Label>{t('Fuel Name')}</Form.Label>
               <Form.Control
                 type="text"
                 name="fuelName"
@@ -255,7 +262,7 @@ const DataManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="formIsPrimaryFuel">
-              <Form.Label>Is Primary Fuel</Form.Label>
+              <Form.Label>{t('Is Primary Fuel')}</Form.Label>
               <div className="d-flex">
                 <Form.Check
                   type="radio"
@@ -277,7 +284,7 @@ const DataManagement = () => {
               </div>
             </Form.Group>
             <Form.Group controlId="formNetCalorificValue">
-              <Form.Label>Net Calorific Value</Form.Label>
+              <Form.Label>{t('Net Calorific Value')}</Form.Label>
               <Form.Control
                 type="number"
                 name="netCalorificValue"
@@ -286,7 +293,7 @@ const DataManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="formCarbonContentNCV">
-              <Form.Label>Carbon Content NCV</Form.Label>
+              <Form.Label>{t('Carbon Content NCV')}</Form.Label>
               <Form.Control
                 type="number"
                 name="carbonContentNCV"
@@ -295,7 +302,7 @@ const DataManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="formGrossCalorificValue">
-              <Form.Label>Gross Calorific Value</Form.Label>
+              <Form.Label>{t('Gross Calorific Value')}</Form.Label>
               <Form.Control
                 type="number"
                 name="grossCalorificValue"
@@ -304,7 +311,7 @@ const DataManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="formCarbonContentGCV">
-              <Form.Label>Carbon Content GCV</Form.Label>
+              <Form.Label>{t('Carbon Content GCV')}</Form.Label>
               <Form.Control
                 type="number"
                 name="carbonContentGCV"
@@ -313,7 +320,7 @@ const DataManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="formConversionFactorType">
-              <Form.Label>Conversion Factor Type</Form.Label>
+              <Form.Label>{t('Conversion Factor Type')}</Form.Label>
               <div className="d-flex">
                 <Form.Check
                   type="radio"

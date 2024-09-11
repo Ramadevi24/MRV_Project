@@ -263,15 +263,31 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import adminimage from '../images/Ellipse 5.png';
 import { useNavigate } from 'react-router-dom';
+import i18n from '../i18n.js';
+import { useTranslation } from "react-i18next";
 
 const Topbar=()=> {
+    const {t}=useTranslation();
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('authToken'); 
     navigate('/');  
   };
+  
+  const handleChange = (event) => {
+    i18n.changeLanguage(event.target.value);
+  };
   return (
-    <div><div className="top-navbar">
+    <div className="top-navbar">
+           <div className='local-language'>
+          <label>{t('Locale Change')}</label>
+          <select  onChange={handleChange}>
+            <option value="en">English</option>
+            <option value="fr">{t('French')}</option>
+            <option value="ar">{t('Arabic')}</option>
+            <option value="ger">German</option>
+          </select>
+        </div>
     <div className='icons'>
         <div className='bell-icon'>
             <span className='nav-icons'> <FontAwesomeIcon icon={faBell} /> </span>
@@ -290,14 +306,14 @@ const Topbar=()=> {
         </div>
         <div>
             <div>
-                <div onClick={handleLogout} className='user-name'>Jone Doe
+                <div onClick={handleLogout} className='user-name'>{t('Admin Name')}
                 </div>
-                <div className='admin'>Admin</div>
+                <div className='admin'>{t('Admin')}</div>
             </div>
         </div>
     </div>
 
-</div></div>
+</div>
   )
 }
 

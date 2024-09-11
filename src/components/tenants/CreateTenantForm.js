@@ -3,8 +3,10 @@ import { Modal, Button, Form, FormGroup, FormLabel } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { TenantContext } from '../../contexts/TenantContext';
 import { toast } from 'react-toastify';
+import { useTranslation } from "react-i18next";
 
 const CreateTenantForm = ({ show, handleClose, currentTenant }) => {
+  const {t}=useTranslation();
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const { createTenant, updateTenant, fetchTenants } = useContext(TenantContext);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,36 +45,36 @@ const CreateTenantForm = ({ show, handleClose, currentTenant }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{currentTenant && currentTenant.tenantID ? 'Edit Tenant' : 'Create Tenant'}</Modal.Title>
+        <Modal.Title>{currentTenant && currentTenant.tenantID ? t('Edit Tenant') : t('Create Tenant')}</Modal.Title>
       </Modal.Header>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <FormGroup className="mb-3">
-            <FormLabel>Tenant Name</FormLabel>
+            <FormLabel>{t('Tenant Name')}</FormLabel>
             <Form.Control
               type="text"
-              placeholder="Enter tenant name"
+              placeholder={t("Enter tenant name")}
               {...register('name', { required: true })}
             />
-            {errors.name && <Form.Text className="text-muted">Tenant name is required.</Form.Text>}
+            {errors.name && <Form.Text className="text-muted">{t('Tenant name is required.')}</Form.Text>}
           </FormGroup>
           <FormGroup className="mb-3">
-            <FormLabel>Description</FormLabel>
+            <FormLabel>{t('Description')}</FormLabel>
             <Form.Control
               as="textarea"
               rows={3}
-              placeholder="description"
+              placeholder={t("Description")}
               {...register('description', { required: true })}
             />
-            {errors.description && <Form.Text className="text-muted">Description is required.</Form.Text>}
+            {errors.description && <Form.Text className="text-muted">{t('Description is required.')}</Form.Text>}
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+          {t('  Close')}
           </Button>
           <Button variant="primary" type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Saving...' : 'Save Changes'}
+            {isSubmitting ? t('Saving...') : t('Save Changes')}
           </Button>
         </Modal.Footer>
       </Form>

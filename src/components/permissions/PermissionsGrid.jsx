@@ -6,8 +6,10 @@ import '../../css/TableGrid.css';
 import eyeicon from '../../images/eyeicon.png';
 import editicon from '../../images/editicon.png';
 import deleteicon from '../../images/deleteicon.png';
+import { useTranslation } from "react-i18next";
 
 const PermissionsGrid = ({ handleSelectPermissionForEdit }) => {
+  const {t}=useTranslation();
   const { permissions, fetchPermissions, deletePermission } = usePermissions();
 
   useEffect(() => {
@@ -24,10 +26,10 @@ const PermissionsGrid = ({ handleSelectPermissionForEdit }) => {
   const handleDelete = async (id) => {
     try {
       await deletePermission(id);
-      toast.success('Permission deleted successfully.');
+      toast.success(t('Permission deleted successfully.'));
     } catch (error) {
       console.error(`Error deleting permission with ID ${id}:`, error.message, error.stack);
-      toast.error(`Error deleting permission with ID ${id}.`);
+      toast.error(t(`Error deleting permission with ID ${id}.`));
     }
   };
 
@@ -57,9 +59,9 @@ const PermissionsGrid = ({ handleSelectPermissionForEdit }) => {
 <thead className='tabel-head'>
 <tr>
 <th><input className='check-box' type="checkbox" /></th>
-<th>Permission Name</th>
-<th>Description</th>
- <th>Actions</th>
+<th>{t('Permission Name')}</th>
+<th>{t('Description')}</th>
+ <th>{t('Actions')}</th>
 </tr>
 </thead>
 <tbody>
