@@ -13,7 +13,6 @@ import { TenantProvider } from './contexts/TenantContext';
 import { PermissionsProvider } from './contexts/PermissionsContext';
 import { TenantRolesProvider } from './contexts/TenantRolesContext';
 import { I18nextProvider } from 'react-i18next';
-import i18n from './components/i18n.js';
 import { ToastContainer } from 'react-toastify'; // Update import to react-toastify
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,10 +31,8 @@ root.render(
             <UsersProvider>
               <CompanyProfileProvider>
                 <GoogleOAuthProvider clientId={clientId}>
-                  <I18nextProvider i18n={i18n}>
                     <App />
                     <ToastContainer />
-                  </I18nextProvider>
                 </GoogleOAuthProvider>
               </CompanyProfileProvider>
             </UsersProvider>
