@@ -1,0 +1,89 @@
+/* custom-dropdown-tree-select.css */
+
+.dropdown-tree-select .dropdown-content {
+  background-color: #f8f9fa; /* Light background color */
+  border: 1px solid #ced4da; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.dropdown-tree-select .node-label {
+  color: #495057; /* Text color */
+  font-weight: bold; /* Bold text */
+}
+
+.dropdown-tree-select .checkbox-item {
+  padding: 5px 10px; /* Padding */
+}
+
+.dropdown-tree-select .checkbox-item:hover {
+  background-color: #e9ecef; /* Hover background color */
+}
+
+.dropdown-tree-select .node-label .toggle {
+  color: #007bff; /* Toggle color */
+}
+
+.dropdown-tree-select .node-label .toggle:hover {
+  color: #0056b3; /* Hover toggle color */
+}
+
+/* OrganizationTable.css */
+.icon-buttons-container {
+  display: flex;
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.icon-button.view {
+  color: #007bff; /* Adjust color as needed */
+
+}
+
+.icon-button.edit {
+  color: #28a745; /* Adjust color as needed */
+}
+
+.icon-button.delete {
+  color: #dc3545; /* Adjust color as needed */
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.sort-dropdown {
+  margin-right: 10px;
+  border:none !important;
+}
+
+.create-button {
+  white-space: nowrap;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}

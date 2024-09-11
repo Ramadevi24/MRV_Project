@@ -354,7 +354,6 @@ const CompanyProfile = () => {
                           name={key}
                           value={formState[key]}
                           onChange={handleChange}
-                          required
                         >
                           <option value="">Select Tenants</option>
                           {tenants?.map((tenant) => (

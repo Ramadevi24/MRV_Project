@@ -25,7 +25,7 @@ const CreateRoleForm = ({ show, handleClose, currentRole }) => {
       if (currentRole) {
         const rolePermissions = currentRole.permissions.map(p => ({
           permissionID: p.permissionID,
-          permissionName: p.permissionName,
+          permissionDisplayName: p.permissionDisplayName,
           description: p.description
         }));
         setSelectedPermissions(rolePermissions);
@@ -52,7 +52,7 @@ const CreateRoleForm = ({ show, handleClose, currentRole }) => {
         description: data.description,
         permissions: selectedPermissions.map(p => ({
           permissionID: p.permissionID,
-          permissionName: p.permissionName,
+          permissionDisplayName: p.permissionDisplayName,
           description: p.description
         }))
       };
@@ -115,11 +115,11 @@ const CreateRoleForm = ({ show, handleClose, currentRole }) => {
             {permissions.map(permission => (
               <FormCheck
                 key={permission.permissionID}
-                label={permission.permissionName}
+                label={permission.permissionDisplayName}
                 type="checkbox"
                 id={`permission-${permission.permissionID}`}
                 checked={selectedPermissions.some(p => p.permissionID === permission.permissionID)}
-                onChange={() => handlePermissionChange(permission.permissionID, permission.permissionName, permission.description)}
+                onChange={() => handlePermissionChange(permission.permissionID, permission.permissionDisplayName, permission.description)}
               />
             ))}
           </FormGroup>
