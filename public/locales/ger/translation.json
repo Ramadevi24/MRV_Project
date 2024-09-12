@@ -9,9 +9,25 @@
         "Administration": "Verwaltung",
         "Tenants": "Mieter",
         "Organization": "Organisation",
+        "Add Organization":"Organisation hinzufügen",
+        "Category ID":"Kategorie-ID",
         "Roles": "Rollen",
+        "Contact Email":"Kontakt E-Mail",
         "Users": "Benutzer",
+        "User Role": "Benutzerrolle",
         "Permissions": "Berechtigungen",
+        "Permission ID":"Berechtigungs-ID",
+         "Permission Display Name": "Anzeigename der Berechtigung",
+           "previous": "Zurück",
+    "next": "Weiter",
+
+    "Permission Unique Name": "Einzigartiger Berechtigungsname",
+    "Permission Group": "Berechtigungsgruppe",
+    "Select Group": "Gruppe auswählen",
+    "group1": "Gruppe 1",
+    "group2": "Gruppe 2",
+    "group3": "Gruppe 3",
+
         "Settings": "Einstellungen",
         "Environment Agency Admin": "Umweltbehörde Admin",
         "All Rights Reserved": "Alle Rechte vorbehalten",
@@ -25,6 +41,8 @@
             "Fuel Name": "Kraftstoffname",
             "Primary Fuel": "Hauptkraftstoff",
             "Net Calorific Value (TJ/Gg)": "Nutzbarer Heizwert (TJ/Gg)",
+            "Net Calorific Value":"Nettowert des Heizwerts",
+            "Gross Calorific Value":"Bruttowert des Heizwerts",
             "Carbon Content NCV": "Kohlenstoffgehalt NCV",
             "Carbon Content GCV": "Kohlenstoffgehalt GCV",
             "Fuel Type": "Kraftstofftyp",
@@ -73,6 +91,7 @@
                     
                         "Tenant": "Mieter",
                         "Search Tenant": "Mieter suchen",
+                        "Search":"Suche",
                         "Sort By": "Sortieren nach",
                         "Created Date": "Erstellungsdatum",
                         "Role Name": "Rollenname",
@@ -84,7 +103,7 @@
                         "Failed to fetch roles after closing create form": "Fehler beim Abrufen der Rollen nach dem Schließen des Erstellungsformulars",
 
                         
-                            "Organization": "Organisation",
+                            "Organizations": "Organisation",
                             "Search Organization": "Organisation suchen",
                             "Sort By": "Sortieren nach",
                             "Created Date": "Erstellungsdatum",
@@ -94,6 +113,8 @@
                             "Select Tenants": "Mieter auswählen",
                             "Select Categories": "Kategorien auswählen",
                             "Enter Latitude": "Breitengrad eingeben",
+                            "Latitude": "Breitengrad",
+                             "Longitude": "Längengrad",
                             "Enter Longitude": "Längengrad eingeben",
                             "Enter organizationName": "Organisationsnamen eingeben",
                             "Enter description": "Beschreibung eingeben",
@@ -253,7 +274,8 @@
                                                                             "Role Name": "Rollenname",
                                                                             "Create New Permission": "Neue Berechtigung erstellen",
                                                                             "Sample": "Beispiel",
-                                                                              "Local Change": "Lokale Änderung"
+                                                                              "Local Change": "Lokale Änderung",
+                                                                               "Is Primary Fuel": "ist der Hauptbrennstoff"
                                                                           
                                                                           
                                                                       

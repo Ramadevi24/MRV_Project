@@ -50,10 +50,10 @@ const TenantFormPage = () => {
 
   return (
     <div className="container mt-5">
-      <h2>{tenantID ? t('editTenant') : t('createTenant')}</h2>
+      <h2>{tenantID ? t('editTenant') : t('Create Tenant')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">{t('tenantName')}</label>
+          <label className="form-label">{t('Tenant Name')}</label>
           <input
             type="text"
             className="form-control"
@@ -64,7 +64,7 @@ const TenantFormPage = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">{t('description')}</label>
+          <label className="form-label">{t('Description')}</label>
           <textarea
             className="form-control"
             name="description"
@@ -74,7 +74,7 @@ const TenantFormPage = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          {t('submit')}
+          {t('Submit')}
         </button>
       </form>
     </div>

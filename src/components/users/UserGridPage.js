@@ -74,23 +74,23 @@ const UserGridPage = () => {
         <input
           type="text"
           className="form-control w-25"
-          placeholder={t('search')}
+          placeholder={t('Search')}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
         <button className="btn btn-primary" onClick={() => navigate('/create-user')}>
-          {t('createUser')}
+          {t('Create User')}
         </button>
       </div>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th onClick={() => handleSort('firstName')}>{t('firstName')}</th>
-            <th onClick={() => handleSort('tenantName')}>{t('tenantName')}</th>
-            <th onClick={() => handleSort('email')}>{t('email')}</th>
-            <th onClick={() => handleSort('organizationName')}>{t('organizationName')}</th>
-            <th onClick={() => handleSort('roleName')}>{t('roleName')}</th>
-            <th>{t('actions')}</th>
+            <th onClick={() => handleSort('firstName')}>{t('First Name')}</th>
+            <th onClick={() => handleSort('tenantName')}>{t('Tenant Name')}</th>
+            <th onClick={() => handleSort('email')}>{t('Email')}</th>
+            <th onClick={() => handleSort('organizationName')}>{t('Organization Name')}</th>
+            <th onClick={() => handleSort('roleName')}>{t('Role Name')}</th>
+            <th>{t('Actions')}</th>
           </tr>
         </thead>
         <tbody>

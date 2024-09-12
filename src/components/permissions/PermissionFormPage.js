@@ -49,10 +49,10 @@ const PermissionFormPage = () => {
 
   return (
     <div className="container mt-5">
-      <h2>{permissionID ? t('editPermission') : t('createPermission')}</h2>
+      <h2>{permissionID ? t('editPermission') : t('create Permission')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>{t('permissionDisplayName')}</label>
+          <label>{t('Permission Display Name')}</label>
           <input
             type="text"
             className="form-control"
@@ -63,7 +63,7 @@ const PermissionFormPage = () => {
           />
         </div>
         <div className="form-group">
-          <label>{t('description')}</label>
+          <label>{t('Description')}</label>
           <textarea
             className="form-control"
             name="description"
@@ -73,7 +73,7 @@ const PermissionFormPage = () => {
           />
         </div>
         <div className="form-group">
-          <label>{t('permissionUniqueName')}</label>
+          <label>{t('Permission Unique Name')}</label>
           <input
             type="text"
             className="form-control"
@@ -84,7 +84,7 @@ const PermissionFormPage = () => {
           />
         </div>
         <div className="form-group">
-          <label>{t('permissionGroup')}</label>
+          <label>{t('Permission Group')}</label>
           <select
             className="form-control"
             name="permissionGroup"
@@ -92,14 +92,14 @@ const PermissionFormPage = () => {
             onChange={handleChange}
             required
           >
-            <option value="">{t('selectGroup')}</option>
+            <option value="">{t('Select Group')}</option>
             <option value="group1">{t('group1')}</option>
             <option value="group2">{t('group2')}</option>
             <option value="group3">{t('group3')}</option>
           </select>
         </div>
         <button type="submit" className="btn btn-primary mt-3">
-          {t('submit')}
+          {t('Submit')}
         </button>
       </form>
     </div>

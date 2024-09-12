@@ -199,7 +199,7 @@ const OrganizationForm = () => {
                 onChange={handleTenantChange}
                 isInvalid={!!formErrors.tenantID}
               >
-                <option value="">{t('Select Tenant')}</option>
+                <option value="">{t('Select Tenants')}</option>
                 {tenants.map((tenant) => (
                   <option key={tenant.tenantID} value={tenant.tenantID}>{tenant.name}</option>
                 ))}
@@ -248,8 +248,8 @@ const OrganizationForm = () => {
               />
               {formErrors.categoryIDs && <div className="invalid-feedback">{formErrors.categoryIDs}</div>}
             </Form.Group>
-            <Form.Group controlId="locations">
-              <Form.Label>{renderLabel(t('Locations'))}</Form.Label>
+            <Form.Group controlId="location">
+              <Form.Label>{renderLabel(t('Location'))}</Form.Label>
               <div className="form-row">
                 <div className="col">
                   <Form.Label>{t('Latitude')}</Form.Label>
@@ -277,7 +277,7 @@ const OrganizationForm = () => {
                     type="text"
                     value={formData.locations && formData.locations.$values && formData.locations.$values[0] ? formData.locations.$values[0]?.address : ''}
                     onChange={(e) => handleLocationChange(0, 'address', e.target.value)}
-                    placeholder={t('Enter Address')}
+                    placeholder={t('Enter address')}
                     isInvalid={!!formErrors.locations}
                   />
                 </div>
