@@ -71,7 +71,7 @@ const CreateTenantForm = ({ show, handleClose, currentTenant }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-          {t('  Close')}
+          {t('Close')}
           </Button>
           <Button variant="primary" type="submit" disabled={isSubmitting}>
             {isSubmitting ? t('Saving...') : t('Save Changes')}

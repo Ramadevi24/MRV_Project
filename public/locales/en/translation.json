@@ -8,10 +8,14 @@
         "Reports": "Reports",
         "Administration": "Administration",
         "Tenants": "Tenants",
-        "Organization": "Organization",
+        "Organizations": "Organization",
         "Roles": "Roles",
         "Users": "Users",
         "Permissions": "Permissions",
+        "Permission ID": "Permission ID",
+         "Permission Display Name": "Permission Display Name",
+           "previous": "Previous",
+    "next": "Next",
         "Settings": "Settings",
         "Environment Agency Admin": "Environment Agency Admin",
         "All Rights Reserved": "2024 All rights reserved",
@@ -25,6 +29,8 @@
             "Fuel Name": "Fuel Name",
             "Primary Fuel": "Primary Fuel",
             "Net Calorific Value (TJ/Gg)": "Net Calorific Value (TJ/Gg)",
+            "Net Calorific Value":"Net Calorific Value",
+            "Gross Calorific Value":"Gross Calorific Value",
             "Carbon Content NCV": "Carbon Content NCV",
             "Carbon Content GCV": "Carbon Content GCV",
             "Fuel Type": "Fuel Type",
@@ -73,6 +79,7 @@
                     
                         "Tenant": "Tenant",
                         "Search Tenant": "Search Tenant",
+                          "Search": "Search",
                         "Sort By": "Sort By",
                         "Created Date": "Created Date",
                         "Role Name": "Role Name",
@@ -85,7 +92,9 @@
                       
                         
                             "Organization": "Organization",
+                            "Add Organization": "Add Organization",  
                             "Search Organization": "Search Organization",
+                            "Category ID":"Category ID",
                             "Sort By": "Sort By",
                             "Created Date": "Created Date",
                             "Role Name": "Role Name",
@@ -94,11 +103,14 @@
                             "Select Tenants": "Select Tenants",
                             "Select Categories": "Select Categories",
                             "Enter Latitude": "Enter Latitude",
+                             "Latitude": "Latitude",
+                              "Longitude": "Longitude",
                             "Enter Longitude": "Enter Longitude",
                             "Enter organizationName": "Enter Organization Name",
                             "Enter description": "Enter Description",
                             "Enter establishedDate": "Enter Established Date",
                             "Enter contactEmail": "Enter Contact Email",
+                            "Contact Email":"Contact Email",
                             "Enter contactPhone": "Enter Contact Phone",
                             "Enter address": "Enter Address",
                             "Save": "Save",
@@ -190,6 +202,7 @@
                                                     
                                                         "Users": "Users",
                                                         "Search User": "Search User",
+                                                        "User Role": "User Role",
                                                         "Sort By": "Sort By",
                                                         "Created Date": "Created Date",
                                                         "Role Name": "Role Name",
@@ -251,7 +264,16 @@
                                                                         "Role Name": "Role Name",
                                                                         "Create New Permission": "Create New Permission",
                                                                          "Sample": "Sample",
-                                                                          "Local Change": "Local Change"
+                                                                          "Local Change": "Local Change",
+                                                                           "Is Primary Fuel": "is primary fuel",
+                                                                           "Permission Unique Name": "Permission Unique Name",
+                                                                           "Permission Group": "Permission Group",
+                                                                           "Select Group": "Select Group",
+                                                                           "group1": "Group 1",
+                                                                           "group2": "Group 2",
+                                                                           "group3": "Group 3"
+
+                                                                           
                                                                       
                                                                       
                                                                   

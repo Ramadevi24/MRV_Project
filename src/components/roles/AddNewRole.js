@@ -101,22 +101,22 @@ const AddNewRole = () => {
         <div className='right-body'>
             <div className='right-body-ctnt'>
                 <div>
-                    <div className='addnewrole'>{selectedRole ? 'Edit Role' : 'Add New Role'}</div>
-                    <div className='role'>Roles / {selectedRole ? 'Edit Role' : 'Add New Role'}</div>
+                    <div className='addnewrole'>{selectedRole ? 'Edit Role' : t('Add New Role')}</div>
+                    <div className='role'>{t('Roles')}/ {selectedRole ? 'Edit Role' : t('Add New Role')}</div>
                 </div>
                 <div>
-                    <button className='back'>Back</button>
+                    <button className='back'>{t('Back')}</button>
                 </div>
             </div>
             <div className='rightbody-content'>
                 <form onSubmit={handleSubmit}>
                     <div className='rolename'>
-                        <div>Role Name</div>
+                        <div>{t('Role Name')}</div>
                         <div>
                             <input
                                 type='text'
                                 className='addroleinput'
-                                placeholder='Role Name'
+                                placeholder={t('Role Name')}
                                 value={roleName}
                                 onChange={(e) => setRoleName(e.target.value)}
                                 required
@@ -124,12 +124,12 @@ const AddNewRole = () => {
                         </div>
                     </div>
                     <div className='rolename'>
-                        <div>Role Description</div>
+                        <div>{t('Role Description')}</div>
                         <div>
                             <input
                                 type='textarea'
                                 className='addroleinput'
-                                placeholder='Description'
+                                placeholder={t('Description')}
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 required
@@ -168,11 +168,11 @@ const AddNewRole = () => {
                     </div>
                     <div className='buttons col-6'>
                         <div>
-                            <button className='cancel-btn' disabled={isSubmitting}>CANCEL</button>
+                            <button className='cancel-btn' disabled={isSubmitting}>{t('CANCEL')}</button>
                         </div>
                         <div>
                             <button className='add-btn' type='submit' disabled={isSubmitting}>
-                                {isSubmitting ? 'Saving...' : 'Save'}
+                                {isSubmitting ? t('Saving...') : t('Save')}
                             </button>
                         </div>
                     </div>

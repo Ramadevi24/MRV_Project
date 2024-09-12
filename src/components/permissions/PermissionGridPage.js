@@ -73,32 +73,32 @@ const PermissionGridPage = () => {
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-between mb-3">
-        <h2>{t('permissions')}</h2>
+        <h2>{t('Permissions')}</h2>
         <button className="btn btn-primary" onClick={() => navigate('/create-permission')}>
-          {t('createPermission')}
+          {t('Create Permission')}
         </button>
       </div>
       <input
         type="text"
         className="form-control mb-3"
-        placeholder={t('search')}
+        placeholder={t('Search')}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th>{t('permissionID')}</th>
+            <th>{t('Permission ID')}</th>
             <th onClick={() => handleSort('permissionDisplayName')}>
-              {t('permissionDisplayName')} {sortConfig.key === 'permissionDisplayName' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
+              {t('Permission Display Name')} {sortConfig.key === 'permissionDisplayName' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
             </th>
             <th onClick={() => handleSort('description')}>
-              {t('description')} {sortConfig.key === 'description' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
+              {t('Description')} {sortConfig.key === 'description' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
             </th>
             <th onClick={() => handleSort('createdDate')}>
-              {t('createdDate')} {sortConfig.key === 'createdDate' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
+              {t('Created Date')} {sortConfig.key === 'createdDate' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
             </th>
-            <th>{t('actions')}</th>
+            <th>{t('Actions')}</th>
           </tr>
         </thead>
         <tbody>

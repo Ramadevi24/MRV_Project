@@ -226,16 +226,16 @@ const DataManagement = () => {
 
       <Modal show={showAddModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>{isEditMode ? "Edit Fuel" : "Add New Fuel"}</Modal.Title>
+          <Modal.Title>{isEditMode ? "Edit Fuel" : t("Add New Fuel")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleFormSubmit}>
             <Form.Group controlId="formFuelType">
-              <Form.Label>Fuel Type</Form.Label>
+              <Form.Label>{t('Fuel Type')}</Form.Label>
               <div className="d-flex">
                 <Form.Check
                   type="radio"
-                  label="Solid"
+                  label={t("Solid")}
                   name="fuelType"
                   value="Solid"
                   checked={formData.fuelType === "Solid"}
@@ -244,7 +244,7 @@ const DataManagement = () => {
                 />
                 <Form.Check
                   type="radio"
-                  label="Liquid"
+                  label={t("Liquid")}
                   name="fuelType"
                   value="Liquid"
                   checked={formData.fuelType === "Liquid"}
@@ -266,7 +266,7 @@ const DataManagement = () => {
               <div className="d-flex">
                 <Form.Check
                   type="radio"
-                  label="Yes"
+                  label={t("Yes")}
                   name="isPrimaryFuel"
                   value="Yes"
                   checked={formData.isPrimaryFuel === "Yes"}
@@ -275,7 +275,7 @@ const DataManagement = () => {
                 />
                 <Form.Check
                   type="radio"
-                  label="No"
+                  label={t("No")}
                   name="isPrimaryFuel"
                   value="No"
                   checked={formData.isPrimaryFuel === "No"}
@@ -324,7 +324,7 @@ const DataManagement = () => {
               <div className="d-flex">
                 <Form.Check
                   type="radio"
-                  label="NCV"
+                  label={t("NCV")}
                   name="conversionFactorType"
                   value="NCV"
                   checked={formData.conversionFactorType === "NCV"}
@@ -333,7 +333,7 @@ const DataManagement = () => {
                 />
                 <Form.Check
                   type="radio"
-                  label="GCV"
+                  label={t("GCV")}
                   name="conversionFactorType"
                   value="GCV"
                   checked={formData.conversionFactorType === "GCV"}

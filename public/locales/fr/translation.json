@@ -11,7 +11,20 @@
         "Organization": "Organisation",
         "Roles": "Rôles",
         "Users": "Utilisateurs",
+        "User Role": "Rôle de l'utilisateur",
         "Permissions": "Autorisations",
+        "Permission ID":"ID de permission",
+          "Permission Display Name": "Nom d'affichage de l'autorisation",
+            "previous": "Précédent",
+    "next": "Suivant",
+
+    "Permission Unique Name": "Nom Unique de Permission",
+    "Permission Group": "Groupe de Permission",
+    "Select Group": "Sélectionner un groupe",
+    "group1": "Groupe 1",
+    "group2": "Groupe 2",
+    "group3": "Groupe 3",
+
         "Settings": "Paramètres",
         "Environment Agency Admin": "Administration de l'Agence de l'Environnement",
         "All Rights Reserved": "Tous droits réservés",
@@ -25,6 +38,8 @@
         "Fuel Name": "Nom du carburant",
         "Primary Fuel": "Carburant principal",
         "Net Calorific Value (TJ/Gg)": "Valeur calorifique nette (TJ/Gg)",
+         "Net Calorific Value":"Valeur Calorifique Nette",
+         "Gross Calorific Value":"Valeur Calorifique Brute",
         "Carbon Content NCV": "Contenu en carbone NCV",
         "Carbon Content GCV": "Contenu en carbone GCV",
         "Fuel Type": "Type de carburant",
@@ -86,9 +101,13 @@
                     "Failed to fetch roles after closing create form": "Échec de la récupération des rôles après la fermeture du formulaire de création",
 
                     
-                        "Organization": "Organisation",
+                        "Organizations": "Organisation",
                         "Search Organization": "Rechercher une organisation",
+                        "Add Organization":"Ajouter une organisation",
+                        "Category ID":"ID de catégorie",    
+                        "Search": "Recherche",
                         "Sort By": "Trier par",
+                        "Contact Email":"Email de contact",
                         "Created Date": "Date de création",
                         "Role Name": "Nom du rôle",
                         "Create Organization": "Créer une organisation",
@@ -96,6 +115,8 @@
                         "Select Tenants": "Sélectionner des locataires",
                         "Select Categories": "Sélectionner des catégories",
                         "Enter Latitude": "Entrez la latitude",
+                        "Latitude": "Latitude",
+                        "Longitude": "Longitude",
                         "Enter Longitude": "Entrez la longitude",
                         "Enter organizationName": "Entrez le nom de l'organisation",
                         "Enter description": "Entrez la description",
@@ -256,8 +277,8 @@
                                                                     "Role Name": "Nom du rôle",
                                                                     "Create New Permission": "Créer une nouvelle autorisation",
                                                                     "Sample": "Exemple",
-                                                                    
-                                                                        "Local Change": "Changement local"
+                                                                        "Local Change": "Changement local",
+                                                                        "Is Primary Fuel": "est le carburant principal"
                                                                         
                                                                       
                                                                       

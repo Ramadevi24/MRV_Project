@@ -65,8 +65,10 @@ import '../../css/TableGrid.css';
 import eyeicon from '../../images/eyeicon.png';
 import editicon from '../../images/editicon.png';
 import deleteicon from '../../images/deleteicon.png';
+import { useTranslation } from "react-i18next";
  
 const RolesGrid = ({handleSelectRoleForEdit}) => {
+  const {t}=useTranslation();
   const { roles, fetchRoles, deleteRole } = useRoles();
 
   useEffect(() => {
@@ -82,7 +84,7 @@ const RolesGrid = ({handleSelectRoleForEdit}) => {
   const handleDelete = async (id) => {
     try {
       await deleteRole(id);
-      toast.success('Role deleted successfully.');
+      toast.success(t('Role deleted successfully.'));
     } catch (error) {
       console.error(`Error deleting role with ID ${id}:`, error.message, error.stack);
       toast.error(`Error deleting role with ID ${id}.`);
@@ -94,10 +96,10 @@ const RolesGrid = ({handleSelectRoleForEdit}) => {
 <thead className='tabel-head'>
 <tr>
 <th><input className='check-box' type="checkbox" /></th>
-<th>Role Name</th>
-<th>Description</th>
-<th>Created Date</th>
-<th>Actions</th>
+<th>{t('Role Name')}</th>
+<th>{t('Description')}</th>
+<th>{t('Created Date')}</th>
+<th>{t('Actions')}</th>
 </tr>
 </thead>
 <tbody>

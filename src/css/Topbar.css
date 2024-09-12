@@ -48,4 +48,22 @@
 
    margin-right: 15px;
 }
+.local-dropdown{
+    
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        font-size: 14px;
+        color: #333;
+        outline: none;
+        transition: border-color 0.3s ease-in-out;
+     
+}
+.local-dropdown-label{
+  margin-right: 6px;
+  font-family: "Roboto", system-ui;
+  font-weight: 400;
+  font-size: 16px;
+}
     

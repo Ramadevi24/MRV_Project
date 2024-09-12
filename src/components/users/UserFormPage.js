@@ -79,7 +79,7 @@ const UserFormPage = () => {
     <div className="container mt-5">
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">{t('firstName')}</label>
+          <label className="form-label">{t('First Name')}</label>
           <input
             type="text"
             className="form-control"
@@ -90,7 +90,7 @@ const UserFormPage = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">{t('lastName')}</label>
+          <label className="form-label">{t('Last Name')}</label>
           <input
             type="text"
             className="form-control"
@@ -101,7 +101,7 @@ const UserFormPage = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">{t('email')}</label>
+          <label className="form-label">{t('Email')}</label>
           <input
             type="email"
             className="form-control"
@@ -112,7 +112,7 @@ const UserFormPage = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">{t('password')}</label>
+          <label className="form-label">{t('Password')}</label>
           <input
             type="password"
             className="form-control"
@@ -123,7 +123,7 @@ const UserFormPage = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">{t('phone')}</label>
+          <label className="form-label">{t('Phone')}</label>
           <input
             type="number"
             className="form-control"
@@ -134,7 +134,7 @@ const UserFormPage = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">{t('tenant')}</label>
+          <label className="form-label">{t('Tenant')}</label>
           <select
             className="form-control"
             name="tenantID"
@@ -150,7 +150,7 @@ const UserFormPage = () => {
           </select>
         </div>
         <div className="mb-3">
-          <label className="form-label">{t('organization')}</label>
+          <label className="form-label">{t('Organization')}</label>
           <select
             className="form-control"
             name="organizationID"
@@ -166,7 +166,7 @@ const UserFormPage = () => {
           </select>
         </div>
         <div className="mb-3">
-          <label className="form-label">{t('role')}</label>
+          <label className="form-label">{t('Role')}</label>
           <select
             className="form-control"
             name="tenantRoleID"
@@ -182,7 +182,7 @@ const UserFormPage = () => {
           </select>
         </div>
         <div className="mb-3">
-          <label className="form-label">{t('userRole')}</label>
+          <label className="form-label">{t('User Role')}</label>
           <select
             className="form-control"
             name="userRole"
@@ -190,12 +190,12 @@ const UserFormPage = () => {
             onChange={handleChange}
             required
           >
-            <option value="admin">{t('admin')}</option>
+            <option value="admin">{t('Admin')}</option>
             <option value="user">{t('user')}</option>
           </select>
         </div>
         <button type="submit" className="btn btn-primary">
-          {id ? t('updateUser') : t('createUser')}
+          {id ? t('updateUser') : t('Create User')}
         </button>
       </form>
     </div>

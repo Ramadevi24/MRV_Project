@@ -145,9 +145,11 @@ hr{
     background-color:   rgba(0, 138, 95, 1); 
     color:white ;
     border-radius: 6px;
-    height: 50px;
-    padding: 10px;
+    /* height: 50px; */
+    padding: 5px;
 }
+
+
 
 
 
@@ -176,8 +178,9 @@ hr{
     background-color: rgba(0, 138, 95, 1);
     color:white;
     border-radius: 6px;
-    padding: 5px;
-    width:200px;
+  
+    /* padding: 5px; */
+    /* width:200px; */
     
 }
 .administration-menu{
@@ -191,8 +194,8 @@ hr{
     background-color: rgba(0, 138, 95, 1);
     color: white;
     border-radius: 6px;
-    padding: 10px;
-    height: 50px;
+    padding: 5px;
+    /* height: 50px; */
    
   }
   .sidemenu-items .sidenav-menuitem.active-menu .menu-link {
@@ -204,7 +207,7 @@ hr{
     background-color: rgba(0, 138, 95, 1);
     color:white;
     border-radius: 6px;
-    padding: 5px;
+    /* padding: 5px; */
     width:200px;
   }
   .font-icon{
@@ -222,6 +225,7 @@ hr{
     padding: 6px;
    
 }
+
 
 
    

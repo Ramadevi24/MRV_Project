@@ -74,31 +74,31 @@ const TenantGridPage = () => {
         <input
           type="text"
           className="form-control w-25"
-          placeholder={t('search')}
+          placeholder={t('Search')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button className="btn btn-primary" onClick={() => navigate('/create-tenant')}>
-          {t('createTenant')}
+          {t('Create Tenant')}
         </button>
       </div>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th onClick={() => handleSort('tenantID')}>{t('tenantID')}</th>
+            <th onClick={() => handleSort('tenantID')}>{t('Tenant ID')}</th>
             <th onClick={() => handleSort('tenantName')}>
-              {t('tenantName')}
+              {t('Tenant Name')}
               {sortConfig.key === 'tenantName' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
             </th>
             <th onClick={() => handleSort('description')}>
-              {t('description')}
+              {t('Description')}
               {sortConfig.key === 'description' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
             </th>
             <th onClick={() => handleSort('createdDate')}>
-              {t('createdDate')}
+              {t('Created Date')}
               {sortConfig.key === 'createdDate' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
             </th>
-            <th>{t('actions')}</th>
+            <th>{t('Actions')}</th>
           </tr>
         </thead>
         <tbody>
