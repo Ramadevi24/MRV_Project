@@ -80,14 +80,14 @@ const OrganizationGrid = () => {
       <div className="row mb-3">
         <div className="col">
           <button className="btn btn-primary" onClick={() => window.location.href = '/create-organization'}>
-            {t('createOrganization')}
+            {t('Create Organization')}
           </button>
         </div>
         <div className="col">
           <input
             type="text"
             className="form-control"
-            placeholder={t('search')}
+            placeholder={t('Search')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -108,24 +108,24 @@ const OrganizationGrid = () => {
         <table className="table table-striped table-hover custom-table">
           <thead>
             <tr>
-              <th>{t('organizationId')}</th>
+              <th>{t('Organization ID')}</th>
               <th onClick={() => handleSort('name')}>
-                {t('organizationName')}
+                {t('Organization Name')}
                 {sortConfig.key === 'name' && (sortConfig.direction === 'asc' ? <FaSortUp /> : <FaSortDown />)}
               </th>
               <th onClick={() => handleSort('tenantName')}>
-                {t('tenantName')}
+                {t('Tenant Name')}
                 {sortConfig.key === 'tenantName' && (sortConfig.direction === 'asc' ? <FaSortUp /> : <FaSortDown />)}
               </th>
               <th onClick={() => handleSort('establishedDate')}>
-                {t('establishedDate')}
+                {t('Established Date')}
                 {sortConfig.key === 'establishedDate' && (sortConfig.direction === 'asc' ? <FaSortUp /> : <FaSortDown />)}
               </th>
               <th onClick={() => handleSort('categories')}>
-                {t('categories')}
+                {t('Categories')}
                 {sortConfig.key === 'categories' && (sortConfig.direction === 'asc' ? <FaSortUp /> : <FaSortDown />)}
               </th>
-              <th>{t('actions')}</th>
+              <th>{t('Actions')}</th>
             </tr>
           </thead>
           <tbody>

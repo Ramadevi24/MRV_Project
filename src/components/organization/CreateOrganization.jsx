@@ -69,11 +69,11 @@ const CreateOrganization = () => {
 
   return (
     <div className="container">
-      <h2>{t('createOrganization')}</h2>
+      <h2>{t('Create Organization')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
-            <label>{t('tenantId')}</label>
+            <label>{t('Tenant ID')}</label>
             <Select
               options={tenants.map(tenant => ({ value: tenant.id, label: tenant.name }))}
               onChange={(selectedOption) => handleSelectChange(selectedOption.value, 'tenantId')}
@@ -81,7 +81,7 @@ const CreateOrganization = () => {
             />
           </div>
           <div className="col">
-            <label>{t('organizationName')}</label>
+            <label>{t('Organization Name')}</label>
             <input
               type="text"
               className="form-control"
@@ -93,7 +93,7 @@ const CreateOrganization = () => {
           </div>
         </div>
         <div className="mb-3">
-          <label>{t('description')}</label>
+          <label>{t('Description')}</label>
           <textarea
             className="form-control"
             name="description"
@@ -104,7 +104,7 @@ const CreateOrganization = () => {
         </div>
         <div className="row mb-3">
           <div className="col">
-            <label>{t('establishedDate')}</label>
+            <label>{t('Established Date')}</label>
             <input
               type="date"
               className="form-control"
@@ -115,7 +115,7 @@ const CreateOrganization = () => {
             />
           </div>
           <div className="col">
-            <label>{t('contactEmail')}</label>
+            <label>{t('Contact Email')}</label>
             <input
               type="email"
               className="form-control"
@@ -128,7 +128,7 @@ const CreateOrganization = () => {
         </div>
         <div className="row mb-3">
           <div className="col">
-            <label>{t('contactPhone')}</label>
+            <label>{t('Contact Phone')}</label>
             <input
               type="number"
               className="form-control"
@@ -139,7 +139,7 @@ const CreateOrganization = () => {
             />
           </div>
           <div className="col">
-            <label>{t('address')}</label>
+            <label>{t('Address')}</label>
             <input
               type="text"
               className="form-control"
@@ -161,7 +161,7 @@ const CreateOrganization = () => {
         </div>
         <div className="row mb-3">
           <div className="col">
-            <label>{t('latitude')}</label>
+            <label>{t('Latitude')}</label>
             <input
               type="text"
               className="form-control"
@@ -172,7 +172,7 @@ const CreateOrganization = () => {
             />
           </div>
           <div className="col">
-            <label>{t('longitude')}</label>
+            <label>{t('Longitude')}</label>
             <input
               type="text"
               className="form-control"
@@ -183,7 +183,7 @@ const CreateOrganization = () => {
             />
           </div>
           <div className="col">
-            <label>{t('locationAddress')}</label>
+            <label>{t('Location Address')}</label>
             <input
               type="text"
               className="form-control"
@@ -194,7 +194,7 @@ const CreateOrganization = () => {
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">{t('submit')}</button>
+        <button type="submit" className="btn btn-primary">{t('Submit')}</button>
       </form>
     </div>
   );

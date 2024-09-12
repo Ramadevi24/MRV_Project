@@ -9,6 +9,7 @@
         "Administration": "Administration",
         "Tenants": "Locataires",
         "Organization": "Organisation",
+         "Organization ID": "ID de l'organisation",
         "Roles": "Rôles",
         "Users": "Utilisateurs",
         "User Role": "Rôle de l'utilisateur",

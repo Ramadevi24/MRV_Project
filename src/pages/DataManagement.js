@@ -342,7 +342,7 @@ const DataManagement = () => {
               </div>
             </Form.Group>
             <Button variant="primary" type="submit">
-              {isEditMode ? "Update" : "Submit"}
+              {isEditMode ? "Update" : t("Submit")}
             </Button>
           </Form>
         </Modal.Body>
