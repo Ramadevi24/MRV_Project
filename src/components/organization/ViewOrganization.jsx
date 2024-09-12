@@ -39,7 +39,7 @@ const ViewOrganization = () => {
         <tbody>
           <tr>
             <th>{t('organizationName')}</th>
-            <td>{organization.name}</td>
+            <td>{organization.organizationName}</td>
           </tr>
           <tr>
             <th>{t('description')}</th>
@@ -67,15 +67,15 @@ const ViewOrganization = () => {
           </tr>
           <tr>
             <th>{t('latitude')}</th>
-            <td>{organization.latitude}</td>
+            <td>{organization.locations.$values[0].latitude}</td>
           </tr>
           <tr>
             <th>{t('longitude')}</th>
-            <td>{organization.longitude}</td>
+            <td>{organization.locations.$values[0].longitude}</td>
           </tr>
           <tr>
-            <th>{t('locationAddress')}</th>
-            <td>{organization.locationAddress}</td>
+            <th>{t('address')}</th>
+            <td>{organization.locations.$values[0].address}</td>
           </tr>
         </tbody>
       </table>
