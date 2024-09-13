@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
-import '../../css/CreateForm.css';
+import '../../css/ViewForm.css';
 
 const ViewOrganization = () => {
   const { t } = useTranslation();

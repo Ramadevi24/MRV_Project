@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import '../../css/CreateForm.css';
+import '../../css/EditForm.css';
 import { useParams } from 'react-router-dom';
 
 const EditOrganization = () => {

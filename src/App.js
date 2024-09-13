@@ -34,6 +34,14 @@ import UserGrid from "./components/users/UserGrid.js";
 import UserForm from "./components/users/UserForm.js";
 import EditUser from "./components/users/EditUser.js";
 import ViewUser from "./components/users/ViewUser.js";
+import TenantsGrid from "./components/tenants/TenantsGrid.js";
+import TenantForm from "./components/tenants/TenantForm.js";
+import ViewTenant from "./components/tenants/ViewTenant.js";
+import EditTenant from "./components/tenants/EditTenant.js";
+import PermissionGrid from "./components/permissions/PermissionGrid.js";
+import CreatePermission from "./components/permissions/CreatePermission.js";
+import ViewPermission from "./components/permissions/ViewPermission.js";
+import EditPermission from "./components/permissions/EditPermission.js";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -83,8 +91,8 @@ const App = () => {
                 <Route path="/roles" element={<RolesPage />} />
                 <Route path="/user" element={<Users />} />
                 <Route path="/organizatio" element={<CompanyProfile />} />
-                <Route path="/tenants" element={<TenantPage />} />
-                <Route path="/permissions" element={<PermissionsPage />} />
+                <Route path="/tenant" element={<TenantPage />} />
+                <Route path="/permission" element={<PermissionsPage />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/addnewrole" element={<AddNewRole />} />
                 <Route path="/sample" element={<Sample />} />
@@ -96,30 +104,30 @@ const App = () => {
                 <Route path="/edit-user/:id" element={<UserFormPage />} />
                 <Route path="/view-user/:id" element={<UserDetailPage />} /> */}
                 <Route path="/tenantsData" element={<TenantGridPage />} />
-                <Route path="/create-tenant" element={<TenantFormPage />} />
-                <Route
+                {/* <Route path="/create-tenant" element={<TenantFormPage />} /> */}
+                {/* <Route
                   path="/edit-tenant/:tenantID"
                   element={<TenantFormPage />}
                 />
                 <Route
                   path="/view-tenant/:tenantID"
                   element={<TenantDetailPage />}
-                />
+                /> */}
                 <Route
-                  path="/permissionsData"
-                  element={<PermissionGridPage />}
+                  path="/permissions"
+                  element={<PermissionGrid />}
                 />
                 <Route
                   path="/create-permission"
-                  element={<PermissionFormPage />}
+                  element={<CreatePermission />}
                 />
                 <Route
                   path="/edit-permission/:permissionID"
-                  element={<PermissionFormPage />}
+                  element={<EditPermission />}
                 />
                 <Route
                   path="/view-permission/:permissionID"
-                  element={<PermissionDetailPage />}
+                  element={<ViewPermission />}
                 />
           <Route path="/organizations"  element={<OrganizationGridPage />} />
          <Route path="/create-organization"  element={<OrganizationSubmissionPage/>} />
@@ -129,7 +137,16 @@ const App = () => {
         <Route path="/create-user"  element={<UserForm/>} />
         <Route path="/edit-user/:id" element={<EditUser/>} />
         <Route path="/view-user/:id" element={<ViewUser />} />
-
+        <Route path="/tenants" element={<TenantsGrid />} />
+        <Route path="/create-tenant" element={<TenantForm/>} />
+        <Route
+                  path="/edit-tenant/:id"
+                  element={<EditTenant />}
+                />
+                 <Route
+                  path="/view-tenant/:id"
+                  element={<ViewTenant />}
+                />
               </Routes>
             </Suspense>
           {/* </Localcontext.Provider> */}
