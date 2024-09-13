@@ -21,7 +21,7 @@ const PermissionGridPage = () => {
 
   const fetchPermissions = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/Permissions');
+      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Permissions');
       setPermissions(response.data.$values);
     } catch (error) {
         toast.error(t('error.fetchPermissions'), 'error');
@@ -61,7 +61,7 @@ const PermissionGridPage = () => {
   const handleDelete = async (id) => {
     if (window.confirm(t('confirm.deletePermission'))) {
       try {
-        await axios.delete(`http://localhost:5000/api/Permissions/${id}`);
+        await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/Permissions/${id}`);
         toast.success(t('success.deletePermission'), 'success');
         fetchPermissions();
       } catch (error) {

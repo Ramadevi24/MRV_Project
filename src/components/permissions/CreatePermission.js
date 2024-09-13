@@ -51,7 +51,7 @@ const CreatePermission = () => {
     if (!validateForm()) return;
 
     try {
-      await axios.post('/api/permissions', formData, {
+      await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Permissions', formData, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       toast.success(t('permissionCreated'));

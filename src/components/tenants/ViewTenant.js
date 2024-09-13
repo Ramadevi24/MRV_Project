@@ -17,7 +17,7 @@ const ViewTenant = () => {
 
   const fetchTenant = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/Tenant/${id}`, {
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setTenant(response.data.$values);

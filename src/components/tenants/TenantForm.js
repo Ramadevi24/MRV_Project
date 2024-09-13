@@ -25,7 +25,7 @@ const TenantForm = () => {
     if (!validateForm()) return;
 
     try {
-      await axios.post('http://localhost:5000/api/Tenant', { name, description }, {
+      await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', { name, description }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       toast.success(t('Tenant created successfully'));

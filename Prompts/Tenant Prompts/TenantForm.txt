@@ -1,0 +1,126 @@
+1. **Tenant Submission Page (Create Tenant)**:
+    - When clicking the "Create Tenant" button, navigate to a page with a form displaying one fields in a row with the following fields:
+       
+        - Tenant Name (Text Input, required)
+        - Description (Text Area, required)
+       - On submission, make an API call to create a new Tenant using `axios`.
+       - Display a **green background with white text** success message or **red background with white text** error message using `react-toastify`.
+	   - ** Form Validation:
+          -All fields are required.
+         - Append a red asterisk (*) to required field labels (instead of showing “This field is required”).
+		 
+		- Add these styles and class Names for form 
+		 .container {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #333;
+}
+
+form {
+  margin-top: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
+}
+
+input, .form-control, textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+input:focus, .form-control:focus, textarea:focus {
+  border-color: rgba(0, 138, 95, 1);
+  box-shadow: 0 0 5px rgba(0, 138, 95, 0.5);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.mb-3 {
+  margin-bottom: 15px;
+}
+
+.btn {
+  display: block;
+  /* width: 100%; */
+  padding: 10px;
+  background-color: rgba(0, 138, 95, 1) !important;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: rgb(19, 131, 96) !important;
+}
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+
+	
+	2. UI Layout**:
+    - Enhance the form UI with CSS for better readability, spacing, and visual hierarchy.
+    - Style the **Create Tenant** button to make it prominent.
+    - Add appropriate spacing between UI elements for better form structure.
+	 - Import `bootstrap.min.css` in the `index.js` or `app.js` file for global styling, not in individual components.
+	
+	3. **API Integration**:
+    - Use `axios` for making API calls to create Tenants.
+	- add Authorization to api calls for components and State Management(jwt tokens)
+	 - Add **Authorization** headers (e.g., JWT tokens) for secured API calls.
+    - Implement state management for JWT tokens (e.g., using `React Context` or `Redux`) and ensure tokens are sent with each API call.
+	
+	4.**Error Handling**:
+    - Handle API errors gracefully by showing user-friendly error messages at the top of the form or page.
+    - Display validation error messages below the relevant form fields using `react-i18next` for localization.
+    - Use `react-toast` to notify users of success or failure on each form submission or delete action.
+	
+	5. **Localization**:
+    - Implement localization using `react-i18next`.
+    - Translate all form labels, button texts, validation messages, and error messages dynamically based on the selected language (English, Arabic, French, German).
+    - Ensure that switching between languages updates the form pages, and error messages in real-time.
+    - Include language selector options in the UI to switch between supported languages with json files(English, Arabic, French, German).
+	  - Import `i18n` configuration in the `index.js` or `app.js` file for global usage, not in individual components.
+	
+6. **Code Comments**:
+    - Include comments throughout the code explaining major sections 
+	
+	7. **Notification**:
+    - Use `react-toastify` to display notifications (success/failure) after form submission.
+    - Ensure success notifications have a **green background with white text** and error notifications have a **red background with white text** for clear feedback.
+	    - Import `react-toastify` in the `index.js` or `app.js` file for global usage, not in individual components.
+	8. **Unit Testing**:
+    - Add unit tests for the key functionalities:
+	  - API calls (mocking success and failure scenarios).
+        - Search functionality (testing case-insensitivity).
+        - Pagination and sorting (validating correct sorting and page transitions).
+        - Success and error message display on form submission.

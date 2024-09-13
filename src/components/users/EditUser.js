@@ -3,9 +3,11 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const EditUser = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { userId } = useParams();
   const [formData, setFormData] = useState({
     firstName: '',
@@ -32,7 +34,7 @@ const EditUser = () => {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get(`/api/users/${userId}`, {
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/User/${userId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setFormData(response.data);
@@ -43,18 +45,18 @@ const EditUser = () => {
 
   const fetchDropdownOptions = async () => {
     try {
-      const [tenants, organizations, tenantRoles, userRoles] = await Promise.all([
-        axios.get('/api/tenants', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('/api/organizations', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('/api/tenantRoles', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('/api/userRoles', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-      ]);
-      setDropdownOptions({
-        tenants: tenants.data,
-        organizations: organizations.data,
-        tenantRoles: tenantRoles.data,
-        userRoles: userRoles.data
-      });
+        const [tenants, organizations, tenantRoles, userRoles] = await Promise.all([
+          axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+          axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Organization', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+          axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/TenantRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+          axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/TenantUserRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+        ]);
+        setDropdownOptions({
+          tenants: tenants.data.$values,
+          organizations: organizations.data.$values,
+          tenantRoles: tenantRoles.data.$values,
+          userRoles: userRoles.data.$values
+        });
     } catch (error) {
       toast.error(t('Error fetching dropdown options'));
     }
@@ -67,10 +69,11 @@ const EditUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/users/${userId}`, formData, {
+      await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/User/${userId}`, formData, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       toast.success(t('User updated successfully'));
+      navigate('/users');
     } catch (error) {
       toast.error(t('Error updating user'));
     }

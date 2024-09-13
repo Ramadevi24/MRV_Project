@@ -34,7 +34,7 @@ const EditOrganization = () => {
 
   const fetchOrganization = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/Organization/${id}`, {
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Organization/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -49,7 +49,7 @@ const EditOrganization = () => {
 
   const fetchTenants = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/Tenant', {
+      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -62,7 +62,7 @@ const EditOrganization = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/Categories/level1and2', {
+      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Categories/level1and2', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -94,7 +94,7 @@ const EditOrganization = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/Organization/${id}`, formData, {
+      await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/Organization/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

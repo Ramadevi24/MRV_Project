@@ -21,7 +21,7 @@ const TenantGridPage = () => {
 
   const fetchTenants = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/Tenant');
+      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant');
       setTenants(response.data.$values);
     } catch (error) {
       toast.error(t('error.fetchTenants'));
@@ -30,7 +30,7 @@ const TenantGridPage = () => {
 
   const handleDelete = async (tenantID) => { // Add this function
     try {
-      await axios.delete(`http://localhost:5000/api/Tenant/${tenantID}`);
+      await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${tenantID}`);
       setTenants(tenants.filter(tenant => tenant.id !== tenantID));
       toast.success(t('success.deleteUser'), 'success');
     } catch (error) {

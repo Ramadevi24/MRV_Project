@@ -32,15 +32,11 @@ const UserForm = () => {
   const fetchDropdownOptions = async () => {
     try {
       const [tenants, organizations, tenantRoles, userRoles] = await Promise.all([
-        axios.get('http://localhost:5000/api/Tenant', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('http://localhost:5000/api/Organization', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('http://localhost:5000/api/TenantRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('http://localhost:5000/api/TenantUserRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+        axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+        axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Organization', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+        axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/TenantRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+        axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/TenantUserRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
       ]);
-      console.log(tenants.data.$values);
-      console.log(organizations.data.$values);
-      console.log(tenantRoles.data.$values);
-      console.log(userRoles.data.$values);
       setDropdownOptions({
         tenants: tenants.data.$values,
         organizations: organizations.data.$values,
@@ -62,7 +58,7 @@ const UserForm = () => {
         loginType:'custom'
      };
     try {
-      await axios.post('http://localhost:5000/api/User', createFormData, {
+      await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/User', createFormData, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       toast.success(t('User created successfully'));

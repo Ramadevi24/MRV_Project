@@ -32,7 +32,7 @@ const Loginpage = () => {
       }
       const encryptedPassword = CryptoJS.SHA256(password).toString();
       try {
-        const response = await fetch('http://localhost:5000/login', {
+        const response = await fetch('https://atlas.smartgeoapps.com/MRVAPI/api/Authentication/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

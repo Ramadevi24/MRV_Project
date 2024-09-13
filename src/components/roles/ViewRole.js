@@ -18,7 +18,7 @@ const ViewRole = () => {
 
   const fetchRole = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/Role/${id}`, {
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Role/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setRole(response.data);

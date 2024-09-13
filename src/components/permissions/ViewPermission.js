@@ -16,7 +16,7 @@ const ViewPermission = () => {
 
   const fetchPermission = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/Permissions/${permissionID}`, {
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Permissions/${permissionID}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setPermission(response.data.$values);

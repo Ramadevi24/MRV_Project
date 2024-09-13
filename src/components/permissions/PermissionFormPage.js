@@ -20,7 +20,7 @@ const PermissionFormPage = () => {
 
   const fetchPermission = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/Permissions/${permissionID}`);
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Permissions/${permissionID}`);
       setFormData(response.data);
     } catch (error) {
         toast.error(t('error.fetchPermission'), 'error');
@@ -35,10 +35,10 @@ const PermissionFormPage = () => {
     e.preventDefault();
     try {
       if (permissionID) {
-        await axios.put(`http://localhost:5000/api/Permissions/${permissionID}`, formData);
+        await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/Permissions/${permissionID}`, formData);
         toast.success(t('success.updatePermission'), 'success');
       } else {
-        await axios.post('http://localhost:5000/api/Permissions', formData);
+        await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Permissions', formData);
         toast.success(t('success.createPermission'), 'success');
       }
       navigate('/');

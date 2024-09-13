@@ -25,7 +25,7 @@ const RoleGrid = () => {
 
   const fetchRoles = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/Role', {
+      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Role', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setRoles(response.data.$values);
@@ -64,11 +64,12 @@ const RoleGrid = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/Role/${roleToDelete.id}`, {
+      await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/Role/${roleToDelete.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setRoles(roles.filter((role) => role.id !== roleToDelete.id));
-      toast.success(t('roleDeleted'));
+      toast.success(t('Role deleted successfully'));
+      await fetchRoles();
       setShowDeleteModal(false);
     } catch (error) {
       toast.error(t('errorDeletingRole'));

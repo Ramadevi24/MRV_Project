@@ -31,7 +31,7 @@ const CompanyProfileGrid = ({ onEdit }) => {
   const handleView = async (profile) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/Organization/${profile.organizationID}`
+        `https://atlas.smartgeoapps.com/MRVAPI/api/Organization/${profile.organizationID}`
       );
       const organizationData = response.data;
       setSelectedProfile(organizationData); 
@@ -49,7 +49,7 @@ const CompanyProfileGrid = ({ onEdit }) => {
   const handleEdit = async (profile) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/Organization/${profile.organizationID}`
+        `https://atlas.smartgeoapps.com/MRVAPI/api/Organization/${profile.organizationID}`
       );
       const organizationData = response.data;
       onEdit(organizationData); // Pass the fetched data to the parent component

@@ -22,7 +22,7 @@ const TenantGrid = () => {
 
   const fetchTenants = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/Tenant', {
+      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setTenants(response.data.$values);
@@ -36,11 +36,12 @@ const TenantGrid = () => {
   const handleDelete = async (id) => {
     if (window.confirm(t('Are you sure you want to delete this tenant?'))) {
       try {
-        await axios.delete(`http://localhost:5000/api/Tenant/${id}`, {
+        await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${id}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
         setTenants(tenants.filter((tenant) => tenant.id !== id));
         toast.success(t('Tenant deleted successfully'));
+        await fetchTenants();
       } catch (error) {
         toast.error(t('Error deleting tenant'));
       }

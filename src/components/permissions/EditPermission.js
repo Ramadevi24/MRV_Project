@@ -25,7 +25,7 @@ const EditPermission = () => {
 
   const fetchPermission = async () => {
     try {
-      const response = await axios.get(`/api/permissions/${permissionID}`, {
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Permissions/${permissionID}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setFormData(response.data);
@@ -64,7 +64,7 @@ const EditPermission = () => {
     if (!validateForm()) return;
 
     try {
-      await axios.put(`/api/permissions/${permissionID}`, formData, {
+      await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/Permissions/${permissionID}`, formData, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       toast.success(t('permissionUpdated'));

@@ -16,7 +16,7 @@ const TenantDetailPage = () => {
 
   const fetchTenant = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/Tenant/${tenantID}`);
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${tenantID}`);
       setTenant(response.data.$values);
     } catch (error) {
       toast.error(t('error.fetchTenant'));

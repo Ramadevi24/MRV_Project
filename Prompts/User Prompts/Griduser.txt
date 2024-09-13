@@ -1,0 +1,129 @@
+Create a React component for an User management system with the following requirements:
+
+1. **User Grid Page**:
+    - Display a table of Users with the following columns:
+        - User ID
+        - firstName
+		-lastName
+		-email
+		-phone
+		-loginType
+        - Tenant Name
+		-organization Name
+        - userRole
+        - Action Buttons: **Edit**, **Delete**, and **View** represented by icons (use **React Icons**).
+    - Use the following icons from the **React Icons** library with distinct colors:
+        - **Edit**: Pencil icon (`FaPencilAlt`) in **blue**.
+        - **Delete**: Trash bin icon (`FaTrashAlt`) in **red**.
+        - **View**: Eye icon (`FaEye`) in **green**.
+    - **Sorting**: Allow sorting by column headers (firstName, lastName, Tenant Name,loginType, organization Name, userRole).
+        - Add clickable headers for each column, and allow ascending/descending sorting for each field.
+        - Indicate the sorted column with an arrow icon (`FaSortUp` and `FaSortDown` from **React Icons**).
+    - **Pagination**: Add pagination controls at the bottom right of the table with styles (client-side pagination).
+        - Include options for the number of records per page (e.g., 10, 20, 50) with styles at the bottom of the table.
+    - **Search Bar**: Add a search bar to the left above the table to filter the list of Users based on firstName, lastName, Tenant Name,loginType, organization Name, userRole.
+        - Apply case-insensitive search (convert input to lowercase for filtering).
+    - **Loading Spinner**: Display a spinner (color: your choice) while data is being fetched from the API.
+    - **Custom Table Styling**:
+        - Apply the following styles for the table:
+
+          ```css
+          .custom-table { 
+              width: 100%;
+              border-collapse: collapse !important;
+              font-family: "Roboto", system-ui;
+              border-radius: 10px;
+          }
+
+          .custom-table thead {
+              background-color: rgba(238, 246, 244, 1);
+          }
+
+          .custom-table th, .custom-table td {
+              padding: 10px;
+              text-align: left;
+              border-bottom: 1px solid #ddd;
+          }
+
+          .custom-table th {
+              font-family: "Roboto", system-ui;
+              color: rgba(0, 102, 164, 1);
+              font-weight: 500;
+              font-size: 16px;
+          }
+
+          .custom-table tbody tr:hover {
+              background-color: #f9f9f9;
+          }
+
+          .custom-table .action-icons {
+              display: flex;
+              gap: 10px;
+              padding: 20px;
+          }
+
+          .custom-table .view-btn, .custom-table .edit-btn, .custom-table .delete-btn {
+              border: none;
+              background: none;
+              cursor: pointer;
+              font-size: 16px;
+          }
+
+          .check-box {
+              width: 20px;
+              height: 20px;
+          }
+          ```
+
+    - **Create User Button**: Add a button labeled "Create User" above the table on the right. Style the **Create User** button to make it prominent. Clicking this button should navigate the user to the "Create User" form.
+
+2. **Delete User**:
+    - When clicking the **Delete** icon in the User grid, make an API call to delete the User.
+    - After successful deletion, remove the User from the table and display a **green background with white text** success message or **red background with white text** error message using `react-toastify`.
+    - Import `react-toastify` in the `index.js` or `app.js` file for global usage, not in individual components.
+
+3. **Table and UI Layout**:
+    - Use **Bootstrap 5** for a responsive table layout.
+    - Ensure the table is responsive and works well on mobile, tablet, and desktop views.
+    - Use Bootstrap classes like `container`, `row`, `col`, `table`, `table-striped`, `table-hover`, and `btn` for layout and styling.
+    - Enhance the UI with CSS for better readability, spacing, and visual hierarchy.
+    - Add appropriate spacing between UI elements for better structure.
+    - Import `bootstrap.min.css` in the `index.js` or `app.js` file for global styling, not in individual components.
+
+4. **Localization**:
+    - Implement localization using `react-i18next`.
+    - Translate all form labels, button texts, validation messages, and error messages dynamically based on the selected language (English, Arabic, French, German).
+    - Ensure that switching between languages updates the grid page and error messages in real-time.
+    - Include language selector options in the UI to switch between supported languages, using `.json` files for language data (English, Arabic, French, German).
+    - Import `i18n` configuration in the `index.js` or `app.js` file for global usage, not in individual components.
+
+5. **API Integration**:
+    - Use `axios` for making API calls to fetch Users.
+    - The list of Users for the grid page should be fetched from an API.
+    - Implement pagination and sorting logic for the API response.
+    - Add **Authorization** headers (e.g., JWT tokens) for secured API calls.
+    - Implement state management for JWT tokens (e.g., using `React Context` or `Redux`) and ensure tokens are sent with each API call.
+
+6. **Error Handling**:
+    - Handle API errors gracefully by showing user-friendly error messages at the top of the form or page.
+    - Display validation error messages below the relevant form fields using `react-i18next` for localization.
+    - Use `react-toastify` to notify users of success or failure on each form submission or delete action.
+
+7. **Code Comments**:
+    - Include comments throughout the code explaining major sections, including API integration, form validation, table pagination, sorting logic, and localization setup.
+    - Comment on the usage of icons and their related actions (e.g., edit, delete, view).
+
+8. **Additional Features**:
+    - Ensure responsive design and functionality across all pages (grid, add, edit, view).
+    - Add a **confirmation dialog modal** before deleting an User, asking the user to confirm the action.
+    - Implement better user experience for table navigation (sortable columns, page size options for pagination).
+
+9. **Unit Testing**:
+    - Add unit tests for the following key functionalities:
+        - API calls (mocking success and failure scenarios).
+        - Search functionality (testing case-insensitivity).
+        - Pagination and sorting (validating correct sorting and page transitions).
+        - Success and error message display on form submission and delete action (using `react-toastify`).
+        -Please ensure the code is well-documented with clear comments and structured for reusability. Each form control, 
+		error message, and notification should respect the selected language using `react-i18next`. Use **Bootstrap** for layout 
+		and ensure proper responsiveness for mobile, tablet, and desktop views.

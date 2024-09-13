@@ -32,7 +32,7 @@ const OrganizationSubmissionPage = () => {
 
   const fetchTenants = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/Tenant', {
+      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -45,7 +45,7 @@ const OrganizationSubmissionPage = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/Categories/level1and2', {
+      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Categories/level1and2', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -72,7 +72,7 @@ const OrganizationSubmissionPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/Organization', formData, {
+      await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Organization', formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

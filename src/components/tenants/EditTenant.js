@@ -13,13 +13,9 @@ const EditTenant = () => {
   const [description, setDescription] = useState('');
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    fetchTenant();
-  }, [id]);
-
   const fetchTenant = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/Tenant/${id}`, {
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       const tenant = response.data;
@@ -29,6 +25,10 @@ const EditTenant = () => {
       toast.error(t('Error fetching tenant details'));
     }
   };
+  
+  useEffect(() => {
+    fetchTenant();
+  }, [id]);
 
   const validateForm = () => {
     const newErrors = {};
@@ -43,11 +43,11 @@ const EditTenant = () => {
     if (!validateForm()) return;
 
     try {
-      await axios.put(`http://localhost:5000/api/Tenant/${id}`, { tenantName, description }, {
+      await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${id}`, { tenantName, description }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       toast.success(t('Tenant updated successfully'));
-      navigate('/');
+      navigate('/tenants');
     } catch (error) {
       toast.error(t('Error updating tenant'));
     }

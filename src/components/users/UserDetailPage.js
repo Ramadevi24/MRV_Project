@@ -17,7 +17,7 @@ const UserDetailPage = () => {
 
   const fetchUserData = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/User/${userId}`);
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/User/${userId}`);
       setUser(response.data);
     } catch (error) {
         toast.error(t('error.fetchUserData'), 'error');

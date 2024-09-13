@@ -16,7 +16,7 @@ const ViewOrganization = () => {
 
   const fetchOrganization = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/Organization/${id}`, {
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Organization/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

@@ -16,7 +16,7 @@ const ViewUser = () => {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/User/${id}`, {
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/User/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setUser(response.data);

@@ -1,0 +1,99 @@
+1. **View Role Page**:
+    - When clicking the **View** icon in the Role grid, navigate to a "View Role" page.
+    - The "View Role" page should display all the Role's details (        - Role ID
+        - Role Name
+        - description
+		-permissions
+        - Created Date) in a grid table**.
+    - This page should be **read-only** with no editable fields.
+	-  - **Custom Table Styling**:
+        - Apply the following styles for the table:
+
+          ```css
+          .custom-table { 
+              width: 100%;
+              border-collapse: collapse !important;
+              font-family: "Roboto", system-ui;
+              border-radius: 10px;
+          }
+
+          .custom-table thead {
+              background-color: rgba(238, 246, 244, 1);
+          }
+
+          .custom-table th, .custom-table td {
+              padding: 10px;
+              text-align: left;
+              border-bottom: 1px solid #ddd;
+          }
+
+          .custom-table th {
+              font-family: "Roboto", system-ui;
+              color: rgba(0, 102, 164, 1);
+              font-weight: 500;
+              font-size: 16px;
+          }
+
+          .custom-table tbody tr:hover {
+              background-color: #f9f9f9;
+          }
+
+          .custom-table .action-icons {
+              display: flex;
+              gap: 10px;
+			  padding: 20px;
+          }
+
+          .custom-table .view-btn, .custom-table .edit-btn, .custom-table .delete-btn {
+              border: none;
+              background: none;
+              cursor: pointer;
+              font-size: 16px;
+          }
+
+          .check-box {
+              width: 20px;
+              height: 20px;
+          }
+          ```
+	
+2. **Table and UI Layout**:
+    - Use **Bootstrap 5** for responsive table layout.
+    - Ensure the table is responsive and works well on mobile, tablet, and desktop views.
+    - Use Bootstrap classes like `container`, `row`, `col`, `table`, `table-striped`, `table-hover`, and `btn` for layout and styling.
+    - Enhance the UI with CSS for better readability, spacing, and visual hierarchy.
+    - Add appropriate spacing between UI elements for better structure.
+	
+3. **API Integration**:
+    - Use `axios` for making API calls to edit Roles.
+       - The list of Roles for the grid page should be fetched from an API.
+	  - Add **Authorization** headers (e.g., JWT tokens) for secured API calls.
+    - Implement state management for JWT tokens (e.g., using `React Context` or `Redux`) and ensure tokens are sent with each API call.
+	
+
+4. **Localization**:
+    - Implement localization using `react-i18next`.
+    - Translate all form labels, button texts, validation messages, and error messages dynamically based on the selected language (English, Arabic, French, German).
+    - Ensure that switching between languages updates the grid page and error messages in real-time.
+    - Include language selector options in the UI to switch between supported languages with json files(English, Arabic, French, German).
+
+
+5.  **Error Handling**:
+    - Handle API errors gracefully by showing user-friendly error messages at the top of the form or page.
+    - Display validation error messages below the relevant form fields using `react-i18next` for localization.
+    - Use `react-toastify` to notify users of success or failure on each form submission or delete action.
+
+
+
+6. **Code Comments**:
+      - Include comments throughout the code explaining major sections, including API integration, form validation, table pagination, sorting logic, and localization setup.
+	
+7. **Unit Testing**:
+    - Add unit tests for the following key functionalities:
+        - API calls (mocking success and failure scenarios).
+        - Search functionality (testing case-insensitivity).
+        - Pagination and sorting (validating correct sorting and page transitions).
+        - Success and error message display on form submission and delete action (using `react-toastify`).
+        -Please ensure the code is well-documented with clear comments and structured for reusability. Each form control, 
+		error message, and notification should respect the selected language using `react-i18next`. Use **Bootstrap** for layout 
+		and ensure proper responsiveness for mobile, tablet, and desktop views.

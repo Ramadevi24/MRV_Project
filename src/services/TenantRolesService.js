@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api/TenantRole'; // INPUT_REQUIRED {API_BASE_URL is the base URL for the roles API. Replace localhost:5259 with your actual API host and port if different.}
+const API_BASE_URL = 'https://atlas.smartgeoapps.com/MRVAPI/api/TenantRole'; // INPUT_REQUIRED {API_BASE_URL is the base URL for the roles API. Replace localhost:5259 with your actual API host and port if different.}
 
 export const getTenantRoles = async () => {
   try {

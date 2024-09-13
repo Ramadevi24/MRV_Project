@@ -15,7 +15,7 @@ const PermissionDetailPage = () => {
 
   const fetchPermission = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/Permissions/${permissionID}`);
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Permissions/${permissionID}`);
       setPermission(response.data);
     } catch (error) {
       console.error(t('error.fetchPermission'));

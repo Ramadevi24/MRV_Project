@@ -20,7 +20,7 @@ const UserGridPage = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/User');
+      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/User');
       setUsers(response.data.$values);
     } catch (error) {
     toast.error(t('error.fetchUsers'), 'error');
@@ -37,7 +37,7 @@ const UserGridPage = () => {
 
    const handleDelete = async (userId) => { // Add this function
     try {
-      await axios.delete(`http://localhost:5000/api/User/${userId}`);
+      await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/User/${userId}`);
       setUsers(users.filter(user => user.id !== userId));
       toast.success(t('success.deleteUser'), 'success');
     } catch (error) {

@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const API_BASE_URL = 'http://localhost:5000/api/Organization';
-const CATEGORIES_URL = 'http://localhost:5000/api/Categories/level1and2';
+const API_BASE_URL = 'https://atlas.smartgeoapps.com/MRVAPI/api/Organization';
+const CATEGORIES_URL = 'https://atlas.smartgeoapps.com/MRVAPI/api/Categories/level1and2';
 
 export const getCompanyProfiles = async () => {
   try {

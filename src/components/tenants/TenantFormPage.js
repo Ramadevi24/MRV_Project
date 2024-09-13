@@ -21,7 +21,7 @@ const TenantFormPage = () => {
 
   const fetchTenant = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/Tenant/${tenantID}`);
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${tenantID}`);
       setFormData(response.data.$values);
     } catch (error) {
       toast.error(t('error.fetchTenant'));
@@ -36,10 +36,10 @@ const TenantFormPage = () => {
     e.preventDefault();
     try {
       if (tenantID) {
-        await axios.put(`http://localhost:5000/api/Tenant/${tenantID}`, formData);
+        await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${tenantID}`, formData);
         toast.success(t('success.updateTenant'));
       } else {
-        await axios.post('http://localhost:5000/api/Tenant/', formData);
+        await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/', formData);
         toast.success(t('success.createTenant'));
       }
       navigate('/');

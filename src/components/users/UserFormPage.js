@@ -48,7 +48,7 @@ const UserFormPage = () => {
 
   const fetchUserData = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/User/${userId}`);
+      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/User/${userId}`);
       setFormData(response.data);
     } catch (error) {
         toast.error(t('error.fetchUserData'), 'error');
@@ -63,10 +63,10 @@ const UserFormPage = () => {
     e.preventDefault();
     try {
       if (id) {
-        await axios.put(`http://localhost:5000/api/User/${id}`, formData);
+        await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/User/${id}`, formData);
         toast.success(t('success.updateUser'), 'success');
       } else {
-        await axios.post('http://localhost:5000/api/User', formData);
+        await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/User', formData);
         toast.success(t('success.createUser'), 'success');
       }
       navigate('/users');

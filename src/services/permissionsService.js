@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_BASE_URL = 'http://localhost:5000/api/Permissions'; // INPUT_REQUIRED {API_BASE_URL is the base URL for the permissions API. Replace localhost:5259 with your actual API host and port if different.}
+const API_BASE_URL = 'https://atlas.smartgeoapps.com/MRVAPI/api/Permissions'; // INPUT_REQUIRED {API_BASE_URL is the base URL for the permissions API. Replace localhost:5259 with your actual API host and port if different.}
 
 export const getPermissions = async () => {
   try {

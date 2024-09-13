@@ -22,10 +22,9 @@ const UserGrid = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/User', {
+      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/User', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
-      console.log(response.data.$values);
       setUsers(response.data.$values);
       setLoading(false);
     } catch (error) {
@@ -64,11 +63,12 @@ const UserGrid = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/User/${userToDelete.id}`, {
+      await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/User/${userToDelete.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setUsers(users.filter(user => user.id !== userToDelete.id));
       toast.success(t('User deleted successfully'));
+      await fetchUsers();
       setShowModal(false);
     } catch (error) {
       toast.error(t('Error deleting user'));
