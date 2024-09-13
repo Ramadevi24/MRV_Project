@@ -59,13 +59,13 @@ hr{
 .menu li{
     list-style-type: none;
 }
-/* .menu li a {
+.menu li a {
     text-decoration: none;
     color:black;
     font-family:"Roboto", system-ui; 
     font-weight: 600;
 
-} */
+}
 .menu img{
     margin-right: 25px;
 }
