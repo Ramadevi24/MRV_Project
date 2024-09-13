@@ -12,7 +12,6 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { TenantProvider } from './contexts/TenantContext';
 import { PermissionsProvider } from './contexts/PermissionsContext';
 import { TenantRolesProvider } from './contexts/TenantRolesContext';
-import { I18nextProvider } from 'react-i18next';
 import { ToastContainer } from 'react-toastify'; // Update import to react-toastify
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';

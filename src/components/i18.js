@@ -1,4 +1,3 @@
-// src/i18n.js
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -12,7 +11,7 @@ i18n
     supportedLngs: ['en', 'ar', 'fr', 'de'],
     fallbackLng: 'en',
     detection: {
-      order: ['cookie', 'localStorage', 'path', 'subdomain'],
+      order: ['cookie', 'localStorage', 'htmlTag', 'path', 'subdomain'],
       caches: ['cookie']
     },
     backend: {

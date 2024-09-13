@@ -26,25 +26,21 @@ import TenantDetailPage from "./components/tenants/TenantDetailPage.js";
 import PermissionGridPage from "./components/permissions/PermissionGridPage.js";
 import PermissionFormPage from "./components/permissions/PermissionFormPage.js";
 import PermissionDetailPage from "./components/permissions/PermissionDetailPage.js";
-import OrganizationGrid from "./components/organization/OrganizationGrid.jsx";
-// import OrganizationFormPage from "./components/organization/OrganizationFormPage.js";
-import CreateOrganization from "./components/organization/CreateOrganization.jsx";
-// import EditOrganizationPage from "./components/organization/EditOrganizationPage.js";
-// import ViewOrganizationPage from "./components/organization/ViewOrganizationPage.js";
-import { useTranslation } from 'react-i18next';
-import EditOrganization from "./components/organization/EditOrganization.jsx";
-import ViewOrganization from './components/organization/ViewOrganization.jsx';
+import OrganizationSubmissionPage from "./components/organization/OrganizationSubmissionPage.js";
+import EditOrganization from "./components/organization/EditOrganization.js";
+import ViewOrganization from "./components/organization/ViewOrganization.js";
+import OrganizationGridPage from "./components/organization/OrganizationGridPage.js";
+import UserGrid from "./components/users/UserGrid.js";
+import UserForm from "./components/users/UserForm.js";
+import EditUser from "./components/users/EditUser.js";
+import ViewUser from "./components/users/ViewUser.js";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const location = useLocation();
-  // const [locale, setLocale] = useState(i18n.language);
 
-  const { i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
+
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -58,17 +54,10 @@ const App = () => {
     return <>Loading...</>;
   };
 
-  // i18n.on("languagechanged", (lng) => setLocale(i18n.language));
 
   return (
     <>
      <div className="row mb-3">
-          <div className="col">
-            <button onClick={() => changeLanguage('en')}>English</button>
-            <button onClick={() => changeLanguage('ar')}>Arabic</button>
-            <button onClick={() => changeLanguage('fr')}>French</button>
-            <button onClick={() => changeLanguage('de')}>German</button>
-          </div>
         </div>
       <div className="col-12 layout-wrapper">
         {!isLoginPage && isSidebarOpen && (
@@ -92,8 +81,8 @@ const App = () => {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/roles" element={<RolesPage />} />
-                <Route path="/users" element={<Users />} />
-                <Route path="/organizations" element={<CompanyProfile />} />
+                <Route path="/user" element={<Users />} />
+                <Route path="/organizatio" element={<CompanyProfile />} />
                 <Route path="/tenants" element={<TenantPage />} />
                 <Route path="/permissions" element={<PermissionsPage />} />
                 <Route path="/signup" element={<Signup />} />
@@ -103,9 +92,9 @@ const App = () => {
                 <Route path="/datamanagement" element={<DataManagement />} />
                 <Route path="/reports" element={<Dashboard />} />
                 <Route path="/usersdata" element={<UserGridPage />} />
-                <Route path="/create-user" element={<UserFormPage />} />
+                {/* <Route path="/create-user" element={<UserFormPage />} />
                 <Route path="/edit-user/:id" element={<UserFormPage />} />
-                <Route path="/view-user/:id" element={<UserDetailPage />} />
+                <Route path="/view-user/:id" element={<UserDetailPage />} /> */}
                 <Route path="/tenantsData" element={<TenantGridPage />} />
                 <Route path="/create-tenant" element={<TenantFormPage />} />
                 <Route
@@ -132,10 +121,15 @@ const App = () => {
                   path="/view-permission/:permissionID"
                   element={<PermissionDetailPage />}
                 />
-                <Route path="/organizationsGrid" element={<OrganizationGrid />} />
-                <Route path="/create-organization" element={<CreateOrganization />} />
-                <Route path="/edit-organization/:id" element={<EditOrganization />} />
-                <Route path="/view-organization/:id" element={<ViewOrganization />} />
+          <Route path="/organizations"  element={<OrganizationGridPage />} />
+         <Route path="/create-organization"  element={<OrganizationSubmissionPage/>} />
+        <Route path="/edit-organization/:id" element={<EditOrganization/>} />
+        <Route path="/view-organization/:id" element={<ViewOrganization/>} />
+        <Route path="/users" element={<UserGrid/>} />
+        <Route path="/create-user"  element={<UserForm/>} />
+        <Route path="/edit-user/:id" element={<EditUser/>} />
+        <Route path="/view-user/:id" element={<ViewUser />} />
+
               </Routes>
             </Suspense>
           {/* </Localcontext.Provider> */}
