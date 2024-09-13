@@ -64,7 +64,7 @@ const UserForm = () => {
 
   return (
     <div className="container">
-      <h2>{t('Create User')}</h2>
+      <h2 style={{textAlign:'left'}}>{t('Create User')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">

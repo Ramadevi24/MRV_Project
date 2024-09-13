@@ -81,11 +81,11 @@ const OrganizationSubmissionPage = () => {
 
   return (
     <div className="container">
-      <h2>{t('createOrganization')}</h2>
+      <h2 style={{'text-align': "left"}}>{t('Create Organization')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
-            <label>{t('tenantId')}<span className="text-danger">*</span></label>
+            <label>{t('Tenant ID')}<span className="text-danger">*</span></label>
             <select name="tenantId" value={formData.tenantId} onChange={handleChange} className="form-control" required>
               <option value="">{t('selectTenant')}</option>
               {tenants.map(tenant => (
@@ -94,37 +94,37 @@ const OrganizationSubmissionPage = () => {
             </select>
           </div>
           <div className="col">
-            <label>{t('organizationName')}<span className="text-danger">*</span></label>
+            <label>{t('Organization Name')}<span className="text-danger">*</span></label>
             <input type="text" name="name" value={formData.name} onChange={handleChange} className="form-control" required />
           </div>
         </div>
         <div className="row mb-3">
           <div className="col">
-            <label>{t('description')}<span className="text-danger">*</span></label>
+            <label>{t('Description')}<span className="text-danger">*</span></label>
             <textarea name="description" value={formData.description} onChange={handleChange} className="form-control" required></textarea>
           </div>
           <div className="col">
-            <label>{t('establishedDate')}<span className="text-danger">*</span></label>
+            <label>{t('Established Date')}<span className="text-danger">*</span></label>
             <input type="date" name="establishedDate" value={formData.establishedDate} onChange={handleChange} className="form-control" required />
           </div>
         </div>
         <div className="row mb-3">
           <div className="col">
-            <label>{t('contactEmail')}<span className="text-danger">*</span></label>
+            <label>{t('Contact Email')}<span className="text-danger">*</span></label>
             <input type="email" name="contactEmail" value={formData.contactEmail} onChange={handleChange} className="form-control" required />
           </div>
           <div className="col">
-            <label>{t('contactPhone')}<span className="text-danger">*</span></label>
+            <label>{t('Contact Phone')}<span className="text-danger">*</span></label>
             <input type="number" name="contactPhone" value={formData.contactPhone} onChange={handleChange} className="form-control" required />
           </div>
         </div>
         <div className="row mb-3">
           <div className="col">
-            <label>{t('address')}<span className="text-danger">*</span></label>
+            <label>{t('Address')}<span className="text-danger">*</span></label>
             <input type="text" name="address" value={formData.address} onChange={handleChange} className="form-control" required />
           </div>
           <div className="col">
-            <label>{t('categoryIds')}<span className="text-danger">*</span></label>
+            <label>{t('Category Ids')}<span className="text-danger">*</span></label>
             <select multiple name="categoryIds" value={formData.categoryIds} onChange={handleChange} className="form-control" required>
               {categories.map(category => (
                 <option key={category.id} value={category.id}>{category.name}</option>
@@ -135,20 +135,20 @@ const OrganizationSubmissionPage = () => {
         {formData.locations.map((location, index) => (
           <div className="row mb-3" key={index}>
             <div className="col">
-              <label>{t('latitude')}<span className="text-danger">*</span></label>
+              <label>{t('Latitude')}<span className="text-danger">*</span></label>
               <input type="text" name="latitude" value={location.latitude} onChange={(e) => handleLocationChange(index, e)} className="form-control" required />
             </div>
             <div className="col">
-              <label>{t('longitude')}<span className="text-danger">*</span></label>
+              <label>{t('Longitude')}<span className="text-danger">*</span></label>
               <input type="text" name="longitude" value={location.longitude} onChange={(e) => handleLocationChange(index, e)} className="form-control" required />
             </div>
             <div className="col">
-              <label>{t('locationAddress')}<span className="text-danger">*</span></label>
+              <label>{t('Location Address')}<span className="text-danger">*</span></label>
               <input type="text" name="address" value={location.address} onChange={(e) => handleLocationChange(index, e)} className="form-control" required />
             </div>
           </div>
         ))}
-        <button type="submit" className="btn">{t('submit')}</button>
+        <button type="submit" className="btn">{t('Submit')}</button>
       </form>
     </div>
   );

@@ -135,9 +135,13 @@ const UserGrid = () => {
             <option value="50">50</option>
           </select>
         </div>
-        <div>
-          <button className="btn btn-secondary" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>{t('Previous')}</button>
-          <button className="btn btn-secondary" onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastUser >= filteredUsers.length}>{t('Next')}</button>
+        <div className='d-flex'>
+          <div style={{marginRight:"10px"}}>
+          <button className="btn btn-secondary" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>{t('previous')}</button>
+          </div>
+          <div>
+          <button className="btn btn-secondary" onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastUser >= filteredUsers.length}>{t('next')}</button>
+          </div>
         </div>
       </div>
 
