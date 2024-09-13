@@ -146,13 +146,13 @@ const isActive = (path) => location.pathname === path;
                         <p className='menu-heading'>{t('Main menu')}</p>
                         <nav className="menu">
                             <ul className='sidemenu-items'>
-                                <li className={`sidenav-menuitem ${isActive("/dashboard") ? "active-menu" : ""}`}><Link to="/dashboard" className="menu-link"><img src={Dashboardicon} />{t('Dashboard')}</Link></li>
-                                <li className={`sidenav-menuitem ${isActive("/datamanagement") ? "active-menu" : ""}`}><Link to="/datamanagement" className="menu-link"><img src={Datamanagementicon} />{t('Data Management')}</Link></li>
-                                <li className={`sidenav-menuitem ${isActive("/organizationtable") ? "active-menu" : ""}`}><Link to="/organizationsGrid" className="menu-link"><img src={Dashboardicon} />{t('Organization')}</Link></li>
-                                <li className={`sidenav-menuitem ${isActive("/usersdata") ? "active-menu" : ""}`}><Link to="/usersdata" className="menu-link"><img src={Datamanagementicon} />{t('Users')}</Link></li>
-                                <li className={`sidenav-menuitem ${isActive("/tenantsData") ? "active-menu" : ""}`}><Link to="/tenantsData" className="menu-link"><img src={Dashboardicon} />{t('Tenants')}</Link></li>
-                                <li className={`sidenav-menuitem ${isActive("/permissionsData") ? "active-menu" : ""}`}><Link to="/permissionsData" className="menu-link"><img src={Datamanagementicon} />{t('Permissions')}</Link></li>
-                                <li className={`sidenav-menuitem ${isActive("/reports") ? "active-menu" : ""}`}><Link to="/reports" className="menu-link"><img src={Reportsicon} />{t('Reports')}</Link></li>
+                            <Link to="/dashboard" className="menu-link"><li className={`sidenav-menuitem ${isActive("/dashboard") ? "active-menu" : ""}`}><img src={Dashboardicon} />{t('Dashboard')}</li></Link>
+                            <Link to="/datamanagement" className="menu-link"><li className={`sidenav-menuitem ${isActive("/datamanagement") ? "active-menu" : ""}`}><img src={Datamanagementicon} />{t('Data Management')}</li></Link>
+                            <Link to="/organizationsGrid" className="menu-link"> <li className={`sidenav-menuitem ${isActive("/organizationtable") ? "active-menu" : ""}`}><img src={Dashboardicon} />{t('Organization')}</li></Link>
+                            <Link to="/usersdata" className="menu-link">   <li className={`sidenav-menuitem ${isActive("/usersdata") ? "active-menu" : ""}`}><img src={Datamanagementicon} />{t('Users')}</li></Link>
+                            <Link to="/tenantsData" className="menu-link"> <li className={`sidenav-menuitem ${isActive("/tenantsData") ? "active-menu" : ""}`}><img src={Dashboardicon} />{t('Tenants')}</li></Link>
+                            <Link to="/permissionsData" className="menu-link"> <li className={`sidenav-menuitem ${isActive("/permissionsData") ? "active-menu" : ""}`}><img src={Datamanagementicon} />{t('Permissions')}</li></Link>
+                               <Link to="/reports" className="menu-link"> <li className={`sidenav-menuitem ${isActive("/reports") ? "active-menu" : ""}`}><img src={Reportsicon} />{t('Reports')}</li></Link>
                                 {/* <li className="active"><Link to="/dashboard"><img src={Administrationicon} />Administration</a></li> */}
                                 <li className='sidenavmenu-item'>
                                     <div className="dropdown administraton-dropdown mt-3">

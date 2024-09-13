@@ -59,16 +59,23 @@ hr{
 .menu li{
     list-style-type: none;
 }
-.menu li a {
+/* .menu li a {
     text-decoration: none;
     color:black;
     font-family:"Roboto", system-ui; 
     font-weight: 600;
 
-}
+} */
 .menu img{
     margin-right: 25px;
 }
+
+.menu-link{
+    color:black;
+    font-weight: 600;
+    font-size: 15px;
+}
+
 .footer{
     margin-top: 50px;
     text-align: center;
@@ -153,12 +160,12 @@ hr{
 
 
 
-.sidenav-menuitem:hover .menu-link {
+/* .sidenav-menuitem:hover .menu-link {
     color: white; 
 
   
   
-}
+} */
 /* new */
 
 .administration:hover {
@@ -198,9 +205,9 @@ hr{
     /* height: 50px; */
    
   }
-  .sidemenu-items .sidenav-menuitem.active-menu .menu-link {
+  /* .sidemenu-items .sidenav-menuitem.active-menu .menu-link {
     color: white !important;
-}
+} */
 
   .active-submenu{
     background-color: rgba(0, 138, 95, 1);
