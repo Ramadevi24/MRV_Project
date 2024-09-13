@@ -19,7 +19,7 @@ const EditTenant = () => {
 
   const fetchTenant = async () => {
     try {
-      const response = await axios.get(`/api/tenants/${id}`, {
+      const response = await axios.get(`http://localhost:5000/api/Tenant/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       const tenant = response.data;
@@ -43,7 +43,7 @@ const EditTenant = () => {
     if (!validateForm()) return;
 
     try {
-      await axios.put(`/api/tenants/${id}`, { tenantName, description }, {
+      await axios.put(`http://localhost:5000/api/Tenant/${id}`, { tenantName, description }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       toast.success(t('Tenant updated successfully'));

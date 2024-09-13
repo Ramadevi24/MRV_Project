@@ -4,18 +4,22 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../css/CreateForm.css';
+import DropdownTreeSelect from 'react-dropdown-tree-select';
+import 'react-dropdown-tree-select/dist/styles.css';
+import { useNavigate } from 'react-router-dom';
 
 const OrganizationSubmissionPage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    tenantId: '',
-    name: '',
+    tenantID: '',
+    organizationName: '',
     description: '',
     establishedDate: '',
     contactEmail: '',
     contactPhone: '',
     address: '',
-    categoryIds: [],
+    categoryIDs: [],
     locations: [{ latitude: '', longitude: '', address: '' }],
   });
   const [tenants, setTenants] = useState([]);
@@ -28,12 +32,12 @@ const OrganizationSubmissionPage = () => {
 
   const fetchTenants = async () => {
     try {
-      const response = await axios.get('/api/tenants', {
+      const response = await axios.get('http://localhost:5000/api/Tenant', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      setTenants(response.data);
+      setTenants(response.data.$values);
     } catch (error) {
       toast.error(t('errorFetchingData'));
     }
@@ -41,12 +45,12 @@ const OrganizationSubmissionPage = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('/api/categories', {
+      const response = await axios.get('http://localhost:5000/api/Categories/level1and2', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      setCategories(response.data);
+      setCategories(response.data.$values);
     } catch (error) {
       toast.error(t('errorFetchingData'));
     }
@@ -68,34 +72,49 @@ const OrganizationSubmissionPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/organizations', formData, {
+      await axios.post('http://localhost:5000/api/Organization', formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      toast.success(t('createSuccess'));
+      toast.success(t('Organization created successfully'));
+      navigate('/organizations');
     } catch (error) {
       toast.error(t('createError'));
     }
   };
 
+  const data = categories.map(category => ({
+    label: category.categoryName,
+    value: category.categoryID,
+    children: category.subcategories?.map(subcategory => ({
+      label: subcategory.subcategoryName,
+      value: subcategory.subcategoryID
+    }))
+  }));
+
+  const handleCategoryChange = (currentNode, selectedNodes) => {
+    const selectedIds = selectedNodes?.map(node => node.value);
+    setFormData({ ...formData, categoryIDs: selectedIds });
+  };
+
   return (
     <div className="container">
-      <h2>{t('Create Organization')}</h2>
+      <h2 style={{'text-align': "left"}}>{t('Create Organization')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
             <label>{t('Tenant ID')}<span className="text-danger">*</span></label>
-            <select name="tenantId" value={formData.tenantId} onChange={handleChange} className="form-control" required>
+            <select name="tenantID" value={formData.tenantID} onChange={handleChange} className="form-control" required>
               <option value="">{t('selectTenant')}</option>
               {tenants.map(tenant => (
-                <option key={tenant.id} value={tenant.id}>{tenant.name}</option>
+                <option key={tenant.tenantID} value={tenant.tenantID}>{tenant.name}</option>
               ))}
             </select>
           </div>
           <div className="col">
             <label>{t('Organization Name')}<span className="text-danger">*</span></label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} className="form-control" required />
+            <input type="text" name="organizationName" value={formData.organizationName} onChange={handleChange} className="form-control" required />
           </div>
         </div>
         <div className="row mb-3">
@@ -124,12 +143,22 @@ const OrganizationSubmissionPage = () => {
             <input type="text" name="address" value={formData.address} onChange={handleChange} className="form-control" required />
           </div>
           <div className="col">
-            <label>{t('Category Ids')}<span className="text-danger">*</span></label>
-            <select multiple name="categoryIds" value={formData.categoryIds} onChange={handleChange} className="form-control" required>
-              {categories.map(category => (
-                <option key={category.id} value={category.id}>{category.name}</option>
-              ))}
-            </select>
+            <label>{t('categoryIDs')}<span className="text-danger">*</span></label>
+            {/* <select multiple name="categoryIds" value={formData.categoryIds} onChange={handleChange} className="form-control" required>
+  {categories.map(category => (
+    <optgroup key={category.categoryID} label={category.categoryName}>
+      {category.subcategories?.map(subcategory => (
+        <option key={subcategory.subcategoryID} value={subcategory.subcategoryID}>{subcategory.subcategoryName}</option>
+      ))}
+    </optgroup>
+  ))}
+</select> */}
+<DropdownTreeSelect
+      data={data}
+      onChange={handleCategoryChange}
+      className="form-control"
+      texts={{ placeholder: 'Select categories' }}
+    />
           </div>
         </div>
         {formData.locations.map((location, index) => (

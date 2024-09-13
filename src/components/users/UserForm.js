@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const UserForm = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -30,16 +32,20 @@ const UserForm = () => {
   const fetchDropdownOptions = async () => {
     try {
       const [tenants, organizations, tenantRoles, userRoles] = await Promise.all([
-        axios.get('/api/tenants', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('/api/organizations', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('/api/tenantRoles', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('/api/userRoles', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+        axios.get('http://localhost:5000/api/Tenant', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+        axios.get('http://localhost:5000/api/Organization', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+        axios.get('http://localhost:5000/api/TenantRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+        axios.get('http://localhost:5000/api/TenantUserRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
       ]);
+      console.log(tenants.data.$values);
+      console.log(organizations.data.$values);
+      console.log(tenantRoles.data.$values);
+      console.log(userRoles.data.$values);
       setDropdownOptions({
-        tenants: tenants.data,
-        organizations: organizations.data,
-        tenantRoles: tenantRoles.data,
-        userRoles: userRoles.data
+        tenants: tenants.data.$values,
+        organizations: organizations.data.$values,
+        tenantRoles: tenantRoles.data.$values,
+        userRoles: userRoles.data.$values
       });
     } catch (error) {
       toast.error(t('Error fetching dropdown options'));
@@ -52,11 +58,15 @@ const UserForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const createFormData = { ...formData,
+        loginType:'custom'
+     };
     try {
-      await axios.post('/api/users', formData, {
+      await axios.post('http://localhost:5000/api/User', createFormData, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       toast.success(t('User created successfully'));
+      navigate('/users');
     } catch (error) {
       toast.error(t('Error creating user'));
     }
@@ -96,7 +106,7 @@ const UserForm = () => {
             <select className='custum-dropdown-select' name="tenantID" value={formData.tenantID} onChange={handleChange} required>
               <option value="">{t('Select Tenant')}</option>
               {dropdownOptions.tenants.map(tenant => (
-                <option key={tenant.id} value={tenant.id}>{tenant.name}</option>
+                <option key={tenant.tenantID} value={tenant.tenantID}>{tenant.name}</option>
               ))}
             </select>
           </div>
@@ -107,7 +117,7 @@ const UserForm = () => {
             <select className='custum-dropdown-select' name="organizationID" value={formData.organizationID} onChange={handleChange} required>
               <option value="">{t('Select Organization')}</option>
               {dropdownOptions.organizations.map(org => (
-                <option key={org.id} value={org.id}>{org.name}</option>
+                <option key={org.organizationID} value={org.organizationID}>{org.organizationName}</option>
               ))}
             </select>
           </div>
@@ -116,7 +126,7 @@ const UserForm = () => {
             <select className='custum-dropdown-select' name="tenantRoleID" value={formData.tenantRoleID} onChange={handleChange} required>
               <option value="">{t('Select Tenant Role')}</option>
               {dropdownOptions.tenantRoles.map(role => (
-                <option key={role.id} value={role.id}>{role.name}</option>
+                <option key={role.tenantRoleID} value={role.tenantRoleID}>{role.roleName}</option>
               ))}
             </select>
           </div>
@@ -127,7 +137,7 @@ const UserForm = () => {
             <select className='custum-dropdown-select' name="userRole" value={formData.userRole} onChange={handleChange} required>
               <option value="">{t('Select User Role')}</option>
               {dropdownOptions.userRoles.map(role => (
-                <option key={role.id} value={role.id}>{role.name}</option>
+                <option key={role.tenantUserRoleID} value={role.user.firstName}>{role.user.firstName}</option>
               ))}
             </select>
           </div>

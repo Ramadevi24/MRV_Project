@@ -36,7 +36,7 @@ const TenantGrid = () => {
   const handleDelete = async (id) => {
     if (window.confirm(t('Are you sure you want to delete this tenant?'))) {
       try {
-        await axios.delete(`/api/tenants/${id}`, {
+        await axios.delete(`http://localhost:5000/api/Tenant/${id}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
         setTenants(tenants.filter((tenant) => tenant.id !== id));

@@ -4,19 +4,23 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import '../../css/EditForm.css';
 import { useParams } from 'react-router-dom';
+import DropdownTreeSelect from 'react-dropdown-tree-select';
+import 'react-dropdown-tree-select/dist/styles.css';
+import { useNavigate } from 'react-router-dom';
 
 const EditOrganization = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    tenantId: '',
-    name: '',
+    tenantID: '',
+    organizationName: '',
     description: '',
     establishedDate: '',
     contactEmail: '',
     contactPhone: '',
     address: '',
-    categoryIds: [],
+    categoryIDs: [],
     locations: [{ latitude: '', longitude: '', address: '' }],
   });
   const [tenants, setTenants] = useState([]);
@@ -30,12 +34,14 @@ const EditOrganization = () => {
 
   const fetchOrganization = async () => {
     try {
-      const response = await axios.get(`/api/organizations/${id}`, {
+      const response = await axios.get(`http://localhost:5000/api/Organization/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      setFormData(response.data);
+      const data = response.data;
+      data.establishedDate = formatDate(data.establishedDate);
+      setFormData(data);
     } catch (error) {
       toast.error(t('errorFetchingData'));
     }
@@ -43,12 +49,12 @@ const EditOrganization = () => {
 
   const fetchTenants = async () => {
     try {
-      const response = await axios.get('/api/tenants', {
+      const response = await axios.get('http://localhost:5000/api/Tenant', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      setTenants(response.data);
+      setTenants(response.data.$values);
     } catch (error) {
       toast.error(t('errorFetchingData'));
     }
@@ -56,15 +62,20 @@ const EditOrganization = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('/api/categories', {
+      const response = await axios.get('http://localhost:5000/api/Categories/level1and2', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      setCategories(response.data);
+      setCategories(response.data.$values);
     } catch (error) {
       toast.error(t('errorFetchingData'));
     }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
   const handleChange = (e) => {
@@ -83,16 +94,32 @@ const EditOrganization = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/organizations/${id}`, formData, {
+      await axios.put(`http://localhost:5000/api/Organization/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      toast.success(t('updateSuccess'));
+      toast.success(t('Organization updated successfully'));
+      navigate('/organizations');
     } catch (error) {
       toast.error(t('updateError'));
     }
   };
+
+  const data = categories.map(category => ({
+    label: category.categoryName,
+    value: category.categoryID,
+    children: category.subcategories?.map(subcategory => ({
+      label: subcategory.subcategoryName,
+      value: subcategory.subcategoryID
+    }))
+  }));
+
+  const handleCategoryChange = (currentNode, selectedNodes) => {
+    const selectedIds = selectedNodes?.map(node => node.value);
+    setFormData({ ...formData, categoryIDs: selectedIds });
+  };
+
 
   return (
     <div className="container">
@@ -101,16 +128,16 @@ const EditOrganization = () => {
         <div className="row mb-3">
           <div className="col">
             <label>{t('tenantId')}<span className="text-danger">*</span></label>
-            <select name="tenantId" value={formData.tenantId} onChange={handleChange} className="form-control" required>
+            <select name="tenantID" value={formData.tenantID} onChange={handleChange} className="form-control" required>
               <option value="">{t('selectTenant')}</option>
               {tenants.map(tenant => (
-                <option key={tenant.id} value={tenant.id}>{tenant.name}</option>
+                <option key={tenant.tenantID} value={tenant.tenantID}>{tenant.name}</option>
               ))}
             </select>
           </div>
           <div className="col">
             <label>{t('organizationName')}<span className="text-danger">*</span></label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} className="form-control" required />
+            <input type="text" name="organizationName" value={formData.organizationName} onChange={handleChange} className="form-control" required />
           </div>
         </div>
         <div className="row mb-3">
@@ -139,15 +166,21 @@ const EditOrganization = () => {
             <input type="text" name="address" value={formData.address} onChange={handleChange} className="form-control" required />
           </div>
           <div className="col">
-            <label>{t('categoryIds')}<span className="text-danger">*</span></label>
-            <select multiple name="categoryIds" value={formData.categoryIds} onChange={handleChange} className="form-control" required>
+            <label>{t('categoryIDs')}<span className="text-danger">*</span></label>
+            {/* <select multiple name="categoryIDs" value={formData.categoryIDs} onChange={handleChange} className="form-control" required>
               {categories.map(category => (
                 <option key={category.id} value={category.id}>{category.name}</option>
               ))}
-            </select>
+            </select> */}
+            <DropdownTreeSelect
+      data={data}
+      onChange={handleCategoryChange}
+      className="form-control"
+      texts={{ placeholder: 'Select categories' }}
+    />
           </div>
         </div>
-        {formData.locations.map((location, index) => (
+        {formData.locations.$values?.map((location, index) => (
           <div className="row mb-3" key={index}>
             <div className="col">
               <label>{t('latitude')}<span className="text-danger">*</span></label>

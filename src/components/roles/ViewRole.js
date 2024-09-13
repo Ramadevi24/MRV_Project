@@ -21,7 +21,7 @@ const ViewRole = () => {
       const response = await axios.get(`http://localhost:5000/api/Role/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
-      setRole(response.data.$values);
+      setRole(response.data);
       setLoading(false);
     } catch (error) {
       toast.error(t('errorFetchingRole'));

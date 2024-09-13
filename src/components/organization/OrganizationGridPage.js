@@ -40,9 +40,10 @@ const OrganizationGridPage = () => {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         setOrganizations(organizations.filter(org => org.id !== id));
-        toast.success(t('deleteSuccess'));
+        await fetchOrganizations();
+        toast.success(t('Organization deleted successfully'));
       } catch (error) {
-        toast.error(t('deleteError'));
+        toast.error(t('Something went wrong'));
       }
     }
   };

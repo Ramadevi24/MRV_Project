@@ -3,16 +3,18 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import '../../css/CreateForm.css';
+import { useNavigate } from 'react-router-dom';
 
 const TenantForm = () => {
   const { t } = useTranslation();
-  const [tenantName, setTenantName] = useState('');
+  const [name, setTenantName] = useState('');
   const [description, setDescription] = useState('');
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validateForm = () => {
     const newErrors = {};
-    if (!tenantName) newErrors.tenantName = t('This field is required');
+    if (!name) newErrors.name = t('This field is required');
     if (!description) newErrors.description = t('This field is required');
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -23,10 +25,11 @@ const TenantForm = () => {
     if (!validateForm()) return;
 
     try {
-      await axios.post('/api/tenants', { tenantName, description }, {
+      await axios.post('http://localhost:5000/api/Tenant', { name, description }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       toast.success(t('Tenant created successfully'));
+      navigate('/tenants');
     } catch (error) {
       toast.error(t('Error creating tenant'));
     }
@@ -42,11 +45,11 @@ const TenantForm = () => {
           </label>
           <input
             type="text"
-            value={tenantName}
+            value={name}
             onChange={(e) => setTenantName(e.target.value)}
-            className={errors.tenantName ? 'form-control is-invalid' : 'form-control'}
+            className={errors.name ? 'form-control is-invalid' : 'form-control'}
           />
-          {errors.tenantName && <div className="invalid-feedback">{errors.tenantName}</div>}
+          {errors.name && <div className="invalid-feedback">{errors.name}</div>}
         </div>
         <div className="row mb-3">
           <label>

@@ -25,6 +25,7 @@ const UserGrid = () => {
       const response = await axios.get('http://localhost:5000/api/User', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
+      console.log(response.data.$values);
       setUsers(response.data.$values);
       setLoading(false);
     } catch (error) {
