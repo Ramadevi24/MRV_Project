@@ -280,7 +280,8 @@
                                                                        "Established date": "تاريخ التأسيس",
                                                                        "Contact Phone": "هاتف الاتصال",
                                                                        "Category Ids": "معرفات الفئة",
-                                                                       "Location Address": "عنوان الموقع"
+                                                                       "Location Address": "عنوان الموقع",
+                                                                       "Tenant Role ID": "معرف دور المستأجر"
                                                                   
                                                                   
                                                               

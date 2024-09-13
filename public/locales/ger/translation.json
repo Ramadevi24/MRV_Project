@@ -284,7 +284,8 @@
                                                                                "Established date": "Gründungsdatum",
                                                                                "Contact Phone": "Kontakttelefon",
                                                                                "Category Ids": "Kategorie-IDs",
-                                                                               "Location Address": "Standortadresse"
+                                                                               "Location Address": "Standortadresse",
+                                                                               "Tenant Role ID":"Mieterrollen-ID"
                                                                           
                                                                           
                                                                       
