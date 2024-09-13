@@ -276,7 +276,16 @@
                                                                             "Create New Permission": "Neue Berechtigung erstellen",
                                                                             "Sample": "Beispiel",
                                                                               "Local Change": "Lokale Änderung",
-                                                                               "Is Primary Fuel": "ist der Hauptbrennstoff"
+                                                                               "Is Primary Fuel": "ist der Hauptbrennstoff",
+                                                                               "Select Organization": "Organisation auswählen",
+                                                                               "Select Tenant": "Mieter auswählen",
+                                                                               "Select Tenant Role": "Mieterrolle auswählen",
+                                                                               "Select User Role": "Benutzerrolle auswählen",
+                                                                               "Established date": "Gründungsdatum",
+                                                                               "Contact Phone": "Kontakttelefon",
+                                                                               "Category Ids": "Kategorie-IDs",
+                                                                               "Location Address": "Standortadresse",
+                                                                               "Tenant Role ID":"Mieterrollen-ID"
                                                                           
                                                                           
                                                                       

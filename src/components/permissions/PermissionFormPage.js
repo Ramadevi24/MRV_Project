@@ -49,7 +49,7 @@ const PermissionFormPage = () => {
 
   return (
     <div className="container mt-5">
-      <h2>{permissionID ? t('editPermission') : t('create Permission')}</h2>
+      <h2 style={{textAlign:'left'}}>{permissionID ? t('editPermission') : t('Create Permission')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>{t('Permission Display Name')}</label>

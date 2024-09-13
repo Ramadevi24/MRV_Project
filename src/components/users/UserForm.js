@@ -64,7 +64,7 @@ const UserForm = () => {
 
   return (
     <div className="container">
-      <h2>{t('Create User')}</h2>
+      <h2 style={{textAlign:'left'}}>{t('Create User')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
@@ -92,8 +92,8 @@ const UserForm = () => {
             <input type="number" name="phone" value={formData.phone} onChange={handleChange} required />
           </div>
           <div className="col">
-            <label>{t('Tenant ID')}<span style={{ color: 'red' }}>*</span></label>
-            <select name="tenantID" value={formData.tenantID} onChange={handleChange} required>
+            <label className='custum-dropdown-label'>{t('Tenant ID')}<span style={{ color: 'red' }}>*</span></label>
+            <select className='custum-dropdown-select' name="tenantID" value={formData.tenantID} onChange={handleChange} required>
               <option value="">{t('Select Tenant')}</option>
               {dropdownOptions.tenants.map(tenant => (
                 <option key={tenant.id} value={tenant.id}>{tenant.name}</option>
@@ -101,10 +101,10 @@ const UserForm = () => {
             </select>
           </div>
         </div>
-        <div className="row mb-3">
+        <div className="row mb-3">  
           <div className="col">
-            <label>{t('Organization ID')}<span style={{ color: 'red' }}>*</span></label>
-            <select name="organizationID" value={formData.organizationID} onChange={handleChange} required>
+            <label className='custum-dropdown-label'>{t('Organization ID')}<span style={{ color: 'red' }}>*</span></label>
+            <select className='custum-dropdown-select' name="organizationID" value={formData.organizationID} onChange={handleChange} required>
               <option value="">{t('Select Organization')}</option>
               {dropdownOptions.organizations.map(org => (
                 <option key={org.id} value={org.id}>{org.name}</option>
@@ -112,8 +112,8 @@ const UserForm = () => {
             </select>
           </div>
           <div className="col">
-            <label>{t('Tenant Role ID')}<span style={{ color: 'red' }}>*</span></label>
-            <select name="tenantRoleID" value={formData.tenantRoleID} onChange={handleChange} required>
+            <label className='custum-dropdown-label'>{t('Tenant Role ID')}<span style={{ color: 'red' }}>*</span></label>
+            <select className='custum-dropdown-select' name="tenantRoleID" value={formData.tenantRoleID} onChange={handleChange} required>
               <option value="">{t('Select Tenant Role')}</option>
               {dropdownOptions.tenantRoles.map(role => (
                 <option key={role.id} value={role.id}>{role.name}</option>
@@ -122,9 +122,9 @@ const UserForm = () => {
           </div>
         </div>
         <div className="row mb-3">
-          <div className="col">
-            <label>{t('User Role')}<span style={{ color: 'red' }}>*</span></label>
-            <select name="userRole" value={formData.userRole} onChange={handleChange} required>
+          <div className="col col-6">
+            <label  className='custum-dropdown-label'>{t('User Role')}<span style={{ color: 'red' }}>*</span></label>
+            <select className='custum-dropdown-select' name="userRole" value={formData.userRole} onChange={handleChange} required>
               <option value="">{t('Select User Role')}</option>
               {dropdownOptions.userRoles.map(role => (
                 <option key={role.id} value={role.id}>{role.name}</option>

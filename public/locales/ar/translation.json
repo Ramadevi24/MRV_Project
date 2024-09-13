@@ -272,7 +272,16 @@
                                                                     "Create New Permission": "إنشاء إذن جديد",
                                                                      "Sample": "عينة",
                                                                      "Local Change": "التغيير المحلي",
-                                                                       "Is Primary Fuel": "هو الوقود الأساسي"
+                                                                       "Is Primary Fuel": "هو الوقود الأساسي",
+                                                                       "Select Organization": "اختر المنظمة",
+                                                                       "Select Tenant": "اختر المستأجر",
+                                                                       "Select Tenant Role": "اختر دور المستأجر",
+                                                                       "Select User Role": "اختر دور المستخدم",
+                                                                       "Established date": "تاريخ التأسيس",
+                                                                       "Contact Phone": "هاتف الاتصال",
+                                                                       "Category Ids": "معرفات الفئة",
+                                                                       "Location Address": "عنوان الموقع",
+                                                                       "Tenant Role ID": "معرف دور المستأجر"
                                                                   
                                                                   
                                                               

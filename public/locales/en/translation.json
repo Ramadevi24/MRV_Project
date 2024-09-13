@@ -272,7 +272,17 @@
                                                                            "Select Group": "Select Group",
                                                                            "group1": "Group 1",
                                                                            "group2": "Group 2",
-                                                                           "group3": "Group 3"
+                                                                           "group3": "Group 3", 
+                                                                            "Select Organization": "Select Organization",
+                                                                           "Select Tenant": "Select Tenant",
+                                                                           "Select Tenant Role": "Select Tenant Role",
+                                                                           "Select User Role": "Select User Role",
+                                                                           "Established date": "Established Date",
+                                                                           "Contact Phone": "Contact Phone",
+                                                                           "Category Ids": "Category Ids",
+                                                                           "Location Address": "Location Address",
+                                                                           "Tenant Role ID": "Tenant Role ID"
+
 
                                                                            
                                                                       

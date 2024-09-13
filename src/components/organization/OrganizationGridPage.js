@@ -83,7 +83,7 @@ const OrganizationGridPage = () => {
         <input
           type="text"
           className="form-control w-25"
-          placeholder={t('search')}
+          placeholder={t('Search')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -91,7 +91,7 @@ const OrganizationGridPage = () => {
           className="btn btn-primary"
           onClick={() => navigate('/create-organization')}
         >
-          {t('createOrganization')}
+          {t('Create Organization')}
         </button>
       </div>
       {loading ? (
@@ -104,25 +104,25 @@ const OrganizationGridPage = () => {
             <tr>
               <th>{t('Organization ID')}</th>
               <th onClick={() => handleSort('name')}>
-                {t('organizationName')}
+                {t('Organization Name')}
                 {sortConfig.key === 'name' && (
                   sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                 )}
               </th>
               <th onClick={() => handleSort('tenantName')}>
-                {t('tenantName')}
+                {t('Tenant Name')}
                 {sortConfig.key === 'tenantName' && (
                   sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                 )}
               </th>
-              <th onClick={() => handleSort('establishedDate')}>
-                {t('establishedDate')}
+              <th onClick={() => handleSort('Established Date')}>
+                {t('Established date')}
                 {sortConfig.key === 'establishedDate' && (
                   sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                 )}
               </th>
               <th onClick={() => handleSort('categories')}>
-                {t('categories')}
+                {t('Categories')}
                 {sortConfig.key === 'categories' && (
                   sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                 )}
@@ -166,7 +166,7 @@ const OrganizationGridPage = () => {
             <option value="50">50</option>
           </select>
         </div>
-        <div>
+        <div className='d-flex'> 
           <button
             className="btn btn-secondary"
             onClick={() => setCurrentPage(currentPage - 1)}
@@ -174,7 +174,7 @@ const OrganizationGridPage = () => {
           >
             {t('previous')}
           </button>
-          <span className="mx-2">{currentPage}</span>
+          <span className="mx-2 mt-2">{currentPage}</span>
           <button
             className="btn btn-secondary"
             onClick={() => setCurrentPage(currentPage + 1)}

@@ -50,7 +50,7 @@ const TenantFormPage = () => {
 
   return (
     <div className="container mt-5">
-      <h2>{tenantID ? t('editTenant') : t('Create Tenant')}</h2>
+      <h2 style={{textAlign:'left'}}>{tenantID ? t('editTenant') : t('Create Tenant')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">{t('Tenant Name')}</label>

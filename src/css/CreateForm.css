@@ -77,7 +77,25 @@ textarea {
 .row {
   margin-bottom: 15px;
 }
+.custum-dropdown-label{
+  /* Custom styling for label */
 
+  font-size: 16px;
+  font-weight: 600; /* Make the label slightly bold */
+  color: #333; /* Darker label color */
+  /* margin-bottom: 8px; Space between label and select */
+  display: block; /* Ensure the label appears above the select */
+
+}
+.custum-dropdown-select{
+  width: 100%;
+  padding: 10px; /* Padding inside the select */
+  font-size: 14px;
+  border: 1px solid #ccc; /* Light border color */
+  border-radius: 5px; /* Rounded corners */
+  background-color:white; /* Light background color */
+  color: #333; /* Text color */
+}
 @media (max-width: 768px) {
   .row .col-md-6 {
     margin-bottom: 15px;

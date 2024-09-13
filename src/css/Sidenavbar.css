@@ -73,7 +73,9 @@ hr{
 .menu-link{
     color:black;
     font-weight: 600;
+    font-family:"Roboto", system-ui; 
     font-size: 15px;
+    text-decoration: none;
 }
 
 .footer{
