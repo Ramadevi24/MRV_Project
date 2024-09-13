@@ -38,7 +38,7 @@ const ViewOrganization = () => {
         <tbody>
           <tr>
             <th>{t('organizationName')}</th>
-            <td>{organization.name}</td>
+            <td>{organization.organizationName}</td>
           </tr>
           <tr>
             <th>{t('description')}</th>

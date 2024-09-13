@@ -42,6 +42,8 @@ import PermissionGrid from "./components/permissions/PermissionGrid.js";
 import CreatePermission from "./components/permissions/CreatePermission.js";
 import ViewPermission from "./components/permissions/ViewPermission.js";
 import EditPermission from "./components/permissions/EditPermission.js";
+import RoleGrid from "./components/roles/RoleGrid.js";
+import ViewRole from "./components/roles/ViewRole.js";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -88,7 +90,7 @@ const App = () => {
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/roles" element={<RolesPage />} />
+                {/* <Route path="/roles" element={<RolesPage />} /> */}
                 <Route path="/user" element={<Users />} />
                 <Route path="/organizatio" element={<CompanyProfile />} />
                 <Route path="/tenant" element={<TenantPage />} />
@@ -139,6 +141,10 @@ const App = () => {
         <Route path="/view-user/:id" element={<ViewUser />} />
         <Route path="/tenants" element={<TenantsGrid />} />
         <Route path="/create-tenant" element={<TenantForm/>} />
+        <Route path="/roles" element={<RoleGrid/>} />
+        <Route path="/create-role" element={<AddNewRole/>} />
+        <Route path="/edit-role/:id" element={<AddNewRole/>} />
+        <Route path="/view-role/:id" element={<ViewRole/>} />
         <Route
                   path="/edit-tenant/:id"
                   element={<EditTenant />}
