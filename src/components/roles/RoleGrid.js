@@ -80,13 +80,13 @@ const RoleGrid = () => {
       <div className="d-flex justify-content-between mb-3">
         <Form.Control
           type="text"
-          placeholder={t('search')}
+          placeholder={t('Search')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-25"
         />
         <Button variant="primary" onClick={() => navigate('/create-role')}>
-          {t('createRole')}
+          {t('Create Role')}
         </Button>
       </div>
       {loading ? (
@@ -97,21 +97,21 @@ const RoleGrid = () => {
         <Table striped hover className="custom-table">
           <thead>
             <tr>
-              <th>{t('roleId')}</th>
+              <th>{t('Role ID')}</th>
               <th onClick={() => handleSort('roleName')}>
-                {t('roleName')}
+                {t('Role Name')}
                 {sortConfig.key === 'roleName' && (
                   sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                 )}
               </th>
-              <th>{t('description')}</th>
+              <th>{t('Description')}</th>
               <th onClick={() => handleSort('createdDate')}>
-                {t('createdDate')}
+                {t('Created Date')}
                 {sortConfig.key === 'createdDate' && (
                   sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                 )}
               </th>
-              <th>{t('actions')}</th>
+              <th>{t('Actions')}</th>
             </tr>
           </thead>
           <tbody>

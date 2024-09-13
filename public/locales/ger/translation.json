@@ -287,7 +287,8 @@
                                                                                "Location Address": "Standortadresse",
                                                                                "Tenant Role ID":"Mieterrollen-ID",
                                                                                "Permission unique Name": "Einzigartiger Berechtigungsname",
-                                                                               "Select Permission Group":"Berechtigungsgruppe auswählen"
+                                                                               "Select Permission Group":"Berechtigungsgruppe auswählen",
+                                                                                "Role Id": "Rollen-ID"
 
 
 

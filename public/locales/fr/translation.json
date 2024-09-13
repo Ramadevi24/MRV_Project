@@ -287,7 +287,8 @@
                                                                         "Established date": "Date de création",
                                                                         "Tenant Role ID":"ID du rôle du locataire",
                                                                             "Permission unique Name": "Nom unique de la permission",
-                                                                            "Select Permission Group":"Sélectionnez le groupe d'autorisations"
+                                                                            "Select Permission Group":"Sélectionnez le groupe d'autorisations",
+                                                                            "Role ID": "ID du rôle"
                                                                         
                                                                       
                                                                       

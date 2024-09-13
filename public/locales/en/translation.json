@@ -282,7 +282,8 @@
                                                                            "Category Ids": "Category Ids",
                                                                            "Location Address": "Location Address",
                                                                            "Tenant Role ID": "Tenant Role ID",
-                                                                           "Select Permission Group": "Select Permission Group"
+                                                                           "Select Permission Group": "Select Permission Group",
+                                                                               "Role ID": "Role ID"
                                                                           
 
 

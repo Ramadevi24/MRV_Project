@@ -115,7 +115,7 @@ const AddNewRole = () => {
                         <div>
                             <input
                                 type='text'
-                                className='addroleinput'
+                               className='role-name-input'
                                 placeholder={t('Role Name')}
                                 value={roleName}
                                 onChange={(e) => setRoleName(e.target.value)}
@@ -128,7 +128,7 @@ const AddNewRole = () => {
                         <div>
                             <input
                                 type='textarea'
-                                className='addroleinput'
+                                className='role-name-input'
                                 placeholder={t('Description')}
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
