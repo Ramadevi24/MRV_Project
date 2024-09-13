@@ -196,8 +196,8 @@ const DataManagement = () => {
             <th>{t('Net Calorific Value (TJ/Gg)')}</th>
             <th>
               {conversionFactorType == "NCV"
-                ? "Carbon Content NCV"
-                : "Carbon Content GCV"}
+                ? t("Carbon Content NCV")
+                : t("Carbon Content GCV")}
             </th>
             <th>{t('Fuel Type')}</th>
             <th>{t('Actions')}</th>
@@ -342,7 +342,7 @@ const DataManagement = () => {
               </div>
             </Form.Group>
             <Button variant="primary" type="submit">
-              {isEditMode ? "Update" : "Submit"}
+              {isEditMode ? "Update" : t("Submit")}
             </Button>
           </Form>
         </Modal.Body>

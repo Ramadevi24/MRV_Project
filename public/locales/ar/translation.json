@@ -143,6 +143,7 @@
                             
                                 "Organization Profile": "ملف المنظمة",
                                 "Organization Name": "اسم المنظمة",
+                                    "Organization ID": "معرف المنظمة",
                                 "Tenant Name": "اسم المستأجر",
                                 "Description": "الوصف",
                                 "Established Date": "تاريخ التأسيس",

@@ -102,7 +102,7 @@ const OrganizationGridPage = () => {
         <table className="table table-striped table-hover custom-table">
           <thead>
             <tr>
-              <th>{t('organizationId')}</th>
+              <th>{t('Organization ID')}</th>
               <th onClick={() => handleSort('name')}>
                 {t('organizationName')}
                 {sortConfig.key === 'name' && (
@@ -127,7 +127,7 @@ const OrganizationGridPage = () => {
                   sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                 )}
               </th>
-              <th>{t('actions')}</th>
+              <th>{t('Actions')}</th>
             </tr>
           </thead>
           <tbody>
