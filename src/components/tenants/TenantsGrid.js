@@ -132,12 +132,15 @@ const TenantGrid = () => {
           </tbody>
         </table>
       )}
+      <div className='d-flex justify-content-between'>
       <div className="pagination">
         <select value={tenantsPerPage} onChange={(e) => setTenantsPerPage(e.target.value)}>
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="50">50</option>
         </select>
+        </div>
+        <div>
         <ul className="pagination-list">
           {Array.from({ length: Math.ceil(filteredTenants.length / tenantsPerPage) }, (_, i) => (
             <li key={i} className="page-item">
@@ -147,6 +150,7 @@ const TenantGrid = () => {
             </li>
           ))}
         </ul>
+        </div>
       </div>
     </div>
     </div>

@@ -36,7 +36,7 @@ const Topbar=()=> {
   return (
     <div className="top-navbar">
            <div className='local-language'>
-          <label className='local-dropdown-label'>{t('Locale Change')}</label>
+          {/* <label className='local-dropdown-label'>{t('Locale Change')}</label> */}
           <select  value={i18n.language} onChange={handleChange} className='local-dropdown'>
             <option value="en">English</option>
             <option value="fr">{t('French')}</option>
