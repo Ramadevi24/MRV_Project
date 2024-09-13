@@ -136,36 +136,36 @@ const AddNewRole = () => {
                             />
                         </div>
                     </div>
-                    <div className='row col-12'>
-                        {Object.entries(groupedPermissions).map(([groupName, groupPermissions]) => (
-                            <div className="dropdown drop-down mt-3 col-6" key={groupName}>
-                                <button
-                                    onClick={() => toggleDropdown(groupName)}
-                                    className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between"
-                                >
-                                    {groupName}
-                                </button>
-                                {dropdownState[groupName] && (
-                                    <div className="dropdown-menu dropdown-content">
-                                        {groupPermissions.map((permission) => (
-                                            <div className="form-check form-switch" key={permission.permissionID}>
-                                                <input
-                                                    className="form-check-input"
-                                                    type="checkbox"
-                                                    id={`permission-${permission.permissionID}`}
-                                                    checked={selectedPermissions.includes(permission.permissionID)}
-                                                    onChange={() => handlePermissionChange(permission.permissionID)}
-                                                />
-                                                <label className="form-check-label" htmlFor={`permission-${permission.permissionID}`}>
-                                                    {permission.permissionDisplayName}
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
+                    <div className='row'>
+    {Object.entries(groupedPermissions).map(([groupName, groupPermissions]) => (
+        <div className="dropdown drop-down mt-3 col-12" key={groupName}>
+            <button
+                onClick={() => toggleDropdown(groupName)}
+                className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between"
+            >
+                {groupName}
+            </button>
+            {dropdownState[groupName] && (
+                <div className="dropdown-menu dropdown-content">
+                    {groupPermissions.map((permission) => (
+                        <div className="form-check form-switch" key={permission.permissionID}>
+                            <input
+                                className="form-check-input"
+                                type="checkbox"
+                                id={`permission-${permission.permissionID}`}
+                                checked={selectedPermissions.includes(permission.permissionID)}
+                                onChange={() => handlePermissionChange(permission.permissionID)}
+                            />
+                            <label className="form-check-label" htmlFor={`permission-${permission.permissionID}`}>
+                                {permission.permissionDisplayName}
+                            </label>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    ))}
+</div>
                     <div className='buttons col-6'>
                         <div>
                             <button className='cancel-btn' disabled={isSubmitting}>{t('CANCEL')}</button>

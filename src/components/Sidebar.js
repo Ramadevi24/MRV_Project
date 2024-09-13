@@ -148,10 +148,10 @@ const isActive = (path) => location.pathname === path;
                             <ul className='sidemenu-items'>
                             <Link to="/dashboard" className="menu-link"><li className={`sidenav-menuitem ${isActive("/dashboard") ? "active-menu" : ""}`}><img src={Dashboardicon} />{t('Dashboard')}</li></Link>
                             <Link to="/datamanagement" className="menu-link"><li className={`sidenav-menuitem ${isActive("/datamanagement") ? "active-menu" : ""}`}><img src={Datamanagementicon} />{t('Data Management')}</li></Link>
-                            <Link to="/organizations" className="menu-link"> <li className={`sidenav-menuitem ${isActive("/organizationtable") ? "active-menu" : ""}`}><img src={Dashboardicon} />{t('Organization')}</li></Link>
+                            {/* <Link to="/organizations" className="menu-link"> <li className={`sidenav-menuitem ${isActive("/organizationtable") ? "active-menu" : ""}`}><img src={Dashboardicon} />{t('Organization')}</li></Link>
                             <Link to="/users" className="menu-link">   <li className={`sidenav-menuitem ${isActive("/usersdata") ? "active-menu" : ""}`}><img src={Datamanagementicon} />{t('Users')}</li></Link>
                             <Link to="/tenantsData" className="menu-link"> <li className={`sidenav-menuitem ${isActive("/tenantsData") ? "active-menu" : ""}`}><img src={Dashboardicon} />{t('Tenants')}</li></Link>
-                            <Link to="/permissionsData" className="menu-link"> <li className={`sidenav-menuitem ${isActive("/permissionsData") ? "active-menu" : ""}`}><img src={Datamanagementicon} />{t('Permissions')}</li></Link>
+                            <Link to="/permissionsData" className="menu-link"> <li className={`sidenav-menuitem ${isActive("/permissionsData") ? "active-menu" : ""}`}><img src={Datamanagementicon} />{t('Permissions')}</li></Link> */}
                                <Link to="/reports" className="menu-link"> <li className={`sidenav-menuitem ${isActive("/reports") ? "active-menu" : ""}`}><img src={Reportsicon} />{t('Reports')}</li></Link>
                                 {/* <li className="active"><Link to="/dashboard"><img src={Administrationicon} />Administration</a></li> */}
                                 <li className='sidenavmenu-item'>
