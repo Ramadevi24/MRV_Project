@@ -285,7 +285,9 @@
                                                                         "Select Tenant Role": "Sélectionnez le rôle du locataire",
                                                                         "Select User Role": "Sélectionnez le rôle de l'utilisateur",
                                                                         "Established date": "Date de création",
-                                                                        "Tenant Role ID":"ID du rôle du locataire"
+                                                                        "Tenant Role ID":"ID du rôle du locataire",
+                                                                            "Permission unique Name": "Nom unique de la permission",
+                                                                            "Select Permission Group":"Sélectionnez le groupe d'autorisations"
                                                                         
                                                                       
                                                                       

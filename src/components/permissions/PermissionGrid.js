@@ -85,13 +85,13 @@ const PermissionGrid = () => {
       <div className="d-flex justify-content-between mb-3">
         <Form.Control
           type="text"
-          placeholder={t('search')}
+          placeholder={t('Search')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-25"
         />
         <Button variant="primary" onClick={() => navigate('/create-permission')}>
-          {t('createPermission')}
+          {t('Create Permission')}
         </Button>
       </div>
       {loading ? (
@@ -103,22 +103,22 @@ const PermissionGrid = () => {
           <thead>
             <tr>
               <th onClick={() => handleSort('permissionDisplayName')}>
-                {t('permissionDisplayName')}
+                {t('Permission Display Name')}
                 {sortConfig.key === 'permissionDisplayName' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
               </th>
               <th onClick={() => handleSort('description')}>
-                {t('description')}
+                {t('Description')}
                 {sortConfig.key === 'description' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
               </th>
               <th onClick={() => handleSort('permissionuniquename')}>
-                {t('permissionuniquename')}
+                {t('Permission unique Name')}
                 {sortConfig.key === 'permissionuniquename' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
               </th>
               <th onClick={() => handleSort('permissionGroup')}>
-                {t('permissionGroup')}
+                {t('Permission Group')}
                 {sortConfig.key === 'permissionGroup' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
               </th>
-              <th>{t('actions')}</th>
+              <th>{t('Actions')}</th>
             </tr>
           </thead>
           <tbody>
@@ -165,9 +165,9 @@ const PermissionGrid = () => {
       </div>
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{t('confirmDelete')}</Modal.Title>
+          <Modal.Title>{t('Confirm Delete')}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{t('deleteConfirmationMessage')}</Modal.Body>
+        <Modal.Body>{t('delete Confirmation Message')}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
             {t('cancel')}

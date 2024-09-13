@@ -63,11 +63,11 @@ const CreatePermission = () => {
 
   return (
     <div className="container">
-      <h2>{t('createPermission')}</h2>
+      <h2>{t('Create Permission')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
-            <label>{t('permissionDisplayName')} <span className="text-danger">*</span></label>
+            <label>{t('Permission Display Name')} <span className="text-danger">*</span></label>
             <input
               type="text"
               name="permissionDisplayName"
@@ -78,7 +78,7 @@ const CreatePermission = () => {
             {errors.permissionDisplayName && <div className="invalid-feedback">{errors.permissionDisplayName}</div>}
           </div>
           <div className="col">
-            <label>{t('description')} <span className="text-danger">*</span></label>
+            <label>{t('Description')} <span className="text-danger">*</span></label>
             <textarea
               name="description"
               value={formData.description}
@@ -90,7 +90,7 @@ const CreatePermission = () => {
         </div>
         <div className="row mb-3">
           <div className="col">
-            <label>{t('permissionuniquename')} <span className="text-danger">*</span></label>
+            <label>{t('Permission unique Name')} <span className="text-danger">*</span></label>
             <input
               type="text"
               name="permissionuniquename"
@@ -101,14 +101,14 @@ const CreatePermission = () => {
             {errors.permissionuniquename && <div className="invalid-feedback">{errors.permissionuniquename}</div>}
           </div>
           <div className="col">
-            <label>{t('permissionGroup')} <span className="text-danger">*</span></label>
+            <label>{t('Permission Group')} <span className="text-danger">*</span></label>
             <select
               name="permissionGroup"
               value={formData.permissionGroup}
               onChange={handleChange}
               className={`form-control ${errors.permissionGroup ? 'is-invalid' : ''}`}
             >
-              <option value="">{t('selectPermissionGroup')}</option>
+              <option value="">{t('Select Permission Group')}</option>
               {permissionGroups.map(group => (
                 <option key={group.id} value={group.id}>{group.name}</option>
               ))}
@@ -116,7 +116,7 @@ const CreatePermission = () => {
             {errors.permissionGroup && <div className="invalid-feedback">{errors.permissionGroup}</div>}
           </div>
         </div>
-        <button type="submit" className="btn">{t('createPermission')}</button>
+        <button type="submit" className="btn">{t('Create Permission')}</button>
       </form>
     </div>
   );

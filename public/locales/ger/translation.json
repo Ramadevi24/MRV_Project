@@ -285,7 +285,12 @@
                                                                                "Contact Phone": "Kontakttelefon",
                                                                                "Category Ids": "Kategorie-IDs",
                                                                                "Location Address": "Standortadresse",
-                                                                               "Tenant Role ID":"Mieterrollen-ID"
+                                                                               "Tenant Role ID":"Mieterrollen-ID",
+                                                                               "Permission unique Name": "Einzigartiger Berechtigungsname",
+                                                                               "Select Permission Group":"Berechtigungsgruppe auswählen"
+
+
+
                                                                           
                                                                           
                                                                       

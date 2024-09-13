@@ -76,10 +76,12 @@ const TenantGrid = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
+    <div className="container mt-5">
     <div className="tenant-grid">
-      <div className="header">
+      <div className="header d-flex justify-content-between align-items-center mb-3">
         <input
           type="text"
+            className="form-control w-25"
           placeholder={t('Search')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -146,6 +148,7 @@ const TenantGrid = () => {
           ))}
         </ul>
       </div>
+    </div>
     </div>
   );
 };
