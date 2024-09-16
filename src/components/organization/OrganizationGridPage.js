@@ -138,7 +138,7 @@ const OrganizationGridPage = () => {
                 <td>{org.organizationName}</td>
                 <td>{org.tenantName}</td>
                 <td>{org.establishedDate}</td>
-                <td>{org.categories. $values.join(', ')}</td>
+                <td>{org.categories.$values.join(',')}</td>
                 <td className="action-icons">
                   <button className="view-btn" onClick={() => navigate(`/view-organization/${org.organizationID}`)}>
                     <FaEye color="green" />

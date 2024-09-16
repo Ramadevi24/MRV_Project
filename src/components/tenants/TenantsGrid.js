@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import '../../css/CreateForm.css';
+import { Spinner } from 'react-bootstrap';
 
 const TenantGrid = () => {
   const { t } = useTranslation();
@@ -67,7 +68,9 @@ const TenantGrid = () => {
   });
 
   const filteredTenants = sortedTenants.filter((tenant) =>
-    tenant.name.toLowerCase().includes(searchTerm.toLowerCase())
+    ['name', 'description', 'createdDate'].some((key) =>
+      tenant[key].toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   const indexOfLastTenant = currentPage * tenantsPerPage;
@@ -92,17 +95,25 @@ const TenantGrid = () => {
         </button>
       </div>
       {loading ? (
-        <div className="spinner">Loading...</div>
+         <div className="d-flex justify-content-center align-items-center" style={{ height: '50vh' }}>
+         <Spinner animation="border" role="status">
+           <span className="sr-only">{t('Loading...')}</span>
+         </Spinner>
+       </div>
       ) : (
         <table className="custom-table table table-striped table-hover">
           <thead>
             <tr>
-              <th>{t('Tenant ID')}</th>
+              <th onClick={() => handleSort('tenantID')}>{t('Tenant ID')}
+              {sortConfig.key === 'tenantID' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
+              </th>
               <th onClick={() => handleSort('name')}>
                 {t('Tenant Name')}
                 {sortConfig.key === 'name' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
               </th>
-              <th>{t('Description')}</th>
+              <th onClick={() => handleSort('description')}>{t('Description')}
+              {sortConfig.key === 'description' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}
+              </th>
               <th onClick={() => handleSort('createdDate')}>
                 {t('Created Date')}
                 {sortConfig.key === 'createdDate' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}

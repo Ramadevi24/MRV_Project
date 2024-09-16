@@ -7,7 +7,23 @@ import { useParams } from 'react-router-dom';
 import DropdownTreeSelect from 'react-dropdown-tree-select';
 import 'react-dropdown-tree-select/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
-import  {formatDate}  from '../../utils/formateDate.js';
+import { formatDate } from '../../utils/formateDate.js';
+import "../../css/custom-dropdown.css";
+
+const transformData = (categories, selectedCategoryIDs) => {
+  return categories
+    .filter(
+      (category) => category.categoryName && category.categoryCode
+    )
+    .map((category) => ({
+      label: `${category.categoryCode} - ${category.categoryName}`, 
+      value:  category.categoryID,
+      checked: selectedCategoryIDs?.includes(category.categoryID),
+      children: category.subCategories
+        ? transformData(category.subCategories.$values || selectedCategoryIDs)
+        : [],
+    }));
+};
 
 const EditOrganization = () => {
   const { t } = useTranslation();
@@ -27,11 +43,23 @@ const EditOrganization = () => {
   });
   const [tenants, setTenants] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [treeData, setTreeData] = useState([]);
 
   useEffect(() => {
     fetchOrganization();
     fetchCategories();
   }, []);
+
+  console.log(formData, 'formData');
+
+  useEffect(() => {
+    setTreeData(transformData(categories, formData?.categories?.$values));
+  }, [categories, formData.categoryIDs]);
+
+  const handleCategoryChange = (currentNode, selectedNodes) => {
+    const categoryIds = selectedNodes.map((node) => node.value);
+    setFormData({ ...formData, categoryIDs: categoryIds });
+  };
 
   const fetchOrganization = async () => {
     try {
@@ -109,20 +137,6 @@ const EditOrganization = () => {
     }
   };
 
-  const data = categories.map(category => ({
-    label: category.categoryName,
-    value: category.categoryID,
-    children: category.subcategories?.map(subcategory => ({
-      label: subcategory.subcategoryName,
-      value: subcategory.subcategoryID
-    }))
-  }));
-
-  const handleCategoryChange = (currentNode, selectedNodes) => {
-    const selectedIds = selectedNodes?.map(node => node.value);
-    setFormData({ ...formData, categoryIDs: selectedIds });
-  };
-
   return (
     <div className="container">
       <h2>{t('Edit Organization')}</h2>
@@ -168,12 +182,17 @@ const EditOrganization = () => {
             <input type="text" name="address" value={formData.address} onChange={handleChange} className="form-control" required />
           </div>
           <div className="col">
-            <label>{t('categoryIDs')}<span className="text-danger">*</span></label>
+            <label>
+              {t("categoryIDs")}
+              <span className="text-danger">*</span>
+            </label>
             <DropdownTreeSelect
-              data={data}
+              data={treeData}
               onChange={handleCategoryChange}
-              className="form-control"
-              texts={{ placeholder: 'Select categories' }}
+              keepTreeOnSearch
+              keepOpenOnSelect
+              texts={{ placeholder: "Select Categories" }}
+              className="category-tree-dropdown"
             />
           </div>
         </div>
