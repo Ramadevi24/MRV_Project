@@ -96,9 +96,9 @@ hr{
     font-size: 13px;
 
 }
-.sidenav-menuitem a{
+/* .sidenav-menuitem a{
     margin-top: 20px !important;
-  }
+  } */
   .administraton-dropdown{
       margin-left: -9px;
   }
@@ -127,32 +127,26 @@ hr{
     border: 2px solid rgba(210, 210, 210, 1);
     border-bottom-right-radius:30px;
     border-bottom-left-radius: 30px;
-    line-height: 40px;
-    display: flex;
-    justify-content: center; /* Centers the content of the dropdown */
-    align-items: center; /* Ensures vertical alignment of items */
+    /* line-height: 40px; */
+    /* display: flex; */
+    /* justify-content: space-between !important;  */
+    /* align-items: center;  */
     flex-direction: column;
-    padding: 10px;
+    /* padding: 20px; */
 }
 
-.administration-menu li {
-   
-    cursor: pointer; /* Makes it clear that the items are clickable */
-    /* transition: background-color 0.2s ease;  */
-    
-  }
 
 
 .sidenav-menuitem{
-   
-  
         cursor: pointer; 
         margin-top: 20px;
-        /* transition: background-color 0.2s ease;  */
+        transition: background-color 0.2s ease; 
 }
 .sidenav-menuitem:hover{
-    background-color:   rgba(0, 138, 95, 1); 
-    color:white ;
+    /* background-color:   rgba(0, 138, 95, 1);  */
+    background-color: rgba(0, 138, 95, 1);
+    /* color:white ; */
+    color: white;
     border-radius: 6px;
     /* height: 50px; */
     padding: 5px;
@@ -162,41 +156,27 @@ hr{
 
 
 
-/* .sidenav-menuitem:hover .menu-link {
-    color: white; 
 
-  
-  
-} */
 /* new */
 
 .administration:hover {
     background-color: rgba(0, 138, 95, 1); /* Background color for the button on hover */
-    color: white ;
+    color:white ;
     border-radius: 6px;
     height: 50px;
-    padding: 10px;
+    /* padding: 10px; */
     width:100%;
    
 }
 
 
 
-/* Dropdown menu items hover effect */
-.administration-menu li:hover {
-    background-color: rgba(0, 138, 95, 1);
-    color:white;
-    border-radius: 6px;
-  
-    /* padding: 5px; */
-    /* width:200px; */
-    
-}
 .administration-menu{
-    margin-left: -40px;
+    /* margin-left: -40px; */
+    padding: 0px !important;
 }
 .sidemenu-items{
-    margin-left: -12px;
+    padding: 0px !important;
 }
 
 .active-menu {
@@ -207,21 +187,16 @@ hr{
     /* height: 50px; */
    
   }
-  /* .sidemenu-items .sidenav-menuitem.active-menu .menu-link {
-    color: white !important;
-} */
+
 
   .active-submenu{
     background-color: rgba(0, 138, 95, 1);
-    background-color: rgba(0, 138, 95, 1);
     color:white;
     border-radius: 6px;
-    /* padding: 5px; */
-    width:200px;
+
+    /* width:200px; */
   }
-  .font-icon{
-    margin-right: 60px;
-  }
+
   .administration.active-dropdown:hover {
     background-color: rgba(0, 138, 95, 1);/* or specify a different background */
     border-top-right-radius:30px;
@@ -234,6 +209,31 @@ hr{
     padding: 6px;
    
 }
+
+.administration-menu li {
+    cursor: pointer; 
+    margin: 5px 0; /* Add vertical margin to create space between the items */
+    padding: 8px 0px; /* Add padding to increase space within the items */
+    border-radius: 6px; /* Border radius for a smoother appearance */
+    transition: background-color 0.2s ease; /* Smooth transition for hover */
+    display: flex;
+    align-items: start;
+    justify-content: space-around;
+    align-items: center;
+}
+  .font-icon{
+    /* margin-top: 10px; */
+ 
+  }
+
+.administration-menu li:hover {
+    background-color:  rgba(0, 138, 95, 1);
+    color: white;
+    border-radius: 6px;
+    margin: 5px 0;
+}
+
+
 
 
 

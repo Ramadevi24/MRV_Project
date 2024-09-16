@@ -136,9 +136,10 @@ const AddNewRole = () => {
                             />
                         </div>
                     </div>
-                    <div className='row'>
+                    <div className='row '>
+                        <div className='dropdown-grid-container'>
     {Object.entries(groupedPermissions).map(([groupName, groupPermissions]) => (
-        <div className="dropdown drop-down mt-3 col-12" key={groupName}>
+        <div className="dropdown drop-down mt-3 col-12 dropdown-container" key={groupName}>
             <button
                 onClick={() => toggleDropdown(groupName)}
                 className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between"
@@ -150,7 +151,8 @@ const AddNewRole = () => {
                     {groupPermissions.map((permission) => (
                         <div className="form-check form-switch" key={permission.permissionID}>
                             <input
-                                className="form-check-input"
+                                className="form-check-input user-switches"
+                                
                                 type="checkbox"
                                 id={`permission-${permission.permissionID}`}
                                 checked={selectedPermissions.includes(permission.permissionID)}
@@ -165,6 +167,7 @@ const AddNewRole = () => {
             )}
         </div>
     ))}
+    </div>
 </div>
                     <div className='buttons col-6'>
                         <div>

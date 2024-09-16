@@ -153,7 +153,7 @@ const DataManagement = () => {
               id="userDefined"
               checked={showUserDefined}
               onChange={handleCheckboxChange}
-              style={{ transform: "scale(1.5)", marginRight:'10px' }}
+              style={{ transform: "scale(1.5)", marginRight:'10px',width:'auto' }}
             />
             <label htmlFor="userDefined" className="userdefined-label">
               {t('Show user-defined fuels only')}

@@ -165,3 +165,16 @@
     height: 44px;
     border-radius: 14px;
 }
+.dropdown-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two dropdowns per row */
+  gap: 20px; /* Adjust the gap between items as needed */
+}
+
+.user-switches{
+  width: 45px !important;
+  margin-right: 10px !important;
+}
+
+
+
