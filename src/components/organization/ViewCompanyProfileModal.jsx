@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import formateDate from '../../utils/formateDate';
+import {formatDate} from '../../utils/formateDate';
 import { useTranslation } from "react-i18next";
 import { useLocation } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const ViewCompanyProfileModal = ({ show, handleClose, companyProfile }) => {
             <p><strong>{t('Organization Name')}:</strong> {companyProfile.organizationName}</p>
             <p><strong>{t('Tenant Name')}:</strong> {companyProfile.tenantName}</p>
             <p><strong>{t('Description')}:</strong> {companyProfile.description}</p>
-            <p><strong>{t('Established Date')}:</strong> {formateDate(companyProfile.establishedDate)}</p>
+            <p><strong>{t('Established Date')}:</strong> {formatDate(companyProfile.establishedDate)}</p>
             <p><strong>{t('Address')}:</strong> {companyProfile.address}</p>
             <p><strong>{t('Email')}:</strong> {companyProfile.contactEmail}</p>
             <p><strong>{t('Phone')}:</strong> {companyProfile.contactPhone}</p>

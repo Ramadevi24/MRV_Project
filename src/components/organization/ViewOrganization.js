@@ -33,7 +33,7 @@ const ViewOrganization = () => {
 
   return (
     <div className="container">
-      <h2>{t('viewOrganization')}</h2>
+      <h2>{t('View Organization')}</h2>
       <table className="table table-striped table-hover custom-table">
         <tbody>
           <tr>

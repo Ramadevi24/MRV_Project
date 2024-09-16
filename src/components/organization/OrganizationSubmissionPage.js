@@ -164,6 +164,9 @@ const OrganizationSubmissionPage = () => {
         {formData.locations.map((location, index) => (
           <div className="row mb-3" key={index}>
             <div className="col">
+            <label style={{fontSize:'20px', marginTop:'10px'}}>{t('Locations')}<span className="text-danger">*</span></label>
+            </div>
+            <div className="col">
               <label>{t('Latitude')}<span className="text-danger">*</span></label>
               <input type="text" name="latitude" value={location.latitude} onChange={(e) => handleLocationChange(index, e)} className="form-control" required />
             </div>
