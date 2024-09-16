@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 
 const AddNewRole = () => {
-    const {t}=useTranslation();
+    const { t } = useTranslation();
     const { permissions, fetchPermissions } = useContext(PermissionsContext);
     const { createRole, updateRole, fetchRoles, selectedRole } = useContext(RolesContext);
     const [roleName, setRoleName] = useState('');
@@ -115,7 +115,7 @@ const AddNewRole = () => {
                         <div>
                             <input
                                 type='text'
-                               className='role-name-input'
+                                className='role-name-input'
                                 placeholder={t('Role Name')}
                                 value={roleName}
                                 onChange={(e) => setRoleName(e.target.value)}
@@ -138,37 +138,37 @@ const AddNewRole = () => {
                     </div>
                     <div className='row '>
                         <div className='dropdown-grid-container'>
-    {Object.entries(groupedPermissions).map(([groupName, groupPermissions]) => (
-        <div className="dropdown drop-down mt-3 col-12 dropdown-container" key={groupName}>
-            <button
-                onClick={() => toggleDropdown(groupName)}
-                className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between"
-            >
-                {groupName}
-            </button>
-            {dropdownState[groupName] && (
-                <div className="dropdown-menu dropdown-content">
-                    {groupPermissions.map((permission) => (
-                        <div className="form-check form-switch" key={permission.permissionID}>
-                            <input
-                                className="form-check-input user-switches"
-                                
-                                type="checkbox"
-                                id={`permission-${permission.permissionID}`}
-                                checked={selectedPermissions.includes(permission.permissionID)}
-                                onChange={() => handlePermissionChange(permission.permissionID)}
-                            />
-                            <label className="form-check-label" htmlFor={`permission-${permission.permissionID}`}>
-                                {permission.permissionDisplayName}
-                            </label>
+                            {Object.entries(groupedPermissions).map(([groupName, groupPermissions]) => (
+                                <div className="dropdown drop-down mt-3 col-12 dropdown-container" key={groupName}>
+                                    <button
+                                        onClick={() => toggleDropdown(groupName)}
+                                        className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between"
+                                    >
+                                        {groupName}
+                                    </button>
+                                    {dropdownState[groupName] && (
+                                        <div className="dropdown-menu dropdown-content">
+                                            {groupPermissions.map((permission) => (
+                                                <div className="form-check form-switch" key={permission.permissionID}>
+                                                    <input
+                                                        className="form-check-input switches user-switches"
+
+                                                        type="checkbox"
+                                                        id={`permission-${permission.permissionID}`}
+                                                        checked={selectedPermissions.includes(permission.permissionID)}
+                                                        onChange={() => handlePermissionChange(permission.permissionID)}
+                                                    />
+                                                    <label className="form-check-label" htmlFor={`permission-${permission.permissionID}`}>
+                                                        {permission.permissionDisplayName}
+                                                    </label>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            )}
-        </div>
-    ))}
-    </div>
-</div>
+                    </div>
                     <div className='buttons col-6'>
                         <div>
                             <button className='cancel-btn' disabled={isSubmitting}>{t('CANCEL')}</button>
