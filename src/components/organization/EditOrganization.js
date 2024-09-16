@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import DropdownTreeSelect from 'react-dropdown-tree-select';
 import 'react-dropdown-tree-select/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
+import  {formatDate}  from '../../utils/formateDate.js';
 
 const EditOrganization = () => {
   const { t } = useTranslation();
@@ -14,6 +15,7 @@ const EditOrganization = () => {
   const { id } = useParams();
   const [formData, setFormData] = useState({
     tenantID: '',
+    tenantName: '', // Add tenantName to formData
     organizationName: '',
     description: '',
     establishedDate: '',
@@ -28,7 +30,6 @@ const EditOrganization = () => {
 
   useEffect(() => {
     fetchOrganization();
-    fetchTenants();
     fetchCategories();
   }, []);
 
@@ -42,19 +43,26 @@ const EditOrganization = () => {
       const data = response.data;
       data.establishedDate = formatDate(data.establishedDate);
       setFormData(data);
+      fetchTenants(data.tenantName);
     } catch (error) {
       toast.error(t('errorFetchingData'));
     }
   };
 
-  const fetchTenants = async () => {
+  const fetchTenants = async (tenantName) => {
     try {
       const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      setTenants(response.data.$values);
+      const tenantsData = response.data.$values;
+      setTenants(tenantsData);
+
+      const initialTenant = tenantsData.find(tenant => tenant.name === tenantName);
+      if (initialTenant) {
+        setFormData(prevFormData => ({ ...prevFormData, tenantID: initialTenant.tenantID }));
+      }
     } catch (error) {
       toast.error(t('errorFetchingData'));
     }
@@ -71,11 +79,6 @@ const EditOrganization = () => {
     } catch (error) {
       toast.error(t('errorFetchingData'));
     }
-  };
-
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
   const handleChange = (e) => {
@@ -120,10 +123,9 @@ const EditOrganization = () => {
     setFormData({ ...formData, categoryIDs: selectedIds });
   };
 
-
   return (
     <div className="container">
-      <h2>{t('editOrganization')}</h2>
+      <h2>{t('Edit Organization')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
@@ -167,17 +169,12 @@ const EditOrganization = () => {
           </div>
           <div className="col">
             <label>{t('categoryIDs')}<span className="text-danger">*</span></label>
-            {/* <select multiple name="categoryIDs" value={formData.categoryIDs} onChange={handleChange} className="form-control" required>
-              {categories.map(category => (
-                <option key={category.id} value={category.id}>{category.name}</option>
-              ))}
-            </select> */}
             <DropdownTreeSelect
-      data={data}
-      onChange={handleCategoryChange}
-      className="form-control"
-      texts={{ placeholder: 'Select categories' }}
-    />
+              data={data}
+              onChange={handleCategoryChange}
+              className="form-control"
+              texts={{ placeholder: 'Select categories' }}
+            />
           </div>
         </div>
         {formData.locations.$values?.map((location, index) => (

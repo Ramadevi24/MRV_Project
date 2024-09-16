@@ -28,6 +28,7 @@ import ViewPermission from "./components/permissions/ViewPermission.js";
 import EditPermission from "./components/permissions/EditPermission.js";
 import RoleGrid from "./components/roles/RoleGrid.js";
 import ViewRole from "./components/roles/ViewRole.js";
+import CompanyProfile from "./components/organization/CompanyProfile.js";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -90,6 +91,8 @@ const App = () => {
               <Route path="/create-role" element={<AddNewRole />} />
               <Route path="/edit-role/:id" element={<AddNewRole />} />
               <Route path="/view-role/:id" element={<ViewRole />} />
+              <Route path="*" element={<h1>Page Not Found</h1>} />
+              <Route path="/orgi" element={<CompanyProfile/>} />
             </Routes>
           </Suspense>
         </div>
