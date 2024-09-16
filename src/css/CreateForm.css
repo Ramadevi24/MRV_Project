@@ -64,6 +64,7 @@ textarea {
 
 .btn:hover {
   background-color: rgb(19, 131, 96) !important;
+  color:white !important
 }
 
 .organization-submission-page {

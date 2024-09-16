@@ -132,19 +132,20 @@ import Dashboardicon from '../images/Dashboardicon.png';
 import Reportsicon from '../images/ReportIcon.png';
 import Datamanagementicon from '../images/DataManagementicon.png';
 import Administrationicon from '../images/Administrationicon.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faSitemap, faUserPlus, faGear, faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from "react-i18next";
 
 const Sidebar = () => {
     const { t } = useTranslation();
+    const location = useLocation();
     const [dropdownState, setDropdownState] = useState({
         administration: false
     });
 
     // State for the active menu
-    const [activeMenu, setActiveMenu] = useState("");
+    const [activeMenu, setActiveMenu] = useState(location.pathname);
 
     // Toggle function for dropdowns
     const toggleDropdown = (dropdown) => {
@@ -156,15 +157,16 @@ const Sidebar = () => {
 
     // Function to handle click on menu items and set the active menu
     const handleMenuClick = (menu) => {
+        
         setActiveMenu(menu);
-        console.log('clicked menu',menu) // Set the clicked menu as active
-        // setDropdownState({ administration: false }); // Close the dropdown when clicking on any item
+        console.log('clicked menu', menu); // Debugging log
+        console.log('activeMenu state', activeMenu); // Debugging log
     };
-     const handleOutsideClick = (dropdown) => {
+
+    const handleOutsideClick = (dropdown) => {
         setDropdownState({ [dropdown]: false });
         setActiveMenu(dropdown);
-
-         };
+    };
 
     return (
         <div>
@@ -177,17 +179,17 @@ const Sidebar = () => {
                     <nav className="menu">
                         <ul className=''>
                             <Link to="/dashboard" className="menu-link" onClick={() => handleOutsideClick('dashboard')}>
-                                <li className={`sidenav-menuitem ${activeMenu === 'dashboard' ? "active-menu" : ""}`}>
+                                <li className={`sidenav-menuitem ${activeMenu === '/dashboard' ? "active-menu" : ""}`}>
                                     <img src={Dashboardicon} />{t('Dashboard')}
                                 </li>
                             </Link>
                             <Link to="/datamanagement" className="menu-link" onClick={() => handleOutsideClick('datamanagement')}>
-                                <li className={`sidenav-menuitem ${activeMenu === 'datamanagement' ? "active-menu" : ""}`}>
+                                <li className={`sidenav-menuitem ${activeMenu === '/datamanagement' ? "active-menu" : ""}`}>
                                     <img src={Datamanagementicon} />{t('Data Management')}
                                 </li>
                             </Link>
-                            <Link to="/reports" className="menu-link"onClick={() => handleOutsideClick('reports')}>
-                                <li className={`sidenav-menuitem ${activeMenu === 'reports' ? "active-menu" : ""}`}>
+                            <Link to="/reports" className="menu-link" onClick={() => handleOutsideClick('reports')}>
+                                <li className={`sidenav-menuitem ${activeMenu === '/reports' ? "active-menu" : ""}`}>
                                     <img src={Reportsicon} />{t('Reports')}
                                 </li>
                             </Link>
@@ -199,35 +201,35 @@ const Sidebar = () => {
                                     </button>
 
                                     {dropdownState.administration && (
-                                        <div class="dropdown-menu-right Administration-cnt">
+                                        <div className="dropdown-menu-right Administration-cnt">
                                             <ul className='administration-menu'>
                                                 <Link to="/tenants">
-                                                    <li onClick={() => handleMenuClick('tenants')} className={activeMenu === 'tenants' ? "active-submenu " : ""}>
+                                                    <li onClick={() => handleMenuClick('/tenants')} className={activeMenu === '/tenants' ? "active-submenu " : ""}>
                                                         <FontAwesomeIcon icon={faUser} className='font-icon' />{t('Tenants')}
                                                     </li>
                                                 </Link>
                                                 <Link to="/organizations">
-                                                    <li onClick={() => handleMenuClick('organizations')} className={activeMenu === 'organizations' ? "active-submenu " : ""}>
+                                                    <li onClick={() => handleMenuClick('/organizations')} className={activeMenu === '/organizations' ? "active-submenu " : ""}>
                                                         <FontAwesomeIcon icon={faSitemap} className='font-icon' />{t('Organization')}
                                                     </li>
                                                 </Link>
                                                 <Link to="/roles">
-                                                    <li onClick={() => handleMenuClick('roles')} className={activeMenu === 'roles' ? "active-submenu " : ""}>
+                                                    <li onClick={() => handleMenuClick('/roles')} className={activeMenu === '/roles' ? "active-submenu " : ""}>
                                                         <FontAwesomeIcon icon={faUserPlus} className='font-icon' />{t('Roles')}
                                                     </li>
                                                 </Link>
                                                 <Link to="/users">
-                                                    <li onClick={() => handleMenuClick('users')} className={activeMenu === 'users' ? "active-submenu " : ""}>
+                                                    <li onClick={() => handleMenuClick('/users')} className={activeMenu === '/users' ? "active-submenu " : ""}>
                                                         <FontAwesomeIcon icon={faUserPen} className='font-icon' />{t('Users')}
                                                     </li>
-                                                    </Link>
+                                                </Link>
                                                 <Link to="/permissions">
-                                                    <li onClick={() => handleMenuClick('permissions')} className={activeMenu === 'permissions' ? "active-submenu " : ""}>
+                                                    <li onClick={() => handleMenuClick('/permissions')} className={activeMenu === '/permissions' ? "active-submenu " : ""}>
                                                         <FontAwesomeIcon icon={faUserPen} className='font-icon' />{t('Permissions')}
                                                     </li>
                                                 </Link>
                                                 <Link to="/settings">
-                                                    <li onClick={() => handleMenuClick('settings')} className={activeMenu === 'settings' ? "active-submenu " : ""}>
+                                                    <li onClick={() => handleMenuClick('/settings')} className={activeMenu === '/settings' ? "active-submenu " : ""}>
                                                         <FontAwesomeIcon icon={faGear} className='font-icon' />{t('Settings')}
                                                     </li>
                                                 </Link>

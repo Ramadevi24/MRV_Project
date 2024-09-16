@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { FaPencilAlt, FaTrashAlt, FaEye, FaSortUp, FaSortDown } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { Modal, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const UserGrid = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
@@ -20,7 +22,7 @@ const UserGrid = () => {
     fetchUsers();
   }, []);
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     try {
       const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/User', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -31,37 +33,41 @@ const UserGrid = () => {
       toast.error(t('Error fetching users'));
       setLoading(false);
     }
-  };
+  }, [t]);
 
-  const handleSort = (key) => {
+  const handleSort = useCallback((key) => {
     let direction = 'ascending';
     if (sortConfig.key === key && sortConfig.direction === 'ascending') {
       direction = 'descending';
     }
     setSortConfig({ key, direction });
-  };
+  }, [sortConfig]);
 
-  const sortedUsers = [...users].sort((a, b) => {
-    if (a[sortConfig.key] < b[sortConfig.key]) {
-      return sortConfig.direction === 'ascending' ? -1 : 1;
-    }
-    if (a[sortConfig.key] > b[sortConfig.key]) {
-      return sortConfig.direction === 'ascending' ? 1 : -1;
-    }
-    return 0;
-  });
+  const sortedUsers = useMemo(() => {
+    return [...users].sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === 'ascending' ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === 'ascending' ? 1 : -1;
+      }
+      return 0;
+    });
+  }, [users, sortConfig]);
 
-  const filteredUsers = sortedUsers.filter(user =>
-    Object.keys(user).some(key =>
-      user[key].toString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
+  const filteredUsers = useMemo(() => {
+    return sortedUsers.filter(user =>
+      Object.keys(user).some(key =>
+        user[key].toString().toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [sortedUsers, searchTerm]);
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
-  const handleDelete = async () => {
+  const handleDelete = useCallback(async () => {
     try {
       await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/User/${userToDelete.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -74,7 +80,7 @@ const UserGrid = () => {
       toast.error(t('Error deleting user'));
       setShowModal(false);
     }
-  };
+  }, [userToDelete, users, fetchUsers, t]);
 
   if (loading) {
     return <div className="spinner-border text-primary" role="status"><span className="sr-only">{t('Loading...')}</span></div>;
@@ -90,7 +96,7 @@ const UserGrid = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={() => window.location.href = '/create-user'}>{t('Create User')}</button>
+        <button className="btn btn-primary" onClick={() => navigate('/create-user')}>{t('Create User')}</button>
       </div>
       <table className="table table-striped table-hover custom-table">
         <thead>
@@ -120,8 +126,8 @@ const UserGrid = () => {
               <td>{user.organizationName}</td>
               <td>{user.userRole}</td>
               <td className="action-icons">
-                <button className="view-btn text-success" onClick={() => window.location.href = `/view-user/${user.userID}`}><FaEye /></button>
-                <button className="edit-btn text-primary" onClick={() => window.location.href = `/edit-user/${user.userID}`}><FaPencilAlt /></button>
+                <button className="view-btn text-success" onClick={() => navigate(`/view-user/${user.userID}`)}><FaEye /></button>
+                <button className="edit-btn text-primary" onClick={() => navigate(`/edit-user/${user.userID}`)}><FaPencilAlt /></button>
                 <button className="delete-btn text-danger" onClick={() => { setShowModal(true); setUserToDelete(user); }}><FaTrashAlt /></button>
               </td>
             </tr>
@@ -160,4 +166,4 @@ const UserGrid = () => {
   );
 };
 
-export default UserGrid;
+export default React.memo(UserGrid);
