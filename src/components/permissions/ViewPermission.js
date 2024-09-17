@@ -3,9 +3,11 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../../css/CreateForm.css';
+import { useNavigate } from 'react-router-dom';
 
 const ViewPermission = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { permissionID } = useParams();
   const [permission, setPermission] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -37,7 +39,14 @@ const ViewPermission = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className='view-form-header'>{t('View Permission')}</h2>
+      <div className='form-heading-row'>
+        <div>
+        <h2 className='view-form-header'>{t('View Permission')}</h2>
+        </div>
+        <div>
+        <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
+        </div>
+        </div>
       <table className="table custom-table table-striped table-hover">
         <tbody>
           <tr>

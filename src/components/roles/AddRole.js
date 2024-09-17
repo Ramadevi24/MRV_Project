@@ -1,54 +1,40 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../css/AddNewRole.css';
-import { PermissionsContext } from '../../contexts/PermissionsContext';
-import { RolesContext } from '../../contexts/RolesContext';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
 
-const AddNewRole = () => {
+const AddRole = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const { permissions, fetchPermissions } = useContext(PermissionsContext);
-    const { createRole, updateRole, fetchRoles, selectedRole } = useContext(RolesContext);
-    const [roleName, setRoleName] = useState('');
-    const [description, setDescription] = useState('');
-    const [selectedPermissions, setSelectedPermissions] = useState([]);
+    const [formData, setFormData] = useState({
+        roleName: '',
+        description: '',
+        permissionIds: []
+    });
+    const [permissions, setPermissions] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
-
-    // State to manage dropdown visibility
     const [dropdownState, setDropdownState] = useState({});
+    const [selectedPermissions, setSelectedPermissions] = useState([]);
+
+    console.log(formData, 'formData');
 
     // Fetch permissions when the component mounts
     useEffect(() => {
-        fetchPermissions().catch(error => {
-            console.error('Failed to fetch permissions:', error.message);
-        });
+        const fetchPermissionsData = async () => {
+            try {
+                const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Permissions', {
+                  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                });
+                setPermissions(response.data.$values);
+            } catch (error) {
+                console.error('Failed to fetch permissions:', error.message);
+            }
+        };
 
-        // If selectedRole exists, pre-populate the form for editing
-        if (selectedRole) {
-            setRoleName(selectedRole.roleName);
-            setDescription(selectedRole.description);
-            setSelectedPermissions(selectedRole.permissions.map(p => p.permissionID));
-        }
-    }, [fetchPermissions, selectedRole]);
-
-    // Function to handle toggling of dropdowns
-    const toggleDropdown = (groupName) => {
-        setDropdownState((prevState) => ({
-            ...prevState,
-            [groupName]: !prevState[groupName]
-        }));
-    };
-    const dropdownItems = [
-        { id: 'selectAll', label: t('Select All') },
-        { id: 'createUser', label: t('Create User') },
-        { id: 'deleteUser', label: t('Delete User') },
-        { id: 'editUser', label: t('Edit User') },
-        { id: 'viewUsers', label: t('View Users') },
-        { id: 'unlock', label: t('Unlock') }
-        // Add more items as needed
-    ];
+        fetchPermissionsData();
+    }, []);
 
     const handlePermissionChange = (permissionID) => {
         setSelectedPermissions((prevPermissions) =>
@@ -58,30 +44,37 @@ const AddNewRole = () => {
         );
     };
 
+    const toggleDropdown = (groupName) => {
+        setDropdownState((prevState) => ({
+            ...prevState,
+            [groupName]: !prevState[groupName]
+        }));
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (isSubmitting) return;
-
         setIsSubmitting(true);
         try {
             const roleData = {
-                roleName,
-                description,
+                roleName: formData.roleName,
+                description: formData.description,
                 permissionIds: selectedPermissions,
             };
-
-            if (selectedRole && selectedRole.roleID) {
-                // Update Role
-                await updateRole(selectedRole.roleID, roleData);
-                toast.success('Role updated successfully');
-            } else {
-                // Create Role
-                await createRole(roleData);
-                toast.success('Role created successfully');
-            }
-
-            await fetchRoles();  // Refresh the roles list after creation/update
+            await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Role', roleData, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+              });
+            toast.success('Role created successfully');
+            navigate('/roles');  // Redirect to roles list
         } catch (error) {
             console.error('Error saving role:', error.message);
             toast.error('Failed to save role');
@@ -90,7 +83,7 @@ const AddNewRole = () => {
         }
     };
 
-    const groupedPermissions = permissions.reduce((grouped, permission) => {
+    const groupedPermissions = permissions && permissions?.reduce((grouped, permission) => {
         const group = permission.permissionGroup;
         if (!grouped[group]) {
             grouped[group] = [];
@@ -103,11 +96,10 @@ const AddNewRole = () => {
         <div className='right-body'>
             <div className='right-body-ctnt'>
                 <div>
-                    <div className='addnewrole'>{selectedRole ? 'Edit Role' : t('Add New Role')}</div>
-                    {/* <div className='role'>{t('Roles')}/ {selectedRole ? 'Edit Role' : t('Add New Role')}</div> */}
+                    <div className='addnewrole'>{t('Add New Role')}</div>
                 </div>
                 <div>
-                <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
+                    <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
                 </div>
             </div>
             <div className='rightbody-content'>
@@ -118,9 +110,10 @@ const AddNewRole = () => {
                             <input
                                 type='text'
                                 className='role-name-input'
+                                name='roleName'
                                 placeholder={t('Role Name')}
-                                value={roleName}
-                                onChange={(e) => setRoleName(e.target.value)}
+                                value={formData.roleName}
+                                onChange={handleChange}
                                 required
                             />
                         </div>
@@ -131,16 +124,17 @@ const AddNewRole = () => {
                             <input
                                 type='textarea'
                                 className='role-name-input'
+                                name='description'
                                 placeholder={t('Description')}
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
+                                value={formData.description}
+                                onChange={handleChange}
                                 required
                             />
                         </div>
                     </div>
                     <div className='row '>
                         <div className='dropdown-grid-container'>
-                            {Object.entries(groupedPermissions).map(([groupName, groupPermissions]) => (
+                            {Object?.entries(groupedPermissions)?.map(([groupName, groupPermissions]) => (
                                 <div className="dropdown drop-down mt-3 col-12 dropdown-container" key={groupName}>
                                     <button
                                         onClick={() => toggleDropdown(groupName)}
@@ -154,7 +148,6 @@ const AddNewRole = () => {
                                                 <div className="form-check form-switch" key={permission.permissionID}>
                                                     <input
                                                         className="form-check-input switches user-switches"
-
                                                         type="checkbox"
                                                         id={`permission-${permission.permissionID}`}
                                                         checked={selectedPermissions.includes(permission.permissionID)}
@@ -171,20 +164,15 @@ const AddNewRole = () => {
                             ))}
                         </div>
                     </div>
-                    {/* <div className='buttons col-6'>
-                        <div>
-                            <button className='cancel-btn' disabled={isSubmitting}>{t('CANCEL')}</button>
-                        </div> */}
-                        <div>
-                            <button className='add-btn' type='submit' disabled={isSubmitting}>
-                                {isSubmitting ? t('Saving...') : t('Save')}
-                            </button>
-                        </div>
-                    {/* </div> */}
+                    <div>
+                        <button className='add-btn' type='submit' disabled={isSubmitting}>
+                            {isSubmitting ? t('Saving...') : t('Save')}
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
     );
-}
+};
 
-export default AddNewRole;
+export default AddRole;

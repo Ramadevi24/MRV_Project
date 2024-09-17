@@ -91,7 +91,7 @@
     transition: background-color 0.2s ease; /* Smooth transition */
   }
   .dropdown-item:hover {
-    background-color: rgba(0, 102, 164, 1);; /* Change background color on hover */
+    background-color: rgba(0, 138, 95, 1);/* Change background color on hover */
     color: white; /* Text color on hover */
   }
 

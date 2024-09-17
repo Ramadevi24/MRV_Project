@@ -29,6 +29,9 @@ import EditPermission from "./components/permissions/EditPermission.js";
 import RoleGrid from "./components/roles/RoleGrid.js";
 import ViewRole from "./components/roles/ViewRole.js";
 import CompanyProfile from "./components/organization/CompanyProfile.js";
+import AddRole from "./components/roles/AddRole.js";
+import EditRole from "./components/roles/EditRole.js";
+// import EditRole from "./components/roles/EditRole.js";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -89,8 +92,8 @@ const App = () => {
               <Route path="/edit-tenant/:id" element={<EditTenant />} />
               <Route path="/view-tenant/:id" element={<ViewTenant />} />
               <Route path="/roles" element={<RoleGrid />} />
-              <Route path="/create-role" element={<AddNewRole />} />
-              <Route path="/edit-role/:id" element={<AddNewRole />} />
+              <Route path="/create-role" element={<AddRole />} />
+              <Route path="/edit-role/:id" element={<EditRole />} />
               <Route path="/view-role/:id" element={<ViewRole />} />
               <Route path="*" element={<h3 style={{textAlign:'center', marginTop:'50px'}}>Page Not Found</h3>} />
               <Route path="/orgi" element={<CompanyProfile/>} />
