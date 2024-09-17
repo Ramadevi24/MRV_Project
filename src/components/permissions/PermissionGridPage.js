@@ -74,7 +74,7 @@ const PermissionGridPage = () => {
     <div className="container mt-5">
       <div className="d-flex justify-content-between mb-3">
         <h2>{t('Permissions')}</h2>
-        <button className="btn btn-primary" onClick={() => navigate('/create-permission')}>
+        <button className="button-72" onClick={() => navigate('/create-permission')}>
           {t('Create Permission')}
         </button>
       </div>

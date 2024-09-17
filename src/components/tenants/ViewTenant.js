@@ -20,7 +20,7 @@ const ViewTenant = () => {
       const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
-      setTenant(response.data.$values);
+      setTenant(response.data);
       setLoading(false);
     } catch (error) {
       toast.error(t('Error fetching tenant details'));

@@ -47,9 +47,7 @@ hr{
 .menu{
     margin-top: 20px;
     /* line-height:70px; */
-    
-   
-}
+    }
 
 .menu-heading{
     font-family:"Roboto", system-ui; 
@@ -169,6 +167,10 @@ hr{
    
 }
 
+.menu-item {
+    display: flex;
+    align-items: center;
+  }
 
 
 .administration-menu{
@@ -221,10 +223,6 @@ hr{
     justify-content: space-around;
     align-items: center;
 }
-  .font-icon{
-    /* margin-top: 10px; */
- 
-  }
 
 .administration-menu li:hover {
     background-color:  rgba(0, 138, 95, 1);
@@ -232,14 +230,3 @@ hr{
     border-radius: 6px;
     margin: 5px 0;
 }
-
-
-
-
-
-   
-
-
-
-
-  

@@ -59,7 +59,12 @@ const UserGridPage = () => {
   const filteredUsers = sortedUsers.filter(user =>
     user.firstName.toLowerCase().includes(search.toLowerCase()) ||
     user.lastName.toLowerCase().includes(search.toLowerCase()) ||
-    user.email.toLowerCase().includes(search.toLowerCase())
+    user.email.toLowerCase().includes(search.toLowerCase()) ||
+    user.phone.toLowerCase().includes(search.toLowerCase()) ||
+    user.loginType.toLowerCase().includes(search.toLowerCase()) ||
+    user.organizationName.toLowerCase().includes(search.toLowerCase()) ||
+    user.roleName.toLowerCase().includes(search.toLowerCase()) ||
+    user.tenantName.toLowerCase().includes(search.toLowerCase())
   );
 
   const indexOfLastUser = currentPage * usersPerPage;

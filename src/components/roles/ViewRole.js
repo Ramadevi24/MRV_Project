@@ -35,7 +35,7 @@ const ViewRole = () => {
 
   return (
     <Container className="mt-5">
-      <h2>{t('viewRole')}</h2>
+      <h2>{t('View Role')}</h2>
       <Table striped hover className="custom-table">
         <thead>
           <tr>

@@ -4,8 +4,9 @@ import { FaPencilAlt, FaTrashAlt, FaEye, FaSortUp, FaSortDown } from 'react-icon
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Modal, Button, Table, Form, Pagination } from 'react-bootstrap';
+import { Modal, Button, Table, Form } from 'react-bootstrap';
 import '../../css/createGrid.css';
+import  Pagination from '../Pagination.js';
 
 const RoleGrid = () => {
   const { t } = useTranslation();
@@ -55,12 +56,16 @@ const RoleGrid = () => {
   });
 
   const filteredRoles = sortedRoles.filter((role) =>
-    role.roleName.toLowerCase().includes(searchTerm.toLowerCase())
+    role.roleName.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    role.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    role.createdDate.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const indexOfLastRole = currentPage * rolesPerPage;
   const indexOfFirstRole = indexOfLastRole - rolesPerPage;
   const currentRoles = filteredRoles.slice(indexOfFirstRole, indexOfLastRole);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleDelete = async () => {
     try {
@@ -86,7 +91,7 @@ const RoleGrid = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-25"
         />
-        <Button variant="primary" onClick={() => navigate('/create-role')}>
+        <Button className='button-72' onClick={() => navigate('/create-role')}>
           {t('Create Role')}
         </Button>
       </div>
@@ -105,7 +110,11 @@ const RoleGrid = () => {
                   sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                 )}
               </th>
-              <th>{t('Description')}</th>
+              <th onClick={() => handleSort('description')}>{t('Description')}
+              {sortConfig.key === 'description' && (
+                  sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
+                )}
+              </th>
               <th onClick={() => handleSort('createdDate')}>
                 {t('Created Date')}
                 {sortConfig.key === 'createdDate' && (
@@ -138,29 +147,19 @@ const RoleGrid = () => {
           </tbody>
         </Table>
       )}
-      <div className="d-flex justify-content-between">
-        <Form.Select
-          value={rolesPerPage}
-          onChange={(e) => setRolesPerPage(Number(e.target.value))}
-          className="w-25"
-        >
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="50">50</option>
-        </Form.Select>
-        <Pagination>
-          {[...Array(Math.ceil(filteredRoles.length / rolesPerPage)).keys()].map((number) => (
-            <Pagination.Item key={number + 1} active={number + 1 === currentPage} onClick={() => setCurrentPage(number + 1)}>
-              {number + 1}
-            </Pagination.Item>
-          ))}
-        </Pagination>
-      </div>
+      <Pagination
+        itemsPerPage={rolesPerPage}
+        currentPage={currentPage}
+        totalItems={filteredRoles.length}
+        paginate={paginate}
+        setItemsPerPage={setRolesPerPage}
+        t={t}
+        />
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{t('confirmDelete')}</Modal.Title>
+          <Modal.Title>{t('Delete Confirmation')}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{t('deleteConfirmation')}</Modal.Body>
+        <Modal.Body>{t('Are you sure you want to delete?')}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
             {t('cancel')}

@@ -36,7 +36,7 @@ const ViewUser = () => {
         <tbody>
           <tr>
             <th>{t('User ID')}</th>
-            <td>{user.id}</td>
+            <td>{user.userID}</td>
           </tr>
           <tr>
             <th>{t('First Name')}</th>

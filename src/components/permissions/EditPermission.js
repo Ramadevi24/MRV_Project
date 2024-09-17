@@ -76,7 +76,7 @@ const EditPermission = () => {
 
   return (
     <div className="container">
-      <h2>{t('editPermission')}</h2>
+      <h2>{t('Edit Permission')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">

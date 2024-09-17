@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Pagination from '../Pagination.js';
 
 const UserGrid = () => {
   const { t } = useTranslation();
@@ -58,7 +59,7 @@ const UserGrid = () => {
   const filteredUsers = useMemo(() => {
     return sortedUsers.filter(user =>
       Object.keys(user).some(key =>
-        user[key].toString().toLowerCase().includes(searchTerm.toLowerCase())
+        user[key] && user[key].toString().toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
   }, [sortedUsers, searchTerm]);
@@ -66,6 +67,8 @@ const UserGrid = () => {
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleDelete = useCallback(async () => {
     try {
@@ -96,7 +99,7 @@ const UserGrid = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={() => navigate('/create-user')}>{t('Create User')}</button>
+        <button className="button-72" onClick={() => navigate('/create-user')}>{t('Create User')}</button>
       </div>
       <table className="table table-striped table-hover custom-table">
         <thead>
@@ -104,8 +107,8 @@ const UserGrid = () => {
             <th onClick={() => handleSort('id')}>{t('User ID')} {sortConfig.key === 'id' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}</th>
             <th onClick={() => handleSort('firstName')}>{t('First Name')} {sortConfig.key === 'firstName' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}</th>
             <th onClick={() => handleSort('lastName')}>{t('Last Name')} {sortConfig.key === 'lastName' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}</th>
-            <th>{t('Email')}</th>
-            <th>{t('Phone')}</th>
+            <th onClick={() => handleSort('email')}>{t('Email')}{sortConfig.key === 'email' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}</th>
+            <th onClick={() => handleSort('phone')}>{t('Phone')}{sortConfig.key === 'phone' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}</th>
             <th onClick={() => handleSort('loginType')}>{t('Login Type')} {sortConfig.key === 'loginType' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}</th>
             <th onClick={() => handleSort('tenantName')}>{t('Tenant Name')} {sortConfig.key === 'tenantName' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}</th>
             <th onClick={() => handleSort('organizationName')}>{t('Organization Name')} {sortConfig.key === 'organizationName' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}</th>
@@ -134,27 +137,18 @@ const UserGrid = () => {
           ))}
         </tbody>
       </table>
-      <div className="d-flex justify-content-between">
-        <div>
-          <select className="form-select" value={usersPerPage} onChange={(e) => setUsersPerPage(e.target.value)}>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
-          </select>
-        </div>
-        <div className='d-flex'>
-          <div style={{marginRight:"10px"}}>
-          <button className="btn btn-secondary" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>{t('previous')}</button>
-          </div>
-          <div>
-          <button className="btn btn-secondary" onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastUser >= filteredUsers.length}>{t('next')}</button>
-          </div>
-        </div>
-      </div>
+      <Pagination
+          itemsPerPage={usersPerPage}
+          currentPage={currentPage}
+          totalItems={filteredUsers.length}
+          paginate={paginate}
+          setItemsPerPage={setUsersPerPage}
+          t={t}
+        />
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{t('Confirm Delete')}</Modal.Title>
+          <Modal.Title>{t('Delete Confirmation')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{t('Are you sure you want to delete this user?')}</Modal.Body>
         <Modal.Footer>

@@ -40,7 +40,7 @@ const App = () => {
 
   // Determine if the current route is the login or signup page
   const isLoginPage =
-    location.pathname === "/" || location.pathname === "/signup";
+    location.pathname === "/login" || location.pathname === "/signup";
 
   const Loading = () => {
     return <>Loading...</>;
@@ -63,7 +63,7 @@ const App = () => {
           {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} />}
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/" element={<LoginPage />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/register" element={<Register />} />
               <Route path="/signup" element={<Signup />} />
@@ -91,7 +91,7 @@ const App = () => {
               <Route path="/create-role" element={<AddNewRole />} />
               <Route path="/edit-role/:id" element={<AddNewRole />} />
               <Route path="/view-role/:id" element={<ViewRole />} />
-              <Route path="*" element={<h1>Page Not Found</h1>} />
+              <Route path="*" element={<h3 style={{textAlign:'center', marginTop:'50px'}}>Page Not Found</h3>} />
               <Route path="/orgi" element={<CompanyProfile/>} />
             </Routes>
           </Suspense>

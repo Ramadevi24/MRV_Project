@@ -19,7 +19,7 @@ const ViewPermission = () => {
       const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Permissions/${permissionID}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
-      setPermission(response.data.$values);
+      setPermission(response.data);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -37,7 +37,7 @@ const ViewPermission = () => {
 
   return (
     <div className="container mt-4">
-      <h2>{t('viewPermission')}</h2>
+      <h2>{t('View Permission')}</h2>
       <table className="custom-table table-striped table-hover">
         <tbody>
           <tr>

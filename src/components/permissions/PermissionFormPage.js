@@ -41,7 +41,7 @@ const PermissionFormPage = () => {
         await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Permissions', formData);
         toast.success(t('success.createPermission'), 'success');
       }
-      navigate('/');
+      navigate('/login');
     } catch (error) {
         toast.error(t('error.submitPermission'), 'error');
     }

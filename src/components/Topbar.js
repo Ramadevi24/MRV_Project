@@ -21,7 +21,7 @@ const Topbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
-    navigate('/');
+    navigate('/login');
   };
 
   const handleChange = (event) => {
