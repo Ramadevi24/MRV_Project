@@ -66,4 +66,12 @@
   font-weight: 400;
   font-size: 16px;
 }
+.page-name{
+  margin-left:15px;
+  font-family: "Roboto", system-ui;
+  font-weight: 600;
+  font-size: 30px;
+  color:rgba(0, 102, 164, 1);
+  ;
+}
     
