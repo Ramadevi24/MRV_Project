@@ -288,7 +288,10 @@
                                                                                "Tenant Role ID":"Mieterrollen-ID",
                                                                                "Permission unique Name": "Einzigartiger Berechtigungsname",
                                                                                "Select Permission Group":"Berechtigungsgruppe auswählen",
-                                                                                "Role Id": "Rollen-ID"
+                                                                                "Role Id": "Rollen-ID",
+                                                                                 "Profile": "Profil",
+                                                                                    "Logout": "Abmelden",
+                                                                                    "Page Not Found": "Seite nicht gefunden"
 
 
 

@@ -288,7 +288,10 @@
                                                                         "Tenant Role ID":"ID du rôle du locataire",
                                                                             "Permission unique Name": "Nom unique de la permission",
                                                                             "Select Permission Group":"Sélectionnez le groupe d'autorisations",
-                                                                            "Role ID": "ID du rôle"
+                                                                            "Role ID": "ID du rôle",
+                                                                              "Profile": "Profil",
+                                                                              "Logout": "Déconnexion",
+                                                                               "Page Not Found": "Page non trouvée"
                                                                         
                                                                       
                                                                       
