@@ -32,6 +32,7 @@ import CompanyProfile from "./components/organization/CompanyProfile.js";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const[selectedMenuItem,setSelectedMenuItem]=useState("Dashboard")
   const location = useLocation();
 
   const toggleSidebar = () => {
@@ -52,7 +53,7 @@ const App = () => {
       <div className="col-12 layout-wrapper">
         {!isLoginPage && isSidebarOpen && (
           <div className="col-2 main-menu active">
-            <Sidebar />
+            <Sidebar setSelectedMenuItem={setSelectedMenuItem}/>
           </div>
         )}
         <div
@@ -60,7 +61,7 @@ const App = () => {
             isLoginPage ? "login-page" : "with-sidebar"
           }`}
         >
-          {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} />}
+          {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} selectedMenuItem={selectedMenuItem}  />}
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/login" element={<LoginPage />} />

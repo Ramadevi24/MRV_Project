@@ -137,7 +137,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
-const Sidebar = () => {
+const Sidebar = ({setSelectedMenuItem}) => {
   const { t } = useTranslation();
   const location = useLocation();
   const [dropdownState, setDropdownState] = useState({
@@ -158,11 +158,13 @@ const Sidebar = () => {
   // Function to handle click on menu items and set the active menu
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
-    console.log("clicked menu", menu); // Debugging log
-    console.log("activeMenu state", activeMenu); // Debugging log
+    // console.log("clicked menu", menu); // Debugging log
+    // console.log("activeMenu state", activeMenu); 
+    setSelectedMenuItem(menu); // Debugging log
   };
 
   const handleOutsideClick = (dropdown) => {
+    setSelectedMenuItem(dropdown)
     setDropdownState({ [dropdown]: false });
     setActiveMenu(dropdown);
   };
@@ -180,7 +182,7 @@ const Sidebar = () => {
               <Link
                 to="/dashboard"
                 className="menu-link"
-                onClick={() => handleOutsideClick("dashboard")}
+                onClick={() => handleOutsideClick("Dashboard")}
               >
                 <li
                   className={`sidenav-menuitem ${
@@ -194,7 +196,7 @@ const Sidebar = () => {
               <Link
                 to="/datamanagement"
                 className="menu-link"
-                onClick={() => handleOutsideClick("datamanagement")}
+                onClick={() => handleOutsideClick("Data Management")}
               >
                 <li
                   className={`sidenav-menuitem ${
@@ -208,7 +210,7 @@ const Sidebar = () => {
               <Link
                 to="/reports"
                 className="menu-link"
-                onClick={() => handleOutsideClick("reports")}
+                onClick={() => handleOutsideClick("Reports")}
               >
                 <li
                   className={`sidenav-menuitem ${
@@ -236,8 +238,8 @@ const Sidebar = () => {
                 <ul className="administration-menu">
                   <Link to="/tenants">
                     <li
-                      className={`menu-item ${activeMenu === "/tenants" ? "active-submenu" : ""}`}
-                      onClick={() => handleMenuClick("/tenants")}
+                      className={`menu-item ${activeMenu === "Tenants" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Tenants")}
                     >
                       <FontAwesomeIcon icon={faUser} className="font-icon" />
                       {t("Tenants")}
@@ -245,8 +247,8 @@ const Sidebar = () => {
                   </Link>
                   <Link to="/organizations">
                     <li
-                      className={`menu-item ${activeMenu === "/organizations" ? "active-submenu" : ""}`}
-                      onClick={() => handleMenuClick("/organizations")}
+                      className={`menu-item ${activeMenu === "Organizations" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Organizations")}
                     >
                       <FontAwesomeIcon icon={faSitemap} className="font-icon" />
                       {t("Organization")}
@@ -254,8 +256,8 @@ const Sidebar = () => {
                   </Link>
                   <Link to="/roles">
                     <li
-                      className={`menu-item ${activeMenu === "/roles" ? "active-submenu" : ""}`}
-                      onClick={() => handleMenuClick("/roles")}
+                      className={`menu-item ${activeMenu === "Roles" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Roles")}
                     >
                       <FontAwesomeIcon icon={faUserPlus} className="font-icon" />
                       {t("Roles")}
@@ -263,8 +265,8 @@ const Sidebar = () => {
                   </Link>
                   <Link to="/users">
                     <li
-                      className={`menu-item ${activeMenu === "/users" ? "active-submenu" : ""}`}
-                      onClick={() => handleMenuClick("/users")}
+                      className={`menu-item ${activeMenu === "Users" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Users")}
                     >
                       <FontAwesomeIcon icon={faUserPen} className="font-icon" />
                       {t("Users")}
@@ -272,8 +274,8 @@ const Sidebar = () => {
                   </Link>
                   <Link to="/permissions">
                     <li
-                      className={`menu-item ${activeMenu === "/permissions" ? "active-submenu" : ""}`}
-                      onClick={() => handleMenuClick("/permissions")}
+                      className={`menu-item ${activeMenu === "Permissions" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Permissions")}
                     >
                       <FontAwesomeIcon icon={faUserPen} className="font-icon" />
                       {t("Permissions")}
@@ -282,7 +284,7 @@ const Sidebar = () => {
                   <Link to="/settings">
                     <li
                       className={`menu-item ${activeMenu === "/settings" ? "active-submenu" : ""}`}
-                      onClick={() => handleMenuClick("/settings")}
+                      onClick={() => handleMenuClick("Settings")}
                     >
                       <FontAwesomeIcon icon={faGear} className="font-icon" />
                       {t("Settings")}

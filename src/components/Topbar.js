@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import i18n from '../i18n';
 import { useTranslation } from 'react-i18next';
 
-const Topbar = () => {
+const Topbar = ({selectedMenuItem}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [language, setLanguage] = useState(i18n.language);
@@ -32,7 +32,12 @@ const Topbar = () => {
   };
 
   return (
-    <div className="top-navbar">
+    <div className="top-navbar d-flex justify-content-between">
+      <div className='page-name'>
+        {selectedMenuItem}
+      </div>
+      
+      <div className='d-flex align-items-center justify-content-center'>
       <div className="local-language">
         <select value={language} onChange={handleChange} className="local-dropdown">
           <option value="en">English</option>
@@ -71,7 +76,9 @@ const Topbar = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+      </div>
+
   );
 };
 
