@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import '../../css/CreateForm.css';
 
 const UserForm = () => {
   const { t } = useTranslation();
@@ -70,7 +71,7 @@ const UserForm = () => {
 
   return (
     <div className="container">
-      <h2 style={{textAlign:'left'}}>{t('Create User')}</h2>
+      <h2 className='create-form-header'>{t('Create User')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">

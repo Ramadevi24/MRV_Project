@@ -34,7 +34,7 @@ const ViewTenant = () => {
 
   return (
     <div className="container">
-      <h2>{t('View Tenant')}</h2>
+      <h2 className='view-form-header'>{t('View Tenant')}</h2>
       <table className="custom-table table table-striped table-hover">
         <tbody>
           <tr>

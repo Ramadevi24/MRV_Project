@@ -1,0 +1,155 @@
+.container {
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+  }
+  
+  form {
+    margin-top: 10px;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  input, .form-control, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  input:focus, .form-control:focus, textarea:focus {
+    border-color: rgba(0, 138, 95, 1);
+    box-shadow: 0 0 5px rgba(0, 138, 95, 0.5);
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .mb-3 {
+    margin-bottom: 15px;
+  }
+  
+  .btn {
+    display: block;
+    padding: 10px;
+    background-color: rgba(0, 138, 95, 1) !important;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: rgb(19, 131, 96) !important;
+    color:white !important
+  }
+  
+  .organization-submission-page {
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .row {
+    margin-bottom: 15px;
+  }
+  .custum-dropdown-label{
+    /* Custom styling for label */
+  
+    font-size: 16px;
+    font-weight: 600; /* Make the label slightly bold */
+    color: #333; /* Darker label color */
+    /* margin-bottom: 8px; Space between label and select */
+    display: block; /* Ensure the label appears above the select */
+  
+  }
+  .custum-dropdown-select{
+    width: 100%;
+    padding: 10px; /* Padding inside the select */
+    font-size: 14px;
+    border: 1px solid #ccc; /* Light border color */
+    border-radius: 5px; /* Rounded corners */
+    background-color:white; /* Light background color */
+    color: #333; /* Text color */
+  }
+  .page-item{
+    list-style-type: none;
+  }
+  @media (max-width: 768px) {
+    .row .col-md-6 {
+      margin-bottom: 15px;
+    }
+  }
+  
+  .button-72 {
+    align-items: center;
+    background-color: rgb(92, 211, 173); /* Added the new color */
+    background-image: linear-gradient(
+      rgba(0, 138, 95, 0.84),
+      rgba(0, 138, 95, 1) 50%
+    );
+    border-radius: 42px;
+    border-width: 0;
+    /* box-shadow: rgba(0, 138, 95, 0.24) 0 2px 2px, rgba(0, 138, 95, 0.4) 0 8px 12px; */
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    font-family: Quicksand, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    justify-content: center;
+    letter-spacing: 0.04em;
+    line-height: 14px;
+    margin: 0;
+    padding: 18px 18px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,
+      rgba(255, 255, 255, 0.2) 0 0 12px, rgba(0, 138, 95, 0.6) 1px 1px 4px,
+      rgba(0, 138, 95, 0.32) 4px 4px 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+  }
+  
+  .button-72:hover {
+    background-image: linear-gradient(
+      rgb(24, 98, 75),
+      rgb(19, 96, 72) 50%
+    ); 
+  }
+
+  .view-form-header {
+    color:rgba(0, 138, 95, 1);
+    font-family: "Roboto", system-ui;
+    font-weight: 700;
+    font-size: 26px;
+    text-align: left;
+  }
+  

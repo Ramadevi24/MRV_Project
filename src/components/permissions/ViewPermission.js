@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import '../../css/ViewForm.css';
+import '../../css/CreateForm.css';
 
 const ViewPermission = () => {
   const { t } = useTranslation();
@@ -37,8 +37,8 @@ const ViewPermission = () => {
 
   return (
     <div className="container mt-4">
-      <h2>{t('View Permission')}</h2>
-      <table className="custom-table table-striped table-hover">
+      <h2 className='view-form-header'>{t('View Permission')}</h2>
+      <table className="table custom-table table-striped table-hover">
         <tbody>
           <tr>
             <th>{t('permissionID')}</th>

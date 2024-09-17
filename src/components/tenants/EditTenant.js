@@ -58,7 +58,7 @@ const EditTenant = () => {
 
   return (
     <div className="container">
-      <h2>{t('Edit Tenant')}</h2>
+      <h2 className='edit-form-header'>{t('Edit Tenant')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <label>

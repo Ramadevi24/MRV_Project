@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { Table, Container } from 'react-bootstrap';
 import '../../css/ViewForm.css';
+import { formatDateTime } from '../../utils/formateDate';
 
 const ViewRole = () => {
   const { id } = useParams();
@@ -34,29 +34,33 @@ const ViewRole = () => {
   }
 
   return (
-    <Container className="mt-5">
-      <h2>{t('View Role')}</h2>
-      <Table striped hover className="custom-table">
-        <thead>
-          <tr>
-            <th>{t('roleId')}</th>
-            <th>{t('roleName')}</th>
-            <th>{t('description')}</th>
-            <th>{t('permissions')}</th>
-            <th>{t('createdDate')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{role?.roleID}</td>
-            <td>{role?.roleName}</td>
-            <td>{role?.description}</td>
-            <td>{role?.rolePermissions.$values.join(', ')}</td>
-            <td>{new Date(role?.createdDate).toLocaleDateString()}</td>
-          </tr>
-        </tbody>
-      </Table>
-    </Container>
+      <div className="container mt-4">
+      <h2 className='view-form-header'>{t('View Role')}</h2>
+     <table className="table custom-table table-striped table-hover">
+     <tbody>
+       <tr>
+         <th>{t('Role ID')}</th>
+         <td>{role?.roleID}</td>
+       </tr>
+       <tr>
+         <th>{t('Role Name')}</th>
+         <td>{role?.roleName}</td>
+       </tr>
+       <tr>
+         <th>{t('Description')}</th>
+         <td>{role?.description}</td>
+       </tr>
+       <tr>
+         <th>{t('Role Permissions')}</th>
+         <td>{role?.rolePermissions.$values.join(', ')}</td>
+       </tr>
+       <tr>
+         <th>{t('Created Date')}</th>
+         <td>{formatDateTime(role?.createdDate)}</td>
+       </tr>
+     </tbody>
+   </table>
+   </div>
   );
 };
 

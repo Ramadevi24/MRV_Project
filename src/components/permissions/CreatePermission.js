@@ -63,7 +63,7 @@ const CreatePermission = () => {
 
   return (
     <div className="container">
-      <h2>{t('Create Permission')}</h2>
+      <h2 className='create-form-header'>{t('Create Permission')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">

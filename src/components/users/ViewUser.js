@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import '../../css/CreateForm.css';
+import '../../css/ViewForm.css';
 
 const ViewUser = () => {
   const { t } = useTranslation();
@@ -31,7 +31,7 @@ const ViewUser = () => {
 
   return (
     <div className="container mt-5">
-      <h2>{t('View User')}</h2>
+      <h2 className='view-form-header'>{t('View User')}</h2>
       <table className="table table-striped table-hover custom-table">
         <tbody>
           <tr>

@@ -126,7 +126,7 @@ const OrganizationSubmissionPage = () => {
 
   return (
     <div className="container">
-      <h2 style={{ "text-align": "left" }}>{t("Create Organization")}</h2>
+      <h2 className="create-form-header">{t("Create Organization")}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">

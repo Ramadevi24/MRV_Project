@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import '../../css/EditForm.css';
 
 const EditUser = () => {
   const { t } = useTranslation();
@@ -81,7 +82,7 @@ const EditUser = () => {
 
   return (
     <div className="container">
-      <h2>{t('Edit User')}</h2>
+      <h2 className='edit-form-header'>{t('Edit User')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">

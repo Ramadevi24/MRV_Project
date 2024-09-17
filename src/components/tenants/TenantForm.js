@@ -37,7 +37,7 @@ const TenantForm = () => {
 
   return (
     <div className="container" style={{marginTop: '3rem',padding:'40px'}}>
-      <h2>{t('Create Tenant')}</h2>
+      <h2 className='create-form-header'>{t('Create Tenant')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <label>

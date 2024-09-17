@@ -139,7 +139,7 @@ const EditOrganization = () => {
 
   return (
     <div className="container">
-      <h2>{t('Edit Organization')}</h2>
+      <h2 className='edit-form-header'>{t('Edit Organization')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">

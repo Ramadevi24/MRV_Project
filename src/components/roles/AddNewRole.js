@@ -102,7 +102,7 @@ const AddNewRole = () => {
             <div className='right-body-ctnt'>
                 <div>
                     <div className='addnewrole'>{selectedRole ? 'Edit Role' : t('Add New Role')}</div>
-                    <div className='role'>{t('Roles')}/ {selectedRole ? 'Edit Role' : t('Add New Role')}</div>
+                    {/* <div className='role'>{t('Roles')}/ {selectedRole ? 'Edit Role' : t('Add New Role')}</div> */}
                 </div>
                 <div>
                     <button className='back'>{t('Back')}</button>
