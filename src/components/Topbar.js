@@ -19,6 +19,11 @@ const Topbar = ({selectedMenuItem}) => {
     i18n.changeLanguage(savedLanguage);
     setLanguage(savedLanguage);
   }, []);
+  
+
+
+
+  
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible); // Toggle dropdown visibility
@@ -26,15 +31,39 @@ const Topbar = ({selectedMenuItem}) => {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
+    setDropdownVisible(false); 
     navigate('/login');
   };
 
   const handleChange = (event) => {
-    const selectedLanguage = event.target.value;
+    setDropdownVisible(false);
+    const selectedLanguage = event.target.value; 
     i18n.changeLanguage(selectedLanguage);
     localStorage.setItem('selectedLanguage', selectedLanguage);
     setLanguage(selectedLanguage); // Update state to force re-render
   };
+  
+  // Close dropdown when clicking outside of the dropdown area
+
+  const handleClickOutside = (event) => {
+    if (!event.target.closest('.right-icons')) {
+      setDropdownVisible(false);
+    }
+  };
+
+
+  useEffect(() => {
+    if (dropdownVisible) {
+      document.addEventListener('click', handleClickOutside);
+    } else {
+      document.removeEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside); // Cleanup on component unmount
+    };
+  }, [dropdownVisible]);
+
 
   return (
     <div className="top-navbar d-flex justify-content-between">
@@ -44,7 +73,7 @@ const Topbar = ({selectedMenuItem}) => {
       
       <div className='d-flex align-items-center justify-content-center'>
       <div className="local-language">
-        <select value={language} onChange={handleChange} className="local-dropdown">
+        <select value={language} onChange={handleChange} onClick={()=>setDropdownVisible(false)} className="local-dropdown">
           <option value="en">English</option>
           <option value="fr">{t('French')}</option>
           <option value="ar">{t('Arabic')}</option>
@@ -79,14 +108,14 @@ const Topbar = ({selectedMenuItem}) => {
             <div className="admin">{t('Admin')}</div>
 
             {dropdownVisible && (
-              <div className="dropdown-menu show" style={{ position: 'absolute', right: 0 }}>
-                <button className="dropdown-item" onClick={handleLogout}>
+              <div className="dropdown-menu show admin-dropdown-menu" style={{ position: 'absolute' }}>
+                <button className="dropdown-item admin-dropdown-item" onClick={handleLogout}>
                   {t('Logout')}
                 </button>
-                <button className="dropdown-item">
+                <button className="dropdown-item admin-dropdown-item">
                   {t('Profile')}
                 </button>
-                <button className="dropdown-item">
+                <button className="dropdown-item admin-dropdown-item">
                   {t('Settings')}
                 </button>
               </div>

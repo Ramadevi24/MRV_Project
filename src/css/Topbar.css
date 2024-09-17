@@ -72,6 +72,30 @@
   font-weight: 600;
   font-size: 30px;
   color:rgba(0, 102, 164, 1);
-  ;
+  
 }
+
+.admin-dropdown-menu {
+    background-color: #ffffff; /* Background color of the dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding around items */
+    z-index: 1000; /* Ensure the dropdown appears on top */
+  }
+
+  .admin-dropdown-item {
+    font-family: "Roboto", system-ui !important;
+    padding: 10px 15px; /*Space inside each item */
+    cursor: pointer; /* Show pointer on hover */
+    font-size: 14px; /* Font size */
+    transition: background-color 0.2s ease; /* Smooth transition */
+  }
+  .dropdown-item:hover {
+    background-color: rgba(0, 102, 164, 1);; /* Change background color on hover */
+    color: white; /* Text color on hover */
+  }
+
+ 
+  
+
     
