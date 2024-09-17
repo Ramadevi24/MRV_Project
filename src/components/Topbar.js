@@ -108,7 +108,7 @@ const Topbar = ({selectedMenuItem}) => {
             <div className="admin">{t('Admin')}</div>
 
             {dropdownVisible && (
-              <div className="dropdown-menu show admin-dropdown-menu" style={{ position: 'absolute' }}>
+              <div className="dropdown-menu show admin-dropdown-menu" style={{ position: 'absolute',right:'10px'}}>
                 <button className="dropdown-item admin-dropdown-item" onClick={handleLogout}>
                   {t('Logout')}
                 </button>

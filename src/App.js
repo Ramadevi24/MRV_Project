@@ -32,8 +32,10 @@ import CompanyProfile from "./components/organization/CompanyProfile.js";
 import AddRole from "./components/roles/AddRole.js";
 import EditRole from "./components/roles/EditRole.js";
 // import EditRole from "./components/roles/EditRole.js";
+import { useTranslation } from "react-i18next";
 
 const App = () => {
+  const{t}=useTranslation()
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const[selectedMenuItem,setSelectedMenuItem]=useState("Dashboard")
   const location = useLocation();
@@ -95,7 +97,7 @@ const App = () => {
               <Route path="/create-role" element={<AddRole />} />
               <Route path="/edit-role/:id" element={<EditRole />} />
               <Route path="/view-role/:id" element={<ViewRole />} />
-              <Route path="*" element={<h3 style={{textAlign:'center', marginTop:'50px'}}>Page Not Found</h3>} />
+              <Route path="*" element={<h3 style={{textAlign:'center', marginTop:'50px'}}>{t('Page Not Found')}</h3>} />
               <Route path="/orgi" element={<CompanyProfile/>} />
             </Routes>
           </Suspense>

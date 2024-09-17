@@ -284,7 +284,10 @@
                                                                        "Tenant Role ID": "معرف دور المستأجر",
                                                                        	"Permission unique Name":"اسم الإذن الفريد",
                                                                         "Select Permission Group": "اختر مجموعة الأذونات",
-                                                                          "Role ID": "معرف الدور"
+                                                                          "Role ID": "معرف الدور",
+                                                                           "Profile": "الملف الشخصي",
+                                                                           "Logout": "تسجيل الخروج",
+                                                                            "Page Not Found": "الصفحة غير موجودة"
 
                                                                   
                                                                   

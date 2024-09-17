@@ -158,8 +158,7 @@ const Sidebar = ({setSelectedMenuItem}) => {
   // Function to handle click on menu items and set the active menu
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
-    // console.log("clicked menu", menu); // Debugging log
-    // console.log("activeMenu state", activeMenu); 
+
     setSelectedMenuItem(menu); // Debugging log
   };
 
@@ -221,7 +220,7 @@ const Sidebar = ({setSelectedMenuItem}) => {
                   {t("Reports")}
                 </li>
               </Link>
-              <li className="sidenavmenu-item">
+              <li className="sidenavmenu-item adtm-item">
                 <div className="dropdown administraton-dropdown mt-3">
                   <button
                     onClick={() => toggleDropdown("administration")}
@@ -240,18 +239,22 @@ const Sidebar = ({setSelectedMenuItem}) => {
                     <li
                       className={`menu-item ${activeMenu === "Tenants" ? "active-submenu" : ""}`}
                       onClick={() => handleMenuClick("Tenants")}
-                    >
+                    > 
+                    <div className="administration-icon">
                       <FontAwesomeIcon icon={faUser} className="font-icon" />
-                      {t("Tenants")}
+                      </div>
+                     <span className="adminstration-label"> {t("Tenants")}</span>
                     </li>
                   </Link>
                   <Link to="/organizations">
                     <li
                       className={`menu-item ${activeMenu === "Organizations" ? "active-submenu" : ""}`}
-                      onClick={() => handleMenuClick("Organizations")}
+                      onClick={() => handleMenuClick("Organizations")} 
                     >
-                      <FontAwesomeIcon icon={faSitemap} className="font-icon" />
-                      {t("Organization")}
+                      <div className="administration-icon">
+                      <FontAwesomeIcon icon={faSitemap} className="font-icon organization-icon" />
+                      </div>
+                     <span className="adminstration-label"> {t("Organization")}</span>
                     </li>
                   </Link>
                   <Link to="/roles">
@@ -259,8 +262,11 @@ const Sidebar = ({setSelectedMenuItem}) => {
                       className={`menu-item ${activeMenu === "Roles" ? "active-submenu" : ""}`}
                       onClick={() => handleMenuClick("Roles")}
                     >
+                      <div className="administration-icon">
                       <FontAwesomeIcon icon={faUserPlus} className="font-icon" />
-                      {t("Roles")}
+                      </div>
+                      
+                      <span className="adminstration-label">{t("Roles")}</span>
                     </li>
                   </Link>
                   <Link to="/users">
@@ -268,26 +274,38 @@ const Sidebar = ({setSelectedMenuItem}) => {
                       className={`menu-item ${activeMenu === "Users" ? "active-submenu" : ""}`}
                       onClick={() => handleMenuClick("Users")}
                     >
+                      <div className="administration-icon">
                       <FontAwesomeIcon icon={faUserPen} className="font-icon" />
-                      {t("Users")}
+                      </div>
+                     <span className="adminstration-label"> {t("Users")}</span>
                     </li>
                   </Link>
                   <Link to="/permissions">
+                  
                     <li
+                    
                       className={`menu-item ${activeMenu === "Permissions" ? "active-submenu" : ""}`}
-                      onClick={() => handleMenuClick("Permissions")}
+                      onClick={() => handleMenuClick("Permissions")} 
                     >
-                      <FontAwesomeIcon icon={faUserPen} className="font-icon" />
-                      {t("Permissions")}
+                      <div className="administration-icon">
+                       <FontAwesomeIcon icon={faUserPen} className="font-icon permission-icon" />
+                       </div>
+                     
+                     <span className="adminstration-label" > {t("Permissions")}</span>
                     </li>
                   </Link>
                   <Link to="/settings">
+                  
                     <li
                       className={`menu-item ${activeMenu === "/settings" ? "active-submenu" : ""}`}
                       onClick={() => handleMenuClick("Settings")}
                     >
+                      <div className="administration-icon">
                       <FontAwesomeIcon icon={faGear} className="font-icon" />
-                      {t("Settings")}
+                      </div>
+                     
+                      <span className="adminstration-label">{t("Settings")}</span>
+                    
                     </li>
                   </Link>
                 </ul>
