@@ -12,12 +12,17 @@ const Topbar = ({selectedMenuItem}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [language, setLanguage] = useState(i18n.language);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
     i18n.changeLanguage(savedLanguage);
     setLanguage(savedLanguage);
   }, []);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible); // Toggle dropdown visibility
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
@@ -68,16 +73,28 @@ const Topbar = ({selectedMenuItem}) => {
           <img src={adminimage} alt="Admin" style={{ width: '50px', height: '50px' }} />
         </div>
         <div>
-          <div>
-            <div onClick={handleLogout} className="user-name">
+            <div onClick={toggleDropdown} className="user-name dropdown-toggle">
               {t('Admin Name')}
             </div>
             <div className="admin">{t('Admin')}</div>
+
+            {dropdownVisible && (
+              <div className="dropdown-menu show" style={{ position: 'absolute', right: 0 }}>
+                <button className="dropdown-item" onClick={handleLogout}>
+                  {t('Logout')}
+                </button>
+                <button className="dropdown-item">
+                  {t('Profile')}
+                </button>
+                <button className="dropdown-item">
+                  {t('Settings')}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
-      </div>
-      </div>
+    </div>
 
   );
 };
