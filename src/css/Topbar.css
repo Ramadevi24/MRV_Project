@@ -85,6 +85,7 @@
 
   .admin-dropdown-item {
     font-family: "Roboto", system-ui !important;
+    font-weight: 500;
     padding: 10px 15px; /*Space inside each item */
     cursor: pointer; /* Show pointer on hover */
     font-size: 14px; /* Font size */
