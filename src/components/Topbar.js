@@ -72,7 +72,7 @@ const Topbar = ({selectedMenuItem}) => {
             <div onClick={handleLogout} className="user-name">
               {t('Admin Name')}
             </div>
-            <div className="admin">{t('Admin')}</div>
+            <div onClick={handleLogout} className="admin">{t('Logout')}</div>
           </div>
         </div>
       </div>
