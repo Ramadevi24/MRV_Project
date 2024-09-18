@@ -4,9 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import '../../css/ViewForm.css';
+import { useNavigate } from 'react-router-dom';
 
 const ViewOrganization = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [organization, setOrganization] = useState(null);
 
@@ -33,7 +35,14 @@ const ViewOrganization = () => {
 
   return (
     <div className="container">
-      <h2 className='view-form-header'>{t('View Organization')}</h2>
+      <div className='form-heading-row'>
+        <div>
+        <h2 className='view-form-header'>{t('View Organization')}</h2>
+        </div>
+        <div>
+        <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
+        </div>
+        </div>
       <table className="table table-striped table-hover custom-table">
         <tbody>
           <tr>

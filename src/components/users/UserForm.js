@@ -36,7 +36,7 @@ const UserForm = () => {
         axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
         axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Organization', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
         axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/TenantRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/TenantUserRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+        axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Role', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
       ]);
       setDropdownOptions({
         tenants: tenants.data.$values,
@@ -69,9 +69,18 @@ const UserForm = () => {
     }
   };
 
+  console.log(dropdownOptions.userRoles, 'dropdownOptions');
+
   return (
     <div className="container">
-      <h2 className='create-form-header'>{t('Create User')}</h2>
+      <div className='form-heading-row'>
+        <div>
+        <h2 className='create-form-header'>{t('Create User')}</h2>
+        </div>
+        <div>
+        <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
+        </div>
+        </div>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
@@ -134,7 +143,7 @@ const UserForm = () => {
             <select className='custum-dropdown-select' name="userRole" value={formData.userRole} onChange={handleChange} required>
               <option value="">{t('Select User Role')}</option>
               {dropdownOptions.userRoles.map(role => (
-                <option key={role.tenantUserRoleID} value={role.user.firstName}>{role.user.firstName}</option>
+                <option key={role.roleID} value={role.roleName}>{role.roleName}</option>
               ))}
             </select>
           </div>

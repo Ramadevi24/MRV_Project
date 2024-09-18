@@ -4,9 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import '../../css/ViewForm.css';
+import { useNavigate } from 'react-router-dom';
 
 const ViewUser = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [user, setUser] = useState(null);
 
@@ -31,7 +33,14 @@ const ViewUser = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className='view-form-header'>{t('View User')}</h2>
+      <div className='form-heading-row'>
+        <div>
+        <h2 className='view-form-header'>{t('View User')}</h2>
+        </div>
+        <div>
+        <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
+        </div>
+        </div>
       <table className="table table-striped table-hover custom-table">
         <tbody>
           <tr>

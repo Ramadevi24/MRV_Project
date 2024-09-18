@@ -50,7 +50,7 @@ const EditUser = () => {
           axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
           axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Organization', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
           axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/TenantRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-          axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/TenantUserRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+          axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Role', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
         ]);
         setDropdownOptions({
           tenants: tenants.data.$values,
@@ -82,7 +82,14 @@ const EditUser = () => {
 
   return (
     <div className="container">
-      <h2 className='edit-form-header'>{t('Edit User')}</h2>
+      <div className='form-heading-row'>
+        <div>
+        <h2 className='edit-form-header'>{t('Edit User')}</h2>
+        </div>
+        <div>
+        <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
+        </div>
+        </div>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
@@ -140,12 +147,12 @@ const EditUser = () => {
           </div>
         </div>
         <div className="row mb-3">
-          <div className="col">
+          <div className="col-6">
             <label className='custum-dropdown-label'>{t('User Role')}<span style={{ color: 'red' }}>*</span></label>
             <select className='custum-dropdown-select' name="userRole" value={formData.userRole} onChange={handleChange} required>
               <option value="">{t('Select User Role')}</option>
-              {dropdownOptions.userRoles.$values?.map(role => (
-                <option key={role.user.userID} value={role.user.userID}>{role.user.userRole}</option>
+               {dropdownOptions.userRoles.map(role => (
+                <option key={role.roleID} value={role.roleName}>{role.roleName}</option>
               ))}
             </select>
           </div>

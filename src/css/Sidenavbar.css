@@ -168,8 +168,13 @@ hr{
 }
 
 .menu-item {
-    display: flex;
-    align-items: center;
+    display: flex !important;
+    justify-content: space-evenly !important; /* Ensure even spacing between icon and text */
+    align-items: center !important; /* Vertically align the items */
+    padding: 10px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
   }
 
 

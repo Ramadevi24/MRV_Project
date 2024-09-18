@@ -126,7 +126,14 @@ const OrganizationSubmissionPage = () => {
 
   return (
     <div className="container">
-      <h2 className="create-form-header">{t("Create Organization")}</h2>
+      <div className='form-heading-row'>
+        <div>
+        <h2 className="create-form-header">{t("Create Organization")}</h2>
+        </div>
+        <div>
+        <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
+        </div>
+        </div>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">

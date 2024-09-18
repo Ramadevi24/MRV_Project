@@ -5,12 +5,16 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import '../../css/ViewForm.css';
 import { formatDateTime } from '../../utils/formateDate';
+import { useNavigate } from 'react-router-dom';
 
 const ViewRole = () => {
   const { id } = useParams();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  console.log(role, 'role');  
 
   useEffect(() => {
     fetchRole();
@@ -35,7 +39,14 @@ const ViewRole = () => {
 
   return (
       <div className="container mt-4">
-      <h2 className='view-form-header'>{t('View Role')}</h2>
+      <div className='form-heading-row'>
+        <div>
+        <h2 className='view-form-header'>{t('View Role')}</h2>
+        </div>
+        <div>
+        <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
+        </div>
+        </div>
      <table className="table custom-table table-striped table-hover">
      <tbody>
        <tr>
@@ -51,9 +62,17 @@ const ViewRole = () => {
          <td>{role?.description}</td>
        </tr>
        <tr>
-         <th>{t('Role Permissions')}</th>
-         <td>{role?.rolePermissions.$values.join(', ')}</td>
-       </tr>
+  <th>{t('Role Permissions')}</th>
+  <td>
+    {role?.rolePermissions.$values.map((permission, index) => (
+      <span key={permission.permission.permissionID}>
+        {permission.permission.permissionDisplayName}
+        {index < role.rolePermissions.$values.length - 1 ? ', ' : ''}
+      </span>
+    ))}
+  </td>
+</tr>
+
        <tr>
          <th>{t('Created Date')}</th>
          <td>{formatDateTime(role?.createdDate)}</td>
