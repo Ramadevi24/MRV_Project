@@ -185,7 +185,7 @@ const Sidebar = ({setSelectedMenuItem}) => {
               >
                 <li
                   className={`sidenav-menuitem ${
-                    activeMenu === "/dashboard" ? "active-menu" : ""
+                    activeMenu === "Dashboard" ? "active-menu" : ""
                   }`}
                 >
                   <img src={Dashboardicon} />
@@ -199,7 +199,7 @@ const Sidebar = ({setSelectedMenuItem}) => {
               >
                 <li
                   className={`sidenav-menuitem ${
-                    activeMenu === "/datamanagement" ? "active-menu" : ""
+                    activeMenu === "Data Management" ? "active-menu" : ""
                   }`}
                 >
                   <img src={Datamanagementicon} />
@@ -213,7 +213,7 @@ const Sidebar = ({setSelectedMenuItem}) => {
               >
                 <li
                   className={`sidenav-menuitem ${
-                    activeMenu === "/reports" ? "active-menu" : ""
+                    activeMenu === "Reports" ? "active-menu" : ""
                   }`}
                 >
                   <img src={Reportsicon} />
@@ -297,7 +297,7 @@ const Sidebar = ({setSelectedMenuItem}) => {
                   <Link to="/settings">
                   
                     <li
-                      className={`menu-item ${activeMenu === "/settings" ? "active-submenu" : ""}`}
+                      className={`menu-item ${activeMenu === "Settings" ? "active-submenu" : ""}`}
                       onClick={() => handleMenuClick("Settings")}
                     >
                       <div className="administration-icon">

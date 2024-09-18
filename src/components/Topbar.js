@@ -77,7 +77,7 @@ const Topbar = ({selectedMenuItem}) => {
           <option value="en">English</option>
           <option value="fr">{t('French')}</option>
           <option value="ar">{t('Arabic')}</option>
-          <option value="de">{t('German')}</option>
+          <option value="ger">German</option>
         </select>
       </div>
       <div className="icons">
