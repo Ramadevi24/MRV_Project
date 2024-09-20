@@ -87,9 +87,7 @@ const PermissionGrid = () => {
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
       permission.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      permission.permissionGroup
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+      permission.permissionGroup.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -111,12 +109,12 @@ const PermissionGrid = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-25"
         />
-        <Button
+        {/* <Button
           className="button-72"
           onClick={() => navigate("/Mrv/create-permission")}
         >
           {t("Create Permission")}
-        </Button>
+        </Button> */}
       </div>
       {loading ? (
         <div className="spinner-border" role="status">
@@ -144,6 +142,15 @@ const PermissionGrid = () => {
                     <FaSortDown />
                   ))}
               </th>
+              <th onClick={() => handleSort("permissionGroup")}>
+                {t("Permission Group")}
+                {sortConfig.key === "permissionGroup" &&
+                  (sortConfig.direction === "ascending" ? (
+                    <FaSortUp />
+                  ) : (
+                    <FaSortDown />
+                  ))}
+              </th>
               <th>{t("Actions")}</th>
             </tr>
           </thead>
@@ -152,24 +159,25 @@ const PermissionGrid = () => {
               <tr key={permission.permissionID}>
                 <td>{permission.permissionDisplayName}</td>
                 <td>{permission.description}</td>
+                <td>{permission.permissionGroup}</td>
                 <td className="action-icons">
-                  <button
+                  {/* <button
                     className="view-btn"
                     onClick={() =>
                       navigate(`/Mrv/view-permission/${permission.permissionID}`)
                     }
                   >
                     <FaEye color="green" />
-                  </button>
+                  </button> */}
                   <button
                     className="edit-btn"
-                    onClick={() =>
-                      navigate(`/Mrv/edit-permission/${permission.permissionID}`)
-                    }
+                    // onClick={() =>
+                    //   navigate(`/Mrv/edit-permission/${permission.permissionID}`)
+                    // }
                   >
                     <FaPencilAlt color="blue" />
                   </button>
-                  <button
+                  {/* <button
                     className="delete-btn"
                     onClick={() => {
                       setPermissionToDelete(permission);
@@ -177,7 +185,7 @@ const PermissionGrid = () => {
                     }}
                   >
                     <FaTrashAlt color="red" />
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}

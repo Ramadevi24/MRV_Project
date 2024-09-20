@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (!isAuthenticated) {
     // If not authenticated, redirect to the login page
-    return <Navigate to="/login" />;
+    return <Navigate to="/Mrv/login" />;
   }
 
   // If authenticated, allow access to the route

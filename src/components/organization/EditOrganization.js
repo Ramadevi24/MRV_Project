@@ -215,7 +215,7 @@ const EditOrganization = ({userPermissions}) => {
       </div>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
-          <div className="col">
+        {!userPermissions.tenantID && (<div className="col">
             <label>{t('tenantId')}<span className="text-danger">*</span></label>
             <select name="tenantID" value={formData.tenantID} onChange={handleChange} className="form-control" required>
               <option value="">{t('selectTenant')}</option>
@@ -224,6 +224,7 @@ const EditOrganization = ({userPermissions}) => {
               ))}
             </select>
           </div>
+        )}
           <div className="col">
             <label>{t('organizationName')}<span className="text-danger">*</span></label>
             <input type="text" name="organizationName" value={formData.organizationName} onChange={handleChange} className="form-control" required />

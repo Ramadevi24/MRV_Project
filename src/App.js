@@ -48,7 +48,8 @@ const App = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/Mrv/' || location.pathname === '/Mrv') {
+    if (location.pathname === '/Mrv/' || location.pathname === '/Mrv' || location.pathname === '/MRV/'
+      ||location.pathname === '/mrv' || location.pathname === '/mrv/' || location.pathname === '/MRV') {
       navigate('/Mrv/login');
     }
   }, [location, navigate]);

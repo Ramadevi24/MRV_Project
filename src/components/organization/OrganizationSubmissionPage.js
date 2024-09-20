@@ -190,7 +190,7 @@ const OrganizationSubmissionPage = ({userPermissions}) => {
       </div>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
-          <div className="col">
+        {!userPermissions.tenantID && (<div className="col">
             <label>
               {t("Tenant ID")}
               <span className="text-danger">*</span>
@@ -210,6 +210,7 @@ const OrganizationSubmissionPage = ({userPermissions}) => {
               ))}
             </select>
           </div>
+        )}
           <div className="col">
             <label>
               {t("Organization Name")}

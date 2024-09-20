@@ -193,7 +193,7 @@ const EditRole = ({userPermissions}) => {
                         </div>
                     </div>
                     <div className="row mb-3">
-          <div className="col">
+                    {userPermissions && userPermissions.tenantID === null && ( <div className="col">
             <label>
               {t("Tenant ID")}
               <span className="text-danger">*</span>
@@ -213,7 +213,9 @@ const EditRole = ({userPermissions}) => {
               ))}
             </select>
           </div>
+                      )}
         </div>
+
                     <div className='row '>
                         <div className='dropdown-grid-container'>
                             {Object.entries(groupedPermissions).map(([groupName, groupPermissions]) => (
