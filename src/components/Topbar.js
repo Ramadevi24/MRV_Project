@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Topbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faEnvelope, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faEnvelope, faMagnifyingGlass,faBars } from '@fortawesome/free-solid-svg-icons';
 import adminimage from '../images/Ellipse 5.png';
 import { useNavigate } from 'react-router-dom';
 import i18n from '../i18n';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 
-const Topbar = ({selectedMenuItem}) => {
+const Topbar = ({selectedMenuItem ,toggleSidebar,isSidebarOpen}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -65,6 +64,10 @@ const Topbar = ({selectedMenuItem}) => {
 
   return (
     <div className="top-navbar d-flex justify-content-between">
+         <button className=" toggle-btn bars-icon " style={{border:'none'}} onClick={toggleSidebar} >
+        {/* <FontAwesomeIcon icon={faBars} /> */}
+        {isSidebarOpen ? <FontAwesomeIcon icon={faBars} /> : <FontAwesomeIcon icon={faBars} />}
+      </button>
       <div className='page-name'>
         {selectedMenuItem}
       </div>

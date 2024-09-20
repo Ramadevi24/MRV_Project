@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PermissionFormPage = () => {
   const [formData, setFormData] = useState({ permissionName: '', description: '' });

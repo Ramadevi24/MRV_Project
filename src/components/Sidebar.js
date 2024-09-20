@@ -118,8 +118,11 @@
 // }
 
 // export default Sidebar
+
+
+
+
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/Sidenavbar.css";
 import logoimage from "../images/Logoimage.png";
 import Dashboardicon from "../images/Dashboardicon.png";
@@ -133,7 +136,7 @@ import {
   faSitemap,
   faUserPlus,
   faGear,
-  faUserPen,
+  faUserPen,faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
@@ -147,7 +150,7 @@ import {
   permissionsPermissions,
 } from "../utils/useHasPermission.js"; // Adjust the path as per your project structure
 
-const Sidebar = ({ setSelectedMenuItem, userPermissions }) => {
+const Sidebar = ({ setSelectedMenuItem, userPermissions, toggleSidebar }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const [dropdownState, setDropdownState] = useState({
@@ -179,7 +182,10 @@ const Sidebar = ({ setSelectedMenuItem, userPermissions }) => {
   };
 
   return (
+   
     <div>
+      <div className="fa-bars-icon " style={{float:'right', margin:'15px',fontSize:'35px'}}>
+      <FontAwesomeIcon icon={faXmark} onClick={toggleSidebar}/></div>
       <div className="col-12 right-container">
         <aside className="sidebar">
           <div className="logo">
@@ -195,7 +201,7 @@ const Sidebar = ({ setSelectedMenuItem, userPermissions }) => {
               >
                 <li
                   className={`sidenav-menuitem ${
-                    activeMenu === "/dashboard" ? "active-menu" : ""
+                    activeMenu === "Dashboard" ? "active-menu" : ""
                   }`}
                 >
                   <img src={Dashboardicon} />
@@ -209,7 +215,7 @@ const Sidebar = ({ setSelectedMenuItem, userPermissions }) => {
               >
                 <li
                   className={`sidenav-menuitem ${
-                    activeMenu === "/datamanagement" ? "active-menu" : ""
+                    activeMenu === "Data Management" ? "active-menu" : ""
                   }`}
                 >
                   <img src={Datamanagementicon} />
@@ -223,7 +229,7 @@ const Sidebar = ({ setSelectedMenuItem, userPermissions }) => {
               >
                 <li
                   className={`sidenav-menuitem ${
-                    activeMenu === "/reports" ? "active-menu" : ""
+                    activeMenu === "Reports" ? "active-menu" : ""
                   }`}
                 >
                   <img src={Reportsicon} />

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast } from 'react-toastify';
 
 const TenantDetailPage = () => {

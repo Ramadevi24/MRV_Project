@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
@@ -30,18 +30,22 @@ import ViewRole from "./components/roles/ViewRole.js";
 import AddRole from "./components/roles/AddRole.js";
 import EditRole from "./components/roles/EditRole.js";
 import { useTranslation } from "react-i18next";
-import { AuthProvider } from './contexts/AuthContext.jsx';
-import ProtectedRoute from './components/ProtectedRoute.js';
 
 const App = () => {
   const { t } = useTranslation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [selectedMenuItem, setSelectedMenuItem] = useState("Dashboard");
+  const[selectedMenuItem,setSelectedMenuItem]=useState("Dashboard")
   const location = useLocation();
   const [userPermissions, setUserPermissions] = useState([]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+    setIsOverlayActive(!isOverlayActive); // Toggle the overlay
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+    setIsOverlayActive(false); // Hide the overlay
   };
 
   const isLoginPage = location.pathname === "/login" || location.pathname === "/signup";
@@ -50,19 +54,40 @@ const App = () => {
     return <>Loading...</>;
   };
 
+  useEffect(() => {
+    // Ensure the sidebar is visible for screens larger than 1024px
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsSidebarOpen(true);
+      } else {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
   return (
-    <AuthProvider>
+    <>
       <div className="row mb-3"></div>
       <div className="col-12 layout-wrapper">
         {!isLoginPage && isSidebarOpen && (
           <div className="col-2 main-menu active">
-            <Sidebar setSelectedMenuItem={setSelectedMenuItem} userPermissions={userPermissions}/>
+            <Sidebar setSelectedMenuItem={setSelectedMenuItem}/>
           </div>
         )}
         <div
-          className={`page-content col-10 ${isLoginPage ? "login-page" : "with-sidebar"}`}
+          className={`page-content col-10 ${
+            isLoginPage ? "login-page" : "with-sidebar"
+          }`}
         >
-          {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} selectedMenuItem={selectedMenuItem} />}
+          {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} selectedMenuItem={selectedMenuItem}  />}
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/login" element={<LoginPage setUserPermissions={setUserPermissions} />} />

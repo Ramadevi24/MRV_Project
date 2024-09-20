@@ -32,7 +32,7 @@ hr{
   }
   
 .logo{
-    margin-left: 20px;
+    margin: 20px;
 }
 .left-container{
     border-radius: 40px;
@@ -167,6 +167,12 @@ hr{
    
 }
 
+.menu-item {
+    display: flex;
+    align-items: center;
+  }
+
+
 .administration-menu{
     /* margin-left: -40px; */
     padding: 0px !important;
@@ -212,7 +218,7 @@ hr{
     padding: 8px 0px; 
     border-radius: 6px; 
     transition: background-color 0.2s ease; 
-    display: flex;
+    display: flex;  
     /* align-items: center; */
     /* justify-content: center; */
  
@@ -245,4 +251,12 @@ hr{
     border-radius: 6px;
     margin: 5px 0;
 }
+
+@media screen and (min-width: 1024px) {
+    .fa-bars-icon {
+      display: none !important;
+    }
+  }
+
+ /* togle sidebar */
 
