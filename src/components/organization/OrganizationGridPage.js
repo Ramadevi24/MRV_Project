@@ -156,7 +156,7 @@ const OrganizationGridPage = ({userPermissions}) => {
                   {/* <td>{org.tenantName}</td> */}
                   <td>{formatDate(org.establishedDate)}</td>                  
                   {/* <td>{org.categories.$values.join(',')}</td> */}
-                  <td className="action-icons">
+                  <td className="action-icons" style={{padding:'8px'}}>
                     <button className="view-btn" onClick={() => navigate(`/Mrv/view-organization/${org.organizationID}`)}>
                       <FaEye color="green" />
                     </button>
