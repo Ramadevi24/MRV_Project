@@ -56,7 +56,7 @@ const App = () => {
   useEffect(() => {
     // Update the selectedMenuItem state and local storage based on the current URL
     const path = location.pathname;
-    let menuItem = "Dashboard"; // Default to Dashboard if no match
+    let menuItem = ""; // Default to Dashboard if no match
     if (path.includes("dashboard")) {
       menuItem = "Dashboard";
     } else if (path.includes("datamanagement")) {

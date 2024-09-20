@@ -108,6 +108,10 @@ textarea {
 .page-item{
   list-style-type: none;
 }
+
+
+
+
 @media (max-width: 768px) {
   .row .col-md-6 {
     margin-bottom: 15px;
