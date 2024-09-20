@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Modal, Button, Table, Form } from 'react-bootstrap';
 import '../../css/createGrid.css';
 import  Pagination from '../Pagination.js';
+import { formatDate } from '../../utils/formateDate.js';
 
 const RoleGrid = ({userPermissions}) => {
   const { t } = useTranslation();
@@ -147,7 +148,7 @@ const RoleGrid = ({userPermissions}) => {
                 <td>{role.roleID}</td>
                 <td>{role.roleName}</td>
                 <td>{role.description}</td>
-                <td>{new Date(role.createdDate).toLocaleDateString()}</td>
+                <td>{formatDate(role.date)}</td>
                 <td className="action-icons">
                   <button className="view-btn" onClick={() => navigate(`/Mrv/view-role/${role.roleID}`)}>
                     <FaEye color="green" />
