@@ -112,7 +112,7 @@ const TenantGrid = () => {
           </div>
         ) : (
           <table className="custom-table table table-striped table-hover">
-            <thead>
+            <thead className='grid-table'>
               <tr>
                 <th onClick={() => handleSort('tenantID')}>
                   {t('Tenant ID')}
