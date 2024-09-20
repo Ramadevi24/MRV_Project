@@ -50,7 +50,7 @@ const EditTenant = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` },
       });
       toast.success(t('Tenant updated successfully'));
-      navigate('/tenants');
+      navigate('/Mrv/tenants');
     } catch (error) {
       toast.error(t('Error updating tenant'));
     }

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 
-const Loginpage = ({ setUserPermissions }) => {
+const Loginpage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -24,7 +24,7 @@ const Loginpage = ({ setUserPermissions }) => {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission
     setError("");
     if (!email || !password) {
       setError("Please enter both email and password.");
@@ -40,14 +40,14 @@ const Loginpage = ({ setUserPermissions }) => {
         body: JSON.stringify({ email, password: encryptedPassword }),
       });
     
-      if (response.ok) {
+      if (response) {
         const data = await response.json();
         console.log("API Response:", data);
         if (data.token) {
-          setUserPermissions(data);
+          localStorage.setItem("UserPermissions", JSON.stringify(data));
           localStorage.setItem("AuthToken", data.token);
           login(data.token);
-          navigate("/dashboard");
+          navigate("/Mrv/dashboard");
         } else {
           setError("Token not found in response");
         }
@@ -75,16 +75,12 @@ const Loginpage = ({ setUserPermissions }) => {
       </div>
       <div className="login-right d-flex flex-column">
         <div className="logo">
-          <img src={logo} />
+          <img src={logo} alt="Logo" />
         </div>
         <div className="login-form d-flex flex-column align-items-center justify-content-center">
-          {/* <img
-                src="https://yourlogo.com/logo.png"
-                alt="Company Logo"
-                className="company-logo"
-              /> */}
           <h2>Login</h2>
-          <div className="input-feilds">
+          {/* Form wrapping the input fields and login button */}
+          <form onSubmit={handleLogin} className="input-feilds">
             <label>User Name</label>
             <input
               type="text"
@@ -107,11 +103,13 @@ const Loginpage = ({ setUserPermissions }) => {
                }}
           
             />
-          </div>
-          {error && <div className="error-message">{error}</div>}
-          <button className="login-button"  onClick={handleLogin}>
-            Login
-          </button>
+            {error && <div className="error-message">{error}</div>}
+            {/* Submit button, triggers form submission on Enter key press */}
+            <button className="login-button" type="submit">
+              Login
+            </button>
+          </form>
+
           <div className="login-links">
             <div>
               <a href="/signup">

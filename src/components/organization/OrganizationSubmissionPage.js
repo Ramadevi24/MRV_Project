@@ -170,7 +170,7 @@ const OrganizationSubmissionPage = () => {
         }
       );
       toast.success(t("Organization created successfully"));
-      navigate("/organizations");
+      navigate("/Mrv/organizations");
     } catch (error) {
       toast.error(t("createError"));
     }

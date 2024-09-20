@@ -41,12 +41,8 @@ const App = () => {
   const{t}=useTranslation()
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isOverlayActive, setIsOverlayActive] = useState(false);
-  // const[selectedMenuItem,setSelectedMenuItem]=useState("Dashboard")
-  const [userPermissions, setUserPermissions] = useState([]);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(
-    localStorage.getItem("selectedMenuItem") || "Dashboard"
-  );
-  console.log(selectedMenuItem,'selectedMenuItem')
+  const[selectedMenuItem,setSelectedMenuItem]=useState(localStorage.getItem("selectedMenuItem") || "Dashboard")
+  const userPermissions = JSON.parse(localStorage.getItem("UserPermissions")) || [];
 
   const location = useLocation();
 
@@ -99,7 +95,7 @@ const App = () => {
 
   // Determine if the current route is the login or signup page
   const isLoginPage =
-    location.pathname === "/login" || location.pathname === "/signup";
+    location.pathname === "/Mrv/login" || location.pathname === "/Mrv/signup";
 
   const Loading = () => {
     return <>Loading...</>;
@@ -142,37 +138,37 @@ const App = () => {
             isLoginPage ? "login-page" : "with-sidebar"
           }`}
         >
-          {!isLoginPage && <Topbar toggleSidebar={toggleSidebar}    isSidebarOpen={isSidebarOpen} selectedMenuItem={selectedMenuItem} userPermissions={userPermissions} />}
+          {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} selectedMenuItem={selectedMenuItem} userPermissions={userPermissions} />}
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/login" element={<LoginPage setUserPermissions={setUserPermissions}/>} />
-              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-              <Route path="/register" element={<ProtectedRoute><Register /></ProtectedRoute>} />
-              <Route path="/signup" element={<ProtectedRoute><Signup /></ProtectedRoute>} />
-              <Route path="/sample" element={<ProtectedRoute><Sample /></ProtectedRoute>} />
-              <Route path="/settings" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-              <Route path="/datamanagement" element={<ProtectedRoute><DataManagement /></ProtectedRoute>} />
-              <Route path="/reports" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-              <Route path="/permissions" element={<ProtectedRoute><PermissionGrid /></ProtectedRoute>} />
-              <Route path="/create-permission" element={<ProtectedRoute><CreatePermission /></ProtectedRoute>} />
-              <Route path="/edit-permission/:permissionID" element={<ProtectedRoute><EditPermission /></ProtectedRoute>}/>
-              <Route path="/view-permission/:permissionID" element={<ProtectedRoute><ViewPermission /></ProtectedRoute>} />
-              <Route path="/organizations" element={<ProtectedRoute><OrganizationGridPage /></ProtectedRoute>} />
-              <Route path="/create-organization" element={<ProtectedRoute><OrganizationSubmissionPage /></ProtectedRoute>} />
-              <Route path="/edit-organization/:id"  element={<ProtectedRoute><EditOrganization /></ProtectedRoute>} />
-              <Route path="/view-organization/:id" element={<ProtectedRoute><ViewOrganization /></ProtectedRoute>}/>
-              <Route path="/users" element={<ProtectedRoute><UserGrid userPermissions={userPermissions}/></ProtectedRoute>} />
-              <Route path="/create-user" element={<ProtectedRoute><UserForm userPermissions={userPermissions}/></ProtectedRoute>} />
-              <Route path="/edit-user/:id" element={<ProtectedRoute><EditUser userPermissions={userPermissions}/></ProtectedRoute>} />
-              <Route path="/view-user/:id" element={<ProtectedRoute><ViewUser userPermissions={userPermissions}/></ProtectedRoute>} />
-              <Route path="/tenants" element={<ProtectedRoute><TenantsGrid /></ProtectedRoute>} />
-              <Route path="/create-tenant" element={<ProtectedRoute><TenantForm /></ProtectedRoute>} />
-              <Route path="/edit-tenant/:id" element={<ProtectedRoute><EditTenant /></ProtectedRoute>} />
-              <Route path="/view-tenant/:id" element={<ProtectedRoute><ViewTenant /></ProtectedRoute>} />
-              <Route path="/roles" element={<ProtectedRoute><RoleGrid userPermissions={userPermissions}/></ProtectedRoute>} />
-              <Route path="/create-role" element={<ProtectedRoute><AddRole userPermissions={userPermissions}/></ProtectedRoute>} />
-              <Route path="/edit-role/:id" element={<ProtectedRoute><EditRole userPermissions={userPermissions}/></ProtectedRoute>} />
-              <Route path="/view-role/:id" element={<ProtectedRoute><ViewRole userPermissions={userPermissions}/></ProtectedRoute>} />
+              <Route path="/Mrv/login" element={<LoginPage/>} />
+              <Route path="/Mrv/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/Mrv/register" element={<ProtectedRoute><Register /></ProtectedRoute>} />
+              <Route path="/Mrv/signup" element={<ProtectedRoute><Signup /></ProtectedRoute>} />
+              <Route path="/Mrv/sample" element={<ProtectedRoute><Sample /></ProtectedRoute>} />
+              <Route path="/Mrv/settings" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/Mrv/datamanagement" element={<ProtectedRoute><DataManagement /></ProtectedRoute>} />
+              <Route path="/Mrv/reports" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/Mrv/permissions" element={<ProtectedRoute><PermissionGrid /></ProtectedRoute>} />
+              <Route path="/Mrv/create-permission" element={<ProtectedRoute><CreatePermission /></ProtectedRoute>} />
+              <Route path="/Mrv/edit-permission/:permissionID" element={<ProtectedRoute><EditPermission /></ProtectedRoute>}/>
+              <Route path="/Mrv/view-permission/:permissionID" element={<ProtectedRoute><ViewPermission /></ProtectedRoute>} />
+              <Route path="/Mrv/organizations" element={<ProtectedRoute><OrganizationGridPage /></ProtectedRoute>} />
+              <Route path="/Mrv/create-organization" element={<ProtectedRoute><OrganizationSubmissionPage /></ProtectedRoute>} />
+              <Route path="/Mrv/edit-organization/:id"  element={<ProtectedRoute><EditOrganization /></ProtectedRoute>} />
+              <Route path="/Mrv/view-organization/:id" element={<ProtectedRoute><ViewOrganization /></ProtectedRoute>}/>
+              <Route path="/Mrv/users" element={<ProtectedRoute><UserGrid userPermissions={userPermissions}/></ProtectedRoute>} />
+              <Route path="/Mrv/create-user" element={<ProtectedRoute><UserForm userPermissions={userPermissions}/></ProtectedRoute>} />
+              <Route path="/Mrv/edit-user/:id" element={<ProtectedRoute><EditUser userPermissions={userPermissions}/></ProtectedRoute>} />
+              <Route path="/Mrv/view-user/:id" element={<ProtectedRoute><ViewUser userPermissions={userPermissions}/></ProtectedRoute>} />
+              <Route path="/Mrv/tenants" element={<ProtectedRoute><TenantsGrid /></ProtectedRoute>} />
+              <Route path="/Mrv/create-tenant" element={<ProtectedRoute><TenantForm /></ProtectedRoute>} />
+              <Route path="/Mrv/edit-tenant/:id" element={<ProtectedRoute><EditTenant /></ProtectedRoute>} />
+              <Route path="/Mrv/view-tenant/:id" element={<ProtectedRoute><ViewTenant /></ProtectedRoute>} />
+              <Route path="/Mrv/roles" element={<ProtectedRoute><RoleGrid userPermissions={userPermissions}/></ProtectedRoute>} />
+              <Route path="/Mrv/create-role" element={<ProtectedRoute><AddRole userPermissions={userPermissions}/></ProtectedRoute>} />
+              <Route path="/Mrv/edit-role/:id" element={<ProtectedRoute><EditRole userPermissions={userPermissions}/></ProtectedRoute>} />
+              <Route path="/Mrv/view-role/:id" element={<ProtectedRoute><ViewRole userPermissions={userPermissions}/></ProtectedRoute>} />
               <Route path="*" element={<h3 style={{textAlign:'center', marginTop:'50px'}}>{t('Page Not Found')}</h3>} />
             </Routes>
           </Suspense>

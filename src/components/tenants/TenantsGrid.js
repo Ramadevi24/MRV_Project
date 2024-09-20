@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../css/CreateForm.css';
 import { Spinner, Modal, Button } from 'react-bootstrap';
 import Pagination from '../Pagination.js'; // Import the Pagination component
-import { formatDateTime } from '../../utils/formateDate.js';
+import { formatDate} from '../../utils/formateDate.js';
 
 const TenantGrid = () => {
   const { t } = useTranslation();
@@ -100,7 +100,7 @@ const TenantGrid = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="button-72" onClick={() => navigate('/create-tenant')}>
+          <button className="button-72" onClick={() => navigate('/Mrv/create-tenant')}>
             {t('Create Tenant')}
           </button>
         </div>
@@ -139,12 +139,12 @@ const TenantGrid = () => {
                   <td>{tenant.tenantID}</td>
                   <td>{tenant.name}</td>
                   <td>{tenant.description}</td>
-                  <td>{formatDateTime(tenant.createdDate)}</td>
+                  <td>{formatDate(tenant.createdDate)}</td>
                   <td className="action-icons">
-                    <button className="view-btn" onClick={() => navigate(`/view-tenant/${tenant.tenantID}`)}>
+                    <button className="view-btn" onClick={() => navigate(`/Mrv/view-tenant/${tenant.tenantID}`)}>
                       <FaEye color="green" />
                     </button>
-                    <button className="edit-btn" onClick={() => navigate(`/edit-tenant/${tenant.tenantID}`)}>
+                    <button className="edit-btn" onClick={() => navigate(`/Mrv/edit-tenant/${tenant.tenantID}`)}>
                       <FaPencilAlt color="blue" />
                     </button>
                     <button className="delete-btn" onClick={() => handleDelete(tenant.tenantID)}>

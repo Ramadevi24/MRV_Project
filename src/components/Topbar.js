@@ -16,6 +16,8 @@ const Topbar = ({selectedMenuItem ,toggleSidebar,isSidebarOpen, userPermissions}
   const [language, setLanguage] = useState(i18n.language);
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
+  console.log('userPermissions:', userPermissions);
+
   useEffect(() => {
     const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
     i18n.changeLanguage(savedLanguage);
@@ -30,7 +32,7 @@ const Topbar = ({selectedMenuItem ,toggleSidebar,isSidebarOpen, userPermissions}
   const handleLogout = () => {
     logout();
     setDropdownVisible(false); 
-    navigate('/login');
+    navigate('/Mrv/login');
   };
 
   const handleChange = (event) => {
@@ -105,9 +107,9 @@ const Topbar = ({selectedMenuItem ,toggleSidebar,isSidebarOpen, userPermissions}
         </div>
         <div>
             <div onClick={toggleDropdown} className="user-name dropdown-toggle">
-              {userPermissions.Firstname}
+              {userPermissions && userPermissions.firstName} {userPermissions && userPermissions.lastName}
             </div>
-            <div className="admin">{t('Admin')}</div>
+            <div className="admin">{userPermissions && userPermissions.roleName}</div>
 
             {dropdownVisible && (
               <div className="dropdown-menu show admin-dropdown-menu" style={{ position: 'absolute',right:'10px'}}>

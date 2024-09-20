@@ -113,7 +113,7 @@ const PermissionGrid = () => {
         />
         <Button
           className="button-72"
-          onClick={() => navigate("/create-permission")}
+          onClick={() => navigate("/Mrv/create-permission")}
         >
           {t("Create Permission")}
         </Button>
@@ -156,7 +156,7 @@ const PermissionGrid = () => {
                   <button
                     className="view-btn"
                     onClick={() =>
-                      navigate(`/view-permission/${permission.permissionID}`)
+                      navigate(`/Mrv/view-permission/${permission.permissionID}`)
                     }
                   >
                     <FaEye color="green" />
@@ -164,7 +164,7 @@ const PermissionGrid = () => {
                   <button
                     className="edit-btn"
                     onClick={() =>
-                      navigate(`/edit-permission/${permission.permissionID}`)
+                      navigate(`/Mrv/edit-permission/${permission.permissionID}`)
                     }
                   >
                     <FaPencilAlt color="blue" />

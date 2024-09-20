@@ -73,7 +73,7 @@ const PermissionGridPage = () => {
     <div className="container mt-5">
       <div className="d-flex justify-content-between mb-3">
         <h2>{t('Permissions')}</h2>
-        <button className="button-72" onClick={() => navigate('/create-permission')}>
+        <button className="button-72" onClick={() => navigate('/Mrv/create-permission')}>
           {t('Create Permission')}
         </button>
       </div>
@@ -108,9 +108,9 @@ const PermissionGridPage = () => {
               <td>{permission.description}</td>
               <td>{permission.createdDate}</td>
               <td>
-                <FaPencilAlt className="text-primary mr-2" onClick={() => navigate(`/edit-permission/${permission.permissionID}`)} />
+                <FaPencilAlt className="text-primary mr-2" onClick={() => navigate(`/Mrv/edit-permission/${permission.permissionID}`)} />
                 <FaTrashAlt className="text-danger mr-2" onClick={() => handleDelete(permission.permissionID)} />
-                <FaEye className="text-success" onClick={() => navigate(`/view-permission/${permission.permissionID}`)} />
+                <FaEye className="text-success" onClick={() => navigate(`/Mrv/view-permission/${permission.permissionID}`)} />
               </td>
             </tr>
           ))}

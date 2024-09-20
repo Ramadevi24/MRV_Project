@@ -55,7 +55,7 @@ const CreatePermission = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       toast.success(t('permissionCreated'));
-      navigate('/permissions');
+      navigate('/Mrv/permissions');
     } catch (error) {
       toast.error(t('errorCreatingPermission'));
     }

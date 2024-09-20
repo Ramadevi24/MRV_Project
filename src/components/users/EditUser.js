@@ -125,7 +125,7 @@ const EditUser = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       toast.success(t('User updated successfully'));
-      navigate('/users');
+      navigate('/Mrv/users');
     } catch (error) {
       toast.error(t('Error updating user'));
     }

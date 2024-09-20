@@ -41,7 +41,7 @@ const TenantFormPage = () => {
         await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/', formData);
         toast.success(t('success.createTenant'));
       }
-      navigate('/login');
+      navigate('/Mrv/login');
     } catch (error) {
       toast.error(t('error.submitTenant'));
     }

@@ -68,7 +68,7 @@ const UserFormPage = () => {
         await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/User', formData);
         toast.success(t('success.createUser'), 'success');
       }
-      navigate('/users');
+      navigate('/Mrv/users');
     } catch (error) {
         toast.error(t('error.submitForm'), 'error');
     }

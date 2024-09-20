@@ -68,7 +68,7 @@ const EditPermission = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       toast.success(t('permissionUpdated'));
-      navigate('/permissions');
+      navigate('/Mrv/permissions');
     } catch (error) {
       toast.error(t('errorUpdatingPermission'));
     }

@@ -364,8 +364,16 @@ import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSitemap, faUserPlus, faGear, faUserPen, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+import {
+  hasPermissionForEntity,
+  usersPermissions,
+  tenantsPermissions,
+  organizationsPermissions,
+  rolesPermissions,
+  permissionsPermissions,
+} from "../utils/useHasPermission.js"; // Adjust the path as per your project structure
 
-const Sidebar = ({ setSelectedMenuItem, toggleSidebar }) => {
+const Sidebar = ({setSelectedMenuItem, toggleSidebar, userPermissions}) => {
   const { t } = useTranslation();
   const location = useLocation();
 
@@ -375,6 +383,7 @@ const Sidebar = ({ setSelectedMenuItem, toggleSidebar }) => {
   const [dropdownState, setDropdownState] = useState({
     administration: false,
   });
+  userPermissions = userPermissions.permissions && userPermissions.permissions?.$values.map((permission) => permission.permissionName)
 
   // Toggle function for dropdowns
   const toggleDropdown = (dropdown) => {
@@ -467,76 +476,93 @@ const Sidebar = ({ setSelectedMenuItem, toggleSidebar }) => {
                   </button>
 
                   {dropdownState.administration && (
-                    <div className="dropdown-menu-right Administration-cnt">
-                      <ul className="administration-menu">
-                        <Link to="/tenants">
-                          <li
-                            className={`menu-item ${activeMenu === "Tenants" ? "active-submenu" : ""}`}
-                            onClick={() => handleMenuClick("Tenants")}
-                          >
-                            <div className="administration-icon">
-                              <FontAwesomeIcon icon={faUser} className="font-icon" />
-                            </div>
-                            <span className="adminstration-label"> {t("Tenants")}</span>
-                          </li>
-                        </Link>
-                        <Link to="/organizations">
-                          <li
-                            className={`menu-item ${activeMenu === "Organizations" ? "active-submenu" : ""}`}
-                            onClick={() => handleMenuClick("Organizations")}
-                          >
-                            <div className="administration-icon">
-                              <FontAwesomeIcon icon={faSitemap} className="font-icon organization-icon" />
-                            </div>
-                            <span className="adminstration-label"> {t("Organization")}</span>
-                          </li>
-                        </Link>
-                        <Link to="/roles">
-                          <li
-                            className={`menu-item ${activeMenu === "Roles" ? "active-submenu" : ""}`}
-                            onClick={() => handleMenuClick("Roles")}
-                          >
-                            <div className="administration-icon">
-                              <FontAwesomeIcon icon={faUserPlus} className="font-icon" />
-                            </div>
-                            <span className="adminstration-label">{t("Roles")}</span>
-                          </li>
-                        </Link>
-                        <Link to="/users">
-                          <li
-                            className={`menu-item ${activeMenu === "Users" ? "active-submenu" : ""}`}
-                            onClick={() => handleMenuClick("Users")}
-                          >
-                            <div className="administration-icon">
-                              <FontAwesomeIcon icon={faUserPen} className="font-icon" />
-                            </div>
-                            <span className="adminstration-label"> {t("Users")}</span>
-                          </li>
-                        </Link>
-                        <Link to="/permissions">
-                          <li
-                            className={`menu-item ${activeMenu === "Permissions" ? "active-submenu" : ""}`}
-                            onClick={() => handleMenuClick("Permissions")}
-                          >
-                            <div className="administration-icon">
-                              <FontAwesomeIcon icon={faUserPen} className="font-icon permission-icon" />
-                            </div>
-                            <span className="adminstration-label"> {t("Permissions")}</span>
-                          </li>
-                        </Link>
-                        <Link to="/settings">
-                          <li
-                            className={`menu-item ${activeMenu === "Settings" ? "active-submenu" : ""}`}
-                            onClick={() => handleMenuClick("Settings")}
-                          >
-                            <div className="administration-icon">
-                              <FontAwesomeIcon icon={faGear} className="font-icon" />
-                            </div>
-                            <span className="adminstration-label">{t("Settings")}</span>
-                          </li>
-                        </Link>
-                      </ul>
-                    </div>
+                <div className="dropdown-menu-right Administration-cnt">
+                <ul className="administration-menu">
+                {hasPermissionForEntity(userPermissions, tenantsPermissions) && (
+                  <Link to="/Mrv/tenants">
+                    <li
+                      className={`menu-item ${activeMenu === "Tenants" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Tenants")}
+                    > 
+                    <div className="administration-icon">
+                      <FontAwesomeIcon icon={faUser} className="font-icon" />
+                      </div>
+                     <span className="adminstration-label"> {t("Tenants")}</span>
+                    </li>
+                  </Link>
+                )}
+                {hasPermissionForEntity(userPermissions, organizationsPermissions) && (
+                  <Link to="/Mrv/organizations">
+                    <li
+                      className={`menu-item ${activeMenu === "Organizations" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Organizations")} 
+                    >
+                      <div className="administration-icon">
+                      <FontAwesomeIcon icon={faSitemap} className="font-icon organization-icon" />
+                      </div>
+                     <span className="adminstration-label"> {t("Organization")}</span>
+                    </li>
+                  </Link>
+                )}
+                  {hasPermissionForEntity(userPermissions, rolesPermissions) && (
+                  <Link to="/Mrv/roles">
+                    <li
+                      className={`menu-item ${activeMenu === "Roles" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Roles")}
+                    >
+                      <div className="administration-icon">
+                      <FontAwesomeIcon icon={faUserPlus} className="font-icon" />
+                      </div>
+                      
+                      <span className="adminstration-label">{t("Roles")}</span>
+                    </li>
+                  </Link>
+                  )}
+                     {hasPermissionForEntity(userPermissions, usersPermissions) && (
+                  <Link to="/Mrv/users">
+                    <li
+                      className={`menu-item ${activeMenu === "Users" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Users")}
+                    >
+                      <div className="administration-icon">
+                      <FontAwesomeIcon icon={faUserPen} className="font-icon" />
+                      </div>
+                     <span className="adminstration-label"> {t("Users")}</span>
+                    </li>
+                  </Link>
+                     )}
+                        {hasPermissionForEntity(userPermissions, permissionsPermissions) && (
+                  <Link to="/Mrv/permissions">
+                  
+                    <li
+                    
+                      className={`menu-item ${activeMenu === "Permissions" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Permissions")} 
+                    >
+                      <div className="administration-icon">
+                       <FontAwesomeIcon icon={faUserPen} className="font-icon permission-icon" />
+                       </div>
+                     
+                     <span className="adminstration-label" > {t("Permissions")}</span>
+                    </li>
+                  </Link>
+                        )}
+                  <Link to="/Mrv/settings">
+                  
+                    <li
+                      className={`menu-item ${activeMenu === "Settings" ? "active-submenu" : ""}`}
+                      onClick={() => handleMenuClick("Settings")}
+                    >
+                      <div className="administration-icon">
+                      <FontAwesomeIcon icon={faGear} className="font-icon" />
+                      </div>
+                     
+                      <span className="adminstration-label">{t("Settings")}</span>
+                    
+                    </li>
+                  </Link>
+                </ul>
+              </div>
                   )}
                 </div>
               </li>

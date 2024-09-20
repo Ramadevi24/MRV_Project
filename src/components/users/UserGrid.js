@@ -99,7 +99,7 @@ const UserGrid = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button className="button-72" onClick={() => navigate('/create-user')}>{t('Create User')}</button>
+        <button className="button-72" onClick={() => navigate('/Mrv/create-user')}>{t('Create User')}</button>
       </div>
       <table className="table table-striped table-hover custom-table">
         <thead>
@@ -129,8 +129,8 @@ const UserGrid = () => {
               <td>{user.organizationName}</td>
               <td>{user.userRole}</td>
               <td className="action-icons">
-                <button className="view-btn text-success" onClick={() => navigate(`/view-user/${user.userID}`)}><FaEye /></button>
-                <button className="edit-btn text-primary" onClick={() => navigate(`/edit-user/${user.userID}`)}><FaPencilAlt /></button>
+                <button className="view-btn text-success" onClick={() => navigate(`/Mrv/view-user/${user.userID}`)}><FaEye /></button>
+                <button className="edit-btn text-primary" onClick={() => navigate(`/Mrv/edit-user/${user.userID}`)}><FaPencilAlt /></button>
                 <button className="delete-btn text-danger" onClick={() => { setShowModal(true); setUserToDelete(user); }}><FaTrashAlt /></button>
               </td>
             </tr>

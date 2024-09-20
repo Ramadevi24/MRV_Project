@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Modal, Button, Table, Form } from 'react-bootstrap';
 import '../../css/createGrid.css';
 import  Pagination from '../Pagination.js';
+import { formatDate } from '../../utils/formateDate.js';
 
 const RoleGrid = ({userPermissions}) => {
   const { t } = useTranslation();
@@ -108,7 +109,7 @@ const RoleGrid = ({userPermissions}) => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-25"
         />
-        <Button className='button-72' onClick={() => navigate('/create-role')}>
+        <Button className='button-72' onClick={() => navigate('/Mrv/create-role')}>
           {t('Create Role')}
         </Button>
       </div>
@@ -147,12 +148,12 @@ const RoleGrid = ({userPermissions}) => {
                 <td>{role.roleID}</td>
                 <td>{role.roleName}</td>
                 <td>{role.description}</td>
-                <td>{new Date(role.createdDate).toLocaleDateString()}</td>
+                <td>{formatDate(role.date)}</td>
                 <td className="action-icons">
-                  <button className="view-btn" onClick={() => navigate(`/view-role/${role.roleID}`)}>
+                  <button className="view-btn" onClick={() => navigate(`/Mrv/view-role/${role.roleID}`)}>
                     <FaEye color="green" />
                   </button>
-                  <button className="edit-btn" onClick={() => navigate(`/edit-role/${role.roleID}`)}>
+                  <button className="edit-btn" onClick={() => navigate(`/Mrv/edit-role/${role.roleID}`)}>
                     <FaPencilAlt color="blue" />
                   </button>
                   <button className="delete-btn" onClick={() => { setRoleToDelete(role); setShowDeleteModal(true); }}>
