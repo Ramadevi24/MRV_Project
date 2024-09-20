@@ -27,7 +27,7 @@ const OrganizationGridPage = () => {
   const fetchOrganizations = async () => {
     try {
       const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Organization', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       setOrganizations(response.data.$values);
       setLoading(false);
@@ -45,7 +45,7 @@ const OrganizationGridPage = () => {
   const confirmDelete = async () => {
     try {
       await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/Organization/${deleteOrgId}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       setOrganizations(organizations.filter(org => org.id !== deleteOrgId));
       await fetchOrganizations();

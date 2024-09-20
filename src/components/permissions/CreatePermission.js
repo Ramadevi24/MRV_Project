@@ -24,7 +24,7 @@ const CreatePermission = () => {
   const fetchPermissionGroups = async () => {
     try {
       const response = await axios.get('/api/permission-groups', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       setPermissionGroups(response.data);
     } catch (error) {
@@ -52,7 +52,7 @@ const CreatePermission = () => {
 
     try {
       await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Permissions', formData, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       toast.success(t('permissionCreated'));
       navigate('/permissions');

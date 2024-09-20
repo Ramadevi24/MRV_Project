@@ -75,7 +75,7 @@ describe('OrganizationSubmissionPage', () => {
       longitude: '-74.0060',
       locationAddress: 'New York, NY'
     }, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
     }));
 
     await waitFor(() => expect(screen.getByText(/organization created successfully/i)).toBeInTheDocument());

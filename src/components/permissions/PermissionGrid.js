@@ -38,7 +38,7 @@ const PermissionGrid = () => {
       const response = await axios.get(
         "https://atlas.smartgeoapps.com/MRVAPI/api/Permissions",
         {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          headers: { Authorization: `Bearer ${localStorage.getItem("AuthToken")}` },
         }
       );
       setPermissions(response.data.$values);
@@ -52,7 +52,7 @@ const PermissionGrid = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/permissions/${permissionToDelete.id}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("AuthToken")}` },
       });
       setPermissions(permissions.filter((p) => p.id !== permissionToDelete.id));
       toast.success(t("Permission deleted successfully"));

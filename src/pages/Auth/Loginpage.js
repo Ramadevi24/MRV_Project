@@ -32,33 +32,32 @@ const Loginpage = ({ setUserPermissions }) => {
     }
     const encryptedPassword = CryptoJS.SHA256(password).toString();
     try {
-      const response = await fetch(
-        "https://atlas.smartgeoapps.com/MRVAPI/api/Authentication/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password: encryptedPassword }),
+      const response = await fetch("https://atlas.smartgeoapps.com/MRVAPI/api/Authentication/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password: encryptedPassword }),
+      });
+    
+      if (response.ok) {
+        const data = await response.json();
+        console.log("API Response:", data);
+        if (data.token) {
+          setUserPermissions(data);
+          localStorage.setItem("AuthToken", data.token);
+          login(data.token);
+          navigate("/dashboard");
+        } else {
+          setError("Token not found in response");
         }
-      );
-
-      if (!response.ok) {
-        throw new Error("Invalid login credentials");
-      }
-
-      const data = await response.json();
-      if (data) {
-        setUserPermissions(data);
-        localStorage.setItem("token", data.token);
-        login();
-        navigate("/dashboard");
       } else {
-        console.log("Login failed");
+        const errorMessage = await response.text(); // Capture error from API
+        setError(errorMessage || "Invalid login credentials");
       }
     } catch (err) {
-      setError(err.message);
-    }
+      setError(err.message || "An error occurred during login.");
+    }    
   };
 
   return (

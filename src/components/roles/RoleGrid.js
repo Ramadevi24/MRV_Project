@@ -27,7 +27,7 @@ const RoleGrid = ({userPermissions}) => {
   // const fetchRoles = async () => {
   //   try {
   //     const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles?tenantId=userPermissions.tenantID', {
-  //       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+  //       headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` },
   //     });
   //     setRoles(response.data.$values);
   //     setLoading(false);
@@ -44,7 +44,7 @@ const RoleGrid = ({userPermissions}) => {
                          : 'https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles';
   
       const response = await axios.get(url, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` },
       });
         setRoles(response.data.$values);
       setLoading(false);
@@ -87,7 +87,7 @@ const RoleGrid = ({userPermissions}) => {
   const handleDelete = async () => {
     try {
       await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles/${roleToDelete.roleID}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` },
       });
       setRoles(roles.filter((role) => role.roleID !== roleToDelete.roleID));
       toast.success(t('Role deleted successfully'));

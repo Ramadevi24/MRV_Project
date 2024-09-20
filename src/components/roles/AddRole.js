@@ -30,7 +30,7 @@ const AddRole = ({userPermissions}) => {
             "https://atlas.smartgeoapps.com/MRVAPI/api/Tenant",
             {
               headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                Authorization: `Bearer ${localStorage.getItem("AuthToken")}`,
               },
             }
           );
@@ -45,7 +45,7 @@ const AddRole = ({userPermissions}) => {
         const fetchPermissionsData = async () => {
             try {
                 const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Permissions', {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                    headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
                 });
                 setPermissions(response.data.$values);
             } catch (error) {
@@ -99,7 +99,7 @@ const AddRole = ({userPermissions}) => {
                 permissionIds: selectedPermissions,
             };
             await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles', roleData, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
             });
             toast.success('Role created successfully');
             navigate('/roles');  // Redirect to roles list

@@ -17,7 +17,7 @@ const EditTenant = () => {
   const fetchTenant = async () => {
     try {
       const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${id}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` },
       });
       const tenant = response.data;
       setTenantName(tenant.name);
@@ -47,7 +47,7 @@ const EditTenant = () => {
 
     try {
       await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${id}`, updatedTenant, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` },
       });
       toast.success(t('Tenant updated successfully'));
       navigate('/tenants');

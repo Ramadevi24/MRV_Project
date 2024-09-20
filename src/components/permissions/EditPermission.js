@@ -26,7 +26,7 @@ const EditPermission = () => {
   const fetchPermission = async () => {
     try {
       const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Permissions/${permissionID}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       setFormData(response.data);
     } catch (error) {
@@ -37,7 +37,7 @@ const EditPermission = () => {
   const fetchPermissionGroups = async () => {
     try {
       const response = await axios.get('/api/permission-groups', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       setPermissionGroups(response.data);
     } catch (error) {
@@ -65,7 +65,7 @@ const EditPermission = () => {
 
     try {
       await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/Permissions/${permissionID}`, formData, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       toast.success(t('permissionUpdated'));
       navigate('/permissions');

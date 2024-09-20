@@ -82,7 +82,7 @@ const App = () => {
       <div className="col-12 layout-wrapper">
         {!isLoginPage && isSidebarOpen && (
           <div className="col-2 main-menu active">
-            <Sidebar setSelectedMenuItem={setSelectedMenuItem}/>
+            <Sidebar setSelectedMenuItem={setSelectedMenuItem} userPermissions={userPermissions}/>
           </div>
         )}
         <div
@@ -90,7 +90,7 @@ const App = () => {
             isLoginPage ? "login-page" : "with-sidebar"
           }`}
         >
-          {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} selectedMenuItem={selectedMenuItem}  />}
+          {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} selectedMenuItem={selectedMenuItem}  userPermissions={userPermissions}/>}
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/login" element={<LoginPage setUserPermissions={setUserPermissions} />} />

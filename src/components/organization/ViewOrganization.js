@@ -20,7 +20,7 @@ const ViewOrganization = () => {
     try {
       const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Organization/${id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('AuthToken')}`,
         },
       });
       setOrganization(response.data);

@@ -118,7 +118,7 @@ const OrganizationSubmissionPage = () => {
         "https://atlas.smartgeoapps.com/MRVAPI/api/Tenant",
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("AuthToken")}`,
           },
         }
       );
@@ -134,7 +134,7 @@ const OrganizationSubmissionPage = () => {
         "https://atlas.smartgeoapps.com/MRVAPI/api/Categories/level1and2",
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("AuthToken")}`,
           },
         }
       );
@@ -165,7 +165,7 @@ const OrganizationSubmissionPage = () => {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("AuthToken")}`,
           },
         }
       );

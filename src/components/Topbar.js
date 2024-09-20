@@ -8,7 +8,7 @@ import i18n from '../i18n';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 
-const Topbar = ({selectedMenuItem ,toggleSidebar,isSidebarOpen}) => {
+const Topbar = ({selectedMenuItem ,toggleSidebar,isSidebarOpen, userPermissions}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { logout } = useAuth();
