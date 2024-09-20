@@ -60,6 +60,8 @@ const Loginpage = ({ setUserPermissions }) => {
     }    
   };
 
+
+
   return (
     <div className="login-container">
       <div className="login-left">
@@ -93,15 +95,21 @@ const Loginpage = ({ setUserPermissions }) => {
             />
             <label>Password</label>
             <input
-              type="password"
-              placeholder="Password"
-              className="input-field"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+               type="password"
+               placeholder="Password"
+               className="input-field"
+               value={password}
+               onChange={(e) => setPassword(e.target.value)}
+               onKeyDown={(e) => {
+                 if (e.key === 'Enter') {
+                   handleLogin(e); // Pass the event to handleLogin when Enter is pressed
+                 }
+               }}
+          
             />
           </div>
           {error && <div className="error-message">{error}</div>}
-          <button className="login-button" onClick={handleLogin}>
+          <button className="login-button"  onClick={handleLogin}>
             Login
           </button>
           <div className="login-links">

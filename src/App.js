@@ -41,10 +41,51 @@ const App = () => {
   const{t}=useTranslation()
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isOverlayActive, setIsOverlayActive] = useState(false);
-  const[selectedMenuItem,setSelectedMenuItem]=useState("Dashboard")
+  // const[selectedMenuItem,setSelectedMenuItem]=useState("Dashboard")
   const [userPermissions, setUserPermissions] = useState([]);
+  const [selectedMenuItem, setSelectedMenuItem] = useState(
+    localStorage.getItem("selectedMenuItem") || "Dashboard"
+  );
+  console.log(selectedMenuItem,'selectedMenuItem')
 
   const location = useLocation();
+
+  useEffect(() => {
+    // Update the selectedMenuItem state and local storage based on the current URL
+    const path = location.pathname;
+    let menuItem = "Dashboard"; // Default to Dashboard if no match
+    if (path.includes("dashboard")) {
+      menuItem = "Dashboard";
+    } else if (path.includes("datamanagement")) {
+      menuItem = "Data Management";
+    } else if (path.includes("reports")) {
+      menuItem = "Reports";
+    } else if (path.includes("administration")) {
+      menuItem = "Administration";
+    }
+  else if (path.includes("tenants") || path.includes("create-tenant")|| path.includes("/edit-tenant/")||path.includes("/view-tenant/")) {
+    menuItem = "Tenants";
+  }
+  else if (path.includes("organizations")||path.includes("create-organization")||path.includes("/edit-organization/")||path.includes("/view-organization/")) {
+    menuItem = "Organizations";
+  }
+  else if (path.includes("roles")||path.includes("create-role")||path.includes("/view-role/")||path.includes("/edit-role/")) {
+    menuItem = "Roles";
+  }
+  else if (path.includes("users")||path.includes("create-user")||path.includes("/view-user/")||path.includes("/edit-user/")) {
+    menuItem = "Users";
+  }
+  else if (path.includes("permissions") ||path.includes("create-permission")||path.includes("/edit-permission/")||path.includes("/view-permission/") ) {
+    menuItem = "Permissions";
+  }
+  else if (path.includes("settings")) {
+    menuItem = "Settings";
+  }
+
+    setSelectedMenuItem(menuItem);
+    localStorage.setItem("selectedMenuItem", menuItem); // Store it in local storage
+  }, [location]);
+  
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
