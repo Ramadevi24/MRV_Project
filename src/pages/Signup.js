@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Login.css';
 import logo from '../images/Logoimage.png';
 import Uaeimage from '../images/Uaepass.png';

@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
@@ -34,14 +34,23 @@ import EditRole from "./components/roles/EditRole.js";
 // import EditRole from "./components/roles/EditRole.js";
 import { useTranslation } from "react-i18next";
 
+
 const App = () => {
   const{t}=useTranslation()
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isOverlayActive, setIsOverlayActive] = useState(false);
   const[selectedMenuItem,setSelectedMenuItem]=useState("Dashboard")
+
   const location = useLocation();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+    setIsOverlayActive(!isOverlayActive); // Toggle the overlay
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+    setIsOverlayActive(false); // Hide the overlay
   };
 
   // Determine if the current route is the login or signup page
@@ -52,21 +61,43 @@ const App = () => {
     return <>Loading...</>;
   };
 
+  useEffect(() => {
+    // Ensure the sidebar is visible for screens larger than 1024px
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsSidebarOpen(true);
+      } else {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
   return (
     <>
-      <div className="row mb-3"></div>
-      <div className="col-12 layout-wrapper">
+      <div className="layout-wrapper">
+
+      {isOverlayActive && <div className="overlay" onClick={closeSidebar}></div>}
+
         {!isLoginPage && isSidebarOpen && (
-          <div className="col-2 main-menu active">
-            <Sidebar setSelectedMenuItem={setSelectedMenuItem}/>
+          <div className="col-2  main-menu active">
+    <Sidebar setSelectedMenuItem={setSelectedMenuItem} 
+                      toggleSidebar={toggleSidebar}/>
           </div>
         )}
         <div
-          className={`page-content col-10 ${
+          className={`page-content col-lg-10 ${
             isLoginPage ? "login-page" : "with-sidebar"
           }`}
         >
-          {!isLoginPage && <Topbar toggleSidebar={toggleSidebar} selectedMenuItem={selectedMenuItem}  />}
+          {!isLoginPage && <Topbar toggleSidebar={toggleSidebar}    isSidebarOpen={isSidebarOpen} selectedMenuItem={selectedMenuItem}  />}
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/login" element={<LoginPage />} />

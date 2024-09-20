@@ -118,8 +118,11 @@
 // }
 
 // export default Sidebar
+
+
+
+
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/Sidenavbar.css";
 import logoimage from "../images/Logoimage.png";
 import Dashboardicon from "../images/Dashboardicon.png";
@@ -133,11 +136,11 @@ import {
   faSitemap,
   faUserPlus,
   faGear,
-  faUserPen,
+  faUserPen,faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
-const Sidebar = ({setSelectedMenuItem}) => {
+const Sidebar = ({setSelectedMenuItem, toggleSidebar}) => {
   const { t } = useTranslation();
   const location = useLocation();
   const [dropdownState, setDropdownState] = useState({
@@ -169,7 +172,10 @@ const Sidebar = ({setSelectedMenuItem}) => {
   };
 
   return (
+   
     <div>
+      <div className="fa-bars-icon " style={{float:'right', margin:'15px',fontSize:'35px'}}>
+      <FontAwesomeIcon icon={faXmark} onClick={toggleSidebar}/></div>
       <div className="col-12 right-container">
         <aside className="sidebar">
           <div className="logo">
@@ -330,3 +336,4 @@ const Sidebar = ({setSelectedMenuItem}) => {
 };
 
 export default Sidebar;
+

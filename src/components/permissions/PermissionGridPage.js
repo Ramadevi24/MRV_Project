@@ -4,7 +4,6 @@ import { FaPencilAlt, FaTrashAlt, FaEye, FaSortUp, FaSortDown } from 'react-icon
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PermissionGridPage = () => {
   const [permissions, setPermissions] = useState([]);

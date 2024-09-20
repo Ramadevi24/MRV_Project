@@ -96,6 +96,59 @@
     color: white; /* Text color on hover */
   }
 
+  .bars-icon{
+    font-size: 38px;
+    margin: 15px;
+    background: none !important;
+  }
+
+
+  @media screen and (max-width:320px)
+  {
+    .top-navbar{
+      background-color: rgba(0, 102, 164, 0.14);
+      /* border-radius: 40px; */
+      /* border-top-left-radius: 40px; */
+      /* border-top-right-radius: 40px; */
+      height: 90px;
+      width: 150vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+  }
+  }
+  /* @media screen and (max-width:1024px) {
+    .bars-icon {
+      display: none !important;
+    }
+  } */
+
+  @media screen and (max-width:320px)
+  {
+    .local-language{
+      display: block;
+    }
+    .top-navbar{
+      width:100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      
+    }
+  
+  
+   
+  }
+  @media only screen and (min-width: 320px) and (max-width: 980px) {
+      .local-language{
+        margin-left: 10px;
+      }
+  }
+
+
+
+
+  
  
   
 

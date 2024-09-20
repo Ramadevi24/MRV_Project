@@ -3,7 +3,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const TenantFormPage = () => {
   const [formData, setFormData] = useState({ tenantName: '', description: '' });

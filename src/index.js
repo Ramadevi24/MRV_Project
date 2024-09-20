@@ -2,8 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client'; // Import from 'react-dom/client'
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import i18n from './i18n.js'
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import '../src/css/bootstrap.min.css';
+import '../src/css/bootstrap.min.css.map';
+// import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+import './js/bootstrap.esm.min.js';
+import './js/bootstrap.min.js.map';
+
+
 import 'react-toastify/dist/ReactToastify.css';
 import { RolesProvider } from './contexts/RolesContext'; // Import the RolesProvider
 import { UsersProvider } from './contexts/UsersContext';
@@ -13,7 +21,7 @@ import { TenantProvider } from './contexts/TenantContext';
 import { PermissionsProvider } from './contexts/PermissionsContext';
 import { TenantRolesProvider } from './contexts/TenantRolesContext';
 import { ToastContainer } from 'react-toastify'; // Update import to react-toastify
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 

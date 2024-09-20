@@ -32,7 +32,7 @@ hr{
   }
   
 .logo{
-    margin-left: 20px;
+    margin: 20px;
 }
 .left-container{
     border-radius: 40px;
@@ -168,13 +168,8 @@ hr{
 }
 
 .menu-item {
-    display: flex !important;
-    justify-content: space-evenly !important; /* Ensure even spacing between icon and text */
-    align-items: center !important; /* Vertically align the items */
-    padding: 10px;
-    color: #000;
-    cursor: pointer;
-    text-decoration: none;
+    display: flex;
+    align-items: center;
   }
 
 
@@ -223,7 +218,7 @@ hr{
     padding: 8px 0px; 
     border-radius: 6px; 
     transition: background-color 0.2s ease; 
-    display: flex;
+    display: flex;  
     /* align-items: center; */
     /* justify-content: center; */
  
@@ -256,4 +251,12 @@ hr{
     border-radius: 6px;
     margin: 5px 0;
 }
+
+@media screen and (min-width: 1024px) {
+    .fa-bars-icon {
+      display: none !important;
+    }
+  }
+
+ /* togle sidebar */
 

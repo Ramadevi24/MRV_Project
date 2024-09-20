@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PermissionDetailPage = () => {
   const [permission, setPermission] = useState({});
