@@ -139,7 +139,7 @@ const EditUser = ({ userPermissions }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container ">
       <div className='form-heading-row'>
         <div>
           <h2 className='edit-form-header'>{t('Edit User')}</h2>
@@ -194,7 +194,10 @@ const EditUser = ({ userPermissions }) => {
             ))}
           </select>
         </div>
-        <button type="submit" className="btn">{t('Update User')}</button>
+        <div>
+          <button type="submit" className="btn" style={{marginTop:'30px'}}>{t('Update User')}</button>
+        </div>
+       
       </form>
     </div>
   );

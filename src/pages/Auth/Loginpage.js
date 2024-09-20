@@ -60,6 +60,8 @@ const Loginpage = () => {
     }    
   };
 
+
+
   return (
     <div className="login-container">
       <div className="login-left">
@@ -89,11 +91,17 @@ const Loginpage = () => {
             />
             <label>Password</label>
             <input
-              type="password"
-              placeholder="Password"
-              className="input-field"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+               type="password"
+               placeholder="Password"
+               className="input-field"
+               value={password}
+               onChange={(e) => setPassword(e.target.value)}
+               onKeyDown={(e) => {
+                 if (e.key === 'Enter') {
+                   handleLogin(e); // Pass the event to handleLogin when Enter is pressed
+                 }
+               }}
+          
             />
             {error && <div className="error-message">{error}</div>}
             {/* Submit button, triggers form submission on Enter key press */}

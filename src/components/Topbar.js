@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 
 const Topbar = ({selectedMenuItem ,toggleSidebar,isSidebarOpen, userPermissions}) => {
+  console.log('user permission ',userPermissions);
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { logout } = useAuth();
