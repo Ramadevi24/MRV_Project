@@ -63,7 +63,7 @@ textarea {
   display: block;
   padding: 10px;
   background-color: rgba(0, 138, 95, 1) !important;
-  color: white;
+  color: white !important;
   font-weight: bold;
   border: none;
   border-radius: 5px;

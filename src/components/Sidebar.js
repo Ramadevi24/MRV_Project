@@ -194,7 +194,7 @@ const Sidebar = ({setSelectedMenuItem, toggleSidebar, userPermissions}) => {
           <nav className="menu">
             <ul className="">
               <Link
-                to="/dashboard"
+                to="/Mrv/dashboard"
                 className="menu-link"
                 onClick={() => handleOutsideClick("Dashboard")}
               >
@@ -208,7 +208,7 @@ const Sidebar = ({setSelectedMenuItem, toggleSidebar, userPermissions}) => {
                 </li>
               </Link>
               <Link
-                to="/datamanagement"
+                to="/Mrv/datamanagement"
                 className="menu-link"
                 onClick={() => handleOutsideClick("Data Management")}
               >
@@ -222,7 +222,7 @@ const Sidebar = ({setSelectedMenuItem, toggleSidebar, userPermissions}) => {
                 </li>
               </Link>
               <Link
-                to="/reports"
+                to="/Mrv/reports"
                 className="menu-link"
                 onClick={() => handleOutsideClick("Reports")}
               >
