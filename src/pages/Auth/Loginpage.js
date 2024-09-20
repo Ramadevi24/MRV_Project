@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 
-const Loginpage = ({ setUserPermissions }) => {
+const Loginpage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -40,14 +40,14 @@ const Loginpage = ({ setUserPermissions }) => {
         body: JSON.stringify({ email, password: encryptedPassword }),
       });
     
-      if (response.ok) {
+      if (response) {
         const data = await response.json();
         console.log("API Response:", data);
         if (data.token) {
-          setUserPermissions(data);
+          localStorage.setItem("UserPermissions", JSON.stringify(data));
           localStorage.setItem("AuthToken", data.token);
           login(data.token);
-          navigate("/dashboard");
+          navigate("/Mrv/dashboard");
         } else {
           setError("Token not found in response");
         }

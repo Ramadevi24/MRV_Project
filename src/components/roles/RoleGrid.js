@@ -108,7 +108,7 @@ const RoleGrid = ({userPermissions}) => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-25"
         />
-        <Button className='button-72' onClick={() => navigate('/create-role')}>
+        <Button className='button-72' onClick={() => navigate('/Mrv/create-role')}>
           {t('Create Role')}
         </Button>
       </div>
@@ -149,10 +149,10 @@ const RoleGrid = ({userPermissions}) => {
                 <td>{role.description}</td>
                 <td>{new Date(role.createdDate).toLocaleDateString()}</td>
                 <td className="action-icons">
-                  <button className="view-btn" onClick={() => navigate(`/view-role/${role.roleID}`)}>
+                  <button className="view-btn" onClick={() => navigate(`/Mrv/view-role/${role.roleID}`)}>
                     <FaEye color="green" />
                   </button>
-                  <button className="edit-btn" onClick={() => navigate(`/edit-role/${role.roleID}`)}>
+                  <button className="edit-btn" onClick={() => navigate(`/Mrv/edit-role/${role.roleID}`)}>
                     <FaPencilAlt color="blue" />
                   </button>
                   <button className="delete-btn" onClick={() => { setRoleToDelete(role); setShowDeleteModal(true); }}>

@@ -21,13 +21,13 @@ const LoginPage = () => {
       e.preventDefault();
       // Add your form submission logic here, such as validation or API calls
       // For example, after successful registration, navigate to the login page:
-      navigate('/dashboard');
+      navigate('/Mrv/dashboard');
   };
   
   const handlesignup=(e)=>
   {
     e.preventDefault();
-    navigate('/signup');
+    navigate('/Mrv/signup');
   }
   return (
     <div className="bg-primary d-flex justify-content-center align-items-center min-vh-100 p-5">

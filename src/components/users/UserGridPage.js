@@ -82,7 +82,7 @@ const UserGridPage = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={() => navigate('/create-user')}>
+        <button className="btn btn-primary" onClick={() => navigate('/Mrv/create-user')}>
           {t('Create User')}
         </button>
       </div>
@@ -106,13 +106,13 @@ const UserGridPage = () => {
               <td>{user.organizationName}</td>
               <td>{user.roleName}</td>
               <td>
-                <button className="btn btn-warning btn-sm" onClick={() => navigate(`/edit-user/${user.userID}`)}>
+                <button className="btn btn-warning btn-sm" onClick={() => navigate(`/Mrv/edit-user/${user.userID}`)}>
                   {t('edit')}
                 </button>
                 <button className="btn btn-danger btn-sm" onClick={() => handleDelete(user.userID)}>
                   {t('delete')}
                 </button>
-                <button className="btn btn-info btn-sm" onClick={() => navigate(`/view-user/${user.userID}`)}>
+                <button className="btn btn-info btn-sm" onClick={() => navigate(`/Mrv/view-user/${user.userID}`)}>
                   {t('view')}
                 </button>
               </td>

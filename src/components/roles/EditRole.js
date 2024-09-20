@@ -134,7 +134,7 @@ const EditRole = ({userPermissions}) => {
             headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` },
           });
             toast.success('Role updated successfully');
-            navigate('/roles');  // Redirect to roles list
+            navigate('/Mrv/roles');  // Redirect to roles list
         } catch (error) {
             console.error('Error updating role:', error.message);
             toast.error('Failed to update role');

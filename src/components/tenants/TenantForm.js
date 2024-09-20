@@ -29,7 +29,7 @@ const TenantForm = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` },
       });
       toast.success(t('Tenant created successfully'));
-      navigate('/tenants');
+      navigate('/Mrv/tenants');
     } catch (error) {
       toast.error(t('Error creating tenant'));
     }

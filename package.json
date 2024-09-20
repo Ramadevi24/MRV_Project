@@ -1,6 +1,6 @@
 {
   "name": "mrv_project",
-  "homepage": "/Mrv",
+  "homepage": "/Mrv/login",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

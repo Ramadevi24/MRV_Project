@@ -101,7 +101,7 @@ const OrganizationGridPage = () => {
           />
           <button
             className="button-72"
-            onClick={() => navigate('/create-organization')}
+            onClick={() => navigate('/Mrv/create-organization')}
           >
             {t('Create Organization')}
           </button>
@@ -151,10 +151,10 @@ const OrganizationGridPage = () => {
                   <td>{org.establishedDate}</td>
                   <td>{org.categories.$values.join(',')}</td>
                   <td className="action-icons">
-                    <button className="view-btn" onClick={() => navigate(`/view-organization/${org.organizationID}`)}>
+                    <button className="view-btn" onClick={() => navigate(`/Mrv/view-organization/${org.organizationID}`)}>
                       <FaEye color="green" />
                     </button>
-                    <button className="edit-btn" onClick={() => navigate(`/edit-organization/${org.organizationID}`)}>
+                    <button className="edit-btn" onClick={() => navigate(`/Mrv/edit-organization/${org.organizationID}`)}>
                       <FaPencilAlt color="blue" />
                     </button>
                     <button className="delete-btn" onClick={() => handleDelete(org.organizationID)}>

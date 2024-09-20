@@ -139,13 +139,22 @@ import {
   faUserPen,faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+import {
+  hasPermissionForEntity,
+  usersPermissions,
+  tenantsPermissions,
+  organizationsPermissions,
+  rolesPermissions,
+  permissionsPermissions,
+} from "../utils/useHasPermission.js"; // Adjust the path as per your project structure
 
-const Sidebar = ({setSelectedMenuItem, toggleSidebar}) => {
+const Sidebar = ({setSelectedMenuItem, toggleSidebar, userPermissions}) => {
   const { t } = useTranslation();
   const location = useLocation();
   const [dropdownState, setDropdownState] = useState({
     administration: false,
   });
+  userPermissions = userPermissions.permissions && userPermissions.permissions?.$values.map((permission) => permission.permissionName)
 
   // State for the active menu
   const [activeMenu, setActiveMenu] = useState(location.pathname);
@@ -241,7 +250,8 @@ const Sidebar = ({setSelectedMenuItem, toggleSidebar}) => {
                   {dropdownState.administration && (
                 <div className="dropdown-menu-right Administration-cnt">
                 <ul className="administration-menu">
-                  <Link to="/tenants">
+                {hasPermissionForEntity(userPermissions, tenantsPermissions) && (
+                  <Link to="/Mrv/tenants">
                     <li
                       className={`menu-item ${activeMenu === "Tenants" ? "active-submenu" : ""}`}
                       onClick={() => handleMenuClick("Tenants")}
@@ -252,7 +262,9 @@ const Sidebar = ({setSelectedMenuItem, toggleSidebar}) => {
                      <span className="adminstration-label"> {t("Tenants")}</span>
                     </li>
                   </Link>
-                  <Link to="/organizations">
+                )}
+                {hasPermissionForEntity(userPermissions, organizationsPermissions) && (
+                  <Link to="/Mrv/organizations">
                     <li
                       className={`menu-item ${activeMenu === "Organizations" ? "active-submenu" : ""}`}
                       onClick={() => handleMenuClick("Organizations")} 
@@ -263,7 +275,9 @@ const Sidebar = ({setSelectedMenuItem, toggleSidebar}) => {
                      <span className="adminstration-label"> {t("Organization")}</span>
                     </li>
                   </Link>
-                  <Link to="/roles">
+                )}
+                  {hasPermissionForEntity(userPermissions, rolesPermissions) && (
+                  <Link to="/Mrv/roles">
                     <li
                       className={`menu-item ${activeMenu === "Roles" ? "active-submenu" : ""}`}
                       onClick={() => handleMenuClick("Roles")}
@@ -275,7 +289,9 @@ const Sidebar = ({setSelectedMenuItem, toggleSidebar}) => {
                       <span className="adminstration-label">{t("Roles")}</span>
                     </li>
                   </Link>
-                  <Link to="/users">
+                  )}
+                     {hasPermissionForEntity(userPermissions, usersPermissions) && (
+                  <Link to="/Mrv/users">
                     <li
                       className={`menu-item ${activeMenu === "Users" ? "active-submenu" : ""}`}
                       onClick={() => handleMenuClick("Users")}
@@ -286,7 +302,9 @@ const Sidebar = ({setSelectedMenuItem, toggleSidebar}) => {
                      <span className="adminstration-label"> {t("Users")}</span>
                     </li>
                   </Link>
-                  <Link to="/permissions">
+                     )}
+                        {hasPermissionForEntity(userPermissions, permissionsPermissions) && (
+                  <Link to="/Mrv/permissions">
                   
                     <li
                     
@@ -300,7 +318,8 @@ const Sidebar = ({setSelectedMenuItem, toggleSidebar}) => {
                      <span className="adminstration-label" > {t("Permissions")}</span>
                     </li>
                   </Link>
-                  <Link to="/settings">
+                        )}
+                  <Link to="/Mrv/settings">
                   
                     <li
                       className={`menu-item ${activeMenu === "Settings" ? "active-submenu" : ""}`}

@@ -197,7 +197,7 @@ const EditOrganization = () => {
         },
       });
       toast.success(t('Organization updated successfully'));
-      navigate('/organizations');
+      navigate('/Mrv/organizations');
     } catch (error) {
       toast.error(t('updateError'));
     }

@@ -35,7 +35,7 @@ const RolesPage = () => {
   // };
 
   const handleAddRole = () => {
-    navigate("/addnewrole");
+    navigate("/Mrv/addnewrole");
   };
 
   // const handleCloseCreateForm = () => {
@@ -52,7 +52,7 @@ const RolesPage = () => {
   const handleSelectRoleForEdit = (role) => {
     fetchRoleById(role.roleID)
       .then(() => {
-        navigate("/addnewrole"); // Open the form for editing
+        navigate("/Mrv/addnewrole"); // Open the form for editing
       })
       .catch((error) => {
         console.error(

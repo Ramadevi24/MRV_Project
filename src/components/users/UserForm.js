@@ -72,7 +72,7 @@ const UserForm = ({userPermissions}) => {
         headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       toast.success(t('User created successfully'));
-      navigate('/users');
+      navigate('/Mrv/users');
     } catch (error) {
       toast.error(t('Error creating user'));
     }

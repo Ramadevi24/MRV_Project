@@ -20,7 +20,7 @@ let Signup=()=>
         e.preventDefault();
         // Add your form submission logic here, such as validation or API calls
         // For example, after successful registration, navigate to the login page:
-        navigate('/dashboard');
+        navigate('/Mrv/dashboard');
     };
     return(
         <div>
