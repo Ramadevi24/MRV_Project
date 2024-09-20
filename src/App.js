@@ -30,11 +30,14 @@ import ViewRole from "./components/roles/ViewRole.js";
 import AddRole from "./components/roles/AddRole.js";
 import EditRole from "./components/roles/EditRole.js";
 import { useTranslation } from "react-i18next";
+import ProtectedRoute from "./components/ProtectedRoute.js";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
 
 const App = () => {
   const { t } = useTranslation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const[selectedMenuItem,setSelectedMenuItem]=useState("Dashboard")
+  const [isOverlayActive, setIsOverlayActive] = useState(false);
   const location = useLocation();
   const [userPermissions, setUserPermissions] = useState([]);
 
@@ -74,7 +77,7 @@ const App = () => {
 
 
   return (
-    <>
+    <AuthProvider>
       <div className="row mb-3"></div>
       <div className="col-12 layout-wrapper">
         {!isLoginPage && isSidebarOpen && (
