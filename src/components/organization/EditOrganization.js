@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../../utils/formateDate.js';
 import "../../css/custom-dropdown.css";
 
-const EditOrganization = () => {
+const EditOrganization = ({userPermissions}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();

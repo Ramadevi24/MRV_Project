@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "../../css/custom-dropdown.css";
 
 
-const OrganizationSubmissionPage = () => {
+const OrganizationSubmissionPage = ({userPermissions}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

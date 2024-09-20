@@ -35,6 +35,7 @@ import EditRole from "./components/roles/EditRole.js";
 import { useTranslation } from "react-i18next";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.js";
+import { useNavigate } from "react-router-dom";
 
 
 const App = () => {
@@ -43,8 +44,14 @@ const App = () => {
   const [isOverlayActive, setIsOverlayActive] = useState(false);
   const[selectedMenuItem,setSelectedMenuItem]=useState(localStorage.getItem("selectedMenuItem") || "Dashboard")
   const userPermissions = JSON.parse(localStorage.getItem("UserPermissions")) || [];
-
+  const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/Mrv/' || location.pathname === '/Mrv') {
+      navigate('/Mrv/login');
+    }
+  }, [location, navigate]);
 
   useEffect(() => {
     // Update the selectedMenuItem state and local storage based on the current URL
@@ -154,8 +161,8 @@ const App = () => {
               <Route path="/Mrv/edit-permission/:permissionID" element={<ProtectedRoute><EditPermission /></ProtectedRoute>}/>
               <Route path="/Mrv/view-permission/:permissionID" element={<ProtectedRoute><ViewPermission /></ProtectedRoute>} />
               <Route path="/Mrv/organizations" element={<ProtectedRoute><OrganizationGridPage /></ProtectedRoute>} />
-              <Route path="/Mrv/create-organization" element={<ProtectedRoute><OrganizationSubmissionPage /></ProtectedRoute>} />
-              <Route path="/Mrv/edit-organization/:id"  element={<ProtectedRoute><EditOrganization /></ProtectedRoute>} />
+              <Route path="/Mrv/create-organization" element={<ProtectedRoute><OrganizationSubmissionPage userPermissions={userPermissions}/></ProtectedRoute>} />
+              <Route path="/Mrv/edit-organization/:id"  element={<ProtectedRoute><EditOrganization userPermissions={userPermissions}/></ProtectedRoute>} />
               <Route path="/Mrv/view-organization/:id" element={<ProtectedRoute><ViewOrganization /></ProtectedRoute>}/>
               <Route path="/Mrv/users" element={<ProtectedRoute><UserGrid userPermissions={userPermissions}/></ProtectedRoute>} />
               <Route path="/Mrv/create-user" element={<ProtectedRoute><UserForm userPermissions={userPermissions}/></ProtectedRoute>} />
