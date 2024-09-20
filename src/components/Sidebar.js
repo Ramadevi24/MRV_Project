@@ -160,7 +160,7 @@ const Sidebar = ({ setSelectedMenuItem, userPermissions, toggleSidebar }) => {
   // State for the active menu
   const [activeMenu, setActiveMenu] = useState(location.pathname);
 
-  userPermissions = userPermissions.permissions && userPermissions.permissions?.$values.map((permission) => permission.permissionName)
+  userPermissions = userPermissions?.permissions && userPermissions.permissions?.$values?.map((permission) => permission.permissionName)
   // Toggle function for dropdowns
   const toggleDropdown = (dropdown) => {
     setDropdownState((prevState) => ({
