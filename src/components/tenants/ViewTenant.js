@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import '../../css/ViewForm.css';
 import { useNavigate } from 'react-router-dom';
+import { formatDate } from '../../utils/formateDate';
 
 const ViewTenant = () => {
   const { t } = useTranslation();
@@ -60,7 +61,7 @@ const ViewTenant = () => {
           </tr>
           <tr>
             <th>{t('Created Date')}</th>
-            <td>{tenant?.createdDate}</td>
+            <td>{formatDate(tenant?.createdDate)}</td>
           </tr>
         </tbody>
       </table>

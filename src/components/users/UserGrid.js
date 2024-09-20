@@ -127,7 +127,7 @@ const UserGrid = () => {
               <td>{user.loginType}</td>
               <td>{user.tenantName}</td>
               <td>{user.organizationName}</td>
-              <td>{user.userRole}</td>
+              <td>{user.roleName}</td>
               <td className="action-icons">
                 <button className="view-btn text-success" onClick={() => navigate(`/Mrv/view-user/${user.userID}`)}><FaEye /></button>
                 <button className="edit-btn text-primary" onClick={() => navigate(`/Mrv/edit-user/${user.userID}`)}><FaPencilAlt /></button>

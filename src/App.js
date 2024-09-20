@@ -161,7 +161,7 @@ const App = () => {
               <Route path="/Mrv/create-permission" element={<ProtectedRoute><CreatePermission /></ProtectedRoute>} />
               <Route path="/Mrv/edit-permission/:permissionID" element={<ProtectedRoute><EditPermission /></ProtectedRoute>}/>
               <Route path="/Mrv/view-permission/:permissionID" element={<ProtectedRoute><ViewPermission /></ProtectedRoute>} />
-              <Route path="/Mrv/organizations" element={<ProtectedRoute><OrganizationGridPage /></ProtectedRoute>} />
+              <Route path="/Mrv/organizations" element={<ProtectedRoute><OrganizationGridPage userPermissions={userPermissions}/></ProtectedRoute>} />
               <Route path="/Mrv/create-organization" element={<ProtectedRoute><OrganizationSubmissionPage userPermissions={userPermissions}/></ProtectedRoute>} />
               <Route path="/Mrv/edit-organization/:id"  element={<ProtectedRoute><EditOrganization userPermissions={userPermissions}/></ProtectedRoute>} />
               <Route path="/Mrv/view-organization/:id" element={<ProtectedRoute><ViewOrganization /></ProtectedRoute>}/>

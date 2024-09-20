@@ -9,7 +9,7 @@ import '../../css/createGrid.css';
 import Pagination from '../Pagination.js';
 import { formatDate } from '../../utils/formateDate.js';
 
-const OrganizationGridPage = () => {
+const OrganizationGridPage = ({userPermissions}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [organizations, setOrganizations] = useState([]);
@@ -26,8 +26,13 @@ const OrganizationGridPage = () => {
   }, []);
 
   const fetchOrganizations = async () => {
+    const tenantID = userPermissions.tenantID
+    const organizationUrl = tenantID
+    ? `https://atlas.smartgeoapps.com/MRVAPI/api/Organization/getOrganizations/${tenantID}`
+    : 'https://atlas.smartgeoapps.com/MRVAPI/api/Organization';
+
     try {
-      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Organization', {
+      const response = await axios.get(organizationUrl, {
         headers: { Authorization: `Bearer ${localStorage.getItem('AuthToken')}` }
       });
       setOrganizations(response.data.$values);
@@ -122,24 +127,24 @@ const OrganizationGridPage = () => {
                     sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                   )}
                 </th>
-                <th onClick={() => handleSort('tenantName')}>
+                {/* <th onClick={() => handleSort('tenantName')}>
                   {t('Tenant Name')}
                   {sortConfig.key === 'tenantName' && (
                     sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                   )}
-                </th>
+                </th> */}
                 <th onClick={() => handleSort('establishedDate')}>
                   {t('Established date')}
                   {sortConfig.key === 'establishedDate' && (
                     sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                   )}
                 </th>
-                <th onClick={() => handleSort('categories')}>
+                {/* <th onClick={() => handleSort('categories')}>
                   {t('Categories')}
                   {sortConfig.key === 'categories' && (
                     sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />
                   )}
-                </th>
+                </th> */}
                 <th>{t('Actions')}</th>
               </tr>
             </thead>
@@ -148,9 +153,9 @@ const OrganizationGridPage = () => {
                 <tr key={org.organizationID}>
                   <td>{org.organizationID}</td>
                   <td>{org.organizationName}</td>
-                  <td>{org.tenantName}</td>
+                  {/* <td>{org.tenantName}</td> */}
                   <td>{formatDate(org.establishedDate)}</td>                  
-                  <td>{org.categories.$values.join(',')}</td>
+                  {/* <td>{org.categories.$values.join(',')}</td> */}
                   <td className="action-icons">
                     <button className="view-btn" onClick={() => navigate(`/Mrv/view-organization/${org.organizationID}`)}>
                       <FaEye color="green" />

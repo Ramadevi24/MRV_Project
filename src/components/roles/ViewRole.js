@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import '../../css/ViewForm.css';
-import { formatDate, formatDateTime } from '../../utils/formateDate';
+import { formatDate } from '../../utils/formateDate';
 import { useNavigate } from 'react-router-dom';
 
 const ViewRole = ({userPermissions}) => {
@@ -82,7 +82,7 @@ const ViewRole = ({userPermissions}) => {
 
        <tr>
          <th>{t('Created Date')}</th>
-         <td>{formatDate(role?.createdDate)}</td>
+         <td>{formatDate(role?.date)}</td>
        </tr>
      </tbody>
    </table>

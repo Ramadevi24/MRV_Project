@@ -102,9 +102,10 @@ const AddRole = ({ userPermissions }) => {
         roleName: formData.roleName,
         description: formData.description,
         permissionIds: selectedPermissions,
+        tenantID: Number(formData.tenantID) || userPermissions.tenantID,
       };
       await axios.post(
-        "https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles",
+        "https://atlas.smartgeoapps.com/MRVAPI/api/Role",
         roleData,
         {
           headers: {

@@ -3,7 +3,7 @@ import { useCompanyProfile } from "../../contexts/CompanyProfileContext";
 import { useTenants } from "../../contexts/TenantContext";
 import "../../css/ManageCompanyProfile.css";
 import CompanyProfileGrid from "./CompanyProfileGrid";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { fetchCategories } from "../../services/ManageCompanyProfileAPI";
 import "react-dropdown-tree-select/dist/styles.css";

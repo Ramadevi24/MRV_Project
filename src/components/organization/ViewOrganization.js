@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import '../../css/ViewForm.css';
 import { useNavigate } from 'react-router-dom';
+import { formatDate } from '../../utils/formateDate';
 
 const ViewOrganization = () => {
   const { t } = useTranslation();
@@ -55,7 +56,7 @@ const ViewOrganization = () => {
           </tr>
           <tr>
             <th>{t('establishedDate')}</th>
-            <td>{organization.establishedDate}</td>
+            <td>{formatDate(organization.establishedDate)}</td>
           </tr>
           <tr>
             <th>{t('contactEmail')}</th>

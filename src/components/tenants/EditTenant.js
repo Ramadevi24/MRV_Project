@@ -11,7 +11,7 @@ const EditTenant = () => {
   const navigate = useNavigate();
   const [tenantName, setTenantName] = useState('');
   const [description, setDescription] = useState('');
-  const [regionID, setRegionID] = useState('');
+  // const [regionID, setRegionID] = useState('');
   const [errors, setErrors] = useState({});
 
   const fetchTenant = async () => {
@@ -43,7 +43,7 @@ const EditTenant = () => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    const updatedTenant = { name:tenantName, description, regionID };
+    const updatedTenant = { name:tenantName, description, countryID: 1, regionID: 1 };
 
     try {
       await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/Tenant/${id}`, updatedTenant, {
@@ -90,7 +90,7 @@ const EditTenant = () => {
           />
           {errors.description && <div className="invalid-feedback">{errors.description}</div>}
         </div>
-        <div className="row mb-3">
+        {/* <div className="row mb-3">
           <label>
             {t('Region ID')} <span className="text-danger">*</span>
           </label>
@@ -101,7 +101,7 @@ const EditTenant = () => {
             className={errors.regionID ? 'form-control is-invalid' : 'form-control'}
           />
           {errors.regionID && <div className="invalid-feedback">{errors.regionID}</div>}
-        </div>
+        </div> */}
         <button type="submit" className="btn btn-primary">{t('Update Tenant')}</button>
       </form>
     </div>

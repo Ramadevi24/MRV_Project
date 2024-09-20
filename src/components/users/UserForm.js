@@ -90,6 +90,8 @@ const UserForm = ({ userPermissions }) => {
     }
   };
 
+  console.log('formData:', formData.userRole);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const createFormData = { ...formData, loginType: 'custom' };
@@ -147,7 +149,7 @@ const UserForm = ({ userPermissions }) => {
           </div>
         )}
         <div className="col-6">
-          <label className='custum-dropdown-label'>{t('Organization ID')}<span style={{ color: 'red' }}>*</span></label>
+          <label className='custum-dropdown-label'>{t('Organization ID')}</label>
           <select className='custum-dropdown-select' name="organizationID" value={formData.organizationID} onChange={handleChange} required>
             <option value="">{t('Select Organization')}</option>
             {dropdownOptions.organizations.map(org => (
