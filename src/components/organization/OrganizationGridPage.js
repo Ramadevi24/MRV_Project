@@ -113,7 +113,7 @@ const OrganizationGridPage = () => {
           </div>
         ) : (
           <table className="table table-striped table-hover custom-table">
-            <thead>
+            <thead className='grid-table'>
               <tr>
                 <th>{t('Organization ID')}</th>
                 <th onClick={() => handleSort('name')}>

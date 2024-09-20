@@ -42,8 +42,8 @@ const Pagination = ({ itemsPerPage, currentPage, totalItems, paginate, setItemsP
             </button>
           </li>
           {pageNumbers.map((number) => (
-            <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
-              <button onClick={() => paginate(number)} className="page-link">
+            <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`} >
+              <button onClick={() => paginate(number)} className="page-link" style={{background:'#1e7898',color:'white'}}>
                 {number}
               </button>
             </li>
