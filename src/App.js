@@ -41,6 +41,7 @@ const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isOverlayActive, setIsOverlayActive] = useState(false);
   const[selectedMenuItem,setSelectedMenuItem]=useState("Dashboard")
+  const [userPermissions, setUserPermissions] = useState([]);
 
   const location = useLocation();
 
@@ -102,7 +103,7 @@ const App = () => {
           {!isLoginPage && <Topbar toggleSidebar={toggleSidebar}    isSidebarOpen={isSidebarOpen} selectedMenuItem={selectedMenuItem} userPermissions={userPermissions} />}
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/login" element={<LoginPage />} />
+              <Route path="/login" element={<LoginPage setUserPermissions={setUserPermissions}/>} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/register" element={<Register />} />
               <Route path="/signup" element={<Signup />} />
