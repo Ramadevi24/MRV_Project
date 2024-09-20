@@ -5,22 +5,42 @@ import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from 'react-router-dom';
 
-const EditRole = () => {
+const EditRole = ({userPermissions}) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const { id } = useParams(); // Get role ID from URL
-    const [permissions, setPermissions] = useState([]);
-    const [role, setRole] = useState(null);
+    const { id } = useParams(); 
+    const [permissions, setPermissions] = useState([]); 
+    const [role, setRole] = useState(null); 
     const [formData, setFormData] = useState({
         roleName: '',
         description: '',
-        permissionIds: []
+        permissionIds: [],
+        tenantID: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [dropdownState, setDropdownState] = useState({});
     const [selectedPermissions, setSelectedPermissions] = useState([]);
+    const [tenants, setTenants] = useState([]);
 
-    console.log(role, 'role');
+    useEffect(() => {
+        fetchTenants();
+      }, []);
+    
+      const fetchTenants = async () => {
+        try {
+          const response = await axios.get(
+            "https://atlas.smartgeoapps.com/MRVAPI/api/Tenant",
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
+          setTenants(response.data.$values);
+        } catch (error) {
+          toast.error(t("errorFetchingData"));
+        }
+      };
 
     const toggleDropdown = (groupName) => {
         setDropdownState((prevState) => ({
@@ -29,52 +49,60 @@ const EditRole = () => {
         }));
     };
 
-    useEffect(() => {
-        fetchRole();
-    }, []);
-    
-    const fetchRole = async () => {
-        try {
-            const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Role/${id}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-            });
-            setRole(response.data);
-        } catch (error) {
-            toast.error(t('errorFetchingRole'));
-        }
-    };
 
-    useEffect(() => {
+        useEffect(() => {
+            const fetchRole = async () => {
+                try {
+                  const tenantId = userPermissions.tenantID || null; // Check if tenantID exists
+                  const roleId = id;
+            
+                  const url = tenantId 
+                    ? `https://atlas.smartgeoapps.com/MRVAPI/api/Role/${roleId}?tenantId=${tenantId}`
+                    : `https://atlas.smartgeoapps.com/MRVAPI/api/Role/${roleId}`;
+            
+                  const response = await axios.get(url, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+                  });
+            
+                  setRole(response.data);
+                } catch (error) {
+                  toast.error(t('errorFetchingRole'));
+                }
+              };
+          
+        // Fetch all permissions
         const fetchPermissionsData = async () => {
             try {
                 const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Permissions', {
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 });
-                setPermissions(response.data.$values);
+                setPermissions(response.data.$values); // Set permissions from API response
             } catch (error) {
                 console.error('Failed to fetch permissions:', error.message);
             }
         };
 
+        fetchRole();
         fetchPermissionsData();
-    }, []);
+    }, [id, t]);
 
     useEffect(() => {
         if (role) {
             setFormData({
                 roleName: role.roleName,
                 description: role.description,
-                permissionIds: role.permissionIds || []
+                permissionIds: role.permissions.$values || [], // Pre-set permission IDs from role
+                tenantID: role.tenantID || ''
             });
-            setSelectedPermissions(role.permissionIds || []);
+            setSelectedPermissions(role.permissions.$values.map(item=>item.permissionID) || []); // Pre-select permissions based on role data
         }
     }, [role]);
 
     const handlePermissionChange = (permissionID) => {
         setSelectedPermissions((prevPermissions) =>
             prevPermissions.includes(permissionID)
-                ? prevPermissions.filter(id => id !== permissionID)
-                : [...prevPermissions, permissionID]
+                ? prevPermissions.filter(id => id !== permissionID) // Remove if already selected
+                : [...prevPermissions, permissionID] // Add if not selected
         );
     };
 
@@ -83,18 +111,28 @@ const EditRole = () => {
 
         if (isSubmitting) return;
 
+        if (!selectedPermissions.length) {
+            toast.error(t('Please select at least one permission'));
+            return;
+        }
+
         setIsSubmitting(true);
         try {
             const roleData = {
                 roleName: formData.roleName,
                 description: formData.description,
                 permissionIds: selectedPermissions,
+                tenantID: formData.tenantID || null
             };
-
-            // Update Role
-            await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/Role/${id}`, roleData, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
+            const tenantId = userPermissions.tenantID || null; // Check if tenantID exists
+            const roleId = id;
+            const url = tenantId 
+            ? `https://atlas.smartgeoapps.com/MRVAPI/api/Role/${roleId}?tenantId=${tenantId}`
+            : `https://atlas.smartgeoapps.com/MRVAPI/api/Role/${roleId}`;
+    
+           await axios.put(url, roleData,{
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+          });
             toast.success('Role updated successfully');
             navigate('/roles');  // Redirect to roles list
         } catch (error) {
@@ -132,6 +170,7 @@ const EditRole = () => {
                             <input
                                 type='text'
                                 className='role-name-input'
+                                name='roleName'
                                 placeholder={t('Role Name')}
                                 value={formData.roleName}
                                 onChange={(e) => setFormData({ ...formData, roleName: e.target.value })}
@@ -143,8 +182,9 @@ const EditRole = () => {
                         <div>{t('Role Description')}</div>
                         <div>
                             <input
-                                type='textarea'
+                                type='text'
                                 className='role-name-input'
+                                name='description'
                                 placeholder={t('Description')}
                                 value={formData.description}
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -152,11 +192,34 @@ const EditRole = () => {
                             />
                         </div>
                     </div>
+                    <div className="row mb-3">
+          <div className="col">
+            <label>
+              {t("Tenant ID")}
+              <span className="text-danger">*</span>
+            </label>
+            <select
+              name="tenantID"
+              value={formData.tenantID}
+              onChange={(e) => setFormData({ ...formData, tenantID: e.target.value })}
+              className="form-control"
+              required
+            >
+              <option value="">{t("selectTenant")}</option>
+              {tenants.map((tenant) => (
+                <option key={tenant.tenantID} value={tenant.tenantID}>
+                  {tenant.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
                     <div className='row '>
                         <div className='dropdown-grid-container'>
                             {Object.entries(groupedPermissions).map(([groupName, groupPermissions]) => (
                                 <div className="dropdown drop-down mt-3 col-12 dropdown-container" key={groupName}>
                                     <button
+                                        type="button"
                                         onClick={() => toggleDropdown(groupName)}
                                         className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between"
                                     >
@@ -170,7 +233,7 @@ const EditRole = () => {
                                                         className="form-check-input switches user-switches"
                                                         type="checkbox"
                                                         id={`permission-${permission.permissionID}`}
-                                                        checked={selectedPermissions.includes(permission.permissionID)}
+                                                        checked={selectedPermissions.includes(permission.permissionID)} // Pre-check if permission is selected
                                                         onChange={() => handlePermissionChange(permission.permissionID)}
                                                     />
                                                     <label className="form-check-label" htmlFor={`permission-${permission.permissionID}`}>

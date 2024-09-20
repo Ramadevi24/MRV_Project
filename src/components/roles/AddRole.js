@@ -5,27 +5,47 @@ import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
 
-const AddRole = () => {
+const AddRole = ({userPermissions}) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         roleName: '',
         description: '',
-        permissionIds: []
+        permissionIds: [],
+        tenantID:''
     });
     const [permissions, setPermissions] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [dropdownState, setDropdownState] = useState({});
     const [selectedPermissions, setSelectedPermissions] = useState([]);
+    const [tenants, setTenants] = useState([]);
 
-    console.log(formData, 'formData');
+    useEffect(() => {
+        fetchTenants();
+      }, []);
+    
+      const fetchTenants = async () => {
+        try {
+          const response = await axios.get(
+            "https://atlas.smartgeoapps.com/MRVAPI/api/Tenant",
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
+          setTenants(response.data.$values);
+        } catch (error) {
+          toast.error(t("errorFetchingData"));
+        }
+      };
 
     // Fetch permissions when the component mounts
     useEffect(() => {
         const fetchPermissionsData = async () => {
             try {
                 const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Permissions', {
-                  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 });
                 setPermissions(response.data.$values);
             } catch (error) {
@@ -60,9 +80,17 @@ const AddRole = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Ensure the default form submission is prevented
 
+        // Prevent submission if already submitting
         if (isSubmitting) return;
+
+        // Ensure that selectedPermissions are present before submitting
+        if (selectedPermissions.length === 0) {
+            toast.error('Please select at least one permission');
+            return;
+        }
+
         setIsSubmitting(true);
         try {
             const roleData = {
@@ -70,9 +98,9 @@ const AddRole = () => {
                 description: formData.description,
                 permissionIds: selectedPermissions,
             };
-            await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Role', roleData, {
+            await axios.post('https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles', roleData, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-              });
+            });
             toast.success('Role created successfully');
             navigate('/roles');  // Redirect to roles list
         } catch (error) {
@@ -83,7 +111,7 @@ const AddRole = () => {
         }
     };
 
-    const groupedPermissions = permissions && permissions?.reduce((grouped, permission) => {
+    const groupedPermissions = permissions?.reduce((grouped, permission) => {
         const group = permission.permissionGroup;
         if (!grouped[group]) {
             grouped[group] = [];
@@ -103,7 +131,7 @@ const AddRole = () => {
                 </div>
             </div>
             <div className='rightbody-content'>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} autoComplete="off"> {/* Added autoComplete="off" */}
                     <div className='rolename'>
                         <div>{t('Role Name')}</div>
                         <div>
@@ -115,6 +143,7 @@ const AddRole = () => {
                                 value={formData.roleName}
                                 onChange={handleChange}
                                 required
+                                autoComplete="off" // Disable auto-complete for this input
                             />
                         </div>
                     </div>
@@ -122,21 +151,45 @@ const AddRole = () => {
                         <div>{t('Role Description')}</div>
                         <div>
                             <input
-                                type='textarea'
+                                type='text'
                                 className='role-name-input'
                                 name='description'
                                 placeholder={t('Description')}
                                 value={formData.description}
                                 onChange={handleChange}
                                 required
+                                autoComplete="off" // Disable auto-complete for this input
                             />
                         </div>
                     </div>
+                    <div className="row mb-3">
+          <div className="col">
+            <label>
+              {t("Tenant ID")}
+              <span className="text-danger">*</span>
+            </label>
+            <select
+              name="tenantID"
+              value={formData.tenantID}
+              onChange={handleChange}
+              className="form-control"
+              required
+            >
+              <option value="">{t("selectTenant")}</option>
+              {tenants.map((tenant) => (
+                <option key={tenant.tenantID} value={tenant.tenantID}>
+                  {tenant.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
                     <div className='row '>
                         <div className='dropdown-grid-container'>
                             {Object?.entries(groupedPermissions)?.map(([groupName, groupPermissions]) => (
                                 <div className="dropdown drop-down mt-3 col-12 dropdown-container" key={groupName}>
                                     <button
+                                        type="button" // Changed from button to avoid form submit trigger
                                         onClick={() => toggleDropdown(groupName)}
                                         className="dropdown-toggle drop-down-header d-flex align-items-center justify-content-between"
                                     >

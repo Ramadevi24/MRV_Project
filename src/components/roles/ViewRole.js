@@ -4,17 +4,15 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import '../../css/ViewForm.css';
-import { formatDateTime } from '../../utils/formateDate';
+import { formatDate, formatDateTime } from '../../utils/formateDate';
 import { useNavigate } from 'react-router-dom';
 
-const ViewRole = () => {
+const ViewRole = ({userPermissions}) => {
   const { id } = useParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  console.log(role, 'role');  
 
   useEffect(() => {
     fetchRole();
@@ -22,9 +20,16 @@ const ViewRole = () => {
 
   const fetchRole = async () => {
     try {
-      const response = await axios.get(`https://atlas.smartgeoapps.com/MRVAPI/api/Role/${id}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      });
+      const tenantId = userPermissions.tenantID || null; // Check if tenantID exists
+                  const roleId = id;
+            
+                  const url = tenantId 
+                    ? `https://atlas.smartgeoapps.com/MRVAPI/api/Role/${roleId}?tenantId=${tenantId}`
+                    : `https://atlas.smartgeoapps.com/MRVAPI/api/Role/${roleId}`;
+            
+                  const response = await axios.get(url, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+                  });
       setRole(response.data);
       setLoading(false);
     } catch (error) {
@@ -64,18 +69,20 @@ const ViewRole = () => {
        <tr>
   <th>{t('Role Permissions')}</th>
   <td>
-    {role?.rolePermissions.$values.map((permission, index) => (
-      <span key={permission.permission.permissionID}>
-        {permission.permission.permissionDisplayName}
-        {index < role.rolePermissions.$values.length - 1 ? ', ' : ''}
-      </span>
-    ))}
+  {role?.permissions?.$values?.length > 0 ? (
+  role.permissions.$values.map((permission, index) => (
+    <span key={permission.permissionID}>
+      {permission.permissionDisplayName}
+      {index < role.permissions.$values.length - 1 ? ', ' : ''}
+    </span>
+  ))
+) : null}
   </td>
 </tr>
 
        <tr>
          <th>{t('Created Date')}</th>
-         <td>{formatDateTime(role?.createdDate)}</td>
+         <td>{formatDate(role?.createdDate)}</td>
        </tr>
      </tbody>
    </table>

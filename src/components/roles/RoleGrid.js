@@ -8,7 +8,7 @@ import { Modal, Button, Table, Form } from 'react-bootstrap';
 import '../../css/createGrid.css';
 import  Pagination from '../Pagination.js';
 
-const RoleGrid = () => {
+const RoleGrid = ({userPermissions}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [roles, setRoles] = useState([]);
@@ -24,12 +24,29 @@ const RoleGrid = () => {
     fetchRoles();
   }, []);
 
+  // const fetchRoles = async () => {
+  //   try {
+  //     const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles?tenantId=userPermissions.tenantID', {
+  //       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+  //     });
+  //     setRoles(response.data.$values);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     toast.error(t('errorFetchingRoles'));
+  //     setLoading(false);
+  //   }
+  // };
+
   const fetchRoles = async () => {
     try {
-      const response = await axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Role', {
+      let tenantId = userPermissions.tenantID || '';
+      let url = tenantId ? `https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles?tenantId=${tenantId}` 
+                         : 'https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles';
+  
+      const response = await axios.get(url, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
-      setRoles(response.data.$values);
+        setRoles(response.data.$values);
       setLoading(false);
     } catch (error) {
       toast.error(t('errorFetchingRoles'));
@@ -69,7 +86,7 @@ const RoleGrid = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/Role/${roleToDelete.roleID}`, {
+      await axios.delete(`https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles/${roleToDelete.roleID}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setRoles(roles.filter((role) => role.roleID !== roleToDelete.roleID));

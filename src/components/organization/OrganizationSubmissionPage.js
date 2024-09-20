@@ -4,26 +4,9 @@ import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../css/CreateForm.css";
-import DropdownTreeSelect from "react-dropdown-tree-select";
-import "react-dropdown-tree-select/dist/styles.css";
 import { useNavigate } from "react-router-dom";
-import "react-dropdown-tree-select/dist/styles.css";
 import "../../css/custom-dropdown.css";
-// import "./styles.css";
 
-const transformData = (categories) => {
-  return categories
-    .filter(
-      (category) => category.categoryName && category.categoryCode // Filter only if both categoryName and categoryCode are present
-    )
-    .map((category) => ({
-      label: `${category.categoryCode} - ${category.categoryName}`, // Concatenate category code before name
-      value: category.categoryID,
-      children: category.subCategories
-        ? transformData(category.subCategories.$values || [])
-        : [],
-    }));
-};
 
 const OrganizationSubmissionPage = () => {
   const { t } = useTranslation();
@@ -41,19 +24,88 @@ const OrganizationSubmissionPage = () => {
   });
   const [tenants, setTenants] = useState([]);
   const [categories, setCategories] = useState([]);
-  const treeData = transformData(categories);
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [expandedItems, setExpandedItems] = useState([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleCategoryChange = (currentNode, selectedNodes) => {
-    const categoryIds = selectedNodes.map((node) => node.value);
-    setFormData({ ...formData, categoryIDs: categoryIds });
+  const handleCheck = (category) => {
+    const allChildIds = getAllChildIds(category);
+    setCheckedItems((prev) => {
+      const newCheckedItems = allChildIds.every((id) => prev.includes(id))
+        ? prev.filter((id) => !allChildIds.includes(id))
+        : [...new Set([...prev, ...allChildIds])];
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        categoryIDs: newCheckedItems,
+      }));
+      return newCheckedItems;
+    });
   };
 
-  const handleCategoryAction = (node, action) => {
-    if (action === 'checked' || action === 'unchecked') {
-      const selectedNodes = node.checked ? [...formData.categoryIDs, node.value] : formData.categoryIDs.filter(id => id !== node.value);
-      setFormData({ ...formData, categoryIDs: selectedNodes });
-    }
+  const handleExpand = (categoryId) => {
+    setExpandedItems((prev) =>
+      prev.includes(categoryId)
+        ? prev.filter((id) => id !== categoryId)
+        : [...prev, categoryId]
+    );
   };
+
+  const getAllChildIds = (category) => {
+    let ids = [category.categoryID];
+    category.subCategories?.$values?.forEach((subCategory) => {
+      ids = [...ids, ...getAllChildIds(subCategory)];
+    });
+    return ids;
+  };
+
+  const CheckboxTree = ({
+    data,
+    checkedItems,
+    expandedItems,
+    handleCheck,
+    handleExpand,
+  }) => (
+    <div style={{ paddingLeft: "20px" }}>
+      {data
+        ?.filter((category) => category.categoryName && category.categoryCode)
+        ?.map((item) => (
+          <div key={item.categoryID} style={{ marginBottom: "8px" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {item.subCategories && (
+                <span
+                  onClick={() => handleExpand(item.categoryID)}
+                  style={{ cursor: "pointer", marginRight: "8px" }}
+                >
+                  {expandedItems.includes(item.categoryID) ? "▼" : "▶"}
+                </span>
+              )}
+              <input
+                type="checkbox"
+                checked={checkedItems.includes(item.categoryID)}
+                onChange={() => handleCheck(item)}
+                style={{
+                  marginRight: "8px",
+                  marginTop: "-5px",
+                  width: "20px",
+                  transform: "scale(1.3)",
+                }}
+              />
+              <label>{`${item.categoryCode} - ${item.categoryName}`}</label>
+            </div>
+            {item.subCategories &&
+              expandedItems.includes(item.categoryID) && (
+                <CheckboxTree
+                  data={item.subCategories.$values}
+                  checkedItems={checkedItems}
+                  expandedItems={expandedItems}
+                  handleCheck={handleCheck}
+                  handleExpand={handleExpand}
+                />
+              )}
+          </div>
+        ))}
+    </div>
+  );
 
   useEffect(() => {
     fetchTenants();
@@ -126,14 +178,16 @@ const OrganizationSubmissionPage = () => {
 
   return (
     <div className="container">
-      <div className='form-heading-row'>
+      <div className="form-heading-row">
         <div>
-        <h2 className="create-form-header">{t("Create Organization")}</h2>
+          <h2 className="create-form-header">{t("Create Organization")}</h2>
         </div>
         <div>
-        <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
+          <button onClick={() => navigate(-1)} className="form_back">
+            {t("Back")}
+          </button>
         </div>
-        </div>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
@@ -250,15 +304,45 @@ const OrganizationSubmissionPage = () => {
               {t("categoryIDs")}
               <span className="text-danger">*</span>
             </label>
-            <DropdownTreeSelect
-              data={treeData}
-              onChange={handleCategoryChange}
-              onAction={handleCategoryAction}
-              texts={{ placeholder: "Select Categories" }}
-              className="category-tree-dropdown"
-              keepTreeOnSearch={true}
-              keepOpenOnSelect={true}
-            />
+            <div style={{ margin: "0 auto" }}>
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                style={{
+                  padding: "10px",
+                  width: "100%",
+                  textAlign: "left",
+                  cursor: "pointer",
+                  background: "white",
+                  border: "1px solid #ddd",
+                }}
+              >
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div> Select Categories </div>
+                  <div> {isDropdownOpen ? "▲" : "▼"} </div>
+                </div>
+              </button>
+
+              {isDropdownOpen && (
+                <div
+                  style={{
+                    border: "1px solid #ddd",
+                    padding: "10px",
+                    maxHeight: "300px",
+                    overflowY: "auto",
+                  }}
+                >
+                  <CheckboxTree
+                    data={categories}
+                    checkedItems={checkedItems}
+                    expandedItems={expandedItems}
+                    handleCheck={handleCheck}
+                    handleExpand={handleExpand}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
         {formData.locations.map((location, index) => (

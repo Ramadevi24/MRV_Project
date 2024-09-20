@@ -87,9 +87,6 @@ const PermissionGrid = () => {
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
       permission.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      permission.permissionuniquename
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
       permission.permissionGroup
         .toLowerCase()
         .includes(searchTerm.toLowerCase())
@@ -147,24 +144,6 @@ const PermissionGrid = () => {
                     <FaSortDown />
                   ))}
               </th>
-              <th onClick={() => handleSort("permissionuniquename")}>
-                {t("Permission unique Name")}
-                {sortConfig.key === "permissionuniquename" &&
-                  (sortConfig.direction === "ascending" ? (
-                    <FaSortUp />
-                  ) : (
-                    <FaSortDown />
-                  ))}
-              </th>
-              <th onClick={() => handleSort("permissionGroup")}>
-                {t("Permission Group")}
-                {sortConfig.key === "permissionGroup" &&
-                  (sortConfig.direction === "ascending" ? (
-                    <FaSortUp />
-                  ) : (
-                    <FaSortDown />
-                  ))}
-              </th>
               <th>{t("Actions")}</th>
             </tr>
           </thead>
@@ -173,8 +152,6 @@ const PermissionGrid = () => {
               <tr key={permission.permissionID}>
                 <td>{permission.permissionDisplayName}</td>
                 <td>{permission.description}</td>
-                <td>{permission.permissionuniquename}</td>
-                <td>{permission.permissionGroup}</td>
                 <td className="action-icons">
                   <button
                     className="view-btn"

@@ -167,17 +167,6 @@ hr{
    
 }
 
-.menu-item {
-    display: flex !important;
-    justify-content: space-evenly !important; /* Ensure even spacing between icon and text */
-    align-items: center !important; /* Vertically align the items */
-    padding: 10px;
-    color: #000;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-
 .administration-menu{
     /* margin-left: -40px; */
     padding: 0px !important;

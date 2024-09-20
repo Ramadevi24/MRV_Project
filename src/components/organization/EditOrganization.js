@@ -4,26 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import '../../css/EditForm.css';
 import { useParams } from 'react-router-dom';
-import DropdownTreeSelect from 'react-dropdown-tree-select';
-import 'react-dropdown-tree-select/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../../utils/formateDate.js';
 import "../../css/custom-dropdown.css";
-
-const transformData = (categories, selectedCategoryIDs) => {
-  return categories
-    .filter(
-      (category) => category.categoryName && category.categoryCode
-    )
-    .map((category) => ({
-      label: `${category.categoryCode} - ${category.categoryName}`, 
-      value:  category.categoryID,
-      checked: selectedCategoryIDs?.includes(category.categoryID),
-      children: category.subCategories
-        ? transformData(category.subCategories.$values || selectedCategoryIDs)
-        : [],
-    }));
-};
 
 const EditOrganization = () => {
   const { t } = useTranslation();
@@ -31,7 +14,7 @@ const EditOrganization = () => {
   const { id } = useParams();
   const [formData, setFormData] = useState({
     tenantID: '',
-    tenantName: '', // Add tenantName to formData
+    tenantName: '',
     organizationName: '',
     description: '',
     establishedDate: '',
@@ -43,23 +26,92 @@ const EditOrganization = () => {
   });
   const [tenants, setTenants] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [treeData, setTreeData] = useState([]);
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [expandedItems, setExpandedItems] = useState([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isCategoryValid, setIsCategoryValid] = useState(true);
+
+  const handleCheck = (category) => {
+    const allChildIds = getAllChildIds(category);
+    setCheckedItems((prev = []) => {
+      const newCheckedItems = allChildIds.every((id) => prev.includes(id))
+        ? prev.filter((id) => !allChildIds.includes(id))
+        : [...new Set([...prev, ...allChildIds])];
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        categoryIDs: newCheckedItems,
+      }));
+      return newCheckedItems;
+    });
+  };
+
+  const handleExpand = (categoryId) => {
+    setExpandedItems((prev) =>
+      prev.includes(categoryId)
+        ? prev.filter((id) => id !== categoryId)
+        : [...prev, categoryId]
+    );
+  };
+
+  const getAllChildIds = (category) => {
+    let ids = [category.categoryID];
+    category.subCategories?.$values?.forEach((subCategory) => {
+      ids = [...ids, ...getAllChildIds(subCategory)];
+    });
+    return ids;
+  };
+
+  const CheckboxTree = ({ data, checkedItems, expandedItems, handleCheck, handleExpand }) => (
+    <div style={{ paddingLeft: "20px" }}>
+      {data?.filter((category) => category.categoryName && category.categoryCode)
+        ?.map((item) => (
+          <div key={item.categoryID} style={{ marginBottom: "8px" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {item.subCategories && (
+                <span
+                  onClick={() => handleExpand(item.categoryID)}
+                  style={{ cursor: "pointer", marginRight: "8px" }}
+                >
+                  {expandedItems.includes(item.categoryID) ? "▼" : "▶"}
+                </span>
+              )}
+              <input
+                type="checkbox"
+                checked={checkedItems.includes(item.categoryID)}
+                onChange={() => handleCheck(item)}
+                style={{
+                  marginRight: "8px",
+                  marginTop: "-5px",
+                  width: "20px",
+                  transform: "scale(1.3)",
+                }}
+              />
+              <label>{`${item.categoryCode} - ${item.categoryName}`}</label>
+            </div>
+            {item.subCategories && expandedItems.includes(item.categoryID) && (
+              <CheckboxTree
+                data={item.subCategories.$values}
+                checkedItems={checkedItems}
+                expandedItems={expandedItems}
+                handleCheck={handleCheck}
+                handleExpand={handleExpand}
+              />
+            )}
+          </div>
+        ))}
+    </div>
+  );
 
   useEffect(() => {
-    fetchOrganization();
     fetchCategories();
+    fetchOrganization();
   }, []);
 
-  console.log(formData, 'formData');
-
   useEffect(() => {
-    setTreeData(transformData(categories, formData?.categories?.$values));
-  }, [categories, formData.categoryIDs]);
-
-  const handleCategoryChange = (currentNode, selectedNodes) => {
-    const categoryIds = selectedNodes.map((node) => node.value);
-    setFormData({ ...formData, categoryIDs: categoryIds });
-  };
+    if (formData.categoryIDs.length) {
+      setCheckedItems(formData.categoryIDs);
+    }
+  }, [formData.categoryIDs]);
 
   const fetchOrganization = async () => {
     try {
@@ -70,7 +122,16 @@ const EditOrganization = () => {
       });
       const data = response.data;
       data.establishedDate = formatDate(data.establishedDate);
-      setFormData(data);
+      console.log('data.categories.$values', data.categories.$values);
+      // Set categoryIDs based on fetched organization data
+      const categoryIDs = data.categories.$values.map(categoryName =>
+        categories.find(category => category.categoryName === categoryName)?.categoryID
+      ).filter(Boolean);
+
+      console.log('categoryIDs', categoryIDs);
+
+      setFormData({ ...data, categoryIDs });
+      setCheckedItems(categoryIDs);
       fetchTenants(data.tenantName);
     } catch (error) {
       toast.error(t('errorFetchingData'));
@@ -124,6 +185,11 @@ const EditOrganization = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.categoryIDs.length === 0) {
+      setIsCategoryValid(false);
+      toast.error(t('Please select at least one categoryID'));
+      return;
+    }
     try {
       await axios.put(`https://atlas.smartgeoapps.com/MRVAPI/api/Organization/${id}`, formData, {
         headers: {
@@ -141,12 +207,12 @@ const EditOrganization = () => {
     <div className="container">
       <div className='form-heading-row'>
         <div>
-        <h2 className='edit-form-header'>{t('Edit Organization')}</h2>
+          <h2 className='edit-form-header'>{t('Edit Organization')}</h2>
         </div>
         <div>
-        <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
+          <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
         </div>
-        </div>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
@@ -193,14 +259,45 @@ const EditOrganization = () => {
               {t("categoryIDs")}
               <span className="text-danger">*</span>
             </label>
-            <DropdownTreeSelect
-              data={treeData}
-              onChange={handleCategoryChange}
-              keepTreeOnSearch
-              keepOpenOnSelect
-              texts={{ placeholder: "Select Categories" }}
-              className="category-tree-dropdown"
-            />
+            <div style={{ margin: "0 auto" }}>
+              <button
+                type="button"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                style={{
+                  padding: "10px",
+                  width: "100%",
+                  textAlign: "left",
+                  cursor: "pointer",
+                  background: "white",
+                  border: "1px solid #ddd",
+                }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <div> Select Categories </div>
+                  <div> {isDropdownOpen ? "▲" : "▼"} </div>
+                </div>
+              </button>
+
+              {isDropdownOpen && (
+                <div style={{
+                  border: "1px solid #ddd",
+                  padding: "10px",
+                  maxHeight: "300px",
+                  overflowY: "auto",
+                }}>
+                  <CheckboxTree
+                    data={categories}
+                    checkedItems={checkedItems}
+                    expandedItems={expandedItems}
+                    handleCheck={handleCheck}
+                    handleExpand={handleExpand}
+                  />
+                </div>
+              )}
+              {!isCategoryValid && (
+                <div className="text-danger">{t('Please select at least one category')}</div>
+              )}
+            </div>
           </div>
         </div>
         {formData.locations.$values?.map((location, index) => (

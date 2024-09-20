@@ -7,10 +7,12 @@ import adminimage from '../images/Ellipse 5.png';
 import { useNavigate } from 'react-router-dom';
 import i18n from '../i18n';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../contexts/AuthContext';
 
 const Topbar = ({selectedMenuItem}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { logout } = useAuth();
   const [language, setLanguage] = useState(i18n.language);
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
@@ -21,16 +23,12 @@ const Topbar = ({selectedMenuItem}) => {
   }, []);
   
 
-
-
-  
-
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible); // Toggle dropdown visibility
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
+    logout();
     setDropdownVisible(false); 
     navigate('/login');
   };
@@ -77,7 +75,7 @@ const Topbar = ({selectedMenuItem}) => {
           <option value="en">English</option>
           <option value="fr">{t('French')}</option>
           <option value="ar">{t('Arabic')}</option>
-          <option value="de">{t('German')}</option>
+          <option value="ger">{t('German')}</option>
         </select>
       </div>
       <div className="icons">

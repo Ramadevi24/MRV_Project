@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import '../../css/CreateForm.css';
 
-const UserForm = () => {
+const UserForm = ({userPermissions}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -32,16 +32,25 @@ const UserForm = () => {
 
   const fetchDropdownOptions = async () => {
     try {
-      const [tenants, organizations, tenantRoles, userRoles] = await Promise.all([
-        axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Organization', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/TenantRole', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Role', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-      ]);
+      const tenantId = userPermissions.tenantID || ''; // Default to empty string if tenantID is null
+
+    // Define URLs conditionally for both roles and organizations
+    const roleUrl = tenantId 
+      ? `https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles?tenantId=${userPermissions.tenantID}`
+      : 'https://atlas.smartgeoapps.com/MRVAPI/api/Role/Roles';
+
+    const organizationUrl = tenantId 
+      ? `https://atlas.smartgeoapps.com/MRVAPI/api/Organization/getOrganizations/${userPermissions.tenantID}`
+      : 'https://atlas.smartgeoapps.com/MRVAPI/api/Organization';
+
+    const [tenants, organizations, userRoles] = await Promise.all([
+      axios.get('https://atlas.smartgeoapps.com/MRVAPI/api/Tenant', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+      axios.get(organizationUrl, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+      axios.get(roleUrl, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+    ]);
       setDropdownOptions({
         tenants: tenants.data.$values,
         organizations: organizations.data.$values,
-        tenantRoles: tenantRoles.data.$values,
         userRoles: userRoles.data.$values
       });
     } catch (error) {
@@ -69,7 +78,7 @@ const UserForm = () => {
     }
   };
 
-  console.log(dropdownOptions.userRoles, 'dropdownOptions');
+  console.log(userPermissions, 'userPermissions');
 
   return (
     <div className="container">
@@ -81,33 +90,29 @@ const UserForm = () => {
         <button onClick={() => navigate(-1)} className='form_back'>{t('Back')}</button>
         </div>
         </div>
-      <form onSubmit={handleSubmit}>
-        <div className="row mb-3">
-          <div className="col">
+      <form onSubmit={handleSubmit} className="form-container">
+          <div className="col-6">
             <label>{t('First Name')}<span style={{ color: 'red' }}>*</span></label>
             <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
           </div>
-          <div className="col">
+          <div className="col-6">
             <label>{t('Last Name')}<span style={{ color: 'red' }}>*</span></label>
             <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
           </div>
-        </div>
-        <div className="row mb-3">
-          <div className="col">
+          <div className="col-6">
             <label>{t('Email')}<span style={{ color: 'red' }}>*</span></label>
             <input type="email" name="email" value={formData.email} onChange={handleChange} required />
           </div>
-          <div className="col">
+          <div className="col-6">
             <label>{t('Password')}<span style={{ color: 'red' }}>*</span></label>
             <input type="password" name="passwordHash" value={formData.passwordHash} onChange={handleChange} required />
           </div>
-        </div>
-        <div className="row mb-3">
-          <div className="col">
+          <div className="col-6">
             <label>{t('Phone')}<span style={{ color: 'red' }}>*</span></label>
             <input type="number" name="phone" value={formData.phone} onChange={handleChange} required />
           </div>
-          <div className="col">
+          {!userPermissions.tenantID && (
+          <div className="col-6">
             <label className='custum-dropdown-label'>{t('Tenant ID')}<span style={{ color: 'red' }}>*</span></label>
             <select className='custum-dropdown-select' name="tenantID" value={formData.tenantID} onChange={handleChange} required>
               <option value="">{t('Select Tenant')}</option>
@@ -116,9 +121,8 @@ const UserForm = () => {
               ))}
             </select>
           </div>
-        </div>
-        <div className="row mb-3">  
-          <div className="col">
+          )}
+          <div className="col-6">
             <label className='custum-dropdown-label'>{t('Organization ID')}<span style={{ color: 'red' }}>*</span></label>
             <select className='custum-dropdown-select' name="organizationID" value={formData.organizationID} onChange={handleChange} required>
               <option value="">{t('Select Organization')}</option>
@@ -127,7 +131,7 @@ const UserForm = () => {
               ))}
             </select>
           </div>
-          <div className="col">
+          {/* <div className="col-6">
             <label className='custum-dropdown-label'>{t('Tenant Role ID')}<span style={{ color: 'red' }}>*</span></label>
             <select className='custum-dropdown-select' name="tenantRoleID" value={formData.tenantRoleID} onChange={handleChange} required>
               <option value="">{t('Select Tenant Role')}</option>
@@ -135,9 +139,7 @@ const UserForm = () => {
                 <option key={role.tenantRoleID} value={role.tenantRoleID}>{role.roleName}</option>
               ))}
             </select>
-          </div>
-        </div>
-        <div className="row mb-3">
+          </div> */}
           <div className="col col-6">
             <label  className='custum-dropdown-label'>{t('User Role')}<span style={{ color: 'red' }}>*</span></label>
             <select className='custum-dropdown-select' name="userRole" value={formData.userRole} onChange={handleChange} required>
@@ -146,7 +148,6 @@ const UserForm = () => {
                 <option key={role.roleID} value={role.roleName}>{role.roleName}</option>
               ))}
             </select>
-          </div>
         </div>
         <button type="submit" className="btn">{t('Create User')}</button>
       </form>
