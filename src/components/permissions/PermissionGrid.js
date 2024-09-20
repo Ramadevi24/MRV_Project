@@ -122,7 +122,7 @@ const PermissionGrid = () => {
         </div>
       ) : (
         <Table className="custom-table table-striped table-hover">
-          <thead>
+          <thead className='grid-table'>
             <tr>
               <th onClick={() => handleSort("permissionDisplayName")}>
                 {t("Permission Display Name")}

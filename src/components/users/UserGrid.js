@@ -102,7 +102,7 @@ const UserGrid = () => {
         <button className="button-72" onClick={() => navigate('/Mrv/create-user')}>{t('Create User')}</button>
       </div>
       <table className="table table-striped table-hover custom-table">
-        <thead>
+        <thead className='grid-table'>
           <tr>
             <th onClick={() => handleSort('id')}>{t('User ID')} {sortConfig.key === 'id' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}</th>
             <th onClick={() => handleSort('firstName')}>{t('First Name')} {sortConfig.key === 'firstName' && (sortConfig.direction === 'ascending' ? <FaSortUp /> : <FaSortDown />)}</th>

@@ -109,6 +109,13 @@ textarea {
   list-style-type: none;
 }
 
+.grid-table tr th{
+  
+  /* color:rgba(21, 21, 178, 0.673) !important; */
+  color:#1e7898;
+  font-size: 16px;
+  font-weight: 600;
+}
 
 
 

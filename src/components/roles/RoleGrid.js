@@ -119,7 +119,7 @@ const RoleGrid = ({userPermissions}) => {
         </div>
       ) : (
         <Table striped hover className="custom-table">
-          <thead>
+          <thead className='grid-table'>
             <tr>
               <th>{t('Role ID')}</th>
               <th onClick={() => handleSort('roleName')}>

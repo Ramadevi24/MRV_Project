@@ -111,7 +111,7 @@ const TenantGrid = () => {
             </Spinner>
           </div>
         ) : (
-          <table className="custom-table table table-striped table-hover">
+          <table className="custom-table table table-striped table-hover" >
             <thead className='grid-table'>
               <tr>
                 <th onClick={() => handleSort('tenantID')}>
@@ -136,11 +136,11 @@ const TenantGrid = () => {
             <tbody>
               {currentTenants.map((tenant) => (
                 <tr key={tenant.tenantID}>
-                  <td>{tenant.tenantID}</td>
+                  <td >{tenant.tenantID}</td>
                   <td>{tenant.name}</td>
                   <td>{tenant.description}</td>
                   <td>{formatDate(tenant.createdDate)}</td>
-                  <td className="action-icons">
+                  <td className="action-icons" style={{padding:'8px'}}>
                     <button className="view-btn" onClick={() => navigate(`/Mrv/view-tenant/${tenant.tenantID}`)}>
                       <FaEye color="green" />
                     </button>
