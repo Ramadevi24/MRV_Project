@@ -128,7 +128,7 @@ const UserGrid = () => {
               <td>{user.tenantName}</td>
               <td>{user.organizationName}</td>
               <td>{user.userRole}</td>
-              <td className="action-icons">
+              <td className="action-icons"  style={{padding:'8px'}}>
                 <button className="view-btn text-success" onClick={() => navigate(`/Mrv/view-user/${user.userID}`)}><FaEye /></button>
                 <button className="edit-btn text-primary" onClick={() => navigate(`/Mrv/edit-user/${user.userID}`)}><FaPencilAlt /></button>
                 <button className="delete-btn text-danger" onClick={() => { setShowModal(true); setUserToDelete(user); }}><FaTrashAlt /></button>

@@ -407,7 +407,7 @@ const PermissionGrid = () => {
                   )}
                 </td>
                 <td>{permission.permissionGroup}</td>
-                <td className="action-icons">
+                <td className="action-icons"  style={{padding:'8px'}}>
                   {editingRowId === permission.permissionID ? (
                     <>
                       {/* <Button className="save-btn" onClick={() => handleSave(permission.permissionID)}>

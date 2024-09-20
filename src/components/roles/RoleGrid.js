@@ -149,7 +149,7 @@ const RoleGrid = ({userPermissions}) => {
                 <td>{role.roleName}</td>
                 <td>{role.description}</td>
                 <td>{formatDate(role.date)}</td>
-                <td className="action-icons">
+                <td className="action-icons"  style={{padding:'8px'}}>
                   <button className="view-btn" onClick={() => navigate(`/Mrv/view-role/${role.roleID}`)}>
                     <FaEye color="green" />
                   </button>
